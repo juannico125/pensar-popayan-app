@@ -1,10 +1,10 @@
 /* Pensar Preuniversitario · app del estudiante (demo)
- * SPA por hash sin dependencias. Estado en localStorage — sin backend.
+ * SPA por hash sin dependencias. Estado en memoria — sin backend, sin persistencia.
+ * Recargar la página (Ctrl+Shift+R) siempre vuelve al estado inicial con el historial de muestra.
  */
 'use strict';
 
 /* ───────────────── estado ───────────────── */
-const STORE_KEY = 'pensar_app_v1';
 
 // historial de muestra (última semana) para que la demo luzca con actividad real
 // desde el primer ingreso, sin depender de que el presentador juegue en vivo.
@@ -50,17 +50,8 @@ function freshState() {
   };
 }
 
-let S = load();
-function load() {
-  try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (raw) return Object.assign(freshState(), JSON.parse(raw));
-  } catch (e) { /* almacenamiento no disponible: se usa memoria */ }
-  return freshState();
-}
-function save() {
-  try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch (e) { /* sin persistencia */ }
-}
+let S = freshState();
+function save() { /* sin persistencia: el progreso vive solo en esta carga de página */ }
 
 /* ───────────────── utilidades ───────────────── */
 const $ = sel => document.querySelector(sel);
