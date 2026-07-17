@@ -1,7 +1,7 @@
 /* Hallmark · tokens · theme: studied-DNA (source: image — capturas de educadavid-app, obra del propio usuario)
- * paper oklch(19% 0.012 85) warm-dark · accent oklch(78% 0.14 88) gold
+ * paper oklch(19% 0.012 85) warm-dark · accent oklch(97% 0.006 90) blanco cálido
  * display: Fraunces (roman editorial serif) · body: Plus Jakarta Sans · label: IBM Plex Mono
- * adaptación: el rol del lila de educadavid lo ocupa el dorado Pensar; semánticos verde/coral se conservan
+ * adaptación: el rol del lila de educadavid lo ocupa un blanco cálido; semánticos verde/coral se conservan
  */
 :root {
   /* ── superficie ── */
@@ -14,18 +14,18 @@
   --color-ink-soft:     oklch(72% 0.025 88);   /* texto secundario */
   --color-ink-faint:    oklch(55% 0.02 86);    /* texto terciario, metadatos */
 
-  /* ── acento dorado Pensar ── */
-  --color-accent:       oklch(78% 0.14 88);    /* dorado — botones primarios, marcas */
-  --color-accent-deep:  oklch(63% 0.12 80);    /* dorado profundo — hover / prensado */
-  --color-accent-ink:   oklch(20% 0.03 85);    /* texto sobre dorado */
-  --color-accent-soft:  oklch(78% 0.14 88 / 0.14); /* tintes de fondo dorados */
+  /* ── acento blanco Pensar ── */
+  --color-accent:       oklch(97% 0.006 90);   /* blanco cálido — botones primarios, marcas */
+  --color-accent-deep:  oklch(87% 0.008 88);   /* blanco atenuado — hover / prensado */
+  --color-accent-ink:   oklch(17% 0.015 85);   /* texto sobre blanco */
+  --color-accent-soft:  oklch(97% 0.006 90 / 0.14); /* tintes de fondo claros */
 
   /* ── semánticos ── */
   --color-ok:           oklch(72% 0.14 155);   /* verde correcto */
   --color-ok-soft:      oklch(72% 0.14 155 / 0.13);
   --color-err:          oklch(68% 0.15 25);    /* coral incorrecto */
   --color-err-soft:     oklch(68% 0.15 25 / 0.13);
-  --color-focus:        oklch(80% 0.1 88);     /* anillo de foco */
+  --color-focus:        oklch(90% 0.008 88);   /* anillo de foco */
 
   /* ── tintes por materia ── */
   --tint-lc:  oklch(76% 0.11 85);
