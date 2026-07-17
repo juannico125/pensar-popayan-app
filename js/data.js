@@ -16,64 +16,64 @@ const PASAJE_PARAMO = `<p>A pocos kilómetros de Popayán, en las faldas del vol
 
 // ─── Figuras SVG estilo cuadernillo ───
 const FIG_EMPANADAS = `<div class="ctx-fig"><svg viewBox="0 0 340 190" role="img" aria-label="Gráfica de barras: empanadas vendidas por día">
-<line x1="40" y1="150" x2="330" y2="150" stroke="#8A8060" stroke-width="1.5"/>
-<line x1="40" y1="108" x2="330" y2="108" stroke="#3A3428" stroke-width="1"/>
-<line x1="40" y1="66" x2="330" y2="66" stroke="#3A3428" stroke-width="1"/>
-<line x1="40" y1="24" x2="330" y2="24" stroke="#3A3428" stroke-width="1"/>
-<text x="34" y="154" font-size="10" fill="#8A8060" text-anchor="end">0</text>
-<text x="34" y="112" font-size="10" fill="#8A8060" text-anchor="end">30</text>
-<text x="34" y="70" font-size="10" fill="#8A8060" text-anchor="end">60</text>
-<text x="34" y="28" font-size="10" fill="#8A8060" text-anchor="end">90</text>
-<path d="M51 150 V98 Q51 94 55 94 H83 Q87 94 87 98 V150 Z" fill="#D9A82B"/>
-<path d="M109 150 V77 Q109 73 113 73 H141 Q145 73 145 77 V150 Z" fill="#D9A82B"/>
-<path d="M167 150 V91 Q167 87 171 87 H199 Q203 87 203 91 V150 Z" fill="#D9A82B"/>
-<path d="M225 150 V56 Q225 52 229 52 H257 Q261 52 261 56 V150 Z" fill="#D9A82B"/>
-<path d="M283 150 V28 Q283 24 287 24 H315 Q319 24 319 28 V150 Z" fill="#D9A82B"/>
-<text x="69" y="88" font-size="11" font-weight="600" fill="#F2ECDA" text-anchor="middle">40</text>
-<text x="127" y="67" font-size="11" font-weight="600" fill="#F2ECDA" text-anchor="middle">55</text>
-<text x="185" y="81" font-size="11" font-weight="600" fill="#F2ECDA" text-anchor="middle">45</text>
-<text x="243" y="46" font-size="11" font-weight="600" fill="#F2ECDA" text-anchor="middle">70</text>
-<text x="301" y="18" font-size="11" font-weight="600" fill="#F2ECDA" text-anchor="middle">90</text>
-<text x="69" y="167" font-size="11" fill="#A79A78" text-anchor="middle">Lun</text>
-<text x="127" y="167" font-size="11" fill="#A79A78" text-anchor="middle">Mar</text>
-<text x="185" y="167" font-size="11" fill="#A79A78" text-anchor="middle">Mié</text>
-<text x="243" y="167" font-size="11" fill="#A79A78" text-anchor="middle">Jue</text>
-<text x="301" y="167" font-size="11" fill="#A79A78" text-anchor="middle">Vie</text>
-<text x="185" y="185" font-size="10" fill="#8A8060" text-anchor="middle">Empanadas vendidas por día</text>
+<line x1="40" y1="150" x2="330" y2="150" stroke="#8A7A55" stroke-width="1.5"/>
+<line x1="40" y1="108" x2="330" y2="108" stroke="#E4D9B8" stroke-width="1"/>
+<line x1="40" y1="66" x2="330" y2="66" stroke="#E4D9B8" stroke-width="1"/>
+<line x1="40" y1="24" x2="330" y2="24" stroke="#E4D9B8" stroke-width="1"/>
+<text x="34" y="154" font-size="10" fill="#6B6248" text-anchor="end">0</text>
+<text x="34" y="112" font-size="10" fill="#6B6248" text-anchor="end">30</text>
+<text x="34" y="70" font-size="10" fill="#6B6248" text-anchor="end">60</text>
+<text x="34" y="28" font-size="10" fill="#6B6248" text-anchor="end">90</text>
+<path d="M51 150 V98 Q51 94 55 94 H83 Q87 94 87 98 V150 Z" fill="#A67C00"/>
+<path d="M109 150 V77 Q109 73 113 73 H141 Q145 73 145 77 V150 Z" fill="#A67C00"/>
+<path d="M167 150 V91 Q167 87 171 87 H199 Q203 87 203 91 V150 Z" fill="#A67C00"/>
+<path d="M225 150 V56 Q225 52 229 52 H257 Q261 52 261 56 V150 Z" fill="#A67C00"/>
+<path d="M283 150 V28 Q283 24 287 24 H315 Q319 24 319 28 V150 Z" fill="#A67C00"/>
+<text x="69" y="88" font-size="11" font-weight="600" fill="#2A2418" text-anchor="middle">40</text>
+<text x="127" y="67" font-size="11" font-weight="600" fill="#2A2418" text-anchor="middle">55</text>
+<text x="185" y="81" font-size="11" font-weight="600" fill="#2A2418" text-anchor="middle">45</text>
+<text x="243" y="46" font-size="11" font-weight="600" fill="#2A2418" text-anchor="middle">70</text>
+<text x="301" y="18" font-size="11" font-weight="600" fill="#2A2418" text-anchor="middle">90</text>
+<text x="69" y="167" font-size="11" fill="#6B6248" text-anchor="middle">Lun</text>
+<text x="127" y="167" font-size="11" fill="#6B6248" text-anchor="middle">Mar</text>
+<text x="185" y="167" font-size="11" fill="#6B6248" text-anchor="middle">Mié</text>
+<text x="243" y="167" font-size="11" fill="#6B6248" text-anchor="middle">Jue</text>
+<text x="301" y="167" font-size="11" fill="#6B6248" text-anchor="middle">Vie</text>
+<text x="185" y="185" font-size="10" fill="#8A7A55" text-anchor="middle">Empanadas vendidas por día</text>
 </svg></div>`;
 
 const FIG_CICLISTA = `<div class="ctx-fig"><svg viewBox="0 0 340 190" role="img" aria-label="Gráfica: distancia recorrida en función del tiempo">
-<line x1="40" y1="150" x2="330" y2="150" stroke="#8A8060" stroke-width="1.5"/>
-<line x1="40" y1="150" x2="40" y2="20" stroke="#8A8060" stroke-width="1.5"/>
-<line x1="40" y1="110" x2="330" y2="110" stroke="#3A3428" stroke-width="1"/>
-<line x1="40" y1="70" x2="330" y2="70" stroke="#3A3428" stroke-width="1"/>
-<line x1="40" y1="30" x2="330" y2="30" stroke="#3A3428" stroke-width="1"/>
-<text x="34" y="154" font-size="10" fill="#8A8060" text-anchor="end">0</text>
-<text x="34" y="114" font-size="10" fill="#8A8060" text-anchor="end">8</text>
-<text x="34" y="74" font-size="10" fill="#8A8060" text-anchor="end">16</text>
-<text x="34" y="34" font-size="10" fill="#8A8060" text-anchor="end">24</text>
-<text x="22" y="18" font-size="10" fill="#A79A78">km</text>
-<polyline points="40,150 152,90 208,90 320,30" fill="none" stroke="#D9A82B" stroke-width="2.5" stroke-linejoin="round"/>
-<circle cx="40" cy="150" r="4" fill="#D9A82B" stroke="#1B1811" stroke-width="2"/>
-<circle cx="152" cy="90" r="4" fill="#D9A82B" stroke="#1B1811" stroke-width="2"/>
-<circle cx="208" cy="90" r="4" fill="#D9A82B" stroke="#1B1811" stroke-width="2"/>
-<circle cx="320" cy="30" r="4" fill="#D9A82B" stroke="#1B1811" stroke-width="2"/>
-<text x="40" y="167" font-size="10" fill="#A79A78" text-anchor="middle">0</text>
-<text x="96" y="167" font-size="10" fill="#A79A78" text-anchor="middle">10</text>
-<text x="152" y="167" font-size="10" fill="#A79A78" text-anchor="middle">20</text>
-<text x="208" y="167" font-size="10" fill="#A79A78" text-anchor="middle">30</text>
-<text x="264" y="167" font-size="10" fill="#A79A78" text-anchor="middle">40</text>
-<text x="320" y="167" font-size="10" fill="#A79A78" text-anchor="middle">50</text>
-<text x="185" y="185" font-size="10" fill="#8A8060" text-anchor="middle">Tiempo (minutos) — distancia recorrida (km)</text>
+<line x1="40" y1="150" x2="330" y2="150" stroke="#8A7A55" stroke-width="1.5"/>
+<line x1="40" y1="150" x2="40" y2="20" stroke="#8A7A55" stroke-width="1.5"/>
+<line x1="40" y1="110" x2="330" y2="110" stroke="#E4D9B8" stroke-width="1"/>
+<line x1="40" y1="70" x2="330" y2="70" stroke="#E4D9B8" stroke-width="1"/>
+<line x1="40" y1="30" x2="330" y2="30" stroke="#E4D9B8" stroke-width="1"/>
+<text x="34" y="154" font-size="10" fill="#6B6248" text-anchor="end">0</text>
+<text x="34" y="114" font-size="10" fill="#6B6248" text-anchor="end">8</text>
+<text x="34" y="74" font-size="10" fill="#6B6248" text-anchor="end">16</text>
+<text x="34" y="34" font-size="10" fill="#6B6248" text-anchor="end">24</text>
+<text x="22" y="18" font-size="10" fill="#6B6248">km</text>
+<polyline points="40,150 152,90 208,90 320,30" fill="none" stroke="#A67C00" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="40" cy="150" r="4" fill="#A67C00" stroke="#FAF3DC" stroke-width="2"/>
+<circle cx="152" cy="90" r="4" fill="#A67C00" stroke="#FAF3DC" stroke-width="2"/>
+<circle cx="208" cy="90" r="4" fill="#A67C00" stroke="#FAF3DC" stroke-width="2"/>
+<circle cx="320" cy="30" r="4" fill="#A67C00" stroke="#FAF3DC" stroke-width="2"/>
+<text x="40" y="167" font-size="10" fill="#6B6248" text-anchor="middle">0</text>
+<text x="96" y="167" font-size="10" fill="#6B6248" text-anchor="middle">10</text>
+<text x="152" y="167" font-size="10" fill="#6B6248" text-anchor="middle">20</text>
+<text x="208" y="167" font-size="10" fill="#6B6248" text-anchor="middle">30</text>
+<text x="264" y="167" font-size="10" fill="#6B6248" text-anchor="middle">40</text>
+<text x="320" y="167" font-size="10" fill="#6B6248" text-anchor="middle">50</text>
+<text x="185" y="185" font-size="10" fill="#8A7A55" text-anchor="middle">Tiempo (minutos) — distancia recorrida (km)</text>
 </svg></div>`;
 
 const FIG_LOTE = `<div class="ctx-fig"><svg viewBox="0 0 340 210" role="img" aria-label="Figura: lote rectangular con jardín central y sendero perimetral">
-<rect x="50" y="20" width="240" height="160" fill="#231F16" stroke="#F2ECDA" stroke-width="2"/>
-<rect x="90" y="60" width="160" height="80" fill="rgba(217,168,43,0.16)" stroke="#D9A82B" stroke-width="2"/>
-<text x="170" y="105" font-size="13" font-weight="700" fill="#E3B341" text-anchor="middle">Jardín</text>
-<text x="170" y="46" font-size="11" fill="#A79A78" text-anchor="middle">sendero · 2 m de ancho</text>
-<text x="170" y="200" font-size="12" font-weight="600" fill="#F2ECDA" text-anchor="middle">12 m</text>
-<text x="34" y="100" font-size="12" font-weight="600" fill="#F2ECDA" text-anchor="middle" transform="rotate(-90 34 100)">8 m</text>
+<rect x="50" y="20" width="240" height="160" fill="#FAF3DC" stroke="#2A2418" stroke-width="2"/>
+<rect x="90" y="60" width="160" height="80" fill="rgba(166,124,0,0.14)" stroke="#A67C00" stroke-width="2"/>
+<text x="170" y="105" font-size="13" font-weight="700" fill="#8F6B00" text-anchor="middle">Jardín</text>
+<text x="170" y="46" font-size="11" fill="#6B6248" text-anchor="middle">sendero · 2 m de ancho</text>
+<text x="170" y="200" font-size="12" font-weight="600" fill="#2A2418" text-anchor="middle">12 m</text>
+<text x="34" y="100" font-size="12" font-weight="600" fill="#2A2418" text-anchor="middle" transform="rotate(-90 34 100)">8 m</text>
 </svg></div>`;
 
 const TABLA_JORNADA = `<table class="ctx-table"><tr><th></th><th>Mujeres</th><th>Hombres</th><th>Total</th></tr><tr><td>Sabatino</td><td>12</td><td>8</td><td>20</td></tr><tr><td>Intensivo</td><td>10</td><td>10</td><td>20</td></tr><tr><td><b>Total</b></td><td>22</td><td>18</td><td>40</td></tr></table>`;

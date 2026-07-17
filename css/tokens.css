@@ -1,40 +1,40 @@
 /* Hallmark · tokens · theme: studied-DNA (source: image — capturas de educadavid-app, obra del propio usuario)
- * paper oklch(19% 0.012 85) warm-dark · accent oklch(97% 0.006 90) blanco cálido
+ * paper oklch(97% 0.014 90) crema claro · accent oklch(58% 0.13 75) dorado Pensar
  * display: Fraunces (roman editorial serif) · body: Plus Jakarta Sans · label: IBM Plex Mono
- * adaptación: el rol del lila de educadavid lo ocupa un blanco cálido; semánticos verde/coral se conservan
+ * adaptación: estructura/microinteracciones de educadavid, tema claro cálido con acento dorado de marca Pensar
  */
 :root {
   /* ── superficie ── */
-  --color-paper:        oklch(19% 0.012 85);   /* fondo app, casi-negro cálido */
-  --color-paper-2:      oklch(23% 0.014 85);   /* tarjetas */
-  --color-paper-3:      oklch(27% 0.016 85);   /* tarjetas elevadas, chips, inputs */
-  --color-paper-4:      oklch(31% 0.018 85);   /* hover de superficies */
-  --color-line:         oklch(33% 0.02 85);    /* bordes hairline */
-  --color-ink:          oklch(94% 0.02 90);    /* texto principal, crema */
-  --color-ink-soft:     oklch(72% 0.025 88);   /* texto secundario */
-  --color-ink-faint:    oklch(55% 0.02 86);    /* texto terciario, metadatos */
+  --color-paper:        oklch(97% 0.014 90);   /* fondo app, crema claro */
+  --color-paper-2:      oklch(93% 0.02 88);    /* tarjetas */
+  --color-paper-3:      oklch(89% 0.024 87);   /* tarjetas elevadas, chips, inputs */
+  --color-paper-4:      oklch(84% 0.03 86);    /* hover de superficies */
+  --color-line:         oklch(78% 0.03 85);    /* bordes hairline */
+  --color-ink:          oklch(22% 0.02 85);    /* texto principal, casi-negro cálido */
+  --color-ink-soft:     oklch(42% 0.02 85);    /* texto secundario */
+  --color-ink-faint:    oklch(58% 0.02 85);    /* texto terciario, metadatos */
 
-  /* ── acento blanco Pensar ── */
-  --color-accent:       oklch(97% 0.006 90);   /* blanco cálido — botones primarios, marcas */
-  --color-accent-deep:  oklch(87% 0.008 88);   /* blanco atenuado — hover / prensado */
-  --color-accent-ink:   oklch(17% 0.015 85);   /* texto sobre blanco */
-  --color-accent-soft:  oklch(97% 0.006 90 / 0.14); /* tintes de fondo claros */
+  /* ── acento dorado Pensar ── */
+  --color-accent:       oklch(58% 0.13 75);    /* dorado — botones primarios, marcas */
+  --color-accent-deep:  oklch(46% 0.12 70);    /* dorado profundo — hover / prensado */
+  --color-accent-ink:   oklch(98% 0.012 90);   /* texto sobre dorado, casi-blanco */
+  --color-accent-soft:  oklch(58% 0.13 75 / 0.14); /* tintes de fondo dorados */
 
   /* ── semánticos ── */
-  --color-ok:           oklch(72% 0.14 155);   /* verde correcto */
-  --color-ok-soft:      oklch(72% 0.14 155 / 0.13);
-  --color-err:          oklch(68% 0.15 25);    /* coral incorrecto */
-  --color-err-soft:     oklch(68% 0.15 25 / 0.13);
-  --color-focus:        oklch(90% 0.008 88);   /* anillo de foco */
+  --color-ok:           oklch(50% 0.13 155);   /* verde correcto */
+  --color-ok-soft:      oklch(50% 0.13 155 / 0.13);
+  --color-err:          oklch(55% 0.17 25);    /* coral incorrecto */
+  --color-err-soft:     oklch(55% 0.17 25 / 0.13);
+  --color-focus:        oklch(55% 0.12 75);    /* anillo de foco */
 
   /* ── tintes por materia ── */
-  --tint-lc:  oklch(76% 0.11 85);
-  --tint-mat: oklch(75% 0.1 200);
-  --tint-soc: oklch(72% 0.12 55);
-  --tint-ing: oklch(72% 0.1 300);
-  --tint-bio: oklch(74% 0.12 150);
-  --tint-fis: oklch(73% 0.1 240);
-  --tint-qui: oklch(72% 0.11 350);
+  --tint-lc:  oklch(50% 0.13 85);
+  --tint-mat: oklch(48% 0.11 200);
+  --tint-soc: oklch(48% 0.15 55);
+  --tint-ing: oklch(46% 0.12 300);
+  --tint-bio: oklch(46% 0.13 150);
+  --tint-fis: oklch(46% 0.12 240);
+  --tint-qui: oklch(46% 0.14 350);
 
   /* ── tipografía ── */
   --font-display: "Fraunces", Georgia, serif;
