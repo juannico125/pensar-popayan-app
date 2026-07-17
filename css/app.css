@@ -175,29 +175,38 @@ h1, h2, h3 { font-style: normal; }
   flex-direction: column;
   justify-content: center;
 }
-.logo-card {
-  width: 176px;
+/* ───────── marca: bombillo + figura pensante sobre amarillo Pensar ───────── */
+.brand-mark {
+  width: 148px;
   margin: 0 auto var(--space-lg);
-  background: var(--color-paper-2);
-  border: var(--rule-hairline);
+  background: #F2C200;
   border-radius: var(--radius-lg);
-  padding: var(--space-lg) var(--space-md);
-  text-align: center;
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 10px 26px oklch(70% 0.15 88 / 0.4);
 }
-.logo-mark {
+.brand-mark.lg { width: 172px; padding: var(--space-lg) var(--space-md) var(--space-md); gap: 6px; }
+.brand-icon { flex: none; }
+.brand-word { text-align: center; line-height: 1.2; }
+.brand-name {
+  display: block;
   font-family: var(--font-display);
-  font-size: var(--text-2xl);
   font-weight: 700;
-  color: var(--color-accent);
-  line-height: 1.05;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+  color: #26221B;
 }
-.logo-sub {
+.brand-mark.lg .brand-name { font-size: 1.4rem; }
+.brand-city {
+  display: block;
   font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-ink-soft);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-top: var(--space-xs);
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: #4A4326;
 }
 .login-lead {
   text-align: center;
@@ -929,6 +938,9 @@ h1, h2, h3 { font-style: normal; }
 .ach-row p { font-size: var(--text-sm); color: var(--color-ink-faint); }
 
 /* ───────── splash ───────── */
+#screen-splash {
+  background: linear-gradient(180deg, #5FA8DE 0%, #8FC7EA 45%, #C7E6F5 100%);
+}
 .splash {
   flex: 1;
   display: flex;
@@ -936,9 +948,47 @@ h1, h2, h3 { font-style: normal; }
   align-items: center;
   justify-content: center;
   gap: var(--space-md);
+  position: relative;
+  z-index: 1;
 }
-.splash .logo-mark { font-size: 3rem; }
-.splash .bar { width: 120px; }
+.splash .bar { width: 120px; background: oklch(20% 0.02 85 / 0.28); }
+.splash-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  text-shadow: 0 1px 6px oklch(20% 0.05 250 / 0.35);
+}
+
+/* nubes: pilas de círculos superpuestos, deriva lenta */
+.cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.9;
+  z-index: 0;
+  animation: cloud-drift 34s ease-in-out infinite alternate;
+}
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+.cloud.c1 { width: 74px; height: 26px; top: 13%; left: 10%; animation-duration: 30s; }
+.cloud.c1::before { width: 42px; height: 42px; top: -20px; left: 6px; }
+.cloud.c1::after  { width: 30px; height: 30px; top: -12px; left: 36px; }
+.cloud.c2 { width: 96px; height: 30px; top: 24%; right: 6%; opacity: 0.75; animation-duration: 40s; }
+.cloud.c2::before { width: 50px; height: 50px; top: -22px; left: 10px; }
+.cloud.c2::after  { width: 36px; height: 36px; top: -14px; left: 50px; }
+.cloud.c3 { width: 60px; height: 22px; bottom: 20%; left: 18%; opacity: 0.65; animation-duration: 26s; }
+.cloud.c3::before { width: 32px; height: 32px; top: -14px; left: 4px; }
+.cloud.c3::after  { width: 24px; height: 24px; top: -10px; left: 26px; }
+@keyframes cloud-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(18px); }
+}
 
 /* ───────── toast ───────── */
 #toast {

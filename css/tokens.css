@@ -1,7 +1,8 @@
 /* Hallmark · tokens · theme: studied-DNA (source: image — capturas de educadavid-app, obra del propio usuario)
  * paper oklch(97% 0.014 90) crema claro · accent oklch(58% 0.13 75) dorado Pensar
- * display: Fraunces (roman editorial serif) · body: Plus Jakarta Sans · label: IBM Plex Mono
+ * display: Source Serif 4 (editorial sobrio) · body: Inter · label: IBM Plex Mono
  * adaptación: estructura/microinteracciones de educadavid, tema claro cálido con acento dorado de marca Pensar
+ * tipografía revisada a pedido del cliente: más sobria/profesional, menos ornamental
  */
 :root {
   /* ── superficie ── */
@@ -27,18 +28,18 @@
   --color-err-soft:     oklch(55% 0.17 25 / 0.13);
   --color-focus:        oklch(55% 0.12 75);    /* anillo de foco */
 
-  /* ── tintes por materia ── */
-  --tint-lc:  oklch(50% 0.13 85);
-  --tint-mat: oklch(48% 0.11 200);
-  --tint-soc: oklch(48% 0.15 55);
-  --tint-ing: oklch(46% 0.12 300);
-  --tint-bio: oklch(46% 0.13 150);
-  --tint-fis: oklch(46% 0.12 240);
-  --tint-qui: oklch(46% 0.14 350);
+  /* ── tintes por materia — colores primarios y derivados, para asociación rápida ── */
+  --tint-lc:  oklch(52% 0.22 25);    /* rojo — Lectura Crítica */
+  --tint-mat: oklch(50% 0.20 255);   /* azul — Matemáticas */
+  --tint-soc: oklch(58% 0.19 50);    /* naranja — Sociales y Ciudadanas */
+  --tint-ing: oklch(48% 0.20 300);   /* violeta — Inglés */
+  --tint-bio: oklch(53% 0.17 145);   /* verde — Biología */
+  --tint-fis: oklch(54% 0.14 220);   /* cian — Física */
+  --tint-qui: oklch(53% 0.22 355);   /* magenta — Química */
 
   /* ── tipografía ── */
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body:    "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body:    "Inter", system-ui, sans-serif;
   --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
 
   --text-xs:   0.72rem;
