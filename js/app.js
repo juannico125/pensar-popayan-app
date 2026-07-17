@@ -6,15 +6,47 @@
 /* ───────────────── estado ───────────────── */
 const STORE_KEY = 'pensar_app_v1';
 
+// historial de muestra (última semana) para que la demo luzca con actividad real
+// desde el primer ingreso, sin depender de que el presentador juegue en vivo.
+function seedDemoHistory() {
+  const DAY = 86400000;
+  const startOfDay = daysAgo => { const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime() - daysAgo * DAY; };
+  const at = (daysAgo, hour, min) => startOfDay(daysAgo) + hour * 3600000 + min * 60000;
+
+  const answered = [];
+  const push = (m, qi, ok, ts) => answered.push({ m, qi, ok, ts });
+
+  // días 5→1: sesiones nocturnas, siempre en el pasado
+  [
+    [5, 19, [['lc', 0, true, 0], ['lc', 1, true, 2], ['mat', 0, true, 15], ['mat', 1, false, 19]]],
+    [4, 20, [['lc', 2, true, 1], ['lc', 3, true, 3], ['mat', 2, true, 10], ['mat', 3, true, 13], ['lc', 4, false, 18], ['mat', 4, true, 22]]],
+    [3, 18, [['mat', 5, true, 40], ['lc', 5, true, 43], ['lc', 6, true, 47], ['mat', 6, false, 52], ['lc', 7, true, 55]]],
+    [2, 19, [['mat', 7, true, 30], ['mat', 8, true, 33], ['lc', 8, true, 37], ['lc', 9, true, 40], ['mat', 9, true, 44], ['lc', 0, true, 48], ['mat', 0, true, 52]]],
+    [1, 20, [['lc', 1, true, 15], ['mat', 1, true, 18], ['lc', 2, false, 22], ['mat', 2, true, 26], ['lc', 3, true, 30], ['mat', 3, true, 34]]],
+  ].forEach(([daysAgo, hour, items]) => {
+    items.forEach(([m, qi, ok, min]) => push(m, qi, ok, at(daysAgo, hour, min)));
+  });
+
+  // hoy: sesión reciente, escalonada hacia atrás desde "ahora" para nunca caer en el futuro
+  const hoyItems = [['mat', 4, true], ['lc', 4, true], ['mat', 5, true], ['lc', 5, true], ['mat', 6, true], ['lc', 6, true], ['mat', 7, false], ['lc', 7, true]];
+  hoyItems.forEach(([m, qi, ok], idx) => push(m, qi, ok, Date.now() - (hoyItems.length - idx) * 6 * 60000));
+
+  const mistakes = {
+    'lc:1':  { m: 'lc',  qi: 1, fails: 2, retries: 0, ts: at(1, 20, 22),          status: 'pend' },
+    'mat:6': { m: 'mat', qi: 6, fails: 1, retries: 0, ts: at(3, 18, 52),          status: 'pend' },
+    'mat:7': { m: 'mat', qi: 7, fails: 1, retries: 0, ts: Date.now() - 6 * 60000, status: 'pend' },
+    'lc:4':  { m: 'lc',  qi: 4, fails: 2, retries: 1, ts: at(4, 20, 18),          status: 'dom' },
+    'mat:1': { m: 'mat', qi: 1, fails: 1, retries: 1, ts: at(5, 19, 19),          status: 'dom' },
+  };
+
+  return { answered, mistakes, xp: 320, timeStudied: 2280, sessions: 8 };
+}
+
 function freshState() {
   return {
     logged: false,
     user: { nombre: 'Valentina', email: 'demo@pensarpopayan.com' },
-    answered: [],        // { m, qi, ok, ts }
-    mistakes: {},        // "m:qi" → { m, qi, fails, retries, ts, status: 'pend'|'dom' }
-    xp: 0,
-    timeStudied: 0,      // segundos
-    sessions: 0,
+    ...seedDemoHistory(),
   };
 }
 
