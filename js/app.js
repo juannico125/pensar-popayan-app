@@ -39,7 +39,16 @@ function seedDemoHistory() {
     'mat:1': { m: 'mat', qi: 1, fails: 1, retries: 1, ts: at(5, 19, 19),          status: 'dom' },
   };
 
-  return { answered, mistakes, xp: 320, timeStudied: 2280, sessions: 8 };
+  // cuestionarios ya completados en la semana de muestra (score de la última pasada)
+  const cuestionarios = {
+    'lc-1':  { score: 2, total: 3 },
+    'lc-2':  { score: 3, total: 3 },
+    'mat-1': { score: 2, total: 2 },
+    'mat-2': { score: 1, total: 2 },
+    'mat-3': { score: 1, total: 2 },
+  };
+
+  return { answered, mistakes, cuestionarios, xp: 320, timeStudied: 2280, sessions: 8 };
 }
 
 function freshState() {
@@ -87,9 +96,31 @@ function statsMateria(m) {
   return { total: arr.length, ok, prec: arr.length ? Math.round(ok / arr.length * 100) : null };
 }
 function progresoMateria(m) {
+  const lista = listaCuestionarios(m);
+  if (lista.length) return lista.filter(it => S.cuestionarios[it.id]).length / lista.length;
   if (!BANKS[m]) return 0;
   const vistas = new Set(S.answered.filter(a => a.m === m).map(a => a.qi));
   return vistas.size / BANKS[m].length;
+}
+
+/* ruta de cuestionarios: lista plana numerada + estado de cada uno */
+function listaCuestionarios(m) {
+  const out = [];
+  let n = 0;
+  (CUESTIONARIOS[m] || []).forEach(sec =>
+    sec.items.forEach(it => out.push({ ...it, tema: sec.tema, n: ++n })));
+  return out;
+}
+function buscarCuestionario(m, id) {
+  return listaCuestionarios(m).find(it => it.id === id) || null;
+}
+// desbloqueo secuencial: un cuestionario se abre al completar el anterior
+function estadoCuestionario(m, id) {
+  const lista = listaCuestionarios(m);
+  const idx = lista.findIndex(it => it.id === id);
+  if (S.cuestionarios[id]) return 'done';
+  if (idx === 0 || S.cuestionarios[lista[idx - 1].id]) return 'next';
+  return 'locked';
 }
 function racha() {
   const dias = new Set(S.answered.map(a => hoyKey(a.ts)));
@@ -222,7 +253,7 @@ function renderHome() {
     const jugable = !!m.jugable;
     const prog = progresoMateria(m.key);
     const sub = jugable
-      ? `${BANKS[m.key].length} preguntas · Prof. ${m.prof}`
+      ? `${listaCuestionarios(m.key).length} cuestionarios · Prof. ${m.prof}`
       : `${m.npreg} preguntas · Prof. ${m.prof}`;
     html += `
       <button class="mat-card reveal ${jugable ? '' : 'is-locked'}" style="--i:${idx + 3};--tint:${meta2.tint}" data-mat="${m.key}">
@@ -254,33 +285,78 @@ function renderMateria(key) {
   materiaActual = key;
   const m = MATERIAS.find(x => x.key === key);
   const meta = MATERIA_META[key];
+  const lista = listaCuestionarios(key);
+  const hechos = lista.filter(it => S.cuestionarios[it.id]).length;
   $('#materia-title').textContent = m.nombre;
-  $('#materia-body').innerHTML = `
+
+  let html = `
     <div class="intro-banner reveal" style="--i:0;--tint:${meta.tint}">${meta.icon.replace('width="22" height="22"', 'width="30" height="30"')}</div>
     <p class="intro-desc reveal" style="--i:1">${meta.desc}</p>
     <div class="chip-row reveal" style="--i:2">
-      <span class="chip mono">${SESSION_SIZE} preguntas</span>
+      <span class="chip mono">${hechos} / ${lista.length} cuestionarios</span>
       <span class="chip mono">Nivel ${meta.nivel}</span>
       <span class="chip mono">Prof. ${m.prof}</span>
-    </div>
-    <div class="info-card reveal" style="--i:3">
-      <h3>Qué encontrarás</h3>
-      <div class="info-row">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-        Preguntas con la estructura oficial del ICFES: contexto, enunciado y cuatro opciones.
-      </div>
-      <div class="info-row">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        Retroalimentación inmediata con la explicación de tu profesor.
-      </div>
-      <div class="info-row">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-        Tus errores se guardan y entran al plan de repaso inteligente.
-      </div>
     </div>`;
+
+  const iconCheck = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+  const iconLock = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+  const iconChev = '<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
+
+  let i = 3;
+  html += `<div class="ruta reveal" style="--i:${i++};--tint:${meta.tint}">`;
+  (CUESTIONARIOS[key] || []).forEach(sec => {
+    html += `<div class="ruta-tema"><h3>${sec.tema}</h3></div>`;
+    sec.items.forEach(it => {
+      const flat = lista.find(x => x.id === it.id);
+      const st = estadoCuestionario(key, it.id);
+      const res = S.cuestionarios[it.id];
+      const mins = it.qs.length * 3;
+      const meta2 = res
+        ? `<span class="ruta-score mono">${res.score}/${res.total}</span> · ${it.qs.length} preguntas`
+        : `${it.qs.length} preguntas · ≈ ${mins} min`;
+      html += `
+        <button class="ruta-item is-${st}" data-cuest="${it.id}" ${st === 'locked' ? 'aria-disabled="true"' : ''}>
+          <span class="ruta-node">${st === 'done' ? iconCheck : flat.n}</span>
+          <span class="ruta-card">
+            <span class="ruta-head">
+              <span class="ruta-title">${it.titulo}</span>
+              <span class="ruta-chip">${it.tipo}</span>
+            </span>
+            <span class="ruta-meta">${meta2}</span>
+          </span>
+          ${st === 'locked' ? `<span class="ruta-end">${iconLock}</span>` : st === 'done' ? `<span class="ruta-end is-redo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></span>` : iconChev}
+        </button>`;
+    });
+  });
+  html += `</div>
+    <div class="lote-note mono reveal" style="--i:${i++}">Banco lote ${LOTE.codigo} · vigente ${LOTE.vigencia}</div>`;
+
+  $('#materia-body').innerHTML = html;
+
+  $('#materia-body').querySelectorAll('.ruta-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const it = buscarCuestionario(key, btn.dataset.cuest);
+      const st = estadoCuestionario(key, it.id);
+      if (st === 'locked') { toast('Completa el cuestionario anterior para desbloquearlo'); return; }
+      startCuestionario(key, it);
+    });
+  });
+
+  // CTA: continuar donde va, o repasar si ya terminó la ruta
+  const next = lista.find(it => !S.cuestionarios[it.id]);
+  const btn = $('#btn-start-quiz');
+  btn.textContent = next ? `Continuar: ${next.titulo}` : 'Ruta completa · Repasar de nuevo';
 }
 
-$('#btn-start-quiz').addEventListener('click', () => startQuiz(materiaActual));
+function startCuestionario(m, item) {
+  startQuiz(m, item.qs.slice(), false, item.id);
+}
+
+$('#btn-start-quiz').addEventListener('click', () => {
+  const lista = listaCuestionarios(materiaActual);
+  const next = lista.find(it => !S.cuestionarios[it.id]) || lista[0];
+  if (next) startCuestionario(materiaActual, next);
+});
 
 /* ───────────────── quiz ───────────────── */
 const SESSION_SIZE = 5;
@@ -295,11 +371,12 @@ function sample(arr, n) {
   return pool.slice(0, n);
 }
 
-function startQuiz(m, items, retry) {
+function startQuiz(m, items, retry, cuestId) {
   quiz = {
     m,
     items: items || sample(BANKS[m].map((_, i) => i), Math.min(SESSION_SIZE, BANKS[m].length)),
     idx: 0, ok: 0, wrong: [], t0: Date.now(), retry: !!retry,
+    cuest: cuestId || null,
   };
   navigate('quiz');
 }
@@ -435,6 +512,7 @@ function nextQuestion() {
   } else {
     S.timeStudied += Math.round((Date.now() - quiz.t0) / 1000);
     S.sessions++;
+    if (quiz.cuest) S.cuestionarios[quiz.cuest] = { score: quiz.ok, total: quiz.items.length };
     save();
     setTimeout(() => navigate('results'), 180);
   }
@@ -460,6 +538,11 @@ function renderResults() {
     : 'El repaso hace al maestro';
   const tier = pct >= 80 ? '' : pct >= 50 ? 'mid' : 'low';
 
+  const cuest = quiz.cuest ? buscarCuestionario(quiz.m, quiz.cuest) : null;
+  const sub = cuest
+    ? `Respondiste ${quiz.ok} de ${n} en «${cuest.titulo}».`
+    : `Respondiste ${quiz.ok} de ${n} preguntas correctamente.`;
+
   const R = 82, C = Math.round(2 * Math.PI * R);
   $('#results-body').innerHTML = `
     <div class="ring-box reveal" style="--i:0">
@@ -471,7 +554,7 @@ function renderResults() {
       <div class="ring-label"><b id="ring-num">0 %</b><span>precisión</span></div>
     </div>
     <h1 class="results-title reveal" style="--i:1">${msg}</h1>
-    <p class="results-sub reveal" style="--i:2">Respondiste ${quiz.ok} de ${n} preguntas correctamente.</p>
+    <p class="results-sub reveal" style="--i:2">${sub}</p>
     <div class="stat-cards">
       <div class="stat-card c-ok reveal" style="--i:3">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
@@ -489,9 +572,10 @@ function renderResults() {
     <div class="xp-note reveal" style="--i:6">+${quiz.ok * 10} XP</div>`;
 
   $('#results-cta').innerHTML = `
-    <button class="btn btn-primary" id="btn-again">Repetir práctica</button>
+    <button class="btn btn-primary" id="btn-again">${cuest ? 'Continuar la ruta' : 'Repetir práctica'}</button>
     <button class="btn btn-ghost" id="btn-see">${quiz.wrong.length ? 'Ver errores' : 'Volver al inicio'}</button>`;
-  $('#btn-again').addEventListener('click', () => startQuiz(quiz.m));
+  $('#btn-again').addEventListener('click', () =>
+    cuest ? navigate('materia', quiz.m) : startQuiz(quiz.m));
   $('#btn-see').addEventListener('click', () =>
     navigate(quiz.wrong.length ? 'mistakes' : 'home'));
 

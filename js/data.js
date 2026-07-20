@@ -367,6 +367,57 @@ const BANKS = {
   ],
 };
 
+// ─── Lote vigente del banco (rotación semestral aprobada por el cliente) ───
+const LOTE = { codigo: '2026-B', vigencia: 'jul – dic 2026' };
+
+/* ─── Ruta de cuestionarios por torre (estilo curso) ───
+ * El cliente entrega las preguntas (PDFs → extracción); nosotros las agrupamos
+ * en cuestionarios cortos divididos por área/competencia. Cada item referencia
+ * preguntas del BANK por índice (qs), para no duplicar contenido.
+ * Para cargar un lote nuevo: agregar las preguntas al BANK de la materia y
+ * declarar aquí sus cuestionarios. Ver docs/formato-preguntas.md.
+ */
+const CUESTIONARIOS = {
+  lc: [
+    {
+      tema: 'Comprensión e interpretación',
+      items: [
+        { id: 'lc-1', titulo: 'La Semana Santa de Popayán', qs: [0, 1, 2], tipo: 'Pasaje' },
+        { id: 'lc-2', titulo: 'El páramo y el agua', qs: [3, 4, 5], tipo: 'Pasaje' },
+      ],
+    },
+    {
+      tema: 'Reflexión y evaluación crítica',
+      items: [
+        { id: 'lc-3', titulo: '¿Leemos menos que antes?', qs: [6, 7], tipo: 'Pasaje' },
+        { id: 'lc-4', titulo: 'La ciudad y la bicicleta', qs: [8, 9], tipo: 'Pasaje' },
+      ],
+    },
+  ],
+  mat: [
+    {
+      tema: 'Interpretación de datos',
+      items: [
+        { id: 'mat-1', titulo: 'Lectura de gráficas', qs: [0, 1], tipo: 'Gráfica' },
+        { id: 'mat-2', titulo: 'Tablas: probabilidad y mediana', qs: [2, 8], tipo: 'Tabla' },
+      ],
+    },
+    {
+      tema: 'Formulación y ejecución',
+      items: [
+        { id: 'mat-3', titulo: 'Descuentos y proporciones', qs: [4, 6], tipo: 'Situación' },
+        { id: 'mat-4', titulo: 'Ecuaciones en contexto', qs: [5, 7], tipo: 'Situación' },
+      ],
+    },
+    {
+      tema: 'Razonamiento geométrico',
+      items: [
+        { id: 'mat-5', titulo: 'Áreas y perímetros', qs: [3, 9], tipo: 'Figura' },
+      ],
+    },
+  ],
+};
+
 
 
 // ─── Metadatos de materia para la app (iconos, tintes, descripciones) ───
