@@ -321,8 +321,21 @@ se puede revertir, y las políticas de RLS no son revisables antes de correr.
 
 ## 10. Pendientes
 
-**Bloqueante para el pipeline:**
-- Hojas de respuestas del cuadernillo de inglés (y de los demás).
+**Hojas de respuestas: resuelto con marca de origen (28 de agosto de 2026).**
+Los cinco cuadernillos de inglés no las traen. En vez de bloquear el lote, las
+claves las determina el modelo y se cargan con `clave_origen = 'modelo'`, que
+es exactamente para lo que existe ese campo: la base distingue lo extraído de
+lo generado, y `scripts/generar-plantilla-revision.mjs` imprime la hoja para
+que un docente firme o corrija.
+
+Parte 1 cargada y en línea: 25 preguntas, 5 cuestionarios, 4 marcadas para
+revisión prioritaria. Ver `docs/revision-ingles-parte1.md`.
+
+**Pendiente del pipeline:**
+- Partes 2 a 5 de inglés (~275 preguntas más).
+- Borrar las anotaciones a lápiz del escaneo de la parte 2: son traducciones
+  de un estudiante escritas sobre la página, y en varios ítems revelan la
+  respuesta. El extractor las lee como contenido.
 
 **Base de datos: hecho (28 de agosto de 2026).**
 - MCP de Supabase autorizado y proyecto de desarrollo creado
