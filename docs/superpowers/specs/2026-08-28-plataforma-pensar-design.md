@@ -345,10 +345,17 @@ revisión prioritaria. Ver `docs/revision-ingles-parte1.md`.
   de permisos.
 - Prueba de aislamiento escrita y ejecutada: `supabase/tests/aislamiento.sql`.
 
-**Bloqueante para conectar el frontend:**
-- Desactivar el auto-registro en el panel de Auth (no se puede por migración).
-- Escribir la Edge Function de alta y archivo de estudiantes.
-- Reemplazar `js/data.js` por `js/api.js`.
+**Frontend y panel: hecho (29 de agosto de 2026).**
+- `js/api.js` reemplazó a las constantes; la app del estudiante corre sobre
+  Supabase con login real.
+- Edge Function `estudiantes` desplegada: crea, archiva, reactiva y anonimiza.
+  Verifica el rol del lado del servidor antes de usar `service_role`.
+- `panel.html` reconstruido: lista de estudiantes con estadísticas, alta
+  individual, alta por CSV fila a fila con reporte de qué entró y qué falló, y
+  archivo/reactivación.
+
+**Pendiente de configuración (no se puede por migración):**
+- Desactivar el auto-registro en el panel de Auth de Supabase.
 
 **Para confirmar con el cliente:**
 - Que la torre de selección por docente queda fuera de la v1.

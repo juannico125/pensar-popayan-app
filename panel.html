@@ -1,620 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pensar Popayán · Panel del instituto</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F2C200'/%3E%3Ctext x='16' y='23' font-family='Arial,Helvetica,sans-serif' font-weight='800' font-size='20' fill='%2326221B' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel del instituto · Pensar Preuniversitario</title>
+<meta name="description" content="Panel administrativo de Pensar Preuniversitario: estudiantes activos, alta individual y por CSV, archivo de fin de ciclo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Plus Jakarta Sans', -apple-system, 'Segoe UI', sans-serif; background: #FFFCF0; }
-  .layout { display: flex; min-height: 100dvh; }
-  button { font-family: inherit; cursor: pointer; }
-  input, textarea, select { font-family: inherit; }
-
-  /* sidebar */
-  .sidebar { width: 232px; background: #26221B; display: flex; flex-direction: column; padding: 22px 16px; gap: 4px; flex-shrink: 0; position: sticky; top: 0; height: 100dvh; }
-  .nav-item { border: none; text-align: left; border-radius: 10px; padding: 11px 14px; font-size: 14px; color: #A8A08A; background: none; }
-  .nav-item.active { font-weight: 700; color: #fff; background: #A67C00; }
-  .nav-item:not(.active):hover { background: rgba(255,255,255,0.07); color: #fff; }
-  .nav-new { font-size: 10px; font-weight: 800; color: #26221B; background: #F2C200; border-radius: 999px; padding: 2px 7px; margin-left: 6px; vertical-align: 1px; }
-
-  /* main */
-  .main { flex: 1; padding: 28px 32px; display: none; flex-direction: column; gap: 22px; min-width: 0; }
-  .main.active { display: flex; }
-  .stat { background: #fff; border-radius: 14px; padding: 18px; box-shadow: 0 1px 3px rgba(38,34,27,0.06); display: flex; flex-direction: column; gap: 4px; }
-  .row { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr 1.2fr; padding: 14px 22px; font-size: 14px; color: #26221B; align-items: center; border-bottom: 1px solid #F1EAD2; }
-  .row:last-child { border-bottom: none; }
-  .trow { display: grid; padding: 14px 22px; font-size: 14px; color: #26221B; align-items: center; border-bottom: 1px solid #F1EAD2; gap: 8px; }
-  .trow:last-child { border-bottom: none; }
-  .thead { background: #FAF5DF; font-size: 12px; font-weight: 700; color: #6B6350; letter-spacing: 0.5px; }
-  .cols-cuest { grid-template-columns: 2fr 1.3fr 0.9fr 1.2fr 1fr 0.8fr; }
-  .cols-est { grid-template-columns: 1.8fr 1.2fr 1fr 1.2fr 1.1fr 0.8fr; }
-  .cols-sim { grid-template-columns: 1fr 1.8fr 1.1fr 1fr 1.1fr; }
-  .badge { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 5px 12px; display: inline-block; justify-self: start; }
-  .badge-ok { color: #2B2620; background: #FCEFB8; }
-  .badge-off { color: #6B6350; background: #F1EAD2; }
-  .badge-warn { color: #C24B3A; background: #FBEDEA; }
-  .badge-draft { color: #94896E; background: none; border: 1.5px dashed #E4CD7A; }
-  #demo-toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #26221B; color: #fff; font-size: 14px; font-weight: 600; border-radius: 12px; padding: 13px 22px; box-shadow: 0 8px 24px rgba(38,34,27,0.35); z-index: 99; display: none; max-width: 90vw; text-align: center; }
-
-  .btn-primary { background: #A67C00; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; font-size: 14px; font-weight: 700; }
-  .btn-primary:hover { background: #8F6B00; }
-  .btn-outline { border: 1.5px solid #E4CD7A; background: none; color: #2B2620; border-radius: 10px; padding: 10px 18px; font-size: 14px; font-weight: 700; }
-  .btn-ghost { background: none; border: none; color: #94896E; font-size: 13px; font-weight: 700; padding: 8px; }
-
-  /* form */
-  .f-label { font-size: 13px; font-weight: 700; color: #3E382B; }
-  .f-label span { font-weight: 500; color: #94896E; }
-  .f-input, .f-select, .f-textarea { background: #fff; border: 1.5px solid #E6DBB4; border-radius: 10px; padding: 11px 14px; font-size: 14px; color: #26221B; outline: none; width: 100%; }
-  .f-textarea { line-height: 1.5; resize: none; }
-  .f-input:focus, .f-select:focus, .f-textarea:focus { border-color: #A67C00; }
-  .b-opt { background: #fff; border: 1.5px solid #E6DBB4; border-radius: 10px; padding: 8px 14px; font-size: 14px; color: #3E382B; display: flex; gap: 11px; align-items: center; }
-  .b-opt.correct { background: #FDF4C9; border-color: #A67C00; }
-  .b-dot { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #E6DBB4; flex-shrink: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; background: #fff; }
-  .b-opt.correct .b-dot { background: #A67C00; border-color: #A67C00; }
-  .b-dot i { width: 8px; height: 8px; border-radius: 50%; background: transparent; }
-  .b-opt.correct .b-dot i { background: #fff; }
-  .b-opt b { color: #94896E; }
-  .b-opt.correct b { color: #2B2620; }
-  .b-opt input { flex: 1; border: none; outline: none; font-size: 14px; color: #26221B; background: transparent; padding: 4px 0; min-width: 0; }
-
-  .pv-opt { border: 1.5px solid #EDE3C2; border-radius: 11px; padding: 10px 13px; font-size: 13px; color: #3E382B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .pv-opt b { color: #94896E; }
-
-  /* torre de selección */
-  .torre-banner { background: #FDF4C9; border: 1.5px solid #E8C94E; border-radius: 14px; padding: 15px 18px; display: flex; gap: 13px; align-items: center; }
-  .torre-badge { width: 44px; height: 44px; border-radius: 12px; background: #A67C00; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0; }
-  .dist-row { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
-  .dist-bar { height: 8px; border-radius: 999px; background: #F1EAD2; }
-  .dist-bar div { height: 100%; border-radius: 999px; background: #E4CD7A; transition: background 0.15s; }
-  .dist-row.sel .dist-bar div { background: #A67C00; }
-  .dist-row.sel .dist-name { font-weight: 800; }
-
-  @media (max-width: 900px) {
-    .layout { flex-direction: column; }
-    .sidebar { width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 2px; padding: 14px 16px; }
-    .nav-item { padding: 9px 12px; font-size: 13px; }
-    .sidebar .profile { display: none; }
-    .main { padding: 20px 16px; }
-    .stats-grid { grid-template-columns: 1fr 1fr !important; }
-    .banco-grid { flex-direction: column; }
-    .banco-grid .preview-col { width: 100% !important; }
-    .table-scroll { overflow-x: auto; }
-    .table-inner { min-width: 640px; }
-  }
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css?v=2026.08.29-8">
+<link rel="stylesheet" href="css/panel.css?v=2026.08.29-8">
 </head>
 <body>
+
 <div class="layout">
 
-  <!-- ══════════ SIDEBAR ══════════ -->
-  <div class="sidebar">
-    <div style="display:flex; align-items:center; gap:10px; padding:6px 10px 14px;"><div style="width:38px; height:38px; border-radius:11px; background:#F2C200; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#26221B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6.5 6.5 0 0 0-3.2 12.2c.7.4 1.2 1 1.2 1.8h4c0-.8.5-1.4 1.2-1.8A6.5 6.5 0 0 0 12 3z"/></svg></div><div><div style="font-size:15px; font-weight:800; letter-spacing:1px; color:#fff;">PENSAR</div><div style="font-size:10px; font-weight:700; letter-spacing:3px; color:#F5D45C; margin-top:-2px;">POPAYÁN</div></div></div>
-    <button class="nav-item active" id="nav-resultados" onclick="show('resultados')">Resultados</button>
-    <button class="nav-item" id="nav-banco" onclick="show('banco')">Banco de preguntas</button>
-    <button class="nav-item" id="nav-cuestionarios" onclick="show('cuestionarios')">Cuestionarios</button>
-    <button class="nav-item" id="nav-estudiantes" onclick="show('estudiantes')">Estudiantes</button>
-    <button class="nav-item" id="nav-simulacros" onclick="show('simulacros')">Simulacros</button>
-    <a href="index.html" style="margin-top: 14px; color: #A8A08A; font-size: 13px; font-weight: 600; text-decoration: none; padding: 8px 14px;">← App del estudiante</a>
-    <div class="profile" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.12); padding: 14px 4px 0; display: flex; align-items: center; gap: 10px;">
-      <div style="width: 34px; height: 34px; border-radius: 50%; background: #8F6B00; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">JR</div>
+  <!-- ══════════ BARRA LATERAL ══════════ -->
+  <aside class="sidebar">
+    <a class="side-brand" href="index.html">
+      <svg viewBox="0 0 64 64" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M32 6C21.5 6 13.5 14 13.5 24c0 6.6 3.6 10.4 6.9 13.6 1.7 1.6 2.7 2.9 2.7 4.9h17.8c0-2 1-3.3 2.7-4.9 3.3-3.2 6.9-7 6.9-13.6C50.5 14 42.5 6 32 6Z"/>
+        <path d="M23.5 44.5h17M25 49h14M27.5 53.5h9"/>
+        <circle cx="32" cy="19" r="3.4" fill="currentColor" stroke="none"/>
+        <path d="M24.5 33c0-4.6 3.2-7.6 7.5-7.6s7.5 3 7.5 7.6"/>
+      </svg>
+      <span><span class="brand-name">PENSAR</span><br><span class="brand-city">POPAYÁN</span></span>
+    </a>
+
+    <div class="side-label">Instituto</div>
+    <button class="side-item active" data-vista="estudiantes">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Estudiantes
+    </button>
+    <button class="side-item" data-vista="alta">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/></svg>
+      Crear estudiante
+    </button>
+
+    <div class="side-foot">
+      <div class="side-who"><b id="quien">—</b>Rol administrativo</div>
+      <a class="side-item" href="index.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        App del estudiante
+      </a>
+      <button class="side-item" id="btn-salir">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+        Cerrar sesión
+      </button>
+    </div>
+  </aside>
+
+  <!-- ══════════ ESTUDIANTES ══════════ -->
+  <main class="main active" id="vista-estudiantes">
+    <div class="main-head">
       <div>
-        <div style="font-size: 13px; font-weight: 700; color: #fff;">Prof. Jaime Ruiz</div>
-        <div style="font-size: 11px; color: #A8A08A;">Coordinador</div>
+        <h1>Estudiantes</h1>
+        <p>Quién está activo, cuánto ha practicado y con qué precisión.</p>
       </div>
+      <button class="btn btn-primary" data-vista="alta">Crear estudiante</button>
     </div>
-  </div>
 
-  <!-- ══════════ VISTA: RESULTADOS ══════════ -->
-  <div class="main active" id="view-resultados">
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+    <div class="kpis" id="kpis"></div>
+
+    <div class="panel-card">
+      <div class="panel-tools">
+        <label class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" id="buscar" placeholder="Buscar por nombre o código" aria-label="Buscar estudiante">
+        </label>
+        <button class="btn-quiet" id="filtro-estado" data-estado="activos">Mostrando: activos</button>
+      </div>
+      <div id="tabla"></div>
+    </div>
+  </main>
+
+  <!-- ══════════ CREAR ESTUDIANTE ══════════ -->
+  <main class="main" id="vista-alta">
+    <div class="main-head">
       <div>
-        <div style="font-size: 22px; font-weight: 800; color: #26221B;">Grupo Sabatino 2026-B</div>
-        <div style="font-size: 14px; color: #94896E; margin-top: 3px;">42 estudiantes · Lectura Crítica (36 preguntas) · Prof. Diana Ordóñez · 4 de julio</div>
-      </div>
-      <div style="display: flex; gap: 10px;">
-        <button class="btn-outline" onclick="demoToast('El informe PDF estará disponible en la versión completa')">Exportar informe</button>
-        <button class="btn-primary" onclick="show('banco')">Nuevo cuestionario</button>
+        <h1>Crear estudiante</h1>
+        <p>Uno a uno, o varios de una vez pegando un CSV.</p>
       </div>
     </div>
 
-    <div class="stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Promedio del grupo</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">68%</div>
-        <div style="font-size: 12px; font-weight: 700; color: #2B2620;">▲ 6 pts vs. junio</div>
+    <div class="panel-card">
+      <div class="card-head">
+        <h2>Uno a uno</h2>
+        <p>La contraseña se genera aquí y se muestra una sola vez: hay que entregársela al estudiante.</p>
       </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Presentaron</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">38<span style="font-size: 15px; color: #94896E; font-weight: 600;">/42</span></div>
-        <div style="font-size: 12px; color: #94896E;">4 pendientes</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Competencia más débil</div>
-        <div style="font-size: 17px; font-weight: 800; color: #C24B3A; line-height: 1.3;">Reflexionar y evaluar</div>
-        <div style="font-size: 12px; color: #94896E;">52% de aciertos</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Pregunta más fallada</div>
-        <div style="font-size: 17px; font-weight: 800; color: #26221B; line-height: 1.3;">N.º 17 · Intención del autor</div>
-        <div style="font-size: 12px; color: #94896E;">solo 34% acertó</div>
+      <form class="form-grid" id="form-alta">
+        <div class="f">
+          <label for="a-nombre">Nombre completo</label>
+          <input id="a-nombre" required maxlength="120" autocomplete="off">
+        </div>
+        <div class="f">
+          <label for="a-codigo">Código <span>· con el que entra</span></label>
+          <input id="a-codigo" required maxlength="20" placeholder="EST-014" autocomplete="off">
+        </div>
+        <div class="f">
+          <label for="a-jornada">Jornada</label>
+          <select id="a-jornada">
+            <option value="">Sin definir</option>
+            <option value="sabatino">Sabatino</option>
+            <option value="intensivo">Intensivo</option>
+          </select>
+        </div>
+        <div class="f">
+          <label for="a-cohorte">Cohorte</label>
+          <input id="a-cohorte" maxlength="7" placeholder="2026" autocomplete="off">
+        </div>
+      </form>
+      <div id="cred"></div>
+      <div class="form-foot">
+        <button class="btn btn-outline" type="button" id="btn-limpiar">Limpiar</button>
+        <button class="btn btn-primary" type="submit" form="form-alta" id="btn-crear">Crear estudiante</button>
       </div>
     </div>
 
-    <div class="table-scroll" style="background: #fff; border-radius: 16px; box-shadow: 0 1px 3px rgba(38,34,27,0.06); overflow: hidden;">
-      <div class="table-inner">
-        <div class="row" style="background: #FAF5DF; font-size: 12px; font-weight: 700; color: #6B6350; letter-spacing: 0.5px; border-bottom: none;">
-          <div>ESTUDIANTE</div><div>ACIERTOS</div><div>TIEMPO</div><div>TENDENCIA</div><div>REFUERZO SUGERIDO</div>
+    <div class="panel-card">
+      <div class="card-head">
+        <h2>Varios desde un CSV</h2>
+        <p>Una fila por estudiante: <code>nombre,codigo,jornada,cohorte</code>. La jornada y la cohorte pueden ir vacías.</p>
+      </div>
+      <div class="form-grid" style="grid-template-columns:1fr">
+        <div class="f">
+          <label for="csv">Pega aquí el contenido del archivo <span>· o suéltalo sobre el recuadro</span></label>
+          <textarea id="csv" spellcheck="false" placeholder="Valentina Muñoz,EST-014,sabatino,2026&#10;Andrés Calambás,EST-015,intensivo,2026"></textarea>
+          <p class="hint" id="csv-hint">El navegador lee el archivo y crea uno por uno, mostrando qué entró y qué falló. No se envía a ningún tercero.</p>
         </div>
-        <div class="row">
-          <div style="font-weight: 600;">Valentina Muñoz</div><div style="font-weight: 800; color: #2B2620;">29/36</div><div>41:05</div><div style="color: #2B2620; font-weight: 700;">▲ mejorando</div><div style="color: #94896E; font-size: 13px;">Reflexionar y evaluar</div>
-        </div>
-        <div class="row">
-          <div style="font-weight: 600;">Andrés Gómez</div><div style="font-weight: 800; color: #2B2620;">27/36</div><div>47:40</div><div style="color: #94896E; font-weight: 700;">— estable</div><div style="color: #94896E; font-size: 13px;">Estructura del texto</div>
-        </div>
-        <div class="row">
-          <div style="font-weight: 600;">Sara Imbachí</div><div style="font-weight: 800; color: #C24B3A;">16/36</div><div>58:22</div><div style="color: #C24B3A; font-weight: 700;">▼ en riesgo</div><div style="color: #94896E; font-size: 13px;">Información literal</div>
-        </div>
-        <div class="row">
-          <div style="font-weight: 600;">Juan David Paz</div><div style="font-weight: 800; color: #2B2620;">25/36</div><div>39:12</div><div style="color: #2B2620; font-weight: 700;">▲ mejorando</div><div style="color: #94896E; font-size: 13px;">Reflexionar y evaluar</div>
-        </div>
-        <div class="row">
-          <div style="font-weight: 600;">Laura Cerón</div><div style="font-weight: 800; color: #26221B;">22/36</div><div>51:33</div><div style="color: #94896E; font-weight: 700;">— estable</div><div style="color: #94896E; font-size: 13px;">Intención del autor</div>
-        </div>
+      </div>
+      <div id="lote"></div>
+      <div class="form-foot">
+        <input type="file" id="csv-file" accept=".csv,text/csv,text/plain" hidden>
+        <button class="btn btn-outline" type="button" id="btn-archivo">Elegir archivo…</button>
+        <button class="btn btn-primary" type="button" id="btn-lote">Cargar el lote</button>
       </div>
     </div>
-  </div>
-
-  <!-- ══════════ VISTA: BANCO DE PREGUNTAS ══════════ -->
-  <div class="main" id="view-banco">
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-      <div>
-        <div style="font-size: 22px; font-weight: 800; color: #26221B;">Banco de preguntas</div>
-        <div style="font-size: 14px; color: #94896E; margin-top: 3px;">Lote 2026-B · vigente julio–diciembre · próxima renovación: enero 2027</div>
-      </div>
-      <div style="display: flex; gap: 10px; align-items: center;">
-        <div style="text-align: right;">
-          <div style="font-size: 22px; font-weight: 800; color: #26221B;" id="banco-total">600</div>
-          <div style="font-size: 12px; color: #94896E;">preguntas en el banco</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="display: flex; flex-direction: column; gap: 10px;">
-      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-        <label class="f-label" for="torre-select">Estás viendo como:</label>
-        <select class="f-select" id="torre-select" style="width: 320px;" onchange="setTorre(this.value)"></select>
-      </div>
-      <div class="torre-banner">
-        <div class="torre-badge" id="torre-sigla">LC</div>
-        <div style="font-size: 14px; color: #2B2620; line-height: 1.45;">
-          <b id="torre-titulo">Torre de Lectura Crítica · Prof. Diana Ordóñez</b><br>
-          <span id="torre-detalle" style="color: #6B6350; font-size: 13px;">104 preguntas en tu torre · cuestionarios de 36 preguntas</span>
-          <span style="color: #94896E; font-size: 13px;"> — cada profesor edita únicamente el banco de su materia.</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="banco-grid" style="display: flex; gap: 26px; align-items: flex-start;">
-
-      <!-- formulario -->
-      <div style="flex: 1.15; display: flex; flex-direction: column; gap: 16px; min-width: 0;">
-        <div style="font-size: 15px; font-weight: 800; color: #26221B;">Nueva pregunta</div>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <div style="flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 6px;">
-            <label class="f-label">Área <span>· asignada a tu torre</span></label>
-            <input class="f-input" id="b-area" value="Lectura Crítica" readonly style="background: #FAF5DF; color: #6B6350;">
-          </div>
-          <div style="flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 6px;">
-            <label class="f-label">Competencia</label>
-            <select class="f-select">
-              <option>Reflexionar y evaluar</option>
-              <option>Información literal</option>
-              <option>Estructura del texto</option>
-              <option>Intención del autor</option>
-            </select>
-          </div>
-          <div style="width: 130px; display: flex; flex-direction: column; gap: 6px;">
-            <label class="f-label">Dificultad</label>
-            <select class="f-select">
-              <option>Media</option>
-              <option>Baja</option>
-              <option>Alta</option>
-            </select>
-          </div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 6px;">
-          <label class="f-label">Contexto <span>· el texto, la situación o la figura que acompaña la pregunta</span></label>
-          <textarea class="f-textarea" id="b-ctx" rows="3">Es urgente cambiar nuestros hábitos: no podemos seguir tratando el planeta como un basurero infinito. La decisión está en tus manos.</textarea>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 6px;">
-          <label class="f-label">Enunciado</label>
-          <textarea class="f-textarea" id="b-enun" rows="2" oninput="preview()">Del planteamiento del autor puede inferirse que su intención principal es</textarea>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <label class="f-label">Opciones de respuesta <span>· marca la correcta</span></label>
-          <div id="b-opts" style="display: flex; flex-direction: column; gap: 8px;"></div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 6px;">
-          <label class="f-label">Explicación <span>· la ve el estudiante cuando falla</span></label>
-          <textarea class="f-textarea" id="b-exp" rows="3">El autor no se limita a describir: usa expresiones valorativas como «es urgente» y cierra con un llamado directo al lector. Cuando un texto combina argumentos con apelaciones al receptor, su intención es persuadir.</textarea>
-        </div>
-      </div>
-
-      <!-- vista previa -->
-      <div class="preview-col" style="width: 400px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px;">
-        <div style="font-size: 13px; font-weight: 700; color: #6B6350; letter-spacing: 0.5px;">ASÍ LA VERÁ EL ESTUDIANTE</div>
-        <div style="background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 1px 3px rgba(38,34,27,0.06); display: flex; flex-direction: column; gap: 12px;">
-          <div style="font-size: 12px; font-weight: 700; color: #2B2620; background: #FCEFB8; border-radius: 999px; padding: 5px 11px; align-self: flex-start;" id="pv-area">Lectura Crítica</div>
-          <div style="font-size: 15px; font-weight: 700; color: #26221B; line-height: 1.45;" id="pv-enun"></div>
-          <div style="display: flex; flex-direction: column; gap: 8px;" id="pv-opts"></div>
-        </div>
-        <div id="b-toast" style="display: none; background: #FDF4C9; border: 1.5px solid #E8C94E; border-radius: 12px; padding: 13px 16px; font-size: 14px; font-weight: 700; color: #2B2620; text-align: center;"></div>
-        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px;">
-          <button class="btn-primary" style="padding: 13px;" onclick="save()">Guardar y agregar otra</button>
-          <button class="btn-outline" style="padding: 12px;" onclick="show('resultados')">Guardar y volver al panel</button>
-        </div>
-      </div>
-
-    </div>
-
-    <div style="background: #fff; border-radius: 16px; padding: 20px 22px; box-shadow: 0 1px 3px rgba(38,34,27,0.06); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: baseline;">
-        <div style="font-size: 14px; font-weight: 700; color: #26221B;">Distribución del banco por torre</div>
-        <div style="font-size: 12px; color: #94896E;">600 preguntas · lote 2026-B</div>
-      </div>
-      <div id="dist-rows" style="display: flex; flex-direction: column; gap: 12px;"></div>
-    </div>
-  </div>
-
-  <!-- ══════════ VISTA: CUESTIONARIOS ══════════ -->
-  <div class="main" id="view-cuestionarios">
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-      <div>
-        <div style="font-size: 22px; font-weight: 800; color: #26221B;">Cuestionarios</div>
-        <div style="font-size: 14px; color: #94896E; margin-top: 3px;">Semana 3 · Julio 2026 · las 7 materias</div>
-      </div>
-      <button class="btn-primary" onclick="show('banco')">Nuevo cuestionario</button>
-    </div>
-
-    <div class="stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Activos esta semana</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">3</div>
-        <div style="font-size: 12px; color: #94896E;">cierran el domingo</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Presentaciones este mes</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">1.240</div>
-        <div style="font-size: 12px; font-weight: 700; color: #2B2620;">▲ 18% vs. junio</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Promedio general</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">66%</div>
-        <div style="font-size: 12px; font-weight: 700; color: #2B2620;">▲ 4 pts vs. junio</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Preguntas en el banco</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">600</div>
-        <div style="font-size: 12px; color: #94896E;">lote 2026-B · renueva en enero</div>
-      </div>
-    </div>
-
-    <div class="table-scroll" style="background: #fff; border-radius: 16px; box-shadow: 0 1px 3px rgba(38,34,27,0.06); overflow: hidden;">
-      <div class="table-inner">
-        <div class="trow cols-cuest thead">
-          <div>CUESTIONARIO</div><div>PROFESOR</div><div>PREGUNTAS</div><div>GRUPO</div><div>ESTADO</div><div>PROMEDIO</div>
-        </div>
-        <div class="trow cols-cuest">
-          <div style="font-weight: 600;">Lectura Crítica · Semana 3</div><div style="color: #6B6350;">Diana Ordóñez</div><div>36</div><div style="color: #6B6350;">Sabatino 2026-B</div><div><span class="badge badge-ok">Activo</span></div><div style="font-weight: 800; color: #2B2620;">68%</div>
-        </div>
-        <div class="trow cols-cuest">
-          <div style="font-weight: 600;">Matemáticas · Semana 3</div><div style="color: #6B6350;">Carlos Muñoz</div><div>36</div><div style="color: #6B6350;">Sabatino 2026-B</div><div><span class="badge badge-ok">Activo</span></div><div style="color: #94896E;">en curso</div>
-        </div>
-        <div class="trow cols-cuest">
-          <div style="font-weight: 600;">Biología · Semana 3</div><div style="color: #6B6350;">Lucía Guampe</div><div>20</div><div style="color: #6B6350;">Intensivo Julio</div><div><span class="badge badge-ok">Activo</span></div><div style="color: #94896E;">en curso</div>
-        </div>
-        <div class="trow cols-cuest">
-          <div style="font-weight: 600;">Inglés · Semana 2</div><div style="color: #6B6350;">Paola Astaiza</div><div>40</div><div style="color: #6B6350;">Sabatino 2026-B</div><div><span class="badge badge-off">Cerrado</span></div><div style="font-weight: 800; color: #2B2620;">72%</div>
-        </div>
-        <div class="trow cols-cuest">
-          <div style="font-weight: 600;">Sociales · Semana 2</div><div style="color: #6B6350;">Hernán Chocué</div><div>36</div><div style="color: #6B6350;">Intensivo Julio</div><div><span class="badge badge-off">Cerrado</span></div><div style="font-weight: 800; color: #C24B3A;">58%</div>
-        </div>
-        <div class="trow cols-cuest">
-          <div style="font-weight: 600;">Física · Semana 2</div><div style="color: #6B6350;">Andrés Calambás</div><div>20</div><div style="color: #6B6350;">Sabatino 2026-B</div><div><span class="badge badge-off">Cerrado</span></div><div style="font-weight: 800; color: #26221B;">61%</div>
-        </div>
-        <div class="trow cols-cuest">
-          <div style="font-weight: 600;">Química · Refuerzo estequiometría</div><div style="color: #6B6350;">Marcela Velasco</div><div>20</div><div style="color: #6B6350;">Intensivo Julio</div><div><span class="badge badge-draft">Borrador</span></div><div style="color: #94896E;">—</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════ VISTA: ESTUDIANTES ══════════ -->
-  <div class="main" id="view-estudiantes">
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-      <div>
-        <div style="font-size: 22px; font-weight: 800; color: #26221B;">Estudiantes</div>
-        <div style="font-size: 14px; color: #94896E; margin-top: 3px;">300 matriculados · 8 grupos · Cohorte 2026</div>
-      </div>
-      <div style="display: flex; gap: 10px; align-items: center;">
-        <input class="f-input" id="est-search" placeholder="Buscar por nombre o código…" style="width: 240px;" oninput="filterStudents()">
-        <button class="btn-primary" onclick="demoToast('El registro de estudiantes estará disponible en la versión completa')">Agregar estudiante</button>
-      </div>
-    </div>
-
-    <div class="stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Estudiantes activos</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">291<span style="font-size: 15px; color: #94896E; font-weight: 600;">/300</span></div>
-        <div style="font-size: 12px; color: #94896E;">9 inactivos</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Promedio simulado</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">298<span style="font-size: 15px; color: #94896E; font-weight: 600;">/500</span></div>
-        <div style="font-size: 12px; font-weight: 700; color: #2B2620;">▲ 12 pts vs. junio</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">En riesgo</div>
-        <div style="font-size: 26px; font-weight: 800; color: #C24B3A;">34</div>
-        <div style="font-size: 12px; color: #94896E;">bajo 250 pts · requieren refuerzo</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Asistencia a cuestionarios</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">87%</div>
-        <div style="font-size: 12px; color: #94896E;">última semana</div>
-      </div>
-    </div>
-
-    <div class="table-scroll" style="background: #fff; border-radius: 16px; box-shadow: 0 1px 3px rgba(38,34,27,0.06); overflow: hidden;">
-      <div class="table-inner">
-        <div class="trow cols-est thead">
-          <div>ESTUDIANTE</div><div>CÓDIGO</div><div>GRUPO</div><div>ÚLTIMO SIMULACRO</div><div>TENDENCIA</div><div>ESTADO</div>
-        </div>
-        <div id="est-rows">
-          <div class="trow cols-est">
-            <div style="font-weight: 600;">María José Erazo</div><div style="color: #6B6350;">PP-2026-0076</div><div style="color: #6B6350;">Sabatino A</div><div style="font-weight: 800; color: #2B2620;">412/500</div><div style="color: #2B2620; font-weight: 700;">▲ mejorando</div><div><span class="badge badge-ok">Activo</span></div>
-          </div>
-          <div class="trow cols-est">
-            <div style="font-weight: 600;">Valentina Muñoz</div><div style="color: #6B6350;">PP-2026-0187</div><div style="color: #6B6350;">Sabatino B</div><div style="font-weight: 800; color: #2B2620;">312/500</div><div style="color: #2B2620; font-weight: 700;">▲ mejorando</div><div><span class="badge badge-ok">Activo</span></div>
-          </div>
-          <div class="trow cols-est">
-            <div style="font-weight: 600;">Andrés Gómez</div><div style="color: #6B6350;">PP-2026-0142</div><div style="color: #6B6350;">Sabatino B</div><div style="font-weight: 800; color: #2B2620;">305/500</div><div style="color: #94896E; font-weight: 700;">— estable</div><div><span class="badge badge-ok">Activo</span></div>
-          </div>
-          <div class="trow cols-est">
-            <div style="font-weight: 600;">Juan David Paz</div><div style="color: #6B6350;">PP-2026-0095</div><div style="color: #6B6350;">Intensivo</div><div style="font-weight: 800; color: #26221B;">298/500</div><div style="color: #2B2620; font-weight: 700;">▲ mejorando</div><div><span class="badge badge-ok">Activo</span></div>
-          </div>
-          <div class="trow cols-est">
-            <div style="font-weight: 600;">Laura Cerón</div><div style="color: #6B6350;">PP-2026-0118</div><div style="color: #6B6350;">Sabatino A</div><div style="font-weight: 800; color: #26221B;">276/500</div><div style="color: #94896E; font-weight: 700;">— estable</div><div><span class="badge badge-ok">Activo</span></div>
-          </div>
-          <div class="trow cols-est">
-            <div style="font-weight: 600;">Camilo Muelas</div><div style="color: #6B6350;">PP-2026-0221</div><div style="color: #6B6350;">Intensivo</div><div style="font-weight: 800; color: #26221B;">264/500</div><div style="color: #2B2620; font-weight: 700;">▲ mejorando</div><div><span class="badge badge-ok">Activo</span></div>
-          </div>
-          <div class="trow cols-est">
-            <div style="font-weight: 600;">Sara Imbachí</div><div style="color: #6B6350;">PP-2026-0203</div><div style="color: #6B6350;">Sabatino B</div><div style="font-weight: 800; color: #C24B3A;">241/500</div><div style="color: #C24B3A; font-weight: 700;">▼ en riesgo</div><div><span class="badge badge-ok">Activo</span></div>
-          </div>
-          <div class="trow cols-est">
-            <div style="font-weight: 600;">Santiago López</div><div style="color: #6B6350;">PP-2025-0310</div><div style="color: #6B6350;">Egresado</div><div style="font-weight: 800; color: #26221B;">358/500</div><div style="color: #94896E; font-weight: 700;">—</div><div><span class="badge badge-off">Inactivo</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════ VISTA: SIMULACROS ══════════ -->
-  <div class="main" id="view-simulacros">
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-      <div>
-        <div style="font-size: 22px; font-weight: 800; color: #26221B;">Simulacros</div>
-        <div style="font-size: 14px; color: #94896E; margin-top: 3px;">Exámenes completos tipo Saber 11 · Escala 0–500</div>
-      </div>
-      <button class="btn-primary" onclick="demoToast('La programación de simulacros estará disponible en la versión completa')">Programar simulacro</button>
-    </div>
-
-    <div style="background: #26221B; border-radius: 16px; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-      <div style="display: flex; flex-direction: column; gap: 5px;">
-        <div style="font-size: 12px; font-weight: 700; color: #E8C94E; letter-spacing: 1px;">PRÓXIMO SIMULACRO</div>
-        <div style="font-size: 20px; font-weight: 800; color: #fff;">Simulacro Nacional 3 · Sábado 18 de julio · 8:00 a.m.</div>
-        <div style="font-size: 14px; color: #A8A08A;">7 materias · 208 preguntas · 4 h 30 min · Sedes Centro y Norte</div>
-      </div>
-      <div style="display: flex; align-items: center; gap: 18px;">
-        <div style="text-align: right;">
-          <div style="font-size: 24px; font-weight: 800; color: #fff;">276<span style="font-size: 14px; color: #A8A08A; font-weight: 600;">/300</span></div>
-          <div style="font-size: 12px; color: #A8A08A;">inscritos</div>
-        </div>
-        <button class="btn-primary" style="padding: 12px 20px;" onclick="demoToast('La lista de inscritos estará disponible en la versión completa')">Ver inscritos</button>
-      </div>
-    </div>
-
-    <div class="stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Promedio último simulacro</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">298<span style="font-size: 15px; color: #94896E; font-weight: 600;">/500</span></div>
-        <div style="font-size: 12px; font-weight: 700; color: #2B2620;">▲ 12 pts vs. anterior</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Mejor puntaje</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">412</div>
-        <div style="font-size: 12px; color: #94896E;">María José Erazo · Sabatino A</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Participación</div>
-        <div style="font-size: 26px; font-weight: 800; color: #26221B;">92%</div>
-        <div style="font-size: 12px; color: #94896E;">276 de 300 estudiantes</div>
-      </div>
-      <div class="stat">
-        <div style="font-size: 13px; color: #94896E;">Materia más débil del grupo</div>
-        <div style="font-size: 17px; font-weight: 800; color: #C24B3A; line-height: 1.3;">Física</div>
-        <div style="font-size: 12px; color: #94896E;">48 pts promedio · escala 0–100</div>
-      </div>
-    </div>
-
-    <div class="table-scroll" style="background: #fff; border-radius: 16px; box-shadow: 0 1px 3px rgba(38,34,27,0.06); overflow: hidden;">
-      <div class="table-inner">
-        <div class="trow cols-sim thead">
-          <div>FECHA</div><div>SIMULACRO</div><div>PRESENTARON</div><div>PROMEDIO</div><div>VS. ANTERIOR</div>
-        </div>
-        <div class="trow cols-sim">
-          <div style="color: #6B6350;">13 jun 2026</div><div style="font-weight: 600;">Simulacro Nacional 2</div><div>276/300</div><div style="font-weight: 800; color: #2B2620;">298/500</div><div style="color: #2B2620; font-weight: 700;">▲ +12</div>
-        </div>
-        <div class="trow cols-sim">
-          <div style="color: #6B6350;">16 may 2026</div><div style="font-weight: 600;">Simulacro Nacional 1</div><div>268/300</div><div style="font-weight: 800; color: #26221B;">286/500</div><div style="color: #2B2620; font-weight: 700;">▲ +11</div>
-        </div>
-        <div class="trow cols-sim">
-          <div style="color: #6B6350;">18 abr 2026</div><div style="font-weight: 600;">Simulacro intermedio</div><div>259/300</div><div style="font-weight: 800; color: #26221B;">275/500</div><div style="color: #2B2620; font-weight: 700;">▲ +13</div>
-        </div>
-        <div class="trow cols-sim">
-          <div style="color: #6B6350;">14 mar 2026</div><div style="font-weight: 600;">Simulacro diagnóstico</div><div>283/300</div><div style="font-weight: 800; color: #26221B;">262/500</div><div style="color: #94896E; font-weight: 700;">— línea base</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  </main>
 </div>
 
-<script>
-const LETTERS = 'ABCD';
+<!-- ══════════ PUERTA DE ACCESO ══════════ -->
+<div class="gate" id="gate" hidden>
+  <form class="gate-card" id="form-gate">
+    <div class="brand-mark">
+      <svg class="brand-icon" viewBox="0 0 64 64" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M32 6C21.5 6 13.5 14 13.5 24c0 6.6 3.6 10.4 6.9 13.6 1.7 1.6 2.7 2.9 2.7 4.9h17.8c0-2 1-3.3 2.7-4.9 3.3-3.2 6.9-7 6.9-13.6C50.5 14 42.5 6 32 6Z"/>
+        <path d="M23.5 44.5h17M25 49h14M27.5 53.5h9"/>
+        <circle cx="32" cy="19" r="3.4" fill="currentColor" stroke="none"/>
+        <path d="M24.5 33c0-4.6 3.2-7.6 7.5-7.6s7.5 3 7.5 7.6"/>
+      </svg>
+      <span class="brand-name">PENSAR</span>
+      <span class="brand-city">POPAYÁN</span>
+    </div>
+    <h1>Panel del instituto</h1>
+    <p>Solo para el rol administrativo.</p>
+    <div class="f">
+      <label for="g-email">Correo</label>
+      <input type="email" id="g-email" autocomplete="email" required>
+    </div>
+    <div class="f">
+      <label for="g-pass">Contraseña</label>
+      <input type="password" id="g-pass" autocomplete="current-password" required>
+    </div>
+    <p class="gate-err" id="gate-err"></p>
+    <button class="btn btn-primary btn-block" id="btn-gate" type="submit">Entrar</button>
+  </form>
+</div>
 
-// ─── Las 7 torres (una por profesor) ───
-const TORRES = [
-  { key: 'lc',  sigla: 'LC', materia: 'Lectura Crítica',       prof: 'Diana Ordóñez',   banco: 104, npreg: 36 },
-  { key: 'mat', sigla: 'MT', materia: 'Matemáticas',           prof: 'Carlos Muñoz',    banco: 104, npreg: 36 },
-  { key: 'soc', sigla: 'SC', materia: 'Sociales y Ciudadanas', prof: 'Hernán Chocué',   banco: 104, npreg: 36 },
-  { key: 'ing', sigla: 'IN', materia: 'Inglés',                prof: 'Paola Astaiza',   banco: 114, npreg: 40 },
-  { key: 'bio', sigla: 'BI', materia: 'Biología',              prof: 'Lucía Guampe',    banco: 58,  npreg: 20 },
-  { key: 'fis', sigla: 'FI', materia: 'Física',                prof: 'Andrés Calambás', banco: 58,  npreg: 20 },
-  { key: 'qui', sigla: 'QU', materia: 'Química',               prof: 'Marcela Velasco', banco: 58,  npreg: 20 },
-];
-let torreKey = 'lc';
+<div id="toast" role="status" aria-live="polite"></div>
 
-const DEFAULT_OPTS = [
-  'persuadir al lector de cambiar sus hábitos de consumo.',
-  'informar sobre estadísticas de reciclaje en Colombia.',
-  'describir un proceso industrial de forma neutral.',
-  'narrar la historia del movimiento ambientalista.',
-];
-let correct = 0;
-let saved = 0;
-
-function show(view) {
-  document.querySelectorAll('.main').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-' + view).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.toggle('active', b.id === 'nav-' + view));
-  window.scrollTo(0, 0);
-}
-
-function filterStudents() {
-  const q = document.getElementById('est-search').value.toLowerCase();
-  document.querySelectorAll('#est-rows .trow').forEach(r => {
-    r.style.display = r.textContent.toLowerCase().includes(q) ? 'grid' : 'none';
-  });
-}
-
-let demoToastTimer;
-function demoToast(msg) {
-  const t = document.getElementById('demo-toast');
-  t.textContent = msg;
-  t.style.display = 'block';
-  clearTimeout(demoToastTimer);
-  demoToastTimer = setTimeout(() => { t.style.display = 'none'; }, 2800);
-}
-
-// ─── Torre de selección ───
-function buildTorreSelect() {
-  const sel = document.getElementById('torre-select');
-  sel.innerHTML = '';
-  TORRES.forEach(t => {
-    const opt = document.createElement('option');
-    opt.value = t.key;
-    opt.textContent = 'Prof. ' + t.prof + ' · ' + t.materia;
-    sel.appendChild(opt);
-  });
-  sel.value = torreKey;
-}
-
-function setTorre(key) {
-  torreKey = key;
-  const t = TORRES.find(x => x.key === key);
-  document.getElementById('torre-select').value = key;
-  document.getElementById('torre-sigla').textContent = t.sigla;
-  document.getElementById('torre-titulo').textContent = 'Torre de ' + t.materia + ' · Prof. ' + t.prof;
-  document.getElementById('torre-detalle').textContent = t.banco + ' preguntas en tu torre · cuestionarios de ' + t.npreg + ' preguntas';
-  document.getElementById('b-area').value = t.materia;
-  document.getElementById('pv-area').textContent = t.materia;
-  buildDist();
-}
-
-function buildDist() {
-  const box = document.getElementById('dist-rows');
-  box.innerHTML = '';
-  const max = Math.max(...TORRES.map(t => t.banco));
-  TORRES.forEach(t => {
-    const row = document.createElement('div');
-    row.className = 'dist-row' + (t.key === torreKey ? ' sel' : '');
-    row.innerHTML =
-      '<div style="display: flex; justify-content: space-between; font-size: 13px;">' +
-        '<span class="dist-name" style="color: #3E382B;">' + t.materia + ' <span style="color: #94896E; font-weight: 400;">· Prof. ' + t.prof + '</span></span>' +
-        '<span style="font-weight: 700; color: #2B2620;">' + t.banco + '</span>' +
-      '</div>' +
-      '<div class="dist-bar"><div style="width: ' + Math.round(t.banco / max * 100) + '%;"></div></div>';
-    row.onclick = () => setTorre(t.key);
-    box.appendChild(row);
-  });
-}
-
-// ─── Formulario del banco ───
-function buildOpts() {
-  const box = document.getElementById('b-opts');
-  box.innerHTML = '';
-  DEFAULT_OPTS.forEach((txt, i) => {
-    const div = document.createElement('div');
-    div.className = 'b-opt' + (correct === i ? ' correct' : '');
-    div.innerHTML = '<div class="b-dot"><i></i></div><b>' + LETTERS[i] + '</b><input>';
-    div.querySelector('input').value = txt;
-    div.querySelector('input').oninput = preview;
-    div.querySelector('.b-dot').onclick = () => {
-      correct = i;
-      document.querySelectorAll('.b-opt').forEach((r, j) => r.classList.toggle('correct', j === i));
-      preview();
-    };
-    box.appendChild(div);
-  });
-}
-
-function preview() {
-  document.getElementById('pv-enun').textContent = document.getElementById('b-enun').value || '…';
-  const box = document.getElementById('pv-opts');
-  box.innerHTML = '';
-  [...document.querySelectorAll('.b-opt input')].forEach((inp, i) => {
-    const div = document.createElement('div');
-    div.className = 'pv-opt';
-    const b = document.createElement('b');
-    b.textContent = LETTERS[i] + ' ';
-    div.appendChild(b);
-    div.appendChild(document.createTextNode(inp.value || '…'));
-    box.appendChild(div);
-  });
-}
-
-let toastTimer;
-function save() {
-  saved++;
-  const t = TORRES.find(x => x.key === torreKey);
-  const toast = document.getElementById('b-toast');
-  toast.textContent = 'Pregunta guardada en la torre de ' + t.materia + ' · ' + (saved === 1 ? '1 pregunta nueva' : saved + ' preguntas nuevas');
-  toast.style.display = 'block';
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { toast.style.display = 'none'; }, 3500);
-}
-
-buildTorreSelect();
-setTorre('lc');
-buildOpts();
-preview();
-</script>
-<div id="demo-toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.58.0/dist/umd/supabase.js"
+        integrity="sha384-KX6Y/AMIv9qA8TLCDul2JatZWeyrJVgj3Xu/0r30Nr05xO8md1+wHAgtdsRV9LoE"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/config.js?v=2026.08.29-8"></script>
+<script src="js/panel.js?v=2026.08.29-8"></script>
 </body>
 </html>

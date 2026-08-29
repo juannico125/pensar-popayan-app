@@ -14,10 +14,13 @@
  *   · Plus Jakarta Sans en todo el texto de trabajo
  *
  * Lo único que cambia respecto del referente es el color: Smart es verde,
- * Pensar es dorado. La banda invierte la fórmula del referente —Smart pone
- * blanco sobre verde oscuro— porque el dorado oscurecido se lee marrón. Aquí va
- * el dorado de marca con tinta oscura encima: 7:1 de contraste, y se parece a
- * la tarjeta del logotipo.
+ * Pensar es dorado. La banda NO va dorada: en amarillo grande el dorado se
+ * vuelve mostaza y se come la pantalla. Va en el café casi negro del logotipo,
+ * con el dorado reservado al avatar, a la acción principal y a las pastillas —
+ * que es donde se lee como marca y no como fondo.
+ *
+ * El avatar sobre la banda es la única mancha dorada de la cabecera: a esa
+ * escala el color funciona.
  *
  * Source Serif 4 se queda solo en el logotipo, para no rediseñar la marca.
  */
@@ -31,11 +34,11 @@
   --color-paper-4: oklch(90% 0.020 84);
 
   /* ── banda de marca · cabecera del inicio y splash ── */
-  --color-band:       oklch(76% 0.135 82);   /* dorado de marca */
-  --color-band-2:     oklch(68% 0.14 80);    /* avatar sobre la banda */
-  --color-band-ink:   oklch(26% 0.045 72);   /* tinta oscura: 7:1 sobre el dorado */
-  --color-band-muted: oklch(42% 0.075 72);   /* secundario sobre la banda */
-  --color-band-glass: oklch(100% 0 0 / 0.30);
+  --color-band:       oklch(27% 0.022 70);   /* café casi negro, el del logotipo */
+  --color-band-2:     var(--color-accent);   /* el avatar es la única mancha dorada */
+  --color-band-ink:   oklch(97% 0.008 88);
+  --color-band-muted: oklch(76% 0.020 82);   /* secundario sobre la banda */
+  --color-band-glass: oklch(100% 0 0 / 0.09);
 
   /* ── tinta ── */
   --color-ink:       oklch(24% 0.020 78);

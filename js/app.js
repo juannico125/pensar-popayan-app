@@ -153,7 +153,10 @@ async function arranque() {
   try {
     const sesion = await API.sesionActiva();
     if (!sesion) { await espera; navigate('login'); return; }
-    await entrarConSesion();
+    const perfil = await entrarConSesion();
+    // Una sesión administrativa restaurada va al panel, no a la app: el rol se
+    // comprueba también aquí, no solo al escribir la contraseña.
+    if (perfil.rol === 'admin') { location.href = 'panel.html'; return; }
     await espera;
     navigate('home');
   } catch (e) {
