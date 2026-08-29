@@ -1,4 +1,5 @@
 [
-  { "date": "2026-08-29", "macrostructure": "app-shell (columna flex · voz de fila con regla)", "theme": "Pensar (marca) sobre chasis editorial", "enrichment": "none — tipografía y regla", "brief": "Pensar Popayán · rediseño de la app del estudiante: fuera el cielo con nubes y las tarjetas flotantes; listas como pilas de filas con regla de 1px, referencias nivela-demo + smart-preu-app" },
-  { "date": "2026-07-16", "macrostructure": "app-shell (bottom-tab mobile app)", "theme": "studied-DNA (source: image — educadavid-app, obra del propio usuario)", "enrichment": "none (SVG de datos del banco de preguntas)", "brief": "Pensar Popayán · app del estudiante Saber 11, ADN de educadavid adaptado a marca dorada" }
+  { "date": "2026-08-29", "macrostructure": "app-shell (columna flex · voz de tarjeta blanda)", "theme": "studied-DNA (source: juannico125/smart-preu-demo) · marca Pensar dorada", "enrichment": "none", "brief": "Pensar Popayán · app del estudiante con el ADN de smart-preu-demo: tarjeta blanca radio 16, pastillas, banda de marca en el inicio, Plus Jakarta Sans" },
+  { "date": "2026-08-29", "macrostructure": "app-shell (columna flex · voz de fila con regla)", "theme": "Pensar sobre chasis editorial (nivela-demo)", "enrichment": "none", "brief": "Descartado: el cliente prefirió el ADN de smart-preu-demo" },
+  { "date": "2026-07-16", "macrostructure": "app-shell (bottom-tab mobile app)", "theme": "studied-DNA (source: image — educadavid-app)", "enrichment": "none", "brief": "Pensar Popayán · versión con cielo y nubes, rechazada por el cliente" }
 ]

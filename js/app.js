@@ -233,25 +233,30 @@ function renderHome() {
   const meta = 40;
   const r = racha();
 
+  const iniciales = (S.user.nombre || '?').split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+
   let html = `
-    <div class="home-top reveal" style="--i:0">
-      <div class="greet-text">
-        <div class="greet-hi">${saludo},</div>
-        <h1 class="greet-name">${esc(S.user.nombre)}</h1>
+    <div class="home-header">
+      <div class="home-top">
+        <div class="greet-text">
+          <div class="greet-hi">${saludo},</div>
+          <h1 class="greet-name">${esc(S.user.nombre)}</h1>
+        </div>
+        <div class="avatar-band" aria-hidden="true">${esc(iniciales)}</div>
+      </div>
+      <div class="week-card">
+        <div class="week-head"><b>Tu semana</b><span>${sem.length} / ${meta} preguntas</span></div>
+        <div class="bar"><i style="--p:${Math.min(sem.length / meta, 1)}"></i></div>
+        <div class="week-stats">
+          <div class="week-stat"><b>${sem.length}</b><span>Respondidas</span></div>
+          <div class="week-stat"><b>${precSem}</b><span>Precisión</span></div>
+          <div class="week-stat"><b>${fmtTiempo(S.timeStudied)}</b><span>Estudiado</span></div>
+        </div>
       </div>
     </div>
 
-    <div class="week-card reveal" style="--i:1">
-      <div class="week-head"><b>Tu semana</b><span>${sem.length} / ${meta} preguntas</span></div>
-      <div class="bar"><i style="--p:${Math.min(sem.length / meta, 1)}"></i></div>
-      <div class="week-stats">
-        <div class="week-stat"><b>${sem.length}</b><span>Respondidas</span></div>
-        <div class="week-stat"><b>${precSem}</b><span>Precisión</span></div>
-        <div class="week-stat"><b>${fmtTiempo(S.timeStudied)}</b><span>Estudiado</span></div>
-      </div>
-    </div>
-
-    <h2 class="section-title reveal" style="--i:2">Materias</h2>`;
+    <div class="home-body">
+      <h2 class="section-title reveal" style="--i:0">Materias</h2>`;
 
   MATERIAS.forEach((m, idx) => {
     const meta2 = MATERIA_META[m.key];
@@ -261,16 +266,18 @@ function renderHome() {
       ? `${listaCuestionarios(m.key).length} cuestionarios · Prof. ${m.prof}`
       : `${m.npreg} preguntas · Prof. ${m.prof}`;
     html += `
-      <button class="mat-card reveal ${jugable ? '' : 'is-locked'}" style="--i:${idx + 3};--tint:${meta2.tint}" data-mat="${m.key}">
-        <span class="mat-icon">${meta2.icon}</span>
+      <button class="mat-card reveal ${jugable ? '' : 'is-locked'}" style="--i:${idx + 1};--tint:${meta2.tint}" data-mat="${m.key}">
+        <span class="mat-icon">${m.sigla || ''}</span>
         <span class="mat-body">
           <span class="mat-name">${m.nombre}</span>
           <div class="mat-meta">${sub}</div>
-          ${jugable ? `<div class="bar bar-thin"><i style="--p:${prog}"></i></div>` : ''}
+          ${jugable && prog > 0 ? `<div class="bar bar-thin"><i style="--p:${prog}"></i></div>` : ''}
         </span>
         <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </button>`;
   });
+
+  html += `</div>`;
 
   $('#home-scroll').innerHTML = html;
   $('#home-scroll').querySelectorAll('.mat-card').forEach(card => {
@@ -298,9 +305,9 @@ function renderMateria(key) {
   // el nombre y cuánto lleva hecho el estudiante de esta torre.
   const pct = lista.length ? Math.round(hechos / lista.length * 100) : 0;
   let html = `
-    <div class="intro-banner reveal" style="--i:0;--tint:${meta.tint}">
+    <div class="intro-banner reveal" style="--i:0;--tint:${meta.tint}" data-sigla="${m.sigla || ''}">
       <div class="intro-id">
-        <span class="intro-sigla mono">${m.sigla || ''} · Área ${AREAS[m.area] || '—'}</span>
+        <span class="intro-sigla">Área ${AREAS[m.area] || '—'}</span>
         <h2 class="intro-nombre">${hechos} de ${lista.length} cuestionarios</h2>
         <div class="intro-meta mono">${pct} % de la ruta</div>
       </div>
