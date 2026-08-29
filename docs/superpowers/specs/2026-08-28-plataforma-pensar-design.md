@@ -354,8 +354,14 @@ revisión prioritaria. Ver `docs/revision-ingles-parte1.md`.
   individual, alta por CSV fila a fila con reporte de qué entró y qué falló, y
   archivo/reactivación.
 
-**Pendiente de configuración (no se puede por migración):**
-- Desactivar el auto-registro en el panel de Auth de Supabase.
+**Auto-registro desactivado (29 de agosto de 2026).** Verificado: `/auth/v1/signup`
+responde `signup_disabled`, y los estudiantes existentes siguen entrando. Solo
+el rol administrativo crea usuarios, como decía el alcance.
+
+**Publicación (29 de agosto de 2026):** Cloudflare Pages conectado al repo, con
+redespliegue automático en cada push a `main`. GitHub Pages se apagó: una sola
+dirección viva evita que alguien comparta la URL vieja y vea una versión
+congelada.
 
 **Para confirmar con el cliente:**
 - Que la torre de selección por docente queda fuera de la v1.
