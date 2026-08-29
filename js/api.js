@@ -200,7 +200,15 @@ const API = {
     });
     if (error) throw error;
     const r = Array.isArray(data) ? data[0] : data;
-    return { ok: r.correcta, correct: r.indice_correcto, exp: r.explicacion, tip: r.tip || '' };
+    // En un fallo el servidor NO devuelve la clave ni la explicación: la
+    // pregunta sigue abierta y el estudiante tiene que volver a intentarla.
+    return {
+      ok: r.correcta,
+      correct: r.indice_correcto,
+      exp: r.explicacion || '',
+      tip: r.tip || '',
+      intento: r.intento || 1,
+    };
   },
 
   async finalizarSesion(sesionId) {

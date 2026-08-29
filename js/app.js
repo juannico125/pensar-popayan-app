@@ -394,7 +394,7 @@ async function startQuiz(m, items, retry, cuestItem) {
                                            retry ? null : cuestItem && cuestItem.uuid);
     quiz = {
       m, items: items.slice(), idx: 0, ok: 0, wrong: [],
-      t0: Date.now(), tPregunta: Date.now(), retry: !!retry,
+      t0: Date.now(), tPregunta: Date.now(), retry: !!retry, descartadas: new Set(),
       sesion, cuest: retry ? null : (cuestItem ? cuestItem.id : null),
     };
     navigate('quiz');
@@ -412,6 +412,7 @@ async function renderQuiz() {
 
   // Orden de presentación: estable para este estudiante, distinto para otro.
   quiz.orden = await API.barajado(quiz.m, qi);
+  quiz.descartadas = new Set();
 
   let html = `
     <div class="q-chips reveal" style="--i:0">
@@ -446,6 +447,9 @@ async function renderQuiz() {
 
 // Califica el servidor. El navegador no sabe cuál es la correcta hasta que
 // la base se la dice, así que abrir la consola no sirve de nada.
+// Califica el servidor. Si el estudiante falla, la pregunta NO avanza: la
+// opción elegida queda descartada y tiene que volver a intentarla hasta
+// acertar. La clave no llega al navegador mientras la pregunta siga abierta.
 async function answer(canon) {
   const body = $('#quiz-body');
   if (body.classList.contains('quiz-locked')) return;
@@ -462,68 +466,108 @@ async function answer(canon) {
     toast(mensajeError(e));
     return;
   }
+
+  const btn = body.querySelector(`.opt[data-i="${canon}"]`);
+
+  if (!r.ok) {
+    // Solo se marca lo que el estudiante ya sabe: que esa no era.
+    quiz.descartadas.add(canon);
+    if (btn) {
+      btn.classList.add('is-wrong');
+      btn.disabled = true;
+      btn.querySelector('.badge').innerHTML = ICONO_X;
+    }
+    if (r.intento === 1) {
+      quiz.wrong.push(qi);
+      const mk0 = quiz.m + ':' + qi;
+      S.mistakes[mk0] = S.mistakes[mk0] || { m: quiz.m, qi, fails: 0, retries: 0, ts: 0, status: 'pend' };
+      S.mistakes[mk0].fails++;
+      S.mistakes[mk0].ts = Date.now();
+      S.mistakes[mk0].status = 'pend';
+    }
+    if (r.tip) q.tip = r.tip;
+    setTimeout(() => openReintento(q, quiz.descartadas.size), 380);
+    return;
+  }
+
+  // Acertó: se cierra la pregunta y ahora si llegan clave y explicacion.
   q.correct = r.correct;
   q.exp = r.exp;
   if (r.tip) q.tip = r.tip;
 
-  body.querySelectorAll('.opt').forEach(btn => {
-    const bi = parseInt(btn.dataset.i, 10);
-    if (bi === r.correct) btn.classList.add('is-correct');
-    else if (bi === canon) btn.classList.add('is-wrong');
-    else btn.classList.add('is-dim');
-    const badge = btn.querySelector('.badge');
-    if (bi === r.correct) badge.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
-    else if (bi === canon && !r.ok) badge.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
+  body.querySelectorAll('.opt').forEach(b => {
+    const bi = parseInt(b.dataset.i, 10);
+    b.disabled = true;
+    if (bi === r.correct) {
+      b.classList.remove('is-wrong');
+      b.classList.add('is-correct');
+      b.querySelector('.badge').innerHTML = ICONO_CHECK;
+    } else if (!b.classList.contains('is-wrong')) {
+      b.classList.add('is-dim');
+    }
   });
 
-  // Espejo local para que las pantallas derivadas respondan de inmediato;
-  // la verdad ya quedó escrita en `respuestas`.
-  S.answered.push({ m: quiz.m, qi, ok: r.ok, ts: Date.now(), sesion: quiz.sesion });
+  // A la primera cuenta como acierto; recuperada tras fallar, no.
+  if (r.intento === 1) quiz.ok++;
+  S.answered.push({ m: quiz.m, qi, ok: r.intento === 1, ts: Date.now(), sesion: quiz.sesion });
   const mk = quiz.m + ':' + qi;
-  if (r.ok) {
-    quiz.ok++;
-    if (S.mistakes[mk] && S.mistakes[mk].status === 'pend' && quiz.retry) {
-      S.mistakes[mk].status = 'dom';
-      S.mistakes[mk].retries = (S.mistakes[mk].retries || 0) + 1;
-    }
-  } else {
-    quiz.wrong.push(qi);
-    if (S.mistakes[mk]) {
-      S.mistakes[mk].fails++;
-      S.mistakes[mk].ts = Date.now();
-      S.mistakes[mk].status = 'pend';
-      if (quiz.retry) S.mistakes[mk].retries = (S.mistakes[mk].retries || 0) + 1;
-    } else {
-      S.mistakes[mk] = { m: quiz.m, qi, fails: 1, retries: 0, ts: Date.now(), status: 'pend' };
-    }
-  }
+  if (r.intento > 1 && S.mistakes[mk]) S.mistakes[mk].retries = (S.mistakes[mk].retries || 0) + 1;
 
   $('#quiz-bar').style.setProperty('--p', (quiz.idx + 1) / quiz.items.length);
-  setTimeout(() => openFeedback(q, r.ok), 420);
+  setTimeout(() => openFeedback(q, true, r.intento), 420);
 }
 
-function openFeedback(q, ok) {
-  const last = quiz.idx === quiz.items.length - 1;
+const ICONO_CHECK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+const ICONO_X = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
+
+// Hoja de reintento: da la pista, no la respuesta.
+function openReintento(q, descartadas) {
+  const quedan = q.opts.length - descartadas;
   const sheet = $('#sheet');
-  sheet.className = 'sheet ' + (ok ? 'ok' : 'err');
+  sheet.className = 'sheet err';
   sheet.innerHTML = `
     <div class="sheet-head">
-      <span class="mark">${ok
-        ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
-        : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>'}</span>
+      <span class="mark">${ICONO_X}</span>
       <div>
-        <h2 id="sheet-title">${ok ? '¡Correcto!' : 'Respuesta incorrecta'}</h2>
-        ${ok ? '' : '<div class="sub">Revisa la explicación: la correcta quedó marcada arriba.</div>'}
+        <h2>Esa no es</h2>
+        <div class="sub">${quedan === 1 ? 'Queda una opción.' : `Quedan ${quedan} opciones. Vuelve a leer el enunciado.`}</div>
       </div>
     </div>
     <div class="sheet-body">
-      <div class="exp-card"><b>${ok ? '¿Por qué es correcta?' : 'Explicación'}</b>${esc(q.exp)}</div>
-      <div class="tip-row">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-        ${esc(q.tip)}
+      ${q.tip ? `<div class="tip-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>${esc(q.tip)}</div>` : ''}
+    </div>
+    <button class="btn btn-err" id="btn-continue">Volver a intentarlo</button>`;
+
+  $('#sheet-backdrop').classList.add('open');
+  requestAnimationFrame(() => sheet.classList.add('open'));
+  $('#btn-continue').focus({ preventScroll: true });
+  $('#btn-continue').addEventListener('click', reabrirPregunta);
+}
+
+// Cierra la hoja y devuelve la pregunta al estudiante, sin avanzar.
+function reabrirPregunta() {
+  closeSheet();
+  quiz.tPregunta = Date.now();
+  $('#quiz-body').classList.remove('quiz-locked');
+}
+
+function openFeedback(q, ok, intento) {
+  const last = quiz.idx === quiz.items.length - 1;
+  const sheet = $('#sheet');
+  sheet.className = 'sheet ok';
+  sheet.innerHTML = `
+    <div class="sheet-head">
+      <span class="mark">${ICONO_CHECK}</span>
+      <div>
+        <h2>${intento > 1 ? 'Ahora sí' : '¡Correcto!'}</h2>
+        ${intento > 1 ? `<div class="sub">Te tomó ${intento} intentos. Esta pregunta vuelve en el repaso.</div>` : ''}
       </div>
     </div>
-    <button class="btn ${ok ? 'btn-ok' : 'btn-err'}" id="btn-continue">${last ? 'Ver resultados' : 'Continuar'}</button>`;
+    <div class="sheet-body">
+      <div class="exp-card"><b>¿Por qué es correcta?</b>${esc(q.exp)}</div>
+      ${q.tip ? `<div class="tip-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>${esc(q.tip)}</div>` : ''}
+    </div>
+    <button class="btn btn-ok" id="btn-continue">${last ? 'Ver resultados' : 'Continuar'}</button>`;
 
   $('#sheet-backdrop').classList.add('open');
   requestAnimationFrame(() => sheet.classList.add('open'));
@@ -569,7 +613,10 @@ $('#btn-quiz-exit').addEventListener('click', () => {
   navigate(quiz && quiz.retry ? 'mistakes' : 'home');
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && $('#sheet').classList.contains('open')) nextQuestion();
+  if (e.key !== 'Escape' || !$('#sheet').classList.contains('open')) return;
+  // Escape no puede servir para saltarse una pregunta fallada.
+  if ($('#sheet').classList.contains('err')) reabrirPregunta();
+  else nextQuestion();
 });
 
 /* ───────────────── resultados ───────────────── */
@@ -585,9 +632,11 @@ function renderResults() {
   const tier = pct >= 80 ? '' : pct >= 50 ? 'mid' : 'low';
 
   const cuest = quiz.cuest ? buscarCuestionario(quiz.m, quiz.cuest) : null;
+  // Con reintentos todas terminan acertadas: lo que informa es cuántas
+  // salieron bien A LA PRIMERA, que es lo que mide el examen.
   const sub = cuest
-    ? `Respondiste ${quiz.ok} de ${n} en «${cuest.titulo}».`
-    : `Respondiste ${quiz.ok} de ${n} preguntas correctamente.`;
+    ? `Acertaste ${quiz.ok} de ${n} a la primera en «${cuest.titulo}».`
+    : `Acertaste ${quiz.ok} de ${n} a la primera.`;
 
   const R = 82, C = Math.round(2 * Math.PI * R);
   $('#results-body').innerHTML = `
@@ -608,7 +657,7 @@ function renderResults() {
       </div>
       <div class="stat-card c-err reveal" style="--i:4">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-        <b>${n - quiz.ok}</b><span>Incorrectas</span>
+        <b>${n - quiz.ok}</b><span>Con reintento</span>
       </div>
       <div class="stat-card c-gold reveal" style="--i:5">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg>
