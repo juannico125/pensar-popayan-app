@@ -450,7 +450,7 @@ async function renderQuiz() {
   quiz.orden.forEach((canon, pos) => {
     html += `
       <button class="opt reveal" style="--i:${pos + 3}" data-i="${canon}">
-        <span class="badge">${'ABCD'[pos]}</span>
+        <span class="badge">${'ABCDEFGH'[pos]}</span>
         <span>${q.opts[canon]}</span>
       </button>`;
   });
