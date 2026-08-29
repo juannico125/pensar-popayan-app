@@ -6,7 +6,7 @@
  */
 :root {
   /* ── superficie ── */
-  --color-paper:        oklch(97% 0.014 90);   /* fondo app, crema claro */
+  --color-paper:        #C7E6F5;   /* fondo app, azul más intenso del splash */
   --color-paper-2:      oklch(93% 0.02 88);    /* tarjetas */
   --color-paper-3:      oklch(89% 0.024 87);   /* tarjetas elevadas, chips, inputs */
   --color-paper-4:      oklch(84% 0.03 86);    /* hover de superficies */
