@@ -1,3 +1,4 @@
 [
+  { "date": "2026-08-29", "macrostructure": "app-shell (columna flex · voz de fila con regla)", "theme": "Pensar (marca) sobre chasis editorial", "enrichment": "none — tipografía y regla", "brief": "Pensar Popayán · rediseño de la app del estudiante: fuera el cielo con nubes y las tarjetas flotantes; listas como pilas de filas con regla de 1px, referencias nivela-demo + smart-preu-app" },
   { "date": "2026-07-16", "macrostructure": "app-shell (bottom-tab mobile app)", "theme": "studied-DNA (source: image — educadavid-app, obra del propio usuario)", "enrichment": "none (SVG de datos del banco de preguntas)", "brief": "Pensar Popayán · app del estudiante Saber 11, ADN de educadavid adaptado a marca dorada" }
 ]

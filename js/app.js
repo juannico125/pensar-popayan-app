@@ -105,15 +105,6 @@ function nombreMateria(m) { const mm = MATERIAS.find(x => x.key === m); return m
 const NAV_SCREENS = ['home', 'review', 'mistakes', 'stats', 'profile'];
 let current = null;
 
-// agregar 12 nubes flotantes a la pantalla actual
-function addClouds() {
-  const screen = $('#screen-' + current);
-  if (!screen || screen.querySelector('.cloud')) return; // ya tiene nubes
-  const cloudsHtml = Array.from({length: 12}, (_, i) =>
-    `<div class="cloud c${i+1}" aria-hidden="true"></div>`).join('');
-  screen.insertAdjacentHTML('afterbegin', cloudsHtml);
-}
-
 const RENDER = {
   splash: renderSplash,
   login: renderLogin,
@@ -134,7 +125,6 @@ function navigate(name, params) {
   el.classList.add('active');
   requestAnimationFrame(() => el.classList.add('entering'));
   current = name;
-  addClouds();
 
   const nav = $('#bottom-nav');
   nav.classList.toggle('hidden', !NAV_SCREENS.includes(name));
@@ -150,18 +140,6 @@ document.querySelectorAll('[data-route]').forEach(b =>
   b.addEventListener('click', () => navigate(b.dataset.route)));
 document.querySelectorAll('[data-back]').forEach(b =>
   b.addEventListener('click', () => navigate('home')));
-
-// parallax de nubes: suben mientras scrolleas
-document.addEventListener('scroll', () => {
-  const screen = $('#screen-' + current);
-  const scroller = screen?.querySelector('.scroll');
-  if (!scroller) return;
-  const scrollY = scroller.scrollTop;
-  const clouds = screen.querySelectorAll('.cloud');
-  clouds.forEach(cloud => {
-    cloud.style.transform = `translateY(-${scrollY * 0.4}px)`;
-  });
-}, { passive: true });
 
 /* ───────────────── splash ───────────────── */
 function renderSplash() {
@@ -256,30 +234,10 @@ function renderHome() {
   const r = racha();
 
   let html = `
-    <div class="cloud c1" aria-hidden="true"></div>
-    <div class="cloud c2" aria-hidden="true"></div>
-    <div class="cloud c3" aria-hidden="true"></div>
-    <div class="cloud c4" aria-hidden="true"></div>
-    <div class="cloud c5" aria-hidden="true"></div>
-    <div class="cloud c6" aria-hidden="true"></div>
-    <div class="cloud c7" aria-hidden="true"></div>
-    <div class="cloud c8" aria-hidden="true"></div>
-    <div class="cloud c9" aria-hidden="true"></div>
-    <div class="cloud c10" aria-hidden="true"></div>
-    <div class="cloud c11" aria-hidden="true"></div>
-    <div class="cloud c12" aria-hidden="true"></div>
     <div class="home-top reveal" style="--i:0">
       <div class="greet-text">
         <div class="greet-hi">${saludo},</div>
         <h1 class="greet-name">${esc(S.user.nombre)}</h1>
-      </div>
-      <div class="logo-circle">
-        <svg viewBox="0 0 64 64" fill="none" stroke="#26221B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M32 6C21.5 6 13.5 14 13.5 24c0 6.6 3.6 10.4 6.9 13.6 1.7 1.6 2.7 2.9 2.7 4.9h17.8c0-2 1-3.3 2.7-4.9 3.3-3.2 6.9-7 6.9-13.6C50.5 14 42.5 6 32 6Z"/>
-          <path d="M23.5 44.5h17M25 49h14M27.5 53.5h9"/>
-          <circle cx="32" cy="19" r="3.4" fill="#26221B" stroke="none"/>
-          <path d="M24.5 33c0-4.6 3.2-7.6 7.5-7.6s7.5 3 7.5 7.6"/>
-        </svg>
       </div>
     </div>
 
@@ -308,7 +266,7 @@ function renderHome() {
         <span class="mat-body">
           <span class="mat-name">${m.nombre}</span>
           <div class="mat-meta">${sub}</div>
-          <div class="bar bar-thin"><i style="--p:${prog}"></i></div>
+          ${jugable ? `<div class="bar bar-thin"><i style="--p:${prog}"></i></div>` : ''}
         </span>
         <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </button>`;
@@ -336,20 +294,29 @@ function renderMateria(key) {
   const hechos = lista.filter(it => S.cuestionarios[it.id]).length;
   $('#materia-title').textContent = m.nombre;
 
+  // Encabezado con dato real en vez de una caja con un icono adentro: la sigla,
+  // el nombre y cuánto lleva hecho el estudiante de esta torre.
+  const pct = lista.length ? Math.round(hechos / lista.length * 100) : 0;
   let html = `
-    <div class="intro-banner reveal" style="--i:0;--tint:${meta.tint}">${meta.icon.replace('width="22" height="22"', 'width="30" height="30"')}</div>
-    <p class="intro-desc reveal" style="--i:1">${meta.desc}</p>
-    <div class="chip-row reveal" style="--i:2">
-      <span class="chip mono">${hechos} / ${lista.length} cuestionarios</span>
-      <span class="chip mono">Nivel ${meta.nivel}</span>
-      <span class="chip mono">Prof. ${m.prof}</span>
+    <div class="intro-banner reveal" style="--i:0;--tint:${meta.tint}">
+      <div class="intro-id">
+        <span class="intro-sigla mono">${m.sigla || ''} · Área ${AREAS[m.area] || '—'}</span>
+        <h2 class="intro-nombre">${hechos} de ${lista.length} cuestionarios</h2>
+        <div class="intro-meta mono">${pct} % de la ruta</div>
+      </div>
+    </div>
+    <div class="bar bar-thin reveal" style="--i:1"><i style="--p:${lista.length ? hechos / lista.length : 0}"></i></div>
+    <p class="intro-desc reveal" style="--i:2">${meta.desc}</p>
+    <div class="chip-row reveal" style="--i:3">
+      <span class="chip">Nivel ${meta.nivel}</span>
+      <span class="chip">Prof. ${m.prof}</span>
     </div>`;
 
   const iconCheck = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
   const iconLock = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
   const iconChev = '<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
 
-  let i = 3;
+  let i = 4;
   html += `<div class="ruta reveal" style="--i:${i++};--tint:${meta.tint}">`;
   (CUESTIONARIOS[key] || []).forEach(sec => {
     html += `<div class="ruta-tema"><h3>${sec.tema}</h3></div>`;

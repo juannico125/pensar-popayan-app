@@ -113,7 +113,7 @@ const API = {
     // Solo es «jugable» la materia que ya tiene ruta cargada.
     MATERIAS = materias.data.map(m => ({
       key: m.key, sigla: m.sigla, nombre: m.nombre, prof: m.docente || '—',
-      npreg: m.npreg, jugable: (CUESTIONARIOS[m.key] || []).length > 0,
+      area: m.area, npreg: m.npreg, jugable: (CUESTIONARIOS[m.key] || []).length > 0,
     }));
   },
 

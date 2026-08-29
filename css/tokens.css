@@ -1,80 +1,117 @@
-/* Hallmark · tokens · theme: studied-DNA (source: image — capturas de educadavid-app, obra del propio usuario)
- * paper oklch(97% 0.014 90) crema claro · accent oklch(58% 0.13 75) dorado Pensar
- * display: Source Serif 4 (editorial sobrio) · body: Inter · label: IBM Plex Mono
- * adaptación: estructura/microinteracciones de educadavid, tema claro cálido con acento dorado de marca Pensar
- * tipografía revisada a pedido del cliente: más sobria/profesional, menos ornamental
+/* Hallmark · tokens · app-shell · theme: Pensar (marca) sobre chasis editorial
+ * paper oklch(98.2% 0.007 85) crema casi blanco · accent oklch(58% 0.13 75) dorado Pensar
+ * display: Source Serif 4 · body: Inter · label: IBM Plex Mono
+ * pre-emit critique: P5 H5 E5 S5 R5 V4
+ *
+ * Qué cambió y por qué, respecto de la versión anterior:
+ *
+ * 1. El papel vuelve a ser crema. El azul de cielo (#C7E6F5) era un hex crudo
+ *    —rompía la regla del propio repo— y obligaba a poner tarjetas crema encima
+ *    para que el texto se leyera. Dos superficies peleando es lo que se veía mal.
+ * 2. Los radios bajan de 10–20px a 2–4px. El radio uniforme y generoso en todo
+ *    es el delator más común de interfaz generada; aquí además chocaba con una
+ *    serif de remates rectos.
+ * 3. Se van las pastillas. `--radius-pill` ya no existe: los chips pasan a ser
+ *    etiquetas monoespaciadas con regla, que es lo que hace el sistema de Nivela.
+ * 4. Aparecen reglas compuestas (`--rule`, `--rule-soft`). La jerarquía la hacen
+ *    el tipo, la regla de 1px y el espacio — no la sombra ni la tarjeta.
+ *
+ * El acento dorado y la tipografía NO se tocan: son marca aprobada por el cliente.
  */
 :root {
-  /* ── superficie ── */
-  --color-paper:        #C7E6F5;   /* fondo app, azul más intenso del splash */
-  --color-paper-2:      oklch(93% 0.02 88);    /* tarjetas */
-  --color-paper-3:      oklch(89% 0.024 87);   /* tarjetas elevadas, chips, inputs */
-  --color-paper-4:      oklch(84% 0.03 86);    /* hover de superficies */
-  --color-line:         oklch(78% 0.03 85);    /* bordes hairline */
-  --color-ink:          oklch(22% 0.02 85);    /* texto principal, casi-negro cálido */
-  --color-ink-soft:     oklch(42% 0.02 85);    /* texto secundario */
-  --color-ink-faint:    oklch(58% 0.02 85);    /* texto terciario, metadatos */
+  /* ── superficie · crema cálido, casi blanco. Nunca #fff: la marca es cálida ── */
+  --color-paper:    oklch(98.2% 0.007 85);   /* fondo de la app */
+  --color-paper-2:  oklch(96.2% 0.010 85);   /* superficie elevada: hoja, contexto */
+  --color-paper-3:  oklch(93.6% 0.014 85);   /* hover de fila, campos, marcas */
+  --color-paper-4:  oklch(90.5% 0.018 84);   /* prensado */
 
-  /* ── acento dorado Pensar ── */
-  --color-accent:       oklch(58% 0.13 75);    /* dorado — botones primarios, marcas */
-  --color-accent-deep:  oklch(46% 0.12 70);    /* dorado profundo — hover / prensado */
-  --color-accent-ink:   oklch(98% 0.012 90);   /* texto sobre dorado, casi-blanco */
-  --color-accent-soft:  oklch(58% 0.13 75 / 0.14); /* tintes de fondo dorados */
+  /* ── banda oscura · una sola vez por sesión, en el splash ── */
+  --color-band:     oklch(24% 0.026 78);
+  --color-band-ink: oklch(97% 0.010 88);
+
+  /* ── tinta ── */
+  --color-ink:       oklch(23% 0.018 78);   /* texto principal */
+  --color-ink-soft:  oklch(41% 0.016 78);   /* secundario */
+  --color-ink-faint: oklch(55% 0.013 78);   /* metadatos, etiquetas mono */
+
+  /* ── reglas · el material estructural de esta interfaz ── */
+  --color-rule:      oklch(87% 0.012 84);
+  --color-rule-soft: oklch(92.5% 0.009 84);
+  --color-line:      var(--color-rule);     /* alias heredado */
+
+  /* ── acento dorado Pensar · reservado a señal: CTA, estado activo, foco ── */
+  --color-accent:      oklch(58% 0.13 75);
+  --color-accent-deep: oklch(46% 0.12 70);       /* prensado */
+  --color-accent-text: oklch(45% 0.11 70);       /* dorado legible como texto sobre crema */
+  --color-accent-ink:  oklch(98.5% 0.010 90);    /* texto sobre dorado */
+  --color-accent-soft: oklch(58% 0.13 75 / 0.12);
 
   /* ── semánticos ── */
-  --color-ok:           oklch(50% 0.13 155);   /* verde correcto */
-  --color-ok-soft:      oklch(50% 0.13 155 / 0.13);
-  --color-err:          oklch(55% 0.17 25);    /* coral incorrecto */
-  --color-err-soft:     oklch(55% 0.17 25 / 0.13);
-  --color-focus:        oklch(55% 0.12 75);    /* anillo de foco */
+  --color-ok:       oklch(48% 0.13 155);
+  --color-ok-soft:  oklch(48% 0.13 155 / 0.11);
+  --color-err:      oklch(52% 0.17 25);
+  --color-err-soft: oklch(52% 0.17 25 / 0.10);
+  --color-focus:    oklch(52% 0.14 72);
 
-  /* ── tintes por materia — colores primarios y derivados, para asociación rápida ── */
-  --tint-lc:  oklch(52% 0.22 25);    /* rojo — Lectura Crítica */
-  --tint-mat: oklch(50% 0.20 255);   /* azul — Matemáticas */
-  --tint-soc: oklch(58% 0.19 50);    /* naranja — Sociales y Ciudadanas */
-  --tint-ing: oklch(48% 0.20 300);   /* violeta — Inglés */
-  --tint-bio: oklch(53% 0.17 145);   /* verde — Biología */
-  --tint-fis: oklch(54% 0.14 220);   /* cian — Física */
-  --tint-qui: oklch(53% 0.22 355);   /* magenta — Química */
+  /* ── tintes por materia · se usan como barra de 3px, no como fondo ── */
+  --tint-lc:  oklch(50% 0.20 25);
+  --tint-mat: oklch(48% 0.18 255);
+  --tint-soc: oklch(55% 0.17 50);
+  --tint-ing: oklch(46% 0.19 300);
+  --tint-bio: oklch(50% 0.16 145);
+  --tint-fis: oklch(51% 0.13 220);
+  --tint-qui: oklch(50% 0.20 355);
 
-  /* ── tipografía ── */
+  /* ── tipografía · marca. Source Serif 4 en titulares y cifras; Inter en texto
+   *    de trabajo; IBM Plex Mono en etiquetas y números tabulares ── */
   --font-display: "Source Serif 4", Georgia, serif;
   --font-body:    "Inter", system-ui, sans-serif;
   --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
 
-  --text-xs:   0.72rem;
-  --text-sm:   0.82rem;
-  --text-base: 0.95rem;
-  --text-md:   1.06rem;
-  --text-lg:   1.3rem;
-  --text-xl:   1.6rem;
-  --text-2xl:  2rem;
-  --text-greet: 2.1rem;
-  --text-hero: 2.6rem;
+  --text-xs:    0.73rem;
+  --text-sm:    0.83rem;
+  --text-base:  0.94rem;
+  --text-md:    1.06rem;
+  --text-lg:    1.26rem;
+  --text-xl:    1.55rem;
+  --text-2xl:   2rem;
+  --text-3xl:   2.6rem;
 
-  /* ── espacio (escala 4pt) ── */
+  --tracking-tight: -0.012em;
+  --tracking-wide:  0.12em;
+  --leading-tight:  1.14;
+  --leading-snug:   1.34;
+  --leading-body:   1.6;
+
+  /* ── espacio · escala 4pt ── */
   --space-2xs: 4px;
   --space-xs:  8px;
   --space-sm:  12px;
   --space-md:  16px;
   --space-lg:  24px;
-  --space-xl:  32px;
-  --space-2xl: 48px;
+  --space-xl:  36px;
+  --space-2xl: 56px;
 
-  /* ── radios ── */
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-pill: 999px;
+  /* ── radios · casi cuadrados a propósito ── */
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
 
   /* ── movimiento ── */
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-micro: 120ms;
-  --dur-short: 220ms;
-  --dur-long:  340ms;
+  --dur-micro: 110ms;
+  --dur-short: 190ms;
+  --dur-long:  300ms;
 
-  /* ── reglas ── */
-  --rule-hairline: 1px solid var(--color-line);
+  /* ── reglas compuestas ── */
+  --rule:      1px solid var(--color-rule);
+  --rule-soft: 1px solid var(--color-rule-soft);
+  --rule-hairline: var(--rule);             /* alias heredado */
+
+  /* ── armazón ── */
+  --shell:      430px;   /* ancho del marco tipo teléfono */
+  --nav-h:      62px;    /* alto de la barra inferior */
+  --cta-h:      76px;    /* alto de la barra de acción fija */
 }

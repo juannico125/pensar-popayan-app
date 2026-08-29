@@ -21,3 +21,12 @@ const MATERIA_META = {
   qui: { tint: 'var(--tint-qui)', icon: ICONS.flask, nivel: 'Intermedio', desc: 'Materia, reacciones y estequiometría en situaciones reales.' },
 };
 
+// Las 7 torres se agregan en 5 áreas ICFES: Biología, Física y Química suman
+// en Ciencias Naturales. La etiqueta se muestra en el encabezado de materia.
+const AREAS = {
+  lectura_critica:     'Lectura Crítica',
+  matematicas:         'Matemáticas',
+  sociales_ciudadanas: 'Sociales y Ciudadanas',
+  ciencias_naturales:  'Ciencias Naturales',
+  ingles:              'Inglés',
+};
