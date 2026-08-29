@@ -343,7 +343,20 @@ input { font: inherit; }
 }
 .check-row input { accent-color: var(--color-accent); width: 16px; height: 16px; }
 
-.demo-hint { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-ink-faint); text-align: center; margin-top: var(--space-xs); }
+.login-nota {
+  font-size: var(--text-xs);
+  color: var(--color-band-muted);
+  max-width: 32ch;
+  text-wrap: balance;
+}
+.demo-hint {
+  display: grid; gap: 3px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-ink-faint);
+  text-align: center;
+  margin-top: var(--space-xs);
+}
 .panel-link { font-size: var(--text-sm); font-weight: 700; color: var(--color-accent-text); text-align: center; text-decoration: none; }
 .panel-link:hover { text-decoration: underline; }
 

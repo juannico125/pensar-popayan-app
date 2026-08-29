@@ -156,7 +156,7 @@ async function arranque() {
     const perfil = await entrarConSesion();
     // Una sesión administrativa restaurada va al panel, no a la app: el rol se
     // comprueba también aquí, no solo al escribir la contraseña.
-    if (perfil.rol === 'admin') { location.href = 'panel.html'; return; }
+    if (perfil.rol === 'admin') { location.replace('panel.html'); return; }
     await espera;
     navigate('home');
   } catch (e) {
@@ -204,7 +204,13 @@ $('#btn-login').addEventListener('click', async () => {
   try {
     await API.entrar(email, pass);
     const perfil = await entrarConSesion();
-    if (perfil.rol === 'admin') { location.href = 'panel.html'; return; }
+    // Una sola entrada para todos: el rol de la base decide a dónde va cada
+    // quien. La coordinación no tiene otro formulario en otra página.
+    if (perfil.rol === 'admin') {
+      btn.textContent = 'Abriendo el panel…';
+      location.replace('panel.html');
+      return;
+    }
     navigate('home');
   } catch (e) {
     await API.salir().catch(() => {});

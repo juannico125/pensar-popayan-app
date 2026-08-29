@@ -54,62 +54,54 @@ const fmtTiempo = ms => {
   return Math.floor(min / 60) + ' h ' + (min % 60) + ' min';
 };
 
-/* ───────────────── acceso ───────────────── */
+/* ───────────────── acceso ─────────────────
+ * El panel no pide credenciales: la entrada única es index.html. Aquí solo se
+ * comprueba la sesión y el rol, y se redirige a quien no corresponda. La
+ * comprobación es de conveniencia, no de seguridad: quien fuerce la URL sin ser
+ * admin no ve nada igual, porque RLS no le devuelve filas y la Edge Function
+ * le responde 403.
+ */
 
 async function arrancar() {
-  const { data: { session } } = await sb.auth.getSession();
-  if (!session) return abrirPuerta();
   try {
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) return aLogin('Necesitas iniciar sesión', 'Entra con tus credenciales de coordinación.');
     await entrar();
   } catch (e) {
-    await sb.auth.signOut().catch(() => {});
-    abrirPuerta(mensajeError(e));
+    aLogin('No pudimos abrir el panel', mensajeError(e));
   }
 }
 
-function abrirPuerta(err) {
-  $('#gate').hidden = false;
-  $('#gate-err').textContent = err || '';
-  $('#g-email').focus();
+// Manda a la entrada única. Se espera un momento para que se alcance a leer.
+function aLogin(titulo, msg) {
+  $('#gate-titulo').textContent = titulo;
+  $('#gate-msg').textContent = msg;
+  $('#gate-ir').hidden = false;
+  setTimeout(() => { location.replace('index.html'); }, 2200);
 }
 
-// El rol se lee de la base. Un estudiante que abra esta URL no pasa de aquí.
+// El rol se lee de la base. Un estudiante que abra esta URL vuelve a la app.
 async function entrar() {
   const { data: { user } } = await sb.auth.getUser();
-  if (!user) throw new Error('Sesión no iniciada');
+  if (!user) return aLogin('Necesitas iniciar sesión', 'Entra con tus credenciales de coordinación.');
+
   const { data: perfil, error } = await sb.from('perfiles')
     .select('nombre, rol, activo').eq('id', user.id).single();
   if (error) throw error;
+
   if (perfil.rol !== 'admin' || !perfil.activo) {
-    throw new Error('Esta cuenta no tiene rol administrativo');
+    return aLogin('Este panel es de la coordinación',
+      'Tu cuenta es de estudiante: te llevamos a tu app.');
   }
+
   $('#gate').hidden = true;
   $('#quien').textContent = perfil.nombre;
   await cargar();
 }
 
-$('#form-gate').addEventListener('submit', async e => {
-  e.preventDefault();
-  const btn = $('#btn-gate');
-  btn.disabled = true; btn.textContent = 'Entrando…';
-  $('#gate-err').textContent = '';
-  try {
-    const { error } = await sb.auth.signInWithPassword({
-      email: $('#g-email').value.trim(), password: $('#g-pass').value,
-    });
-    if (error) throw error;
-    await entrar();
-  } catch (e) {
-    await sb.auth.signOut().catch(() => {});
-    $('#gate-err').textContent = mensajeError(e);
-  } finally {
-    btn.disabled = false; btn.textContent = 'Entrar';
-  }
-});
-
 $('#btn-salir').addEventListener('click', async () => {
   await sb.auth.signOut();
-  location.reload();
+  location.replace('index.html');
 });
 
 /* ───────────────── datos ───────────────── */

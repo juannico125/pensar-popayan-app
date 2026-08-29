@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=2026.08.29-9">
-<link rel="stylesheet" href="css/panel.css?v=2026.08.29-9">
+<link rel="stylesheet" href="css/tokens.css?v=2026.08.29-10">
+<link rel="stylesheet" href="css/panel.css?v=2026.08.29-10">
 </head>
 <body>
 
@@ -139,9 +139,11 @@
   </main>
 </div>
 
-<!-- ══════════ PUERTA DE ACCESO ══════════ -->
-<div class="gate" id="gate" hidden>
-  <form class="gate-card" id="form-gate">
+<!-- ══════════ COMPROBANDO SESIÓN ══════════ -->
+<!-- El panel NO tiene login propio: la entrada es index.html, y desde ahí el
+     rol decide a dónde va cada quien. Aquí solo se comprueba y se redirige. -->
+<div class="gate" id="gate">
+  <div class="gate-card">
     <div class="brand-mark">
       <svg class="brand-icon" viewBox="0 0 64 64" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M32 6C21.5 6 13.5 14 13.5 24c0 6.6 3.6 10.4 6.9 13.6 1.7 1.6 2.7 2.9 2.7 4.9h17.8c0-2 1-3.3 2.7-4.9 3.3-3.2 6.9-7 6.9-13.6C50.5 14 42.5 6 32 6Z"/>
@@ -152,19 +154,10 @@
       <span class="brand-name">PENSAR</span>
       <span class="brand-city">POPAYÁN</span>
     </div>
-    <h1>Panel del instituto</h1>
-    <p>Solo para el rol administrativo.</p>
-    <div class="f">
-      <label for="g-email">Correo</label>
-      <input type="email" id="g-email" autocomplete="email" required>
-    </div>
-    <div class="f">
-      <label for="g-pass">Contraseña</label>
-      <input type="password" id="g-pass" autocomplete="current-password" required>
-    </div>
-    <p class="gate-err" id="gate-err"></p>
-    <button class="btn btn-primary btn-block" id="btn-gate" type="submit">Entrar</button>
-  </form>
+    <h1 id="gate-titulo">Comprobando tu sesión…</h1>
+    <p id="gate-msg">Un momento.</p>
+    <a class="btn btn-primary btn-block" id="gate-ir" href="index.html" hidden>Ir a iniciar sesión</a>
+  </div>
 </div>
 
 <div id="toast" role="status" aria-live="polite"></div>
@@ -172,7 +165,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.58.0/dist/umd/supabase.js"
         integrity="sha384-KX6Y/AMIv9qA8TLCDul2JatZWeyrJVgj3Xu/0r30Nr05xO8md1+wHAgtdsRV9LoE"
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/config.js?v=2026.08.29-9"></script>
-<script src="js/panel.js?v=2026.08.29-9"></script>
+<script src="js/config.js?v=2026.08.29-10"></script>
+<script src="js/panel.js?v=2026.08.29-10"></script>
 </body>
 </html>
