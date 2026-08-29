@@ -543,6 +543,19 @@ input { font: inherit; }
 .ctx-fig { margin-block: var(--space-xs); }
 .ctx-fig svg { width: 100%; height: auto; display: block; }
 
+/* La línea de la otra persona en los diálogos de la parte 3: se dibuja como
+   globo de conversación porque leerla como habla es parte de la tarea. */
+.ctx-dialogo {
+  position: relative;
+  padding: var(--space-md);
+  background: var(--color-paper-2);
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-xs);
+  font-size: var(--text-md);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  color: var(--color-ink);
+}
+
 /* El aviso del examen de inglés parte 1: el estímulo ES un letrero. */
 .ctx-aviso {
   padding: var(--space-md) var(--space-sm);
