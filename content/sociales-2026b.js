@@ -501,8 +501,8 @@ const BANKS = {
       'El texto cita en detalle el consenso científico sobre la seguridad para las personas, pero no dice una sola palabra sobre lo que pasa con los cultivos legales vecinos cuando se fumiga desde el aire: esa es la omisión real que puede criticarse.',
       'Fíjate en lo que el propio texto SÍ menciona (organismos internacionales, efecto en grupos armados) para descartarlo, y busca lo que queda completamente afuera.'),
 
-    S('Geografía y territorio', 'SITUACIÓN', 'ctx-sit',
-      'La tabla muestra el precio por kilogramo (en pesos) de dos productos agrícolas, en cuatro ciudades de Colombia: cebolla cabezona — Barranquilla 3.335, Bogotá 2.944, Cartagena 3.377, Pereira 2.799; tomate — Barranquilla 2.930, Bogotá 2.698, Cartagena 3.372, Pereira 2.404. Fuente: DANE, Sistema de Información de Precios, junio de 2016.',
+    S('Geografía y territorio', 'TABLA', 'ctx-table',
+      '<p>La tabla muestra el precio por kilogramo (en pesos) de dos productos agrícolas, en cuatro ciudades de Colombia.</p><table class="ctx-table"><tr><th></th><th>Barranquilla</th><th>Bogotá</th><th>Cartagena</th><th>Pereira</th></tr><tr><td>Cebolla cabezona</td><td>3.335</td><td>2.944</td><td>3.377</td><td>2.799</td></tr><tr><td>Tomate</td><td>2.930</td><td>2.698</td><td>3.372</td><td>2.404</td></tr></table><p style="font-size:.85em">Fuente: DANE, Sistema de Información de Precios, junio de 2016.</p>',
       '¿Cuál de los siguientes aspectos geográficos explica mejor las diferencias de precios que se observan en la tabla?',
       ['La Región Andina es la región de Colombia donde se cultiva más cebolla y tomate.',
        'Bogotá y Pereira tienen climas cálidos que favorecen el cultivo de cebolla y tomate.',
@@ -640,7 +640,7 @@ const BANKS = {
       'Si el problema de raíz es la falta de ingresos alternativos, la solución tiene que ofrecer justamente eso, no más fumigación.'),
 
     S('Geografía y territorio', 'SITUACIÓN', 'ctx-sit',
-      'Este mapa muestra, en color negro, las zonas del país donde, hasta el 2012, se habían adjudicado títulos mineros. Como se observa, la región Andina ha sido el territorio donde más títulos mineros se han adjudicado en la actualidad, mientras que la Amazonía presenta una situación diametralmente opuesta en términos de actividad minera.',
+      'Hasta el año 2012, la región Andina de Colombia era el territorio donde más títulos mineros se habían adjudicado, mientras que la Amazonía presentaba una situación diametralmente opuesta en términos de actividad minera.',
       '¿Cuál de las siguientes razones explica mejor la distribución geográfica de los títulos mineros?',
       ['La región Andina carece de biodiversidad y recursos hídricos, por lo cual la actividad minera desarrollada en ella tiene un menor impacto ambiental.',
        'La región Andina es la zona del país donde existe mejor infraestructura y capacidad técnica para realizar exploraciones mineras.',
