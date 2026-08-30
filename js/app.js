@@ -7,6 +7,11 @@
  */
 'use strict';
 
+// Solo en la rama `revision-cuestionarios`: deja abrir cualquier cuestionario
+// sin haber completado los anteriores, para revisar contenido nuevo sin jugar
+// la ruta entera primero. En `main` esto debe quedar en `false`.
+const VISTA_PREVIA_SIN_BLOQUEO = true;
+
 /* ───────────────── estado ───────────────── */
 
 function freshState() {
@@ -367,7 +372,14 @@ function renderMateria(key) {
     btn.addEventListener('click', () => {
       const it = buscarCuestionario(key, btn.dataset.cuest);
       const st = estadoCuestionario(key, it.id);
-      if (st === 'locked') { toast('Completa el cuestionario anterior para desbloquearlo'); return; }
+      if (st === 'locked') {
+        // Rama de revisión: deja abrir cuestionarios bloqueados en modo
+        // repaso (el servidor no exige la secuencia para ese tipo de sesión)
+        // así se puede revisar el contenido sin jugar toda la ruta antes.
+        if (VISTA_PREVIA_SIN_BLOQUEO) { startQuiz(key, it.qs.slice(), true, it); return; }
+        toast('Completa el cuestionario anterior para desbloquearlo');
+        return;
+      }
       startCuestionario(key, it);
     });
   });
