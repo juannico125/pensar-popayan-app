@@ -1,10 +1,9 @@
-/* Hallmark · tokens · app-shell · theme: studied-DNA (source: juannico125/smart-preu-demo)
+/* Hallmark · tokens · app-shell · theme: studied-DNA
  * paper oklch(98% 0.008 85) · card blanco · accent oklch(58% 0.13 75) dorado Pensar
  * body: Plus Jakarta Sans · label/cifras: IBM Plex Mono · marca: Source Serif 4
  * pre-emit critique: P5 H5 E5 S4 R4 V4
  *
- * El ADN sale de smart-preu-demo, del propio usuario. Lo que se toma de ahí,
- * literal, es la voz de componente:
+ * Voz de componente:
  *   · tarjeta blanca con radio 16 y sombra muy suave
  *   · botón primario con radio 12, peso 700 y resplandor del color de marca
  *   · pastillas (radio 999) para las etiquetas — sí, aquí sí van
@@ -13,11 +12,10 @@
  *   · opciones de pregunta con borde de 2px y letra en círculo
  *   · Plus Jakarta Sans en todo el texto de trabajo
  *
- * Lo único que cambia respecto del referente es el color: Smart es verde,
- * Pensar es dorado. La banda NO va dorada: en amarillo grande el dorado se
- * vuelve mostaza y se come la pantalla. Va en el café casi negro del logotipo,
- * con el dorado reservado al avatar, a la acción principal y a las pastillas —
- * que es donde se lee como marca y no como fondo.
+ * La banda NO va dorada: en amarillo grande el dorado se vuelve mostaza y se
+ * come la pantalla. Va en el café casi negro del logotipo, con el dorado
+ * reservado al avatar, a la acción principal y a las pastillas — que es donde
+ * se lee como marca y no como fondo.
  *
  * El avatar sobre la banda es la única mancha dorada de la cabecera: a esa
  * escala el color funciona.

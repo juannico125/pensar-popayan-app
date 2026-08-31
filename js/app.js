@@ -191,6 +191,15 @@ function renderLogin() {
   });
 }
 
+$('#btn-pass-toggle').addEventListener('click', () => {
+  const btn = $('#btn-pass-toggle');
+  const input = $('#login-pass');
+  const mostrando = input.type === 'text';
+  input.type = mostrando ? 'password' : 'text';
+  btn.setAttribute('aria-pressed', String(!mostrando));
+  btn.setAttribute('aria-label', mostrando ? 'Mostrar contraseña' : 'Ocultar contraseña');
+});
+
 $('#btn-login').addEventListener('click', async () => {
   const email = $('#login-email').value.trim();
   const pass = $('#login-pass').value;
@@ -299,7 +308,7 @@ function renderHome() {
       const key = card.dataset.mat;
       const m = MATERIAS.find(x => x.key === key);
       if (m.jugable) navigate('materia', key);
-      else toast(m.nombre + ' estará disponible en la versión completa');
+      else toast(m.nombre + ' todavía no tiene cuestionarios cargados');
     });
   });
 }

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Pensar Preuniversitario · App</title>
-<meta name="description" content="Demo de la app del estudiante de Pensar Preuniversitario — práctica Saber 11 con repaso inteligente.">
+<meta name="description" content="App del estudiante de Pensar Preuniversitario — práctica Saber 11 con repaso inteligente.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -54,14 +54,18 @@
           <label for="login-email">Correo electrónico</label>
           <div class="input-wrap">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-            <input type="email" id="login-email" value="demo@pensarpopayan.com" autocomplete="email" inputmode="email">
+            <input type="email" id="login-email" placeholder="tu@correo.com" autocomplete="email" inputmode="email">
           </div>
         </div>
         <div class="field">
           <label for="login-pass">Contraseña</label>
           <div class="input-wrap" id="pass-wrap">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <input type="password" id="login-pass" value="Pensar2026" autocomplete="current-password">
+            <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password">
+            <button type="button" class="pass-toggle" id="btn-pass-toggle" aria-label="Mostrar contraseña" aria-pressed="false">
+              <svg class="eye-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="eye-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.9 10.9 0 0 1 12 20c-6.5 0-10-7-10-7a19.4 19.4 0 0 1 4.22-5.94M9.9 4.24A10.6 10.6 0 0 1 12 4c6.5 0 10 7 10 7a19.4 19.4 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><path d="M2 2l20 20"/></svg>
+            </button>
           </div>
           <p class="field-error" id="pass-error">Mínimo 6 caracteres</p>
         </div>
@@ -69,11 +73,6 @@
           <input type="checkbox" checked> Recordar sesión
         </label>
         <button class="btn btn-primary" id="btn-login">Ingresar</button>
-      </div>
-
-      <div class="demo-hint reveal" style="--i:3">
-        <div>Estudiante · demo@pensarpopayan.com · Pensar2026</div>
-        <div>Coordinación · coordinacion@pensarpopayan.com · Pensar2026</div>
       </div>
     </div>
   </section>
