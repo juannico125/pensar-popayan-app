@@ -1,0 +1,10 @@
+{
+  // Worker de solo archivos estáticos: sin build, sin código de servidor.
+  // La app habla con Supabase directo desde el navegador (js/api.js);
+  // este Worker solo sirve index.html, panel.html, css/ y js/.
+  "name": "pensar-popayan-app",
+  "compatibility_date": "2026-08-31",
+  "assets": {
+    "directory": "./"
+  }
+}

@@ -1,0 +1,16 @@
+# Qué NO se sirve públicamente desde el Worker (ver wrangler.jsonc).
+# Todo esto es material de desarrollo/venta, no parte de la app: si no está
+# aquí, cualquiera que adivine la ruta puede pedirlo directo por HTTP.
+
+docs/
+supabase/
+scripts/
+content/
+.git/
+.github/
+.hallmark/
+.remember/
+CLAUDE.md
+README.md
+wrangler.jsonc
+.assetsignore
