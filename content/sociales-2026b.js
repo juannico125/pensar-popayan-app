@@ -1,10 +1,19 @@
 /* Sociales y Ciudadanas · lote 2026-B
  *
  * Fuente: dos cuadernillos entregados por el instituto («F1» y «F2», 46
- * preguntas cada uno, numeradas 31 a 76). Al comparar texto por texto, 14 de
- * las 46 de F2 resultaron idénticas a preguntas de F1, y dentro del propio F1
- * la pregunta 45 (diccionario de Fray Alonso de Molina) se repite en la 74.
- * Cada pregunta se carga una sola vez: quedan 77 preguntas únicas.
+ * preguntas cada uno, numeradas 31 a 76).
+ *
+ * ⚠ CORREGIDO tras la auditoría de septiembre de 2026. Este comentario decía
+ * antes que «14 de las 46 de F2 resultaron idénticas a preguntas de F1» y que
+ * por eso quedaban 77 preguntas únicas. Era falso: al comparar los dos
+ * formularios pregunta por pregunta, el traslape entre F1 y F2 es nulo. El
+ * único duplicado verdadero está dentro de F2 (la 45 se repite en la 74,
+ * ambas sobre el diccionario de Fray Alonso de Molina).
+ *
+ * La consecuencia de ese error fue que trece preguntas se dieron por
+ * descartadas sin serlo y nunca se cargaron. Están recuperadas en
+ * `sociales-f1f2-faltantes-2026b.js`. Entre F1 y F2 hay 91 preguntas únicas:
+ * las 78 de este archivo más las 13 de aquel.
  *
  * Los cuadernillos NO traen hoja de respuestas. Las claves las determinó el
  * modelo con lectura crítica sobre el propio texto de cada situación, y por
@@ -678,16 +687,13 @@ const BANKS = {
       'Un obstáculo tiene que ser algo que dificulte, no algo que ya favorezca la iniciativa —como que baje el uso de carros o que la gente esté dispuesta a cambiar de medio de transporte.'),
 
     /* ═══════════ F2 (únicas) · Economía y sociedad ═══════════ */
-    S('Economía y sociedad', 'SITUACIÓN', 'ctx-sit',
-      'En una zona de una ciudad se presentan alarmantes cifras de inseguridad que se reflejan en fenómenos como la indigencia y la prostitución, junto a delitos como robos, secuestros, esclavitud, y venta y consumo de drogas, incluso con la participación de menores de edad. La alcaldía de la ciudad decide realizar un operativo de intervención en la zona con la Policía y otras instituciones de atención en salud, integración social y protección a la niñez.',
-      'De acuerdo con el anterior fragmento, ¿cuál enfoque de política pública se privilegia en la intervención de la alcaldía?',
-      ['Un enfoque económico, pues se espera aumentar las ventas de los sectores aledaños, al reducir la presencia de habitantes de calle.',
-       'Un enfoque de seguridad, pues se le da prioridad a perseguir a los delincuentes a través de la intervención policial.',
-       'Un enfoque de salud, pues se le da prioridad a acabar con el consumo de droga como el principal problema de salud en menores de edad.',
-       'Un enfoque social, pues se espera atender a los menores de edad afectados, a mujeres y a la comunidad vulnerable del sector.'], 3,
-      'El operativo combina Policía con salud, integración social y protección a la niñez, con el propósito explícito de atender a la población vulnerable de la zona: eso es un enfoque social integral, no solo persecución policial o un problema exclusivamente de salud.',
-      'Fíjate en qué instituciones participan del operativo, no solo en quién lo lidera: eso revela el enfoque real.'),
-
+    /* Aquí estaba una segunda copia de la pregunta del operativo de la
+     * alcaldía (F2-38), con el contexto truncado: le faltaba la cita del medio
+     * de comunicación, que es justo donde está la evidencia que permite
+     * responder. La copia buena, con el fragmento completo, vive más arriba en
+     * este mismo archivo (sección «F1 · Interpretación de perspectivas»). Se
+     * eliminó en la auditoría de septiembre de 2026, junto con su fila en la
+     * base; ninguna de las dos tenía respuestas de estudiantes. */
     S('Economía y sociedad', 'SITUACIÓN', 'ctx-sit',
       'Considere el siguiente fragmento tomado de un artículo periodístico. De acuerdo con algunos representantes del sector empresarial de un país, una disminución en el recaudo de impuestos para las empresas les abriría más posibilidades de creación de empleos. Siguiendo esta idea, para lograr el desarrollo de las empresas y de quienes se benefician de su integración con ellas, se debe reducir la alta carga de impuestos. Obviamente que, si el empresario tiene una situación tributaria mucho más aliviada, es muy posible que no solo esté dispuesto a mejorar las condiciones de sus trabajadores, sino también a contratar más trabajadores, porque hay un mayor espacio de maniobra. Eso, en una medida u otra, también es un alivio a la carga de los trabajadores actuales, ya que permitiría la disminución en los precios de los productos y los servicios.',
       'El fragmento anterior se sustenta en un principio básico del liberalismo económico porque el autor concibe los impuestos como',
@@ -804,26 +810,26 @@ const CUESTIONARIOS = {
       { id: 'soc-1', titulo: 'Derechos fundamentales en conflicto', qs: [0, 1, 2, 3], tipo: 'Situación' },
       { id: 'soc-2', titulo: 'Identidad, género e igualdad', qs: [4, 5, 6, 7], tipo: 'Situación' },
       { id: 'soc-3', titulo: 'Discriminación y discurso público', qs: [8, 54, 56, 57], tipo: 'Situación' },
-      { id: 'soc-4', titulo: 'Salud, territorio y propiedad intelectual', qs: [72, 73, 74, 75], tipo: 'Situación' },
+      { id: 'soc-4', titulo: 'Salud, territorio y propiedad intelectual', qs: [71, 72, 73, 74], tipo: 'Situación' },
     ]},
     { tema: 'Interpretación de perspectivas', items: [
       { id: 'soc-5', titulo: 'Confiabilidad de fuentes y opiniones', qs: [9, 10, 11, 12, 13], tipo: 'Situación' },
       { id: 'soc-6', titulo: 'Analizar discursos políticos', qs: [14, 15, 16, 17, 18], tipo: 'Situación' },
-      { id: 'soc-7', titulo: 'Cronología e ideología', qs: [19, 20, 21, 70, 71], tipo: 'Situación' },
+      { id: 'soc-7', titulo: 'Cronología e ideología', qs: [19, 20, 21, 69, 70], tipo: 'Situación' },
     ]},
     { tema: 'Organización del Estado', items: [
       { id: 'soc-8', titulo: 'Movilidad y política pública', qs: [22, 23, 24, 25], tipo: 'Situación' },
       { id: 'soc-9', titulo: 'Educación y participación institucional', qs: [26, 27, 28, 29], tipo: 'Situación' },
-      { id: 'soc-10', titulo: 'Ramas del poder en la práctica', qs: [30, 55, 76, 77], tipo: 'Situación' },
+      { id: 'soc-10', titulo: 'Ramas del poder en la práctica', qs: [30, 55, 75, 76], tipo: 'Situación' },
     ]},
     { tema: 'Historia de Colombia', items: [
-      { id: 'soc-11', titulo: 'Hitos de la historia colombiana', qs: [31, 32, 33, 34, 78], tipo: 'Situación' },
+      { id: 'soc-11', titulo: 'Hitos de la historia colombiana', qs: [31, 32, 33, 34, 77], tipo: 'Situación' },
     ]},
     { tema: 'Economía y sociedad', items: [
       { id: 'soc-12', titulo: 'Oferta, demanda y mercado', qs: [35, 36, 37, 38], tipo: 'Situación' },
       { id: 'soc-13', titulo: 'Educación, convivencia y trabajo', qs: [39, 40, 41, 42], tipo: 'Situación' },
       { id: 'soc-14', titulo: 'Modelos económicos y comercio', qs: [43, 44, 45, 58], tipo: 'Situación' },
-      { id: 'soc-15', titulo: 'Política pública y sociedad', qs: [59, 67, 68, 69], tipo: 'Situación' },
+      { id: 'soc-15', titulo: 'Política pública y sociedad', qs: [59, 67, 68], tipo: 'Situación' },
     ]},
     { tema: 'Geografía y territorio', items: [
       { id: 'soc-16', titulo: 'Cultivos ilícitos y ambiente', qs: [46, 47, 48, 49], tipo: 'Situación' },

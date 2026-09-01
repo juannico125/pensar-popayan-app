@@ -92,7 +92,7 @@ const BANKS = {
       'La pregunta no es sobre qué tan duro es el castigo, sino sobre quién juzga y por qué: eso apunta a imparcialidad.'),
 
     S('Interpretación de perspectivas', 'SITUACIÓN', 'ctx-sit',
-      'La siguiente imagen presenta uno de los sucesos más importantes en la historia política de una nación latinoamericana: el titular de un periódico dice "Allende Derrocado y Muerto en Golpe Militar", junto a otro titular de la misma edición, "Desembarco Armado Contra Duvalier en Haití".',
+      'Un periódico latinoamericano publicó en una misma edición dos titulares sobre sucesos decisivos de la historia política de la región: "Allende Derrocado y Muerto en Golpe Militar" y "Desembarco Armado Contra Duvalier en Haití".',
       'A pesar de la información presentada, es posible determinar que este artículo periodístico fue escrito en el periodo histórico correspondiente a',
       ['el golpe de Estado con el que se da inicio a la dictadura chilena en los años 70 del siglo XX.',
        'el golpe de Estado que llevó al poder a Getulio Vargas en Brasil a finales de los años 30 del siglo XX.',
