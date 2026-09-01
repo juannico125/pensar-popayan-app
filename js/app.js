@@ -10,7 +10,11 @@
 // Solo en la rama `revision-cuestionarios`: deja abrir cualquier cuestionario
 // sin haber completado los anteriores, para revisar contenido nuevo sin jugar
 // la ruta entera primero. En `main` esto debe quedar en `false`.
-const VISTA_PREVIA_SIN_BLOQUEO = true;
+//
+// Estuvo en `true` en `main` por error hasta la auditoría de septiembre de
+// 2026: mientras tanto, cualquier estudiante podía saltarse el desbloqueo
+// secuencial de la ruta. Al cambiar de rama, revisa siempre esta línea.
+const VISTA_PREVIA_SIN_BLOQUEO = false;
 
 /* ───────────────── estado ───────────────── */
 
