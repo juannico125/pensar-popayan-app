@@ -114,9 +114,43 @@ is the RLS cross-tenant isolation test (student A cannot read student B's
 rows) — extend it when adding a policy, don't just trust the policy reads
 correctly.
 
-`supabase/seed/` holds real extracted question batches (`banco-demo`,
-`ingles-parte1`, `ingles-parte3`, `sociales-2026b`) — these are the actual
+`supabase/seed/` holds real extracted question batches (`banco-demo`, the
+`ingles-parte*` files and the `sociales-*` ones) — these are the actual
 content pipeline output, not throwaway fixtures.
+
+### How the client names a cuadernillo
+
+The PDFs arrive named `F<n> <materia> .<personaje>.pdf` — for example
+`F5 SyC .Aladin.pdf`: **F** for formulario, the number of the scanned physical
+form, `SyC` for the subject (Sociales y Ciudadanas), and the character on the
+cover. The character is what actually matters: it is how the docente locates a
+form in the physical stack at the preuniversitario, so **the character name
+goes in the cuestionario title** (`Aladín · Derechos y dignidad`), not only in
+a comment. F5 (Aladín) and F6 (Deadpool) follow this; F4 is Mikey Mouse but
+its titles predate the convention, and the characters for F1, F2 and F3 are
+not recorded anywhere yet.
+
+### Loading a batch, and proving it loaded intact
+
+The SQL is applied by pasting it through the Supabase API, so a typo in the
+transfer would silently make the row differ from the seed file in git. Two
+scripts guard the pipeline:
+
+- `scripts/verificar-contenido.mjs <archivo>` — run **before** generating SQL.
+  Catches what the generator does not: questions left out of every
+  cuestionario (loaded but invisible to the student), questions in two
+  cuestionarios at once, `qs` indices out of range, `correct` outside the
+  options, repeated options, an explanation that names a letter (options are
+  shuffled per student, so "la opción A" is wrong half the time), and two
+  questions sharing context + enunciado.
+- `scripts/huella-carga.mjs <archivo> [--sql]` — run **after** applying. Prints
+  three md5 over contextos / preguntas / claves; `--sql` prints the query that
+  computes the same three inside Postgres. Six matching values mean what is
+  loaded is byte-identical to git.
+
+Before applying a new batch, also check its content-derived `hash_norm` values
+against the ones already in `preguntas`: that is how the repeat of F6's
+question 71 (already loaded from F1/F2) was caught before it hit the database.
 
 ## Design system (student app + panel)
 
