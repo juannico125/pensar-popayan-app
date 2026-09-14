@@ -543,7 +543,10 @@ input { font: inherit; }
   margin-bottom: var(--space-md);
 }
 .ctx-card p + p { margin-top: var(--space-sm); }
-.ctx-fig { margin-block: var(--space-xs); }
+/* `margin-inline: 0` no es adorno: <figure> trae 40px de margen lateral por
+   defecto del navegador, y eso encogía el recorte de prensa de 299 a 219px
+   dentro de la tarjeta. */
+.ctx-fig { margin-block: var(--space-xs); margin-inline: 0; }
 .ctx-fig svg { width: 100%; height: auto; display: block; }
 
 /* Figuras recortadas de los cuadernillos escaneados (mapas, recortes de
