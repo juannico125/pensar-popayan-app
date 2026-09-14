@@ -91,8 +91,15 @@ const BANKS = {
       'Sacar el juzgamiento de los congresistas de los jueces ordinarios y ponerlo en manos de un tribunal colegiado especializado busca que quien los juzgue no dependa de ellos ni tenga vínculos con su labor política: eso es imparcialidad, no un grado mayor o menor de severidad.',
       'La pregunta no es sobre qué tan duro es el castigo, sino sobre quién juzga y por qué: eso apunta a imparcialidad.'),
 
-    S('Interpretación de perspectivas', 'SITUACIÓN', 'ctx-sit',
-      'Un periódico latinoamericano publicó en una misma edición dos titulares sobre sucesos decisivos de la historia política de la región: "Allende Derrocado y Muerto en Golpe Militar" y "Desembarco Armado Contra Duvalier en Haití".',
+    /* El estímulo es la portada misma: sin verla, la pregunta no se puede
+       responder, porque el titular es toda la evidencia. Antes estaba descrita
+       en prosa porque el cuadernillo es un escaneo sin capa de texto; la
+       imagen se recortó del escaneo en septiembre de 2026. */
+    S('Interpretación de perspectivas', 'RECORTE DE PRENSA', 'ctx-fig',
+      '<p>La siguiente imagen presenta uno de los sucesos más importantes en la historia política de una nación latinoamericana.</p>' +
+      '<figure class="ctx-fig"><img src="img/figuras/f3-p38-allende-golpe-militar.webp" width="1400" height="640" loading="lazy" ' +
+      'alt="Portada de periódico. El titular principal, a toda plana, dice «Allende Derrocado y Muerto en Golpe Militar», junto a dos retratos y a una nota que menciona que una Junta Militar de Gobierno decretó estado de sitio, cerró las fronteras y estableció censura de prensa. En una columna lateral, un segundo titular anuncia «Desembarco Armado Contra Duvalier en Haití».">' +
+      '<figcaption>Tomado de: portada de El Nacional de Venezuela.</figcaption></figure>',
       'A pesar de la información presentada, es posible determinar que este artículo periodístico fue escrito en el periodo histórico correspondiente a',
       ['el golpe de Estado con el que se da inicio a la dictadura chilena en los años 70 del siglo XX.',
        'el golpe de Estado que llevó al poder a Getulio Vargas en Brasil a finales de los años 30 del siglo XX.',

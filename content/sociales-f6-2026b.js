@@ -246,14 +246,21 @@ const BANKS = {
 
     /* ═════════ 47 ═════════ */
     S('Geografía y territorio', 'MAPA', 'ctx-fig',
-      '<p><b>Exportaciones e importaciones a nivel mundial · 2010</b></p><p>El mapa mundial señala con círculos de línea continua las zonas que más compran café: Norteamérica, Europa occidental y Japón. Con círculos de línea segmentada señala a sus mayores exportadores: Centroamérica y el norte de Suramérica, África central y oriental, y el sureste asiático.</p><p style="font-size:.85em">Tomado de: www.cafedecolombia.com</p>',
+      /* Antes iba descrito en prosa, y esa descripción hacía el trabajo que le
+         toca al estudiante: decía en palabras qué zonas compran y cuáles
+         exportan, que es justo lo que la pregunta pide leer del mapa. Con la
+         imagen recortada del escaneo, hay que mirarlo. */
+      '<p><b>Exportaciones e importaciones a nivel mundial · 2010</b></p>' +
+      '<figure class="ctx-fig"><img src="img/figuras/f6-p47-mapa-exportaciones-cafe.webp" width="1400" height="572" loading="lazy" ' +
+      'alt="Mapa mundial. Círculos de línea continua rodean Norteamérica, Europa y el este de Asia. Círculos de línea segmentada rodean Centroamérica y el norte de Suramérica, África central y el sureste asiático.">' +
+      '<figcaption>Tomado de: www.cafedecolombia.com</figcaption></figure>',
       'En el mapa, los círculos con línea continua representan a las zonas que más compran café, mientras que los círculos con línea segmentada representan a sus mayores exportadores. Del mapa se puede concluir que para Colombia',
       ['los países africanos y del sureste asiático representan sus mayores competidores dentro de la exportación de café.',
        'es vital una buena situación económica de los países del norte, quienes son los principales compradores de café.',
        'el país más importante para el mercado cafetero es Estados Unidos, al ser el mayor comprador de dicho producto.',
        'es importante que países como exportadores de café dejen de lado la importación del grano y protejan a los productores locales.'],
       1,
-      'Los círculos continuos, es decir los compradores, están sobre Norteamérica, Europa y Japón: economías del norte. Si a ellas les va mal, cae la demanda del café colombiano. África y el sureste asiático también exportan, pero el mapa no dice cuánto ni permite afirmar que sean los mayores competidores, ni singulariza a Estados Unidos.',
+      'Los círculos continuos, es decir los compradores, están sobre Norteamérica, Europa y el este de Asia: economías del norte. Si a ellas les va mal, cae la demanda del café colombiano. África y el sureste asiático también exportan, pero el mapa no dice cuánto ni permite afirmar que sean los mayores competidores, ni singulariza a Estados Unidos.',
       'De un mapa solo puedes concluir lo que el mapa muestra: si no hay cifras, no afirmes cuál es "el mayor".',
       'media'),
 
