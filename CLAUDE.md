@@ -143,6 +143,38 @@ Only F5 and F6 carry the character in their cuestionario titles; the other 51
 still don't. Adding them is safe — `uuidDe('cuestionario', materia, slug)`
 derives the id from the **slug**, not the title, so renaming touches no ids.
 
+### How Matemáticas is organized
+
+The docente (Herman) delivered a classification that gives, per question,
+a **tema específico**, a **componente** and a **dificultad**. His five
+componentes map onto the `mat` vocabulary that already existed, which is finer
+(nine temas), so the componente picks the family and the tema específico picks
+the bucket inside it:
+
+| Componente de Herman | Temas de `mat` |
+| --- | --- |
+| Estadística   | `lectura-de-graficas`, `tablas-y-probabilidad`, `estadistica-descriptiva` |
+| Aritmética    | `proporcionalidad` |
+| Álgebra       | `ecuaciones-en-contexto`, `funciones` |
+| Geometría     | `areas-y-perimetros`, `geometria-espacial` |
+| Trigonometría | `trigonometria` — **añadido** en `20260914…`, no existía |
+
+`preguntas.dificultad` (`baja`/`media`/`alta`, nullable) exists because of that
+classification. The chip the student sees used to be hardcoded to «Intermedio»
+for all 526 questions; it now reads the column and is omitted when nobody has
+classified the question. Only Matemáticas will have it filled at first.
+
+Two things matemáticas needs that sociales did not:
+
+- **An option can be a table or a graph.** `app.js` builds options with
+  `innerHTML`, so HTML inside an option works, and several questions ask «¿cuál
+  de estas tablas…?». `opciones` was the one text field that never passed
+  through `sin_html_ejecutable()`; the constraint
+  `preguntas_opciones_sin_html` now closes that.
+- **Nearly every question carries a figure**, the reverse of sociales (273
+  questions, 3 figures). Budget the figure work per question, not per
+  cuadernillo.
+
 ### Figures: almost everything is prose, three things are images
 
 The cuadernillos are scans with no text layer, so graphic stimuli were

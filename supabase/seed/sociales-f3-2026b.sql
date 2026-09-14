@@ -40,464 +40,464 @@ insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('757
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('1e9de612-dcbb-4ef2-a574-addcda4367c2', 'situacion', 'SITUACIÓN', 'ctx-sit', 'En un discurso televisado, que se emitió a mediados de 2016, una candidata a la presidencia de un país afirmó lo siguiente: "En la familia de la que vengo nadie tenía su nombre en grandes edificios. En mi familia eran constructores de otro tipo, como la mayoría de las familias [...] Utilizaron las herramientas que tenían, las que Dios le había dado y construyeron vidas mejores para sus hijos".');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('1a2c9c7c-55a7-41f5-a7a7-6d0e87a65290', 'situacion', 'SITUACIÓN', 'ctx-sit', 'En un barrio de una ciudad de Colombia existen varios medios de comunicación alternativos liderados por jóvenes. Sin embargo, una bancada política de congresistas considera que estos medios alteran el orden público del barrio e incitan a la población a la rebeldía. Es por eso que, desde la bancada política, se propone un proyecto de ley que busca clausurarlos y prohibirlos.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '4e1bc313-f407-44be-a8f7-999f343e07b7', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'geografia-y-territorio'),
   (select id from public.lotes where codigo = '2026-B'),
   '68c52495-e17d-4441-a5b2-8cf66c105d75', 'Geografía y territorio',
   '¿Qué problema del sector rural están denunciando en este fragmento los profesionales forestales?',
   array['La distribución inequitativa de la tierra.', 'La alta proporción de minifundios.', 'El aumento de los monocultivos.', 'La concentración de la tierra.'],
-  'Fíjate en qué palabra se repite en todo el texto para describir el problema: "un solo producto", "este tipo de cultivos".', 'publicada', 'modelo', '7d01eb1b640cc1ba27c2fe4ddcc8babc';
+  'Fíjate en qué palabra se repite en todo el texto para describir el problema: "un solo producto", "este tipo de cultivos".', 'publicada', 'modelo', '7d01eb1b640cc1ba27c2fe4ddcc8babc', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('4e1bc313-f407-44be-a8f7-999f343e07b7', 2, 'Todo el fragmento describe un mismo fenómeno —plantaciones de un solo producto rentable que sustituyen bosques y otros cultivos— sin mencionar cómo está repartida la propiedad de la tierra; el problema que denuncian es el monocultivo en sí, no quién es dueño de ella.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'ae21b9da-0343-461f-bcd9-ee1f07bbe90c', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'economia-y-sociedad'),
   (select id from public.lotes where codigo = '2026-B'),
   '081a98d9-0f9a-45a1-9a3b-71eba18b59d1', 'Economía y sociedad',
   'Teniendo en cuenta el fragmento anterior, ¿cuál concepto es el eje central del análisis presentado?',
   array['Segregación, porque en el análisis se plantea una propuesta para unificar la ciudad y disminuir la separación espacial, social y económica de las personas que residen en Bogotá.', 'Discriminación, porque en el análisis se plantean mecanismos para excluir a personas de bajos ingresos de los servicios empresariales y financieros de alta jerarquía.', 'Clase social, porque en el análisis se plantea una propuesta para discutir acerca de la importancia de mantener claras las fronteras que separan a la clase social alta de las demás.', 'Estratificación, porque en el análisis se plantean mecanismos para eliminar los estratos sociales y de esta manera lograr que se eliminen las diferencias entre ricos y pobres.'],
-  'El texto usa la expresión "separación socio espacial": esa es literalmente la definición de segregación urbana.', 'publicada', 'modelo', '29760133cbc8542fa86f206fad8544ad';
+  'El texto usa la expresión "separación socio espacial": esa es literalmente la definición de segregación urbana.', 'publicada', 'modelo', '29760133cbc8542fa86f206fad8544ad', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('ae21b9da-0343-461f-bcd9-ee1f07bbe90c', 0, 'Todo el fragmento gira en torno a evitar que los bajos ingresos queden confinados a las zonas perimetrales y a lograr que convivan en un mismo espacio urbano con los servicios de alta jerarquía: eso es exactamente reducir la separación socioespacial, es decir, la segregación.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '2a728b3c-c984-48ee-97dd-5b8e2f9e23bc', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   '7e09a111-51f1-4146-8c0b-17e31d6e3811', 'Constitución y derechos',
   'A la luz de la Constitución Política de Colombia, la tercera decisión de la empresa es',
   array['válida, porque las empresas privadas pueden otorgar beneficios a los trabajadores siempre y cuando estos se acojan a sus condiciones.', 'inválida, porque los beneficios otorgados a los trabajadores pueden afectar el desempeño económico de la empresa.', 'inválida, porque atenta contra el derecho de los trabajadores a la libre asociación y a la libertad sindical.', 'válida, porque los sindicatos en una empresa privada vulneran los derechos de los trabajadores sindicalizados.'],
-  'Un beneficio que solo se recibe a cambio de salir del sindicato no es un beneficio: es una presión contra la libertad de asociación.', 'publicada', 'modelo', 'c86c30c161e1a1c5201f706e5568ed70';
+  'Un beneficio que solo se recibe a cambio de salir del sindicato no es un beneficio: es una presión contra la libertad de asociación.', 'publicada', 'modelo', 'c86c30c161e1a1c5201f706e5568ed70', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('2a728b3c-c984-48ee-97dd-5b8e2f9e23bc', 2, 'Ofrecer un beneficio condicionado a que el trabajador abandone el sindicato es presionarlo para que deje de ejercer su derecho a asociarse; eso es exactamente lo que la libertad sindical protege, sin importar que la empresa lo justifique con motivos económicos.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'd4d4320d-677e-495a-8d93-6c6312c610c8', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'geografia-y-territorio'),
   (select id from public.lotes where codigo = '2026-B'),
   '240508a2-7171-46a2-8365-e898fa40e125', 'Geografía y territorio',
   '¿Cuál de las siguientes fuentes de información podría resultar más confiable para que el Gobierno estime las dimensiones y el aumento de la deforestación a nivel nacional?',
   array['Un video grabado por un líder local en el que se observan, por espacio de minuto y medio, los restos de un sector de la selva que se encuentra completamente quemado y hecho cenizas.', 'El testimonio de un ciudadano en el que denuncia que personas pudientes compran veredas completas y mandan deforestar de 200 a 500 hectáreas de una sola aserrada.', 'Un artículo de opinión de un periódico nacional en el que se menciona el número de hectáreas de selva que, en una región del país, se volvieron pastizales para ganadería en los últimos 6 meses.', 'El reporte de una herramienta tecnológica que, por medio de la comparación de imágenes satelitales del país, muestra progresivamente la cantidad de hectáreas de selva perdida en los últimos 6 años.'],
-  'Para estimar algo "a nivel nacional" y "el aumento" en el tiempo, la fuente tiene que cubrir todo el territorio y varios momentos, no un solo caso.', 'publicada', 'modelo', '12c170fce392fb4be1e1fb1153832c15';
+  'Para estimar algo "a nivel nacional" y "el aumento" en el tiempo, la fuente tiene que cubrir todo el territorio y varios momentos, no un solo caso.', 'publicada', 'modelo', '12c170fce392fb4be1e1fb1153832c15', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('d4d4320d-677e-495a-8d93-6c6312c610c8', 3, 'Un video puntual, un testimonio o un artículo de opinión cubren un solo lugar o un solo momento; solo la comparación sistemática de imágenes satelitales de todo el territorio a lo largo del tiempo permite medir con rigor la dimensión y el aumento de la deforestación a escala nacional.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'c44b0a63-ea4a-4a5a-b55b-24fb0521f1fe', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'geografia-y-territorio'),
   (select id from public.lotes where codigo = '2026-B'),
   'eed97f3c-8db2-4273-97a3-0588c5c3e140', 'Geografía y territorio',
   'Un factor que contribuye a originar este problema al que se vieron enfrentados los habitantes de la zona aledaña al relleno sanitario es',
   array['la falta de interés del Ministerio de Trabajo para atender oportunamente la queja.', 'la falta de supervisión a las empresas que se dedican al tratamiento de residuos peligrosos.', 'la falta de indicadores claros que permitan establecer cuándo un gas es tóxico y cuándo no.', 'la falta de eficiencia de la Secretaría de Ambiente al implantar.'],
-  'El gerente culpa a "unos pocos empleados", pero la investigación del Ministerio revela un patrón de toda la empresa: eso apunta a la ausencia de vigilancia previa, no a un descuido individual.', 'publicada', 'modelo', '806efd3d0718e55afd0c4dccfc868b6d';
+  'El gerente culpa a "unos pocos empleados", pero la investigación del Ministerio revela un patrón de toda la empresa: eso apunta a la ausencia de vigilancia previa, no a un descuido individual.', 'publicada', 'modelo', '806efd3d0718e55afd0c4dccfc868b6d', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('c44b0a63-ea4a-4a5a-b55b-24fb0521f1fe', 1, 'Detrás del vertido ilegal no hubo solo empleados irresponsables: la empresa entera operaba con salarios atrasados y riesgos laborales mal manejados, y nadie la había supervisado antes de que ocurriera el daño ambiental. Esa falta de supervisión sobre empresas que manejan residuos peligrosos es la raíz del problema.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'b0902755-a81d-4f40-a71d-5f5918e5d993', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   '8404f25e-e226-465b-89e2-0ccb71597f85', 'Interpretación de perspectivas',
   '¿Cuál de las siguientes opciones explica mejor esta práctica?',
   array['Por medio de esta clase de matrimonio, la familia de la mujer expandía su núcleo familiar, con la familia de sus suegros, lo que podía brindar ventajas económicas y sociales a las dos familias.', 'Por medio de esta clase de matrimonio, se sellaban las alianzas de amor cuando el promedio de la mujer moría de manera trágica o imprevista.', 'Por medio de esta clase de matrimonio, la familia del hombre muerto podía reclamar bienes o recursos económicos a la familia de la mujer, lo que podía mejorar su posición social en la comunidad.', 'Por medio de este matrimonio, se buscaba honrar la noción tradicional de matrimonio entre un hombre y una mujer, sin importar las circunstancias.'],
-  'La pista clave es "para beneficio mutuo": la respuesta correcta tiene que beneficiar a ambas familias, no solo a una.', 'publicada', 'modelo', '12f2679b8d9a2e403e814e8beb640340';
+  'La pista clave es "para beneficio mutuo": la respuesta correcta tiene que beneficiar a ambas familias, no solo a una.', 'publicada', 'modelo', '12f2679b8d9a2e403e814e8beb640340', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('b0902755-a81d-4f40-a71d-5f5918e5d993', 0, 'El texto dice que el arreglo era "para beneficio mutuo" de las dos familias: la explicación que encaja es que el matrimonio unía a ambas familias y les traía ventajas compartidas, no que una familia le quitara recursos a la otra.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'c2d8404b-ef56-48e2-a2e1-175da9fd6be9', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'ramas-del-poder'),
   (select id from public.lotes where codigo = '2026-B'),
   'd3ad5140-4ecf-4d34-9a9b-94143f562772', 'Organización del Estado',
   'La razón para que sea otro poder público el que pueda juzgar a los congresistas con estas competencias es',
   array['mayor severidad.', 'imparcialidad.', 'menor severidad.', 'parcialidad.'],
-  'La pregunta no es sobre qué tan duro es el castigo, sino sobre quién juzga y por qué: eso apunta a imparcialidad.', 'publicada', 'modelo', '3f86ddf4e40a0b67591c3a03dcce0921';
+  'La pregunta no es sobre qué tan duro es el castigo, sino sobre quién juzga y por qué: eso apunta a imparcialidad.', 'publicada', 'modelo', '3f86ddf4e40a0b67591c3a03dcce0921', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('c2d8404b-ef56-48e2-a2e1-175da9fd6be9', 1, 'Sacar el juzgamiento de los congresistas de los jueces ordinarios y ponerlo en manos de un tribunal colegiado especializado busca que quien los juzgue no dependa de ellos ni tenga vínculos con su labor política: eso es imparcialidad, no un grado mayor o menor de severidad.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'd282e372-18c8-487b-a600-7126ca2c394f', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   'c322e6b7-edd7-4a5f-8cac-cf1dea38f7ff', 'Interpretación de perspectivas',
   'A pesar de la información presentada, es posible determinar que este artículo periodístico fue escrito en el periodo histórico correspondiente a',
   array['el golpe de Estado con el que se da inicio a la dictadura chilena en los años 70 del siglo XX.', 'el golpe de Estado que llevó al poder a Getulio Vargas en Brasil a finales de los años 30 del siglo XX.', 'la caída del peronismo en los años 70 del siglo XX y los inicios de la dictadura militar en Argentina.', 'los inicios de la dictadura de Gustavo Rojas Pinilla durante los años 50 del siglo XX en Colombia.'],
-  'El titular nombra directamente al presidente y al país: no hace falta inferir nada más.', 'publicada', 'modelo', 'bc5cfe30a5866e0f6c05f435a6dbaab9';
+  'El titular nombra directamente al presidente y al país: no hace falta inferir nada más.', 'publicada', 'modelo', 'bc5cfe30a5866e0f6c05f435a6dbaab9', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('d282e372-18c8-487b-a600-7126ca2c394f', 0, 'El propio titular anuncia el hecho: "Allende Derrocado y Muerto en Golpe Militar". Ese es el golpe de Estado de 1973 en Chile que dio inicio a la dictadura de Pinochet, no un hecho de Brasil, Argentina o Colombia.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'e953464e-2db5-43b1-bb23-35cf03f37310', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   'c704be85-136b-4d17-9226-de01095b06df', 'Constitución y derechos',
   'Los testimonios anteriores dan cuenta de una problemática que puede describirse como',
   array['violencia intrafamiliar.', 'manipulación mediática.', 'discriminación de género.', 'feminismo contemporáneo.'],
-  'Ningún testimonio describe agresión física ni engaño publicitario: todos describen un trato diferenciado por ser hombre o mujer.', 'publicada', 'modelo', '3f75ab070b09ceb4da439ccc2fd32136';
+  'Ningún testimonio describe agresión física ni engaño publicitario: todos describen un trato diferenciado por ser hombre o mujer.', 'publicada', 'modelo', '3f75ab070b09ceb4da439ccc2fd32136', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('e953464e-2db5-43b1-bb23-35cf03f37310', 2, 'Los cuatro testimonios comparten un mismo patrón: asignar tareas, cualidades o roles distintos a hombres y mujeres solo por su género. Eso es discriminación de género, no violencia física dentro de la familia ni manipulación de medios.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '0a638b2b-4be3-4bf8-9d53-57888893d973', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   'a56758cc-e50c-430e-8784-bfa69ea140d0', 'Interpretación de perspectivas',
   '¿El anterior discurso fue pronunciado en el contexto histórico de la Segunda Guerra Mundial?',
   array['No, pues plantea la necesidad de llegar a un consenso en Europa para resolver el problema que representan los judíos, el cual fue un debate propio del momento de creación de la Unión Europea en 1993.', 'Sí, pues se centra en la necesidad de brindar un Estado-Nación al pueblo judío por sus aportes culturales a Europa y al mundo, el cual fue un discurso propio del comienzo de la Segunda Guerra Mundial.', 'No, pues se centra en el problema que representan los judíos para la existencia de otras culturas como la musulmana, el cual es un debate propio del actual conflicto árabe-israelí.', 'Sí, pues presenta al pueblo judío como una amenaza para la nación alemana y el resto de Europa, el cual fue un discurso propio del comienzo de la Segunda Guerra Mundial.'],
-  'El discurso no habla de darle una nación a los judíos ni del mundo árabe: habla de expulsarlos y de "resolver" su presencia, que es justo la retórica nazi de la época.', 'publicada', 'modelo', '7d446ddde02eadfdb27b8d73d7af3670';
+  'El discurso no habla de darle una nación a los judíos ni del mundo árabe: habla de expulsarlos y de "resolver" su presencia, que es justo la retórica nazi de la época.', 'publicada', 'modelo', '7d446ddde02eadfdb27b8d73d7af3670', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('0a638b2b-4be3-4bf8-9d53-57888893d973', 3, 'El discurso llama a los judíos "elemento" ajeno a la nación alemana, exige que se resuelva "la cuestión judía" para que Europa alcance estabilidad y presenta su presencia como un "problema": ese lenguaje —tratar a un pueblo entero como una amenaza que hay que resolver— es propio de la propaganda nazi previa a la Segunda Guerra Mundial, no de un debate sobre crear un Estado judío ni del conflicto árabe-israelí actual.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '2c7c7211-443b-4f52-8986-f71822763b33', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'geografia-y-territorio'),
   (select id from public.lotes where codigo = '2026-B'),
   'a8679397-a31a-46d9-aafc-cfac69e4feb9', 'Geografía y territorio',
   '¿Cuál par de conceptos sirve para agrupar estas dos situaciones?',
   array['Latifundismo y desplazamiento forzado.', 'Capitalismo y propiedad privada.', 'Colonialismo y colonización.', 'Intercultural y globalización.'],
-  'La primera situación describe dominar a un pueblo ya existente; la segunda, ocupar un territorio vacío: son procesos distintos pero relacionados, con nombre propio cada uno.', 'publicada', 'modelo', 'c2c163fbf9ec86a283da212d44fd4133';
+  'La primera situación describe dominar a un pueblo ya existente; la segunda, ocupar un territorio vacío: son procesos distintos pero relacionados, con nombre propio cada uno.', 'publicada', 'modelo', 'c2c163fbf9ec86a283da212d44fd4133', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('2c7c7211-443b-4f52-8986-f71822763b33', 2, 'La primera situación —imponer poder político, militar, religioso y lingüístico sobre poblaciones nativas— es colonialismo; la segunda —asentarse en territorio deshabitado y apropiárselo para explotarlo— es colonización. Ningún otro par de conceptos describe ambas situaciones a la vez.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'f22d376a-37ae-42fd-9449-7816028bfed9', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'ramas-del-poder'),
   (select id from public.lotes where codigo = '2026-B'),
   null, 'Organización del Estado',
   '¿Cuál de las siguientes figuras NO es un mecanismo para modificar la constitución?',
   array['Una asamblea nacional constituyente.', 'Un referendo constitucional.', 'Una reforma discutida y aprobada en el Congreso.', 'Una revocatoria del mandato.'],
-  'La revocatoria del mandato remueve a una persona de un cargo, no cambia una sola palabra de la Constitución.', 'publicada', 'modelo', '3155ab6b5b59da53cfbb82c253807717';
+  'La revocatoria del mandato remueve a una persona de un cargo, no cambia una sola palabra de la Constitución.', 'publicada', 'modelo', '3155ab6b5b59da53cfbb82c253807717', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('f22d376a-37ae-42fd-9449-7816028bfed9', 3, 'La revocatoria del mandato sirve para sacar del cargo a un gobernante que los ciudadanos eligieron; no toca el texto de la Constitución en absoluto, a diferencia de las otras tres, que sí son procedimientos reconocidos para reformarla.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '3a2ddbc7-0add-4e8f-925a-df9029e43238', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'economia-y-sociedad'),
   (select id from public.lotes where codigo = '2026-B'),
   '24cc50ae-6a8d-436d-9aeb-ead04573b478', 'Economía y sociedad',
   'La relación entre las posiciones expuestas es',
   array['de compatibilidad, porque tanto para el líder como para la asesora, el ambiente para los beneficiarios puede ser equitativo e incluyente.', 'de contradicción, porque mientras la asesora resalta la proyección incluyente de la ciudad, el líder resalta el problema de segregación en las ciudades.', 'de afinidad, porque tanto para el líder como para la asesora, se requiere ajustar algunos detalles para mejorar la implementación del proyecto.', 'de incompatibilidad, porque mientras la asesora plantea que el proyecto tendrá efectos negativos para los beneficiarios, el líder señala que tendrá beneficios para ellos.'],
-  'Una posición ve el proyecto como un problema y la otra como un beneficio: eso es justo lo contrario de compatibilidad.', 'publicada', 'modelo', '3daf8affbdf5bc994281d2690a5bc785';
+  'Una posición ve el proyecto como un problema y la otra como un beneficio: eso es justo lo contrario de compatibilidad.', 'publicada', 'modelo', '3daf8affbdf5bc994281d2690a5bc785', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('3a2ddbc7-0add-4e8f-925a-df9029e43238', 3, 'La asesora se opone al proyecto porque cree que perjudicará el sector y a quienes lleguen a vivir ahí; el líder de víctimas lo defiende porque para su comunidad significa poder vivir en cualquier parte de la ciudad sin ser señalados. Son posturas opuestas sobre el mismo proyecto, no compatibles ni solo un ajuste de detalles.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '9d3199f4-61e2-448f-8625-2de41cfeb419', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'economia-y-sociedad'),
   (select id from public.lotes where codigo = '2026-B'),
   '7735d65d-db23-49c1-ade1-fddc1ff4e189', 'Economía y sociedad',
   '¿Qué no tiene en cuenta la alcaldía en su proyecto?',
   array['La política de descentralización.', 'La responsabilidad de los padres de familia.', 'El papel de las madres cabeza de familia.', 'El impacto del proyecto en la economía local.'],
-  'Fíjate en a quién, literalmente, se le entrega el bono: eso revela a quién no se consideró.', 'publicada', 'modelo', '1983af8522c8d185d9b62366899231b6';
+  'Fíjate en a quién, literalmente, se le entrega el bono: eso revela a quién no se consideró.', 'publicada', 'modelo', '1983af8522c8d185d9b62366899231b6', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('9d3199f4-61e2-448f-8625-2de41cfeb419', 2, 'El proyecto entrega los bonos específicamente "al padre de cada familia", sin considerar que muchos hogares están encabezados por una madre sola: esa es la población que el diseño del proyecto deja por fuera.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '6106be2d-896e-446f-b201-b0653b30f6d2', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'geografia-y-territorio'),
   (select id from public.lotes where codigo = '2026-B'),
   '24b479f2-54b2-4c31-ac4f-f037ed4f2169', 'Geografía y territorio',
   'En el anterior texto, se hace un llamado a la descentralización porque',
   array['se insiste en la importancia de que el país mejore sus comunicaciones para que pueda acceder al mundo globalizado.', 'se advierte sobre la necesidad de trasladar algunas actividades económicas a diferentes regiones del país.', 'se critica el abandono y la pobreza que se vive en las regiones en las que hay poca presencia del Estado colombiano.', 'se señala la importancia de vivir en las ciudades intermedias del país porque ofrecen mejor calidad de vida que la capital.'],
-  'La palabra clave del texto es "relocalización de sedes": eso es trasladar actividad económica, no solo mejorar comunicaciones.', 'publicada', 'modelo', '1435d9f553aad46d90b06a406626e0b6';
+  'La palabra clave del texto es "relocalización de sedes": eso es trasladar actividad económica, no solo mejorar comunicaciones.', 'publicada', 'modelo', '1435d9f553aad46d90b06a406626e0b6', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('6106be2d-896e-446f-b201-b0653b30f6d2', 1, 'El texto pide explícitamente "relocalización de sedes principales de empresas" hacia las regiones: eso es trasladar actividad económica fuera de la capital, que es el corazón de cualquier propuesta de descentralización.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'b2246167-abe6-4ad3-bf89-8214d69c49ad', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   '4ef4778c-f8ee-4db3-b179-4dca8bb27cec', 'Constitución y derechos',
   'En el discurso del presidente, se identifica un',
   array['homenaje al papel de la mujer en la sociedad, porque destaca sus capacidades para alcanzar metas sin el apoyo de otros.', 'insulto a los hombres, pues minimiza las capacidades masculinas para conseguir metas sin el apoyo de las mujeres.', 'prejuicio sobre el papel de la mujer en la sociedad, descrito como secundario y asociado solo al hogar.', 'halago a los hombres, pues resalta su capacidad de obtener logros por sí mismos sin recibir ayuda de otros.'],
-  'Fíjate en los verbos que usa para cada uno: el hombre "guía", la mujer "apoya" y sirve de "base" — no son roles equivalentes.', 'publicada', 'modelo', '8b1be8d173c9cbb133068bea08dd5447';
+  'Fíjate en los verbos que usa para cada uno: el hombre "guía", la mujer "apoya" y sirve de "base" — no son roles equivalentes.', 'publicada', 'modelo', '8b1be8d173c9cbb133068bea08dd5447', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('b2246167-abe6-4ad3-bf89-8214d69c49ad', 2, 'El presidente describe a la mujer como "complemento", "apoyo" y "base" del hogar, mientras el hombre es "el faro que guía": eso reduce el papel de la mujer a un rol secundario y doméstico, un prejuicio de género, no un homenaje a sus capacidades.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'b7531faa-f8f6-437a-9fdc-20b0a5d40772', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'geografia-y-territorio'),
   (select id from public.lotes where codigo = '2026-B'),
   '90205032-4b50-4556-b3a7-5b862938e462', 'Geografía y territorio',
   'De acuerdo con el texto anterior, ¿cuáles dimensiones se encuentran en conflicto?',
   array['Las dimensiones económica y laboral.', 'Las dimensiones ambiental y económica.', 'Las dimensiones ambiental y de salud.', 'Las dimensiones de salud y laboral.'],
-  'Ni la salud ni lo laboral aparecen en el texto: el choque es entre extraer recursos para generar ingresos y proteger el medio ambiente.', 'publicada', 'modelo', '84c919d7a6218356b7d737206fd4b1fb';
+  'Ni la salud ni lo laboral aparecen en el texto: el choque es entre extraer recursos para generar ingresos y proteger el medio ambiente.', 'publicada', 'modelo', '84c919d7a6218356b7d737206fd4b1fb', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('b7531faa-f8f6-437a-9fdc-20b0a5d40772', 1, 'La reforma busca beneficios económicos —facilitar licencias, atraer inversión, mejorar condiciones mineras— mientras las organizaciones ambientalistas y de derechos humanos advierten sobre el impacto en el medio ambiente y en la sostenibilidad del territorio: el conflicto es entre lo económico y lo ambiental, no hay ninguna mención de salud ni de temas laborales.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'f3f762ee-7368-4914-8dd6-17bad27c3922', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'economia-y-sociedad'),
   (select id from public.lotes where codigo = '2026-B'),
   '45cb0dfb-543c-470b-b664-3fa1c8de7d4f', 'Economía y sociedad',
   'En esta situación, ¿qué es lo que cada una de las partes quiere lograr?',
   array['El primer grupo de ciudadanos quiere que los cultos que ahora parecen negocios retornen al camino de la fe y el segundo grupo espera evitar que las Iglesias con más ingresos paguen impuestos.', 'El primer grupo de ciudadanos quiere hacer que las iglesias también contribuyan con el pago de impuestos y el segundo grupo quiere evitar que las iglesias más humildes paguen impuestos.', 'El primer grupo de ciudadanos quiere hacer que las iglesias también contribuyan con el pago de impuestos y el segundo grupo quiere evitar que las iglesias con más ingresos paguen impuestos.', 'El primer grupo de ciudadanos quiere que los cultos que ahora parecen negocios retornen al camino de la fe y el segundo grupo quiere evitar que las iglesias más humildes paguen impuestos.'],
-  'El segundo grupo no defiende a las iglesias con más ingresos: propone que paguen más justamente porque tienen más ganancias. A quien protege es a las humildes.', 'publicada', 'modelo', '6dc9afada9f94e67d978b801ee12ec43';
+  'El segundo grupo no defiende a las iglesias con más ingresos: propone que paguen más justamente porque tienen más ganancias. A quien protege es a las humildes.', 'publicada', 'modelo', '6dc9afada9f94e67d978b801ee12ec43', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('f3f762ee-7368-4914-8dd6-17bad27c3922', 1, 'El primer grupo pide, en el fondo, que las iglesias paguen impuestos como cualquier negocio; el segundo no se opone a que paguen, sino que pide proteger específicamente a las iglesias humildes, proponiendo que el pago sea proporcional a las ganancias —es decir, que las de más ingresos sí aporten más—.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '198b1bea-b5db-4530-a445-0d4841d04c92', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'participacion-ciudadana'),
   (select id from public.lotes where codigo = '2026-B'),
   '1750d3de-2c9e-4b68-9ed4-9bc4c60ff95d', 'Mecanismos de participación',
   '¿Cuál de los siguientes enunciados explica por qué se le ofrecen beneficios a los ciudadanos que ejercen su deber de votar?',
   array['Porque es necesario motivar la participación política de los ciudadanos y evitar así los problemas que trae consigo el abstencionismo electoral en el país.', 'Porque es necesario combatir el clientelismo en tiempo electoral y evitar así los problemas que trae consigo la compra de votos en las elecciones colombianas.', 'Porque sin este tipo de beneficios las entidades estatales no pueden regular al controlar quien votó, y quién no durante las jornadas electorales del país.', 'Porque sin este tipo de beneficios no sería posible demostrar que un alto porcentaje de la ciudadanía se abstiene de votar por inconformismo hacia los políticos.'],
-  'Los beneficios se dan solo por presentar el certificado de haber votado, sin importar por quién: eso apunta a incentivar participación, no a combatir clientelismo.', 'publicada', 'modelo', 'e656604dcc9b1628ab69c4f25fa85bee';
+  'Los beneficios se dan solo por presentar el certificado de haber votado, sin importar por quién: eso apunta a incentivar participación, no a combatir clientelismo.', 'publicada', 'modelo', 'e656604dcc9b1628ab69c4f25fa85bee', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('198b1bea-b5db-4530-a445-0d4841d04c92', 0, 'Los tres beneficios recompensan el simple hecho de haber votado, sin condición alguna sobre a quién se votó: eso busca incentivar la participación electoral en general, para combatir el abstencionismo, no perseguir compra de votos ni medir el inconformismo político.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '916cb183-0794-43d2-b5bc-693b4a95b4e6', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'geografia-y-territorio'),
   (select id from public.lotes where codigo = '2026-B'),
   '3fb75605-9c7e-458c-a844-bf71dead5705', 'Geografía y territorio',
   'A la luz de la información suministrada, la calificación que hacen los ambientalistas de la Cumbre de la Tierra como el evento sobre el medio ambiente más importante del siglo XX resulta',
   array['acertada, porque tuvo lugar a finales del siglo XX, y más de veinte años después todavía es noticia, por ejemplo, en la página de internet de las Naciones Unidas.', 'equivocada, porque si bien los tratados pueden tener relación con la problemática del medio ambiente, tratan principalmente sobre clima, biología y agricultura.', 'acertada, porque llevó a tres tratados que involucran a la mayoría de los países y tienen que ver directamente con emprender acciones conjuntas que tengan un impacto positivo para la preservación.', 'equivocada, porque no se menciona si las Naciones Unidas reúnen a todos los países del planeta, y cuál es el plazo de vigencia estipulado de los acuerdos firmados.'],
-  'Busca la opción que valore el resultado concreto —tres tratados con acciones conjuntas— y no un dato accesorio como que "sigue siendo noticia".', 'publicada', 'modelo', 'ecddaea2b2d2312775e6241ee840a9e7';
+  'Busca la opción que valore el resultado concreto —tres tratados con acciones conjuntas— y no un dato accesorio como que "sigue siendo noticia".', 'publicada', 'modelo', 'ecddaea2b2d2312775e6241ee840a9e7', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('916cb183-0794-43d2-b5bc-693b4a95b4e6', 2, 'Lo que hace importante a la Cumbre no es que siga siendo noticia ni el número exacto de países involucrados, sino que produjo tres tratados internacionales concretos, orientados a que muchos países actúen juntos para conservar el medio ambiente: eso es lo que justifica la calificación.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '08072eed-a2f5-4426-a790-a3aafb62d034', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'historia-de-colombia'),
   (select id from public.lotes where codigo = '2026-B'),
   '18470623-5b72-4e8e-b901-cd1c1d055770', 'Historia de Colombia',
   '¿A qué suceso histórico hace referencia este texto?',
   array['Los diálogos de paz entre las FARC y el Gobierno colombiano en San Vicente del Caguán.', 'La desmovilización de las Autodefensas Unidas de Colombia (AUC) en Santa Fe de Ralito.', 'La creación del partido político Unión Patriótica (UP) por parte de guerrilleros desmovilizados.', 'La dejación de armas por parte de la guerrilla Movimiento 19 de Abril (M-19).'],
-  'El dato clave es "administración del presidente Barco": eso ubica el hecho en 1989-1990, el momento de la desmovilización del M-19.', 'publicada', 'modelo', '8ef89fe50ef481eaf861ff0fe2de5a6c';
+  'El dato clave es "administración del presidente Barco": eso ubica el hecho en 1989-1990, el momento de la desmovilización del M-19.', 'publicada', 'modelo', '8ef89fe50ef481eaf861ff0fe2de5a6c', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('08072eed-a2f5-4426-a790-a3aafb62d034', 3, 'El texto habla de una política de paz iniciada bajo el presidente Barco, con concentración física de todos los integrantes de la guerrilla y su desarticulación completa como organización armada: eso corresponde a la desmovilización del M-19 en 1990, no a las FARC, ni a las AUC, ni a la UP, que fue un partido político, no un proceso de desarme.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '0f14e0ae-a020-468f-a039-b1ddca650d1d', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'participacion-ciudadana'),
   (select id from public.lotes where codigo = '2026-B'),
   'bd7556d3-327c-45ce-9366-f292b077a68a', 'Mecanismos de participación',
   'Un mecanismo constitucional al que este grupo de ciudadanos puede apelar para materializar su propuesta es',
   array['la acción de tutela.', 'la denuncia penal.', 'la iniciativa popular.', 'la revocatoria del mandato.'],
-  'El grupo quiere "impulsar leyes": ese verbo señala directamente el mecanismo de iniciativa popular legislativa.', 'publicada', 'modelo', '7717bdd9e1c1e1e993b2f27d64648245';
+  'El grupo quiere "impulsar leyes": ese verbo señala directamente el mecanismo de iniciativa popular legislativa.', 'publicada', 'modelo', '7717bdd9e1c1e1e993b2f27d64648245', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('0f14e0ae-a020-468f-a039-b1ddca650d1d', 2, 'Lo que el grupo quiere es proponer y sacar adelante nuevas leyes; el mecanismo pensado exactamente para que los ciudadanos presenten proyectos de ley es la iniciativa popular, no la tutela, que protege un derecho individual, ni la revocatoria, que remueve a un gobernante.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'f407ab17-22d3-4ddc-81f3-24f685c3b61a', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'economia-y-sociedad'),
   (select id from public.lotes where codigo = '2026-B'),
   '0930073c-30d8-4775-a1ca-a2144d41b1e6', 'Economía y sociedad',
   '¿Cuál de los siguientes principios iría en contravía de la visión socialista expresada por Evo Morales en su discurso de oficialización de la nueva CPE?',
   array['La nacionalización de los hidrocarburos permite el control estatal de los precios de gasolina.', 'La propiedad colectiva se declara indivisible e inalienable y no está sujeta al pago de impuestos a la propiedad agraria.', 'La educación es un derecho social y por ello debe ser gratuita, universal, intercultural y de calidad.', 'La privatización de la industria energética genera más riqueza y empleo, para beneficio del país.'],
-  'El discurso rechaza explícitamente que los servicios sean "de negocio privado": la opción correcta tiene que defender justo eso.', 'publicada', 'modelo', 'ed8292c28ae70eaeb580ff2709e5627b';
+  'El discurso rechaza explícitamente que los servicios sean "de negocio privado": la opción correcta tiene que defender justo eso.', 'publicada', 'modelo', 'ed8292c28ae70eaeb580ff2709e5627b', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('f407ab17-22d3-4ddc-81f3-24f685c3b61a', 3, 'Todo el discurso defiende que los servicios básicos sean públicos y no de negocio privado; proponer que privatizar la industria energética sea beneficioso va exactamente en contra de esa visión socialista, mientras que nacionalizar hidrocarburos, la propiedad colectiva y la educación pública encajan con ella.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'be1342d1-cd00-4f9e-9c59-8738ac9600d5', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   '2fdcfa57-e779-4f17-a720-ca0c97d00765', 'Interpretación de perspectivas',
   'Los dos textos son',
   array['Complementarios, porque ambos hacen referencia al sistema de salud en Colombia.', 'Contradictorios, porque califican de manera opuesta el sistema de salud en Colombia.', 'Semejantes, porque ambos califican de manera positiva al sistema de salud en Colombia.', 'Coherentes, porque ambos hacen referencia a las desventajas del sistema de Salud en Colombia.'],
-  'Uno califica el sistema positivamente y el otro señala un defecto grave: esas dos evaluaciones no pueden ser semejantes ni coherentes entre sí.', 'publicada', 'modelo', '4e857aff33724a16bdda83cb5164d9ae';
+  'Uno califica el sistema positivamente y el otro señala un defecto grave: esas dos evaluaciones no pueden ser semejantes ni coherentes entre sí.', 'publicada', 'modelo', '4e857aff33724a16bdda83cb5164d9ae', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('be1342d1-cd00-4f9e-9c59-8738ac9600d5', 1, 'Un texto ubica a Colombia entre los mejores sistemas de salud del mundo; el otro dice que ese mismo sistema es inequitativo y de calidad desigual: son dos evaluaciones opuestas sobre el mismo sistema, no complementarias ni coincidentes.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'ba7bccaa-9802-408c-bc90-bed7d273f471', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   '5e541c4f-e31d-4a53-a699-e41e853c9496', 'Interpretación de perspectivas',
   'De acuerdo con el anterior fragmento, una de las razones por las que pudo tener el líder del Partido Nazi para pronunciar este discurso es',
   array['admitir la persecución política, los asesinatos y la culpa del Estado Nazi, con el fin de que lo ocurrido no quedara sin castigo.', 'reconocer los errores cometidos por el Gobierno y mostrar la manera en que estos afectaron los intereses políticos del Estado Nazi.', 'defender las acciones del Estado Nazi a través de un discurso que buscaba sustentar las políticas capitalistas del Gobierno.', 'justificar los asesinatos y la persecución política con un argumento nacionalista que decía defender los intereses del Estado Nazi.'],
-  'El discurso no pide castigo para nadie del propio partido: al contrario, presenta los asesinatos como un acto necesario para "proteger" a la nación.', 'publicada', 'modelo', '6d9e91ae6b90bd5043043d4dee68fbdc';
+  'El discurso no pide castigo para nadie del propio partido: al contrario, presenta los asesinatos como un acto necesario para "proteger" a la nación.', 'publicada', 'modelo', '6d9e91ae6b90bd5043043d4dee68fbdc', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('ba7bccaa-9802-408c-bc90-bed7d273f471', 3, 'El líder no pide perdón ni reconoce un error: se presenta a sí mismo como "juez supremo" que actuó para proteger "la existencia" de la nación. Eso es justificar los asesinatos con un argumento nacionalista de defensa del Estado, no una admisión de culpa ni un tema económico.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'a1fc3857-349f-4979-b6dc-97fac4895dbb', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'ramas-del-poder'),
   (select id from public.lotes where codigo = '2026-B'),
   'f59c86b2-6752-49f0-b61a-ac6420fdf41d', 'Organización del Estado',
   'De acuerdo con la Consultación Política de Colombia, la decisión tomada por el presidente',
   array['no forma parte de sus funciones, pues la rama ejecutiva no puede intervenir en ninguna etapa de la modificación o creación de las leyes en Colombia.', 'forma parte de sus funciones, pues el presidente puede sancionar un proyecto para que sea ley o puede objetarlo para que sea modificado por los congresistas, antes de su aprobación.', 'forma parte de sus funciones, pues el presidente es quien decide las leyes que deben aprobarse, y el congreso de la República debe subordinarse a las decisiones de la rama ejecutiva.', 'no forma parte de sus funciones, pues el presidente solo posee facultades relacionadas con la ejecución del presupuesto y el nombramiento de los ministros.'],
-  'Objetar un proyecto no es lo mismo que decidir unilateralmente las leyes: es un paso previsto dentro del propio trámite legislativo.', 'publicada', 'modelo', '97fd13e7fa281a2c3665abf5e3936921';
+  'Objetar un proyecto no es lo mismo que decidir unilateralmente las leyes: es un paso previsto dentro del propio trámite legislativo.', 'publicada', 'modelo', '97fd13e7fa281a2c3665abf5e3936921', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('a1fc3857-349f-4979-b6dc-97fac4895dbb', 1, 'Objetar un proyecto de ley y devolverlo al Congreso para que lo revise es exactamente una de las facultades constitucionales del presidente frente a las leyes: puede sancionarlas o devolverlas objetadas, pero eso no significa que decida por encima del Congreso ni que esté fuera de sus funciones.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'e15553e8-bd56-4fe2-9670-f859b101dd27', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'historia-de-colombia'),
   (select id from public.lotes where codigo = '2026-B'),
   '93b96f3d-d9c4-421c-97ba-2e6bbcd0a30e', 'Historia de Colombia',
   'De acuerdo con lo anterior, la periodista cambió radicalmente su opinión frente a los acuerdos de paz con las FARC, porque',
   array['cambió su postura política y por ello, ahora se identifica más con los principios defendidos por la guerrilla de las FARC.', 'la guerrilla de las FARC cambió sus objetivos y ahora no busca obtener el poder político para transformar la sociedad, según sus ideales.', 'la negociación entre el gobierno y las FARC cambió y, al no entregarle un territorio a la guerrilla, la periodista considera las negociaciones de 2016 más aceptables.', 'la injerencia de actores internacionales cambió y, al tener menos intervención de otros países, la periodista considera las negociaciones del año 2000 más aceptables.'],
-  'Compara qué criticaba la periodista en el año 2000 —la zona de despeje sin control— con lo que describe en 2016: ahí está la diferencia que explica su cambio.', 'publicada', 'modelo', 'e42291b44c22ec3d8b4d389ed3168c88';
+  'Compara qué criticaba la periodista en el año 2000 —la zona de despeje sin control— con lo que describe en 2016: ahí está la diferencia que explica su cambio.', 'publicada', 'modelo', 'e42291b44c22ec3d8b4d389ed3168c88', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('e15553e8-bd56-4fe2-9670-f859b101dd27', 2, 'En el año 2000 la crítica de la periodista era que se entregó un territorio sin control estatal; en 2016 no hubo cesión de territorio, sino desmovilización total con verificación internacional: ese cambio en las condiciones de la negociación explica su cambio de opinión, no una conversión ideológica ni menos intervención internacional (que en realidad fue mayor en 2016).');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '29ece4dc-2c00-4213-a1bd-9e4d11aad171', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   null, 'Constitución y derechos',
   '¿En cuál de las siguientes situaciones estaría incumpliéndose el deber constitucional de proteger la diversidad étnica y cultural de Colombia?',
   array['Las directivas de un colegio ubicado en un resguardo indígena se rehúsan a implementar la educación bilingüe, y quieren dictar todas las materias en español y no en la lengua o dialecto de las comunidades indígenas de la región.', 'Los miembros de comunidades indígenas que residan en su territorio y conserven su integridad cultural, social y económica estarán exentos de prestar el servicio militar y del pago de la cuota de compensación militar.', 'Varias preguntas del Censo oficial de Colombia están modificándose para identificar y conocer más de las comunidades como gitanas, indígenas, afrocolombianas, negras, raizales y palenqueras.', 'Un indígena que haya cometido un delito dentro de un resguardo no será procesado por juez de la República, sino juzgado según las normas y los procedimientos propios de la comunidad indígena a la que pertenece.'],
-  'Busca la única opción donde una institución le niega a una comunidad indígena algo propio de su cultura, en lugar de reconocérselo.', 'publicada', 'modelo', 'e5d996c37a0fe249547b7edb5c8b8e15';
+  'Busca la única opción donde una institución le niega a una comunidad indígena algo propio de su cultura, en lugar de reconocérselo.', 'publicada', 'modelo', 'e5d996c37a0fe249547b7edb5c8b8e15', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('29ece4dc-2c00-4213-a1bd-9e4d11aad171', 0, 'Negarse a enseñar en la lengua propia de una comunidad indígena dentro de su propio resguardo es justamente lo contrario de proteger su diversidad cultural; las otras tres opciones son ejemplos reales de cómo el Estado sí reconoce y respeta esa diversidad.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'cb826c8d-c2cb-4ace-bf8a-0d10f8b78def', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'economia-y-sociedad'),
   (select id from public.lotes where codigo = '2026-B'),
   '813547ac-75a1-4ff5-b8ef-9880941197cd', 'Economía y sociedad',
   'De acuerdo con el fragmento anterior, ¿cuál de las siguientes afirmaciones concuerda con la política de libre mercado de los países nórdicos?',
   array['La reducción de barreras impuestas por el Estado para la creación de empresas privadas influye positivamente en el desarrollo económico de las sociedades capitalistas.', 'El proteccionismo estatal y la regulación de la competencia de mercados son la base del crecimiento económico en las sociedades capitalistas.', 'Las medidas impuestas por el Estado para regular el crecimiento de la empresa privada disminuyen positivamente la informalidad y promueven el crecimiento del capital.', 'La imposición de controles de capital y de la restricción a la inversión extranjera que se aplican a la empresa privada garantizan el crecimiento del capital.'],
-  'Los nórdicos, según el texto, tienen MENOS regulación, no más: descarta cualquier opción que defienda el proteccionismo o el control estatal como su modelo.', 'publicada', 'modelo', '1b95eff7dd91531321c8087fdb57ddc4';
+  'Los nórdicos, según el texto, tienen MENOS regulación, no más: descarta cualquier opción que defienda el proteccionismo o el control estatal como su modelo.', 'publicada', 'modelo', '1b95eff7dd91531321c8087fdb57ddc4', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('cb826c8d-c2cb-4ace-bf8a-0d10f8b78def', 0, 'Todo el fragmento describe a los países nórdicos como aquellos con menos impuestos, menos controles y menos regulaciones, y dice que eso "facilita el emprendimiento privado": eso es exactamente que reducir las barreras estatales favorece el desarrollo económico, no lo contrario.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'c7ac5fc8-f37b-4c5e-acc0-dfa0ce0a2f17', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'participacion-ciudadana'),
   (select id from public.lotes where codigo = '2026-B'),
   '594f11d2-6f42-4ebc-8c41-caee9556d7c7', 'Mecanismos de participación',
   'El concepto que mejor define las situaciones presentadas en los fragmentos es',
   array['movimiento social.', 'acción popular.', 'organización sindical.', 'protestas callejeras.'],
-  'Participan estudiantes y trabajadores de sectores muy distintos a la vez: eso excede la idea de una sola organización sindical.', 'publicada', 'modelo', 'ca7cf6e5d38fe0806804229771645105';
+  'Participan estudiantes y trabajadores de sectores muy distintos a la vez: eso excede la idea de una sola organización sindical.', 'publicada', 'modelo', 'ca7cf6e5d38fe0806804229771645105', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('c7ac5fc8-f37b-4c5e-acc0-dfa0ce0a2f17', 0, 'Lo descrito combina a estudiantes organizados en asambleas y a trabajadores de sectores muy distintos —judicial, salud, privado— movilizados por causas propias, articulados en un mismo esfuerzo colectivo de cambio social: eso es un movimiento social, más amplio que un sindicato o una simple protesta callejera.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '2c4a5f8b-96b0-4460-b71e-97082e672a8e', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'geografia-y-territorio'),
   (select id from public.lotes where codigo = '2026-B'),
   'cf4191ad-32e1-4104-b150-b7143a1c3141', 'Geografía y territorio',
   'Quienes elaboraron este informe buscaron, probablemente',
   array['llamar la atención de los países sobre los aspectos demográficos que inciden en el deterioro del medio.', 'promover públicamente un modelo económico y social para el manejo de los recursos naturales.', 'beneficiar a pequeños productores cuyas actividades económicas no tiene un alto efecto los ambiente.', 'mostrar que la satisfacción de las necesidades de la población mundial es incompatible con la preservación del medio ambiente.'],
-  'El informe habla de tecnología, economía, política y población juntas: eso es un modelo integral, no un llamado de atención sobre un solo aspecto.', 'publicada', 'modelo', '78aafa0a3a6012254f48bbedb248f6f9';
+  'El informe habla de tecnología, economía, política y población juntas: eso es un modelo integral, no un llamado de atención sobre un solo aspecto.', 'publicada', 'modelo', '78aafa0a3a6012254f48bbedb248f6f9', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('2c4a5f8b-96b0-4460-b71e-97082e672a8e', 1, 'El informe propone de manera integral cómo debe organizarse la tecnología, la economía, la política y el uso de los recursos para lograr un crecimiento que no comprometa el futuro: eso es proponer un modelo económico y social, no solo señalar un dato demográfico ni afirmar que desarrollo y ambiente sean incompatibles —de hecho, el texto defiende justo lo contrario.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '05091d53-b23f-4183-b443-eb091d53ed72', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'geografia-y-territorio'),
   (select id from public.lotes where codigo = '2026-B'),
   null, 'Geografía y territorio',
   '¿Cuál de las siguientes situaciones apoyan el planteamiento de Naciones Unidas sobre la necesidad de implementar políticas orientadas por el modelo de desarrollo sostenible?',
   array['La falta de regulación política en el mundo frente al uso de los recursos naturales.', 'La falta de políticas de control de natalidad orientadas a la reducción de la demanda de alimentos.', 'La falta de mecanismos efectivos para que los pobres del mundo tengan acceso a tierras cultivadas.', 'La falta de políticas económicas orientadas a la reducción de consumo de alimentos.'],
-  'El informe pone el énfasis en los "sistemas políticos" y la "voluntad política", no en el control de la natalidad ni en el consumo de alimentos.', 'publicada', 'modelo', '55106a154c9165e84a1fdef423196248';
+  'El informe pone el énfasis en los "sistemas políticos" y la "voluntad política", no en el control de la natalidad ni en el consumo de alimentos.', 'publicada', 'modelo', '55106a154c9165e84a1fdef423196248', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('05091d53-b23f-4183-b443-eb091d53ed72', 0, 'El informe pide sistemas políticos que aseguren la participación efectiva de los ciudadanos en el manejo de los recursos; la ausencia de esa regulación política es justo lo que el desarrollo sostenible busca corregir, no un asunto de natalidad, tierras cultivables o consumo de alimentos, que el texto no plantea como su eje.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '242f2a5b-ee0e-4431-bd2c-b24cbfaa537a', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'geografia-y-territorio'),
   (select id from public.lotes where codigo = '2026-B'),
   null, 'Geografía y territorio',
   '¿Cuál de los siguientes es un supuesto de la propuesta sobre desarrollo sostenible presentada en este informe?',
   array['La satisfacción de las necesidades de la población depende del incremento de la productividad de los minifundios.', 'El aprovechamiento económico de los recursos naturales mejora la competitividad de los países.', 'Las personas requieren mayores posibilidades de acceso a la tierra para salir de la pobreza.', 'El bienestar de la población mundial depende de la forma como los países administren los recursos naturales disponibles.'],
-  'Todo el informe gira en torno a una sola idea de fondo: la relación entre cómo se administran los recursos naturales y el bienestar de la humanidad, presente y futura.', 'publicada', 'modelo', '5380622a386183811c51a2f8c1464a10';
+  'Todo el informe gira en torno a una sola idea de fondo: la relación entre cómo se administran los recursos naturales y el bienestar de la humanidad, presente y futura.', 'publicada', 'modelo', '5380622a386183811c51a2f8c1464a10', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('242f2a5b-ee0e-4431-bd2c-b24cbfaa537a', 3, 'La idea central del informe es que el crecimiento económico y la superación de la pobreza dependen de cómo se gestionen los recursos naturales sin comprometer a las futuras generaciones: ese es el supuesto de fondo, no una afirmación sobre minifundios, competitividad o acceso a la tierra, que el texto no menciona.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '12e24068-bdda-47ca-8985-a01d4197fd94', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   '1f292879-b3cc-4057-8d59-acd5d5c96b12', 'Constitución y derechos',
   '¿Cuál de las siguientes ideas tomadas del discurso anterior contiene un prejuicio discriminatorio contra sectores sociales?',
   array['"Yo no entiendo cómo es posible que haya tanta pobreza en este país, con tantos recursos naturales que tenemos, con tanta tierra sin explotar".', '"Hoy, resulta evidente, vivimos en un mundo regido por el capitalismo y el desarrollo imparables".', '"Las causas de la pobreza están en la falta de ideas, ambición y emprendimiento, tenemos talento humano y recursos, pero no los sabemos explotar".', '"Nuestra pobreza puede deberse a que tenemos mucha sangre indígena en nuestra población".'],
-  'Solo una de las cuatro frases señala a un grupo étnico como causa de un problema social: esa es la que contiene el prejuicio.', 'publicada', 'modelo', '425cf7fdd6e16632619d48804ac5c46e';
+  'Solo una de las cuatro frases señala a un grupo étnico como causa de un problema social: esa es la que contiene el prejuicio.', 'publicada', 'modelo', '425cf7fdd6e16632619d48804ac5c46e', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('12e24068-bdda-47ca-8985-a01d4197fd94', 3, 'Atribuir la pobreza de un país a que su población tiene "mucha sangre indígena" es un prejuicio étnico que culpa a un grupo social por su origen; las otras frases opinan sobre economía o capacidad emprendedora, sin señalar a ningún grupo étnico como causa.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'a4138e70-a960-4ea3-bf19-551e4ee0949f', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'ramas-del-poder'),
   (select id from public.lotes where codigo = '2026-B'),
   '0dafc293-6fce-45fe-a17d-dd1d655c2d74', 'Organización del Estado',
   'A la luz de la Constitución Política, ¿a cuál de las siguientes entidades le corresponde investigar la situación que desea denunciar el trabajador de la alcaldía?',
   array['A la Registraduría Nacional del Estado.', 'Al Ministerio de Justicia y Derecho, Civil.', 'A la Procuraduría General de la Nación.', 'Al Consejo Superior de la Judicatura.'],
-  'Cuando la falta es de un servidor público en ejercicio de su cargo, la entidad de control disciplinario competente es la Procuraduría.', 'publicada', 'modelo', '1dd7c991ecd3dd6dc20bdf38da402939';
+  'Cuando la falta es de un servidor público en ejercicio de su cargo, la entidad de control disciplinario competente es la Procuraduría.', 'publicada', 'modelo', '1dd7c991ecd3dd6dc20bdf38da402939', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('a4138e70-a960-4ea3-bf19-551e4ee0949f', 2, 'Que un servidor público use su cargo para hacer proselitismo político es una falta disciplinaria de un funcionario del Estado, y la entidad encargada de investigar y sancionar esas faltas de los servidores públicos es la Procuraduría General de la Nación, no la Registraduría, el Ministerio de Justicia ni la rama judicial.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '1d7fbe45-c9bc-4b56-88f6-7d076200a7f4', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   'e1befbbe-91aa-403c-875e-df108426deac', 'Interpretación de perspectivas',
   '¿Cuál de las siguientes hipótesis NO es coherente con el modelo de gobierno populista criticado por el historiador argentino?',
   array['Un presidente puede modificar leyes y hacerse reelegir aduciendo a los beneficios que su gobierno le puede traer a las más pobres.', 'Un gobierno promueve la contratación de funcionarios públicos a partir de un riguroso esquema de méritos personales.', 'Un presidente apoya a los sindicatos que defienden su idea de recuperar empresas públicas que fueron privatizadas.', 'Un gobierno respeta la libertad de prensa de los periódicos que a su juicio presentan una publicación imparcial y contrastada.'],
-  'El texto dice que el modelo populista "preserva el clientelismo": busca la opción que describe justo lo contrario, contratación por mérito.', 'publicada', 'modelo', '1f81b1524b978b75a370181a5ec35719';
+  'El texto dice que el modelo populista "preserva el clientelismo": busca la opción que describe justo lo contrario, contratación por mérito.', 'publicada', 'modelo', '1f81b1524b978b75a370181a5ec35719', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('1d7fbe45-c9bc-4b56-88f6-7d076200a7f4', 1, 'El historiador describe al populismo criticado como aquel que "preserva a cualquier costo el clientelismo": contratar funcionarios por mérito riguroso es exactamente lo opuesto al clientelismo, así que es la hipótesis que NO encaja con ese modelo, mientras las otras tres sí son coherentes con rasgos que el texto describe.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '6e28299c-6298-4032-b956-40c69e521f66', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'historia-de-colombia'),
   (select id from public.lotes where codigo = '2026-B'),
   '80edc85e-e5cd-487a-81be-bdee23ef666a', 'Historia de Colombia',
   'Puede afirmarse que este fragmento describe el contexto político de finales de la década de los 1980 porque, en este período,',
   array['la sociedad civil se organizó para enfrentar la crisis humanitaria generada por las disputas de diferentes grupos armados.', 'la violencia entre grupos políticos afectó a los estudiantes, campesinos, soldados y ciudadanos colombianos.', 'la sociedad reaccionó ante las acciones de grupos violentos que querían atacar la estabilidad de las instituciones.', 'el asesinato de un líder político desencadenó disputas entre liberales y conservadores y protestas en diferentes regiones del país.'],
-  'La nota del cuadernillo original data el fragmento en "los 1940", pero cita la muerte de Luis Carlos Galán, ocurrida en 1989: se corrigió a "los 1980" y las opciones se leen sobre esa base. Los ataques a un magistrado y un coronel de policía apuntan a violencia contra las instituciones, no a un conflicto entre partidos.', 'publicada', 'modelo', '9fefc7ab69670c5d6263e1983bc8572b';
+  'La nota del cuadernillo original data el fragmento en "los 1940", pero cita la muerte de Luis Carlos Galán, ocurrida en 1989: se corrigió a "los 1980" y las opciones se leen sobre esa base. Los ataques a un magistrado y un coronel de policía apuntan a violencia contra las instituciones, no a un conflicto entre partidos.', 'publicada', 'modelo', '9fefc7ab69670c5d6263e1983bc8572b', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('6e28299c-6298-4032-b956-40c69e521f66', 2, 'El fragmento cita la muerte de un candidato presidencial, de un magistrado y de un coronel de policía: son ataques dirigidos contra figuras del Estado y de la institucionalidad, el patrón característico del narcoterrorismo colombiano de finales de los 80, no la disputa bipartidista entre liberales y conservadores, que corresponde a otra época.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'b7a0208f-6aa9-4f2a-a3d0-ef9df5024947', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'ramas-del-poder'),
   (select id from public.lotes where codigo = '2026-B'),
   '036bb343-936a-403a-91f8-7c1e1fde7900', 'Organización del Estado',
   'En la situación descrita ¿qué es lo que probablemente quiere lograr cada una de las partes?',
   array['Los organismos internacionales, mantenerse al margen de los asuntos internos del país; los ciudadanos, manifestar su apoyo a la oposición.', 'La oposición, derrocar al Gobierno por cualquier medio; los organismos internacionales, desaprobar las decisiones que este toma.', 'El gobierno, lograr la concentración total del poder; la oposición, obtener protección y apoyo internacional.', 'El poder legislativo, delegar sus funciones al presidente; los ciudadanos, cambiar dirigente político.'],
-  'El texto dice literalmente que el presidente "se atribuyó las funciones del poder legislativo" y que la oposición "solicita vigilancia internacional": ambos datos están explícitos.', 'publicada', 'modelo', 'e7fd0d0cd4906efd44542109f7f40314';
+  'El texto dice literalmente que el presidente "se atribuyó las funciones del poder legislativo" y que la oposición "solicita vigilancia internacional": ambos datos están explícitos.', 'publicada', 'modelo', 'e7fd0d0cd4906efd44542109f7f40314', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('b7a0208f-6aa9-4f2a-a3d0-ef9df5024947', 2, 'El presidente ya se atribuyó las funciones del poder legislativo —eso es buscar concentrar el poder—; la oposición, por su parte, pide explícitamente vigilancia internacional de derechos humanos, es decir, busca protección y respaldo externo frente al gobierno.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '6377bdd7-99e3-4b58-9448-a883a5b04ae6', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   'a7a5c4c7-3912-4df5-a2ad-0795fb8a43b3', 'Constitución y derechos',
   'A partir de la información anterior, se puede afirmar que las posiciones del grupo de animalistas y de los no animalistas',
   array['Son diferentes, pues la primera plantea que los seres humanos son más importantes que los animales; la segunda dice lo contrario.', 'Son mejores, pues ambas están legitimando la violencia en defensa o en contra de una especie.', 'Son diferentes, pues la primera establece que los animales son sujetos de derechos, la segunda afirma lo contrario.', 'Son semejantes, pues ambas están promoviendo el trato respetuoso a todas las especies.'],
-  'Fíjate en la palabra exacta que usa cada grupo: "sujetos de derechos" contra "no constituye violencia" son afirmaciones directamente contrarias.', 'publicada', 'modelo', '6ff697294ea08bed1ecdca2ad97c2ff8';
+  'Fíjate en la palabra exacta que usa cada grupo: "sujetos de derechos" contra "no constituye violencia" son afirmaciones directamente contrarias.', 'publicada', 'modelo', '6ff697294ea08bed1ecdca2ad97c2ff8', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('6377bdd7-99e3-4b58-9448-a883a5b04ae6', 2, 'Los animalistas dicen que los animales son "sujetos de derechos" y merecen el mismo trato que los humanos; los no animalistas dicen que lo que le pasó al animal "no constituye violencia": son posiciones opuestas sobre si los animales tienen o no ese estatus de sujetos de derechos.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'b17f824f-7757-42e6-94dc-c35217893a5c', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'ramas-del-poder'),
   (select id from public.lotes where codigo = '2026-B'),
   null, 'Organización del Estado',
   'En Colombia, como estrategia para evitar la concentración del poder político en una misma persona u organización,',
   array['se creó la Contraloría General de la República para investigar y controlar el uso de los recursos públicos.', 'se establecieron elecciones populares para elegir funcionarios públicos de altos cargos del Estado colombiano.', 'se creó la Fiscalía General de la Nación para velar por la protección de los derechos de los ciudadanos.', 'se dividió el poder público en tres ramas: Ejecutiva, Legislativa y Judicial, las cuales se controlan recíprocamente.'],
-  'La pregunta pide la estrategia general contra la concentración del poder, no una institución puntual: eso apunta a la separación de poderes.', 'publicada', 'modelo', '90f7ddecb301f4836f032bc498b9cc7a';
+  'La pregunta pide la estrategia general contra la concentración del poder, no una institución puntual: eso apunta a la separación de poderes.', 'publicada', 'modelo', '90f7ddecb301f4836f032bc498b9cc7a', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('b17f824f-7757-42e6-94dc-c35217893a5c', 3, 'La división del poder público en tres ramas independientes que se controlan entre sí es la estrategia clásica e histórica contra la concentración del poder; la Contraloría, las elecciones populares y la Fiscalía son instituciones importantes, pero ninguna es, en sí misma, esa estrategia general.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '40ef5686-42b0-4464-a8d8-c4b9ad1a5799', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'conflicto-y-memoria'),
   (select id from public.lotes where codigo = '2026-B'),
   '757ee97f-5f9e-41fe-8e72-5ddcb188f2eb', 'Conflicto armado y memoria',
   'En el texto se dice que algunas personas afirman que "en Colombia se busca superar el enfrentamiento armado sin renunciar a la justicia, la verdad y la reparación". ¿Cuál puede ser la intención de quienes afirman esto?',
   array['Plantear un proceso de paz en el que se conozcan y se sancionen todos los delitos cometidos.', 'Involucrar al Estado y a los grupos armados en un proceso de paz para acabar el conflicto.', 'Diferenciar el conflicto colombiano de los otros que hay en el mundo.', 'Señalar la necesidad de terminar el conflicto armado lo más pronto posible conflicto.'],
-  'Piensa en lo opuesto de "renunciar" a esos tres derechos de las víctimas: eso es justo lo que quienes afirman esto están defendiendo.', 'publicada', 'modelo', 'acedc3d289542f41adba48016db3ef9e';
+  'Piensa en lo opuesto de "renunciar" a esos tres derechos de las víctimas: eso es justo lo que quienes afirman esto están defendiendo.', 'publicada', 'modelo', 'acedc3d289542f41adba48016db3ef9e', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('40ef5686-42b0-4464-a8d8-c4b9ad1a5799', 0, 'Renunciar a la justicia, la verdad y la reparación sería aceptar que los delitos del conflicto queden sin conocerse ni sancionarse; afirmar que Colombia NO renuncia a ellas es defender, precisamente, que el proceso de paz sí busque que esos delitos se conozcan y se sancionen.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '5dcc2eac-7da1-4e34-b7cd-ef89b086a92f', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'conflicto-y-memoria'),
   (select id from public.lotes where codigo = '2026-B'),
   null, 'Conflicto armado y memoria',
   'Según la lectura, las características del conflicto armado en Colombia son semejantes a las características del conflicto armado en Sudáfrica, porque en ambos países los conflictos',
   array['armados han generado procesos de paz exitosos.', 'fueron producidos por minorías étnicas.', 'se han relacionado con el tráfico de drogas ilícitas.', 'han sido de gran magnitud y duración.'],
-  'El texto da cifras y fechas de ambos conflictos precisamente para mostrar cuánto duraron y qué tan grandes fueron: eso es lo que compara.', 'publicada', 'modelo', '85c7fa65a63564dfabde37383bce5d61';
+  'El texto da cifras y fechas de ambos conflictos precisamente para mostrar cuánto duraron y qué tan grandes fueron: eso es lo que compara.', 'publicada', 'modelo', '85c7fa65a63564dfabde37383bce5d61', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('5dcc2eac-7da1-4e34-b7cd-ef89b086a92f', 3, 'El texto describe el Apartheid como un sistema de décadas y el conflicto colombiano como una guerra de 1958 a 2012 con al menos 220.000 muertos: la semejanza explícita entre ambos es la magnitud y la duración, no que hayan tenido éxito de igual forma, ni que los haya producido una minoría étnica, ni el narcotráfico, que el texto ni menciona.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'bffb3a09-c4e2-4fc7-897d-9a7c2a2bf262', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'conflicto-y-memoria'),
   (select id from public.lotes where codigo = '2026-B'),
   null, 'Conflicto armado y memoria',
   'En el texto se hace alusión a situaciones de discriminación y se menciona la democracia como sistema de gobierno. ¿Qué relación hay entre estos conceptos?',
   array['Que las sociedades democráticas son tolerantes con el racismo.', 'Que la discriminación afecta al principio democrático de igualdad.', 'Que en los Estados democráticos no existen situaciones de discriminación.', 'Que la discriminación afecta el respeto a las normas en sociedades democráticas.'],
-  'El propio caso de Sudáfrica muestra que la discriminación SÍ puede convivir con instituciones formales: lo que rompe es el principio de igualdad que la democracia debería asegurar.', 'publicada', 'modelo', '7d018d212325f70646f0d988493a86c7';
+  'El propio caso de Sudáfrica muestra que la discriminación SÍ puede convivir con instituciones formales: lo que rompe es el principio de igualdad que la democracia debería asegurar.', 'publicada', 'modelo', '7d018d212325f70646f0d988493a86c7', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('bffb3a09-c4e2-4fc7-897d-9a7c2a2bf262', 1, 'El Apartheid negaba derechos básicos —como votar— a la mayoría no blanca: eso es discriminación que viola directamente el principio de igualdad que toda democracia debería garantizar, no una prueba de que las democracias toleren el racismo ni de que la discriminación no pueda existir bajo ellas.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '3b6457c1-bc8f-4d8f-bf2e-cbb9321a84c7', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'participacion-ciudadana'),
   (select id from public.lotes where codigo = '2026-B'),
   null, 'Mecanismos de participación',
   'De manera cada vez más generalizada, los candidatos a ser elegidos como representantes en países de América Latina están utilizando una estrategia para conseguir votos. Se trata de un intercambio de favores políticos, cualquiera sea su naturaleza, entre un candidato y ciudadanos para lograr mayor apoyo electoral. De esta manera, el candidato ofrece o promete ciertos privilegios, bienes o concesiones a personas determinadas, a cambio de que estas voten por el candidato el día de las elecciones. La estrategia utilizada por los candidatos en la situación descrita se denomina',
   array['Democracia directa.', 'Clientelismo político.', 'Política de subsidios.', 'Participación política.'],
-  'La palabra clave es "intercambio de favores por votos": ese es el nombre técnico del clientelismo.', 'publicada', 'modelo', 'abee40231383abcf93ad166e4fa0e402';
+  'La palabra clave es "intercambio de favores por votos": ese es el nombre técnico del clientelismo.', 'publicada', 'modelo', 'abee40231383abcf93ad166e4fa0e402', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('3b6457c1-bc8f-4d8f-bf2e-cbb9321a84c7', 1, 'Intercambiar favores o bienes concretos por votos, de manera personalizada, es la definición exacta de clientelismo político; no es democracia directa, ni una política pública de subsidios, ni participación política en general.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'e03ba975-cf7b-4ff9-a005-f5d558b2563b', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   '1e9de612-dcbb-4ef2-a574-addcda4367c2', 'Interpretación de perspectivas',
   '¿Qué busca, probablemente, la candidata con esta afirmación?',
   array['Atraer a los votantes de la elite empresarial y política.', 'Obtener el voto de las clases medias y de los sectores populares.', 'Persuadir a los votantes de comunidades religiosas minoritarias.', 'Conseguir el voto del grupo conservador y tradicionalista.'],
-  'La mención explícita a Dios y al esfuerzo familiar tradicional apunta a un electorado conservador, no a la élite ni a una minoría religiosa.', 'publicada', 'modelo', '893501038654ec965076b50799ffa24c';
+  'La mención explícita a Dios y al esfuerzo familiar tradicional apunta a un electorado conservador, no a la élite ni a una minoría religiosa.', 'publicada', 'modelo', '893501038654ec965076b50799ffa24c', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('e03ba975-cf7b-4ff9-a005-f5d558b2563b', 3, 'La candidata se presenta como alguien de origen humilde y trabajador, apela a Dios y a los valores de esfuerzo familiar tradicional: ese es un discurso dirigido a un electorado conservador y tradicionalista, no a la élite empresarial ni a minorías religiosas específicas.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '29c4810a-288c-4d61-8f01-ade24bd6129b', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   '1a2c9c7c-55a7-41f5-a7a7-6d0e87a65290', 'Constitución y derechos',
   'De acuerdo con lo establecido en la constitución política de Colombia, en esta situación,',
   array['la bancada política actúa de manera errónea, ya que ellos no pueden impulsar un proyecto de ley, sino que solamente lo puede hacer el presidente de la República.', 'los medios alternativos actúan de manera errónea, ya que tienen que modificar su opinión y la manera como hacen difusión de la información, para no incomodar a los miembros del barrio.', 'la bancada política actúa de manera errónea, ya que su proyecto de ley va en contra de la libertad de expresión y ningún proyecto de ley puede ir en contra de este tipo de principios.', 'los medios alternativos actúan de manera errónea ya que el contenido que se difunde en este medio de comunicación debe ser aprobado tanto por la Policía Nacional como por los jóvenes.'],
-  'El problema de la bancada no es que presente el proyecto —eso sí pueden hacerlo—, sino que el proyecto mismo viola un derecho fundamental.', 'publicada', 'modelo', '612aa2361423253c208b1232e37a48dd';
+  'El problema de la bancada no es que presente el proyecto —eso sí pueden hacerlo—, sino que el proyecto mismo viola un derecho fundamental.', 'publicada', 'modelo', '612aa2361423253c208b1232e37a48dd', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('29c4810a-288c-4d61-8f01-ade24bd6129b', 2, 'Cerrar y prohibir medios de comunicación por el contenido de lo que difunden es censura, y ningún proyecto de ley puede vulnerar la libertad de expresión, que es un derecho fundamental protegido por la Constitución; los congresistas sí pueden presentar proyectos de ley, así que el error no está ahí, sino en el contenido de la propuesta.');
 
 insert into public.cuestionarios (id, materia, slug, seccion, titulo, tipo, orden, lote_id, publicado)

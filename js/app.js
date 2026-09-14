@@ -444,7 +444,7 @@ async function renderQuiz() {
   let html = `
     <div class="q-chips reveal" style="--i:0">
       <span class="chip">${q.comp}</span>
-      <span class="chip">Intermedio</span>
+      ${q.dificultad ? `<span class="chip chip-${q.dificultad}">${NIVEL[q.dificultad]}</span>` : ''}
     </div>`;
   if (q.context) {
     html += `<div class="reveal" style="--i:1">`;

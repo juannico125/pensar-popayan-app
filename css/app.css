@@ -212,6 +212,13 @@ input { font: inherit; }
   line-height: 1.35;
   white-space: nowrap;
 }
+/* La dificultad se distingue por tono, no solo por la palabra: el color va
+   acompañado siempre del texto («Básico», «Intermedio», «Avanzado»), así que
+   quien no distinga los tonos no pierde información. */
+.chip-baja  { background: color-mix(in oklab, var(--color-ok, #3d6b45) 14%, transparent); color: var(--color-ok, #3d6b45); }
+.chip-media { background: var(--color-accent-tint); color: var(--color-accent-text); }
+.chip-alta  { background: color-mix(in oklab, var(--color-error, #9c3328) 13%, transparent); color: var(--color-error, #9c3328); }
+
 .chip-row, .chips-scroll { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
 .chips-scroll { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: var(--space-2xs); }
 .chips-scroll::-webkit-scrollbar { height: 0; }
