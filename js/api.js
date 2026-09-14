@@ -66,7 +66,7 @@ const API = {
         .eq('activa', true).order('orden'),
       sb.from('lotes').select('codigo, etiqueta').eq('activo', true).single(),
       sb.from('preguntas')
-        .select('id, materia, comp, enunciado, opciones, tip, contexto:contextos(etiqueta, clase, contenido)')
+        .select('id, materia, comp, enunciado, opciones, tip, dificultad, contexto:contextos(etiqueta, clase, contenido)')
         .order('id'),
       sb.from('cuestionarios')
         .select('id, materia, slug, seccion, titulo, tipo, orden, cuestionario_preguntas(pregunta_id, orden)')
@@ -90,6 +90,8 @@ const API = {
         text: p.enunciado,
         opts: p.opciones,
         tip: p.tip || '',
+        // Nula mientras el docente no la haya clasificado: el chip se omite.
+        dificultad: p.dificultad || null,
         // `correct` y `exp` llegan de responder(): nunca se descargan.
         correct: null, exp: '',
       });

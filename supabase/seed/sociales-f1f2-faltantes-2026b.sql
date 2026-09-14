@@ -14,134 +14,134 @@ insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('418
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('10f4fce5-b643-4db0-a715-2ee4cd54f0b5', 'situacion', 'FRAGMENTO', 'ctx-sit', '"Ir a la universidad fue una senda abierta a un mundo por explorar, a unas relaciones nuevas por construir y a un autorreconocimiento de potencialidades y capacidades frente a los hombres. La alternativa del control natal replantea a las mujeres su función biológica y abre las posibilidades a vivir la sexualidad de otra manera, al separar reproducción y placer. Desempeñarse laboralmente fuera del hogar, además de reconocimiento social, procura los recursos económicos para aportar como proveedora al hogar, una función reservada para el padre como autoridad. Es el descubrimiento de la autonomía como resultado de la convergencia de todos los cambios, lo que hace que las mujeres se atrevan a aceptar el desafío de unas nuevas condiciones [...]". (Tomado de: Lamus Canavate, Doris. En: La manzana de la discordia, Universidad del Valle)');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('ddadfef6-c2bc-47b6-8944-f7be96f70f23', 'situacion', 'FRAGMENTO', 'ctx-sit', 'Lea con atención los siguientes fragmentos de discursos, sobre la relación Estado-medios de comunicación, pronunciados por un político en 1998 y en 2006, respectivamente:<br><br><strong>Fragmento 1:</strong> "No nacionalizaría ningún medio de comunicación. Basta con los medios que ya tiene el Estado. Hay que repotenciar esos canales y ponerlos a trabajar en función de la educación nacional, de los valores nacionales. Tengo las mejores relaciones con los canales y los medios de comunicación. Los canales deben seguir siendo privados; es más, estamos interesados en que se amplíen y se profundicen" (1998).<br><br><strong>Fragmento 2:</strong> "Ese canal de televisión [privado], se acaba. Se acaba la concesión cedida por el Gobierno. Ya está redactada la medida, así que vayan preparándose, apagando los equipos. No se va a tolerar aquí ningún medio de comunicación que esté al servicio del golpismo, contra el pueblo, contra la nación, contra la independencia nacional, contra la dignidad de la República" (2006).<br><br>El primer fragmento corresponde a una entrevista que el político concedió en 1998 a un medio de comunicación internacional cuando era candidato a la presidencia. El político asumió la presidencia en 1999, enfrentó un fallido golpe de Estado en su contra en 2002, y se mantuvo como presidente hasta su muerte en 2013. El segundo fragmento, por tanto, hace parte de un discurso pronunciado en plaza pública en el 2006, cuando estaba en la mitad de su mandato presidencial.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'e823bbc9-dad1-4703-aec1-d8304aa987e6', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   null, 'Constitución y derechos',
   '¿En cuál de las siguientes situaciones se respetan los derechos del medio ambiente?',
   array['Debido al deterioro del agua en un país, un presidente decide ponerles como requisito a las empresas petroleras del lugar el uso de tecnologías limpias en los procedimientos que realizan.', 'Debido al incremento de la población en una ciudad, un alcalde decide construir nuevas viviendas en los predios cercanos a algunos de los humedales protegidos de la zona.', 'Debido al déficit energético de un país, un presidente decide saltarse varios protocolos de seguridad ambiental con tal de que las plantas nucleares produzcan más energía.', 'Debido al aumento de la población en un municipio, el alcalde decide construir grandes y amplias vías sobre algunos lugares emblemáticos por su fauna y flora.'],
-  'Lee cada opción preguntándote qué se sacrifica. Si lo que cede es el ambiente, esa no puede ser la respuesta.', 'publicada', 'modelo', '8393cde32be9661dd9b50258e8f66261';
+  'Lee cada opción preguntándote qué se sacrifica. Si lo que cede es el ambiente, esa no puede ser la respuesta.', 'publicada', 'modelo', '8393cde32be9661dd9b50258e8f66261', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('e823bbc9-dad1-4703-aec1-d8304aa987e6', 0, 'Exigirle a las petroleras tecnologías limpias es poner el cuidado del agua por encima de la conveniencia de la industria: ahí el derecho al ambiente sano se protege. En las otras tres, el ambiente es justamente lo que se sacrifica — humedales, protocolos de seguridad y hábitats de fauna y flora.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'faa427e8-f059-415f-8e0f-7fd348624cc5', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   'f358f134-b057-44df-99e4-0c30fdac1c92', 'Constitución y derechos',
   'El análisis presentado por la académica se fundamenta en el concepto de',
   array['comunidad internacional.', 'meritocracia laboral.', 'equidad de género.', 'desigualdad social.'],
-  'Fíjate en qué variable usa el autor para comparar. Si todas las cifras separan hombres de mujeres, el concepto es de género.', 'publicada', 'modelo', '8fe65ad3786c8456ed862dc9103607e3';
+  'Fíjate en qué variable usa el autor para comparar. Si todas las cifras separan hombres de mujeres, el concepto es de género.', 'publicada', 'modelo', '8fe65ad3786c8456ed862dc9103607e3', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('faa427e8-f059-415f-8e0f-7fd348624cc5', 2, 'Todas las cifras que cita comparan la presencia de mujeres frente a la de hombres en los mismos cargos, y su conclusión es que las reglas de juego no son justas entre unas y otros. Ese desequilibrio entre géneros es lo que nombra la equidad de género. La desigualdad social es más amplia y no explica por qué mide solo por sexo.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '0212c4ba-88ef-4d3d-9b2b-84b0a0c293f8', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   '8cb91aa4-e84e-4af2-8a91-6d1f5296b0a7', 'Constitución y derechos',
   'De acuerdo con el fragmento anterior, ¿cuál de las siguientes acciones NO está directamente relacionada con la aplicación de los Derechos Humanos?',
   array['Eliminar las condiciones que causan la discriminación racial o que contribuyen a perpetuarla.', 'Defender la igualdad de oportunidades laborales para mujeres y hombres.', 'Procurar condiciones de vida digna en los establecimientos carcelarios.', 'Promover normas de comportamiento que garanticen la convivencia ciudadana.'],
-  'En este tipo de pregunta, empareja cada opción con un derecho del texto. La que se quede sin pareja es la respuesta.', 'publicada', 'modelo', 'f10502e02670120fc591d646f5e1d7f6';
+  'En este tipo de pregunta, empareja cada opción con un derecho del texto. La que se quede sin pareja es la respuesta.', 'publicada', 'modelo', 'f10502e02670120fc591d646f5e1d7f6', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('0212c4ba-88ef-4d3d-9b2b-84b0a0c293f8', 3, 'Las otras tres se conectan con derechos que el fragmento nombra: la igualdad ante la ley, el trabajo con salario igualitario y la dignidad de la persona incluso privada de la libertad. Las normas de convivencia son reglas de trato social que un Estado puede promover, pero no aparecen en la lista como un derecho de la persona.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'f80a3d69-0e27-43f5-8a97-412658c3988c', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   'ae37e03a-5143-4b1a-a247-52b9bc2327f3', 'Constitución y derechos',
   '¿Cuál de los siguientes es un supuesto que se deriva de este segundo artículo de la Declaración de los Derechos Humanos?',
   array['Los Derechos Humanos son aplicables solo si no van en contra de la soberanía del país o territorio al que pertenece una persona.', 'Los Derechos Humanos son aplicables a todas las personas que hayan declarado oficialmente que están de acuerdo con ellos.', 'Los Derechos Humanos se aplican siempre y cuando no vayan en contra de las leyes del país o territorio al que pertenezca la persona.', 'Los Derechos Humanos son aplicables a todos los individuos independientemente de sus características socioculturales.'],
-  'Cuando un artículo lista condiciones prohibidas de distinción, lo que afirma es universalidad: aplica a todos sin excepción.', 'publicada', 'modelo', '206ab4a14bf792534f82fe7725cb6a00';
+  'Cuando un artículo lista condiciones prohibidas de distinción, lo que afirma es universalidad: aplica a todos sin excepción.', 'publicada', 'modelo', '206ab4a14bf792534f82fe7725cb6a00', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('f80a3d69-0e27-43f5-8a97-412658c3988c', 3, 'El artículo enumera todo aquello que NO puede servir para excluir a alguien: raza, sexo, idioma, religión, opinión, origen, posición económica. Es decir, los derechos valen para cualquiera sin importar de dónde venga ni cómo viva. Las opciones que los condicionan a la soberanía, a las leyes locales o a una aceptación previa dicen justo lo contrario.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '94cd26b3-ee9b-4f57-9a48-7e535ff97979', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   '7f337469-a3b2-4f07-94b3-ced30a675328', 'Constitución y derechos',
   'De acuerdo con la información presentada anteriormente, ¿cuál de los siguientes aspectos NO es tenido en cuenta por el grupo de científicos al formular su propuesta de conservación?',
   array['El deber constitucional de los ciudadanos de proteger las riquezas naturales de la nación.', 'El derecho de las comunidades indígenas a participar en las decisiones que afectan el manejo de sus territorios.', 'La formación académica y experticia de las personas encargadas de administrar la reserva.', 'El impacto que pueda tener la academia en el cuidado de los recursos naturales del país.'],
-  'La palabra «exclusivamente» casi siempre señala a quién se está excluyendo. Pregúntate quién más debería estar y no está.', 'publicada', 'modelo', 'e97d7b7f326f9e62543efc34d87dd13c';
+  'La palabra «exclusivamente» casi siempre señala a quién se está excluyendo. Pregúntate quién más debería estar y no está.', 'publicada', 'modelo', 'e97d7b7f326f9e62543efc34d87dd13c', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('94cd26b3-ee9b-4f57-9a48-7e535ff97979', 1, 'La reserva se ubica en territorios ocupados históricamente por pueblos indígenas, pero la propuesta dice que la administrarían «exclusivamente» profesionales e investigadores. Esa palabra deja a las comunidades por fuera de las decisiones sobre su propio territorio. Los otros tres aspectos sí están contemplados: proteger las riquezas naturales, la experticia de quienes administran y el papel de la academia.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '085d457d-48f9-4c21-8bc0-ca8e46e2d3ea', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'constitucion-y-derechos'),
   (select id from public.lotes where codigo = '2026-B'),
   'afe491ee-272c-44de-8c82-9f83249ce845', 'Constitución y derechos',
   'De acuerdo con la Constitución Política de Colombia, ¿en cuál deber ciudadano se ubica la acción de los funcionarios de la alcaldía?',
   array['Respetar los derechos ajenos y no abusar de los propios.', 'Obrar conforme al principio de solidaridad social.', 'Propender por el mantenimiento de la paz en las comunidades.', 'Participar en la vida política, cívica y comunitaria del país.'],
-  'Cuando alguien entrega algo suyo para socorrer a otro ante una calamidad, el deber constitucional en juego es la solidaridad.', 'publicada', 'modelo', '1cdaeaabb1a9e9625c2f3a78447360f1';
+  'Cuando alguien entrega algo suyo para socorrer a otro ante una calamidad, el deber constitucional en juego es la solidaridad.', 'publicada', 'modelo', '1cdaeaabb1a9e9625c2f3a78447360f1', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('085d457d-48f9-4c21-8bc0-ca8e46e2d3ea', 1, 'Los funcionarios ceden parte de su salario para ayudar a damnificados que no conocen: dar de lo propio para responder ante una calamidad ajena es exactamente el principio de solidaridad social. No están defendiendo un derecho, ni mediando en un conflicto, ni participando en política.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '9f190c9f-6401-4e92-8836-8afca625ef91', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'economia-y-sociedad'),
   (select id from public.lotes where codigo = '2026-B'),
   'c1dc055a-f204-4f75-ab93-1820a6b717b3', 'Economía y sociedad',
   'Una vez finalice el programa, ¿qué impediría que los padres sigan alimentando a sus hijos de forma saludable?',
   array['Que les sea fácil enseñarles a sus hijos a comer alimentos saludables.', 'Que les sea difícil conseguir los mismos alimentos que estaban en las "loncheras saludables".', 'Que les sea fácil a ellos adoptar buenos hábitos de alimentación.', 'Que les sea difícil encontrar alimentos diferentes a los que estaban en las "loncheras saludables".'],
-  'La pregunta busca un obstáculo. Descarta de entrada todo lo que suene a facilidad o a ventaja.', 'publicada', 'modelo', '02d065ff5147f9891ed4afb06ca86f9a';
+  'La pregunta busca un obstáculo. Descarta de entrada todo lo que suene a facilidad o a ventaja.', 'publicada', 'modelo', '02d065ff5147f9891ed4afb06ca86f9a', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('9f190c9f-6401-4e92-8836-8afca625ef91', 1, 'El programa entrega los alimentos y enseña a usarlos, pero al terminar los padres tienen que comprarlos ellos mismos. Si no logran conseguir esos alimentos, el aprendizaje no les sirve de nada. Las dos opciones que empiezan con «que les sea fácil» describen facilidades, no obstáculos, y no encontrar alimentos distintos no estorba: los que ya conocen bastan.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '964ad246-01c2-442e-94ae-ae070bce83b5', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'economia-y-sociedad'),
   (select id from public.lotes where codigo = '2026-B'),
   'fc3a5615-3bca-4b90-85d5-9b4c4c62145d', 'Economía y sociedad',
   'Teniendo en cuenta la anterior información, ¿cuál de los siguientes factores puede explicar la diferencia entre las cifras de embarazo adolescente en Estados Unidos y América Latina?',
   array['La adecuada cobertura en seguridad social en los países de América Latina para todos los estratos.', 'La menor voluntad política de los gobernantes en América Latina, lo cual impide invertir presupuesto para combatir la problemática.', 'La discriminación hacia las mujeres y la violencia de género que prevalecen en Estados Unidos.', 'La mejor comunicación y acceso a zonas apartadas en Estados Unidos, lo cual permite la efectividad de las campañas en ese país.'],
-  'Cuando el texto niega explícitamente una explicación, esa opción queda descartada aunque suene razonable.', 'publicada', 'modelo', '0a7876bf5c209b22ca22ef12362b9df9';
+  'Cuando el texto niega explícitamente una explicación, esa opción queda descartada aunque suene razonable.', 'publicada', 'modelo', '0a7876bf5c209b22ca22ef12362b9df9', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('964ad246-01c2-442e-94ae-ae070bce83b5', 3, 'El texto atribuye el éxito estadounidense a unas campañas que funcionaron, y explica que en América Latina esas mismas campañas no llegan a las zonas de difícil acceso. La diferencia está entonces en poder llegar o no con la campaña. El propio texto descarta la falta de voluntad política, porque dice que varios países sí invirtieron presupuesto.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'b423b103-e37f-4373-a3f6-7b10362662bf', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'economia-y-sociedad'),
   (select id from public.lotes where codigo = '2026-B'),
   '533eccc5-9e7b-4da1-9545-d0b093fd0a78', 'Economía y sociedad',
   'Aplicar en otra ciudad la iniciativa descrita requeriría',
   array['la asistencia del Estado y sus funcionarios para satisfacer las demandas de servicios de salud.', 'la participación solidaria y organizada de la comunidad en proyectos autónomos.', 'la inversión económica de la empresa privada para apoyar proyectos comunitarios.', 'la donación, por parte de hospitales y clínicas, de los equipos médicos necesarios.'],
-  'Si el texto aclara de dónde NO viene el apoyo, ahí te está diciendo cuál es el verdadero motor de la iniciativa.', 'publicada', 'modelo', '5b74d487a63a5c4d306022eb9cf47177';
+  'Si el texto aclara de dónde NO viene el apoyo, ahí te está diciendo cuál es el verdadero motor de la iniciativa.', 'publicada', 'modelo', '5b74d487a63a5c4d306022eb9cf47177', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('b423b103-e37f-4373-a3f6-7b10362662bf', 1, 'La Central la crearon los propios vecinos: estudiaron enfermería, manejan las ambulancias y se financian con rifas y fiestas. El texto subraya que no recibe ayuda del Estado ni de privados. Replicarla exige entonces esa misma organización comunitaria, no el apoyo que la iniciativa justamente no tiene.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '2356c286-71af-48ea-b51e-900b4d79c984', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   '2adb8b95-1f5a-4e88-b5bb-2e481ab31155', 'Interpretación de perspectivas',
   'Por las posiciones políticas expresadas en este discurso, puede afirmarse que fue probablemente pronunciado por un líder con ideas políticas',
   array['de izquierda.', 'de derecha.', 'afines al liberalismo.', 'afines al proteccionismo.'],
-  'Mira qué defiende y a quién ataca. El par «religión, familia y propiedad» contra «marxismo» ubica el discurso de inmediato.', 'publicada', 'modelo', 'f548566fe4a51bd04a7f9287340a1dec';
+  'Mira qué defiende y a quién ataca. El par «religión, familia y propiedad» contra «marxismo» ubica el discurso de inmediato.', 'publicada', 'modelo', 'f548566fe4a51bd04a7f9287340a1dec', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('2356c286-71af-48ea-b51e-900b4d79c984', 1, 'Quien habla ataca al anarquismo, al marxismo y al bolchevismo, y defiende la religión, la familia y la propiedad: esos tres valores, puestos en ese orden y frente a esos enemigos, son la bandera clásica de la derecha del siglo XX. La izquierda no combatiría al marxismo, y el proteccionismo es una política económica que aquí ni se menciona.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'e8916332-988d-4980-b6f9-729a3e8a3d48', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   '41828da6-1fd1-4205-b65c-169af2f1e6b3', 'Interpretación de perspectivas',
   'De acuerdo con el texto anterior, Luther King luchó por',
   array['el respeto que inspiran las diferencias raciales y culturales.', 'la discriminación racial en lugares públicos.', 'la igualdad de los derechos civiles entre negros y blancos.', 'la defensa de la religión protestante.'],
-  'Cuidado con la opción que repite una palabra del tema pero invierte el sentido: nadie lucha «por» la discriminación.', 'publicada', 'modelo', '89e557ad01a7a423dcffce1381641d4c';
+  'Cuidado con la opción que repite una palabra del tema pero invierte el sentido: nadie lucha «por» la discriminación.', 'publicada', 'modelo', '89e557ad01a7a423dcffce1381641d4c', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('e8916332-988d-4980-b6f9-729a3e8a3d48', 2, 'El sueño que describe es el de personas de distinto color y credo tomándose de las manos y siendo por fin libres: lo que persigue es que todos valgan lo mismo. Luchar «por la discriminación» diría lo contrario de lo que pide, y aunque nombra a católicos y protestantes, no defiende a una religión sobre otra: las pone en pie de igualdad.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '2e259036-7922-498a-a34e-d8476ea91c58', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   '10f4fce5-b643-4db0-a715-2ee4cd54f0b5', 'Interpretación de perspectivas',
   'El anterior fragmento hace alusión a',
   array['los movimientos laborales del siglo XX.', 'el acceso de las mujeres a los cargos públicos.', 'la obtención del derecho al voto por las mujeres.', 'los logros de las mujeres durante la segunda mitad del siglo XX.'],
-  'Si el texto enumera varios cambios distintos, la respuesta tiene que ser la más amplia, no una sola de las conquistas.', 'publicada', 'modelo', '3ff6a398c873e89344e39da64d302315';
+  'Si el texto enumera varios cambios distintos, la respuesta tiene que ser la más amplia, no una sola de las conquistas.', 'publicada', 'modelo', '3ff6a398c873e89344e39da64d302315', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('2e259036-7922-498a-a34e-d8476ea91c58', 3, 'El fragmento enumera varias conquistas a la vez: entrar a la universidad, controlar la natalidad, trabajar fuera de casa y descubrir la autonomía. Ninguna de las tres primeras opciones cubre ese conjunto; solo la que habla de los logros de las mujeres en ese periodo los abarca todos. El voto y los cargos públicos ni siquiera se mencionan.');
 
-insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm)
+insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select '2c109bd7-71b2-4b0c-8ffd-9008476e223b', 'soc',
   (select id from public.temas where materia = 'soc' and codigo = 'perspectivas-y-fuentes'),
   (select id from public.lotes where codigo = '2026-B'),
   'ddadfef6-c2bc-47b6-8944-f7be96f70f23', 'Interpretación de perspectivas',
   '¿Qué argumento explica el cambio de posición del político frente a los medios de comunicación privados en los dos discursos citados?',
   array['En su condición de candidato a la presidencia, desconocía el poder y la influencia de los medios de comunicación privados sobre la ciudadanía. Siendo presidente, decidió darles un mayor impulso a los medios nacionales.', 'En su condición de candidato a la presidencia, no estaba interesado en perder el apoyo electoral de los medios de comunicación privados. Siendo presidente, buscó legitimar su proyecto político censurando a quienes se le opusieran.', 'En su condición de candidato a la presidencia, desconocía que los medios de comunicación privados también pueden estar al servicio de los valores nacionales. Siendo presidente, estaba interesado en incidir en los contenidos que estos producían.', 'En su condición de candidato a la presidencia, tenía como proyecto político sustituir progresivamente los medios de comunicación estatales por medios de comunicación privados. Siendo presidente, reconoció la importancia social de los medios estatales y decidió clausurar la competencia.'],
-  'Cuando alguien cambia de posición, pregúntate qué necesitaba en cada momento. El interés suele explicar más que las ideas.', 'publicada', 'modelo', 'e172fbb7d453aac61e89bdd328ec433d';
+  'Cuando alguien cambia de posición, pregúntate qué necesitaba en cada momento. El interés suele explicar más que las ideas.', 'publicada', 'modelo', 'e172fbb7d453aac61e89bdd328ec433d', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('2c109bd7-71b2-4b0c-8ffd-9008476e223b', 1, 'De candidato necesitaba a los medios privados y por eso los halagaba; ya de presidente, y después de un golpe fallido, cierra un canal acusándolo de golpismo. El cambio se explica porque en cada momento le convenía algo distinto: primero el apoyo para ganar, después el control para sostenerse. Las otras tres le atribuyen desconocimiento o un cambio de convicción que los discursos no muestran.');
 
 insert into public.cuestionarios (id, materia, slug, seccion, titulo, tipo, orden, lote_id, publicado)

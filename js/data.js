@@ -11,6 +11,10 @@ const ICONS = {
   flask: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>',
 };
 
+/* Cómo se nombra al estudiante la dificultad que clasificó el docente.
+   Antes el chip decía «Intermedio» en todas las preguntas, sin distinguir. */
+const NIVEL = { baja: 'Básico', media: 'Intermedio', alta: 'Avanzado' };
+
 const MATERIA_META = {
   lc:  { tint: 'var(--tint-lc)',  icon: ICONS.book,  nivel: 'Intermedio', desc: 'Comprensión, interpretación y evaluación de textos continuos y discontinuos: identificar ideas, inferir intenciones y valorar argumentos.' },
   mat: { tint: 'var(--tint-mat)', icon: ICONS.sigma, nivel: 'Intermedio', desc: 'Interpretación de datos, formulación y ejecución de problemas y razonamiento geométrico en contextos cotidianos.' },
