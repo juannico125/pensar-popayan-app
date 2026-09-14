@@ -648,8 +648,13 @@ const BANKS = {
       'El texto explica que la coca persiste porque no hay otra fuente de ingreso comparable ni presencia estatal; atacar solo el cultivo con fumigación no cambia eso. Ofrecer una alternativa económica real —sustitución de cultivos— sí ataca la causa de fondo.',
       'Si el problema de raíz es la falta de ingresos alternativos, la solución tiene que ofrecer justamente eso, no más fumigación.'),
 
-    S('Geografía y territorio', 'SITUACIÓN', 'ctx-sit',
-      'Hasta el año 2012, la región Andina de Colombia era el territorio donde más títulos mineros se habían adjudicado, mientras que la Amazonía presentaba una situación diametralmente opuesta en términos de actividad minera.',
+    /* El cuadernillo trae aquí un mapa; el enunciado original ya lo resume en
+       palabras, así que la pregunta se podía responder sin verlo. Se recortó
+       del escaneo de todos modos para que el estímulo sea el mismo del examen. */
+    S('Geografía y territorio', 'MAPA', 'ctx-fig',
+      '<p>Este mapa muestra, en color negro, las zonas del país donde, hasta el 2012, se habían adjudicado títulos mineros. Como se observa, la región Andina ha sido el territorio donde más títulos mineros se han adjudicado, mientras que la Amazonía presenta una situación diametralmente opuesta en términos de actividad minera.</p>' +
+      '<figure class="ctx-fig"><img src="img/figuras/f2-p54-mapa-titulos-mineros.webp" width="737" height="1089" loading="lazy" ' +
+      'alt="Mapa de Colombia. En negro aparecen las zonas con títulos mineros adjudicados hasta 2012: una franja ancha y continua que recorre la cordillera de los Andes de norte a sur, más algunas manchas en el norte del país. La mitad oriental, que corresponde a la Orinoquía y la Amazonía, queda casi por completo en blanco."></figure>',
       '¿Cuál de las siguientes razones explica mejor la distribución geográfica de los títulos mineros?',
       ['La región Andina carece de biodiversidad y recursos hídricos, por lo cual la actividad minera desarrollada en ella tiene un menor impacto ambiental.',
        'La región Andina es la zona del país donde existe mejor infraestructura y capacidad técnica para realizar exploraciones mineras.',

@@ -126,9 +126,56 @@ form, `SyC` for the subject (Sociales y Ciudadanas), and the character on the
 cover. The character is what actually matters: it is how the docente locates a
 form in the physical stack at the preuniversitario, so **the character name
 goes in the cuestionario title** (`Aladín · Derechos y dignidad`), not only in
-a comment. F5 (Aladín) and F6 (Deadpool) follow this; F4 is Mikey Mouse but
-its titles predate the convention, and the characters for F1, F2 and F3 are
-not recorded anywhere yet.
+a comment.
+
+The full roster, recovered from the PDF filenames in September 2026:
+
+| Formulario | Personaje   | Archivo                      |
+| ---------- | ----------- | ---------------------------- |
+| F1         | Pato Donald | `F1 SyC .Pato Donal.pdf`     |
+| F2         | Bugs Bunny  | `F2 SyC .Bugs bunny.pdf`     |
+| F3         | Tintín      | `F3 SyC .Tintin.pdf`         |
+| F4         | Mikey Mouse | `F4 SyC .Mikey Mouse.pdf`    |
+| F5         | Aladín      | `F5 SyC .Aladin.pdf`         |
+| F6         | Deadpool    | `F6 SyC .Deadpool.pdf`       |
+
+Only F5 and F6 carry the character in their cuestionario titles; the other 51
+still don't. Adding them is safe — `uuidDe('cuestionario', materia, slug)`
+derives the id from the **slug**, not the title, so renaming touches no ids.
+
+### Figures: almost everything is prose, three things are images
+
+The cuadernillos are scans with no text layer, so graphic stimuli were
+transcribed as prose. A sweep of all 152 pages of the eleven cuadernillos found
+only **three figures that carry meaning**; everything else is either decorative
+(the portraits heading the English reading passages, the Mickey Mouse cover) or
+already solved as HTML (the two tables, and the part-1 avisos, which are text in
+a box styled by `.ctx-aviso`).
+
+The three live in `img/figuras/` as WebP and are referenced from the contexto
+HTML with a relative `src`, so the Cloudflare Worker serves them from the same
+origin as the app. That beats Supabase Storage here: Cloudflare has a Bogotá
+PoP and this Supabase project is in `us-east-1`. The `figuras` bucket exists
+with public read and admin-only write (`20260914034808`), ready for when the
+panel gains an upload button — moving the bytes there means changing only the
+`src` base.
+
+Rules for adding one:
+- Wrap it in `<figure class="ctx-fig">` **inside** the contexto HTML. `app.js`
+  always renders the wrapper as `<div class="ctx-card">` and ignores the
+  `ctxClass` column, so styling classes have to live in the content itself.
+- `.ctx-card` normally scrolls at 250px; `.ctx-card:has(.ctx-fig)` lifts that,
+  because an image can't be read in slices.
+- The `alt` has to carry the same evidence the image does — a blind student
+  must be able to answer. That is not leaking the key: the stimulus is public,
+  the key is not. Note that `sinEtiquetas()` strips whole tags, so `alt` text
+  never reaches the derived id or `hash_norm`.
+
+**Changing a contexto changes the id of its pregunta**, because both derive
+from the content. Rebuild the rows (delete + insert) instead of updating in
+place, and check `respuestas`/`repasos` first — the three figures had none.
+Updating a row's text in place while keeping its old id is what left the DB and
+git out of step before (see below).
 
 ### Loading a batch, and proving it loaded intact
 
@@ -151,6 +198,22 @@ scripts guard the pipeline:
 Before applying a new batch, also check its content-derived `hash_norm` values
 against the ones already in `preguntas`: that is how the repeat of F6's
 question 71 (already loaded from F1/F2) was caught before it hit the database.
+
+**Known drift (September 2026).** Every row's *content* in the live project is
+byte-identical to git — the md5 over all 340 `contextos.contenido` matches the
+seeds exactly. But **two rows carry ids that git no longer produces**, because
+their text was edited after loading and the DB row kept its original id:
+
+- the DANE price table in `sociales-2026b.js` (DB `8491e444…`, seeds
+  `9c90a941…`), and the pregunta hanging off it;
+- one pregunta in the `6106be2d…7c1a6f8c` id range.
+
+Consequence: a rebuild from the seeds would produce those two rows under
+different ids. Harmless to students, fatal to reproducibility. Fixing it means
+rewriting the ids, and the table one already has a `respuestas` row pointing at
+it, so it needs an id migration rather than a delete-and-reinsert. The F3
+Allende contexto had the same problem and was fixed on 2026-09-14 by rebuilding
+it as part of the figure work.
 
 ## Design system (student app + panel)
 

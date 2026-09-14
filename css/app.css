@@ -546,6 +546,29 @@ input { font: inherit; }
 .ctx-fig { margin-block: var(--space-xs); }
 .ctx-fig svg { width: 100%; height: auto; display: block; }
 
+/* Figuras recortadas de los cuadernillos escaneados (mapas, recortes de
+   prensa). La tarjeta de contexto se desplaza cuando el estímulo es un texto
+   largo, pero una imagen no se lee a trozos: si hay figura, la tarjeta crece.
+   El tope de alto evita que un mapa vertical empuje la pregunta fuera de
+   pantalla en un móvil. */
+.ctx-card:has(.ctx-fig) { max-height: none; }
+.ctx-fig img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 58vh;
+  margin-inline: auto;
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+.ctx-fig figcaption {
+  font-size: var(--text-xs);
+  color: var(--color-ink-faint);
+  margin-top: 6px;
+  text-align: center;
+}
+
 /* La línea de la otra persona en los diálogos de la parte 3: se dibuja como
    globo de conversación porque leerla como habla es parte de la tarea. */
 .ctx-dialogo {
