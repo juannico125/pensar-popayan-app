@@ -3,18 +3,9 @@
  * Fuente: «aladin mates 2.pdf», el cuadernillo «Matemáticas 2» de Aladín, 25
  * preguntas numeradas 22 a 46. Escaneo de pliegos, sin capa de texto.
  *
- * ⚠ NO CARGAR TODAVÍA. Faltan 22 recortes del escaneo; hasta que estén en
- * img/figuras/mat/ las preguntas con figura mostrarían una imagen rota. Los
- * enunciados, las opciones, las claves y las explicaciones sí están completos
- * y revisados: esto es lo que cuesta, y queda guardado aquí.
- *
- * Figuras pendientes, por pregunta:
- *   23 (gráfica de frecuencias), 24 (barras por ronda), 25 (diagrama de árbol),
- *   26 (gráfica original + sus CUATRO opciones), 28 (costo acumulado),
- *   29 (pirámide de red), 31 (dos círculos), 32 (cuadrado con triángulo),
- *   33 (hexágono), 34 (edificio), 35 (triángulo), 37 (CUATRO gráficas de
- *   opción), 42 (triángulo MOP), 43 (mapa del triángulo de las Bermudas) y
- *   45 (recta de inversión).
+ * Las 22 figuras están recortadas en img/figuras/mat/. Se localizaron con
+ * scripts/detectar-figuras.mjs y se ajustaron a mano las que el detector no
+ * aisló bien: las cinco de la 26, la del árbol de la 25 y la recta de la 45.
  *
  * El componente y la dificultad salen de la clasificación de Herman. Aquí
  * aparece la primera pregunta de Trigonometría del banco (la 34), que es la
@@ -240,7 +231,10 @@ const BANKS = {
       '<p style="font-family:var(--font-mono);text-align:center">x = 2 · (−t² + 10)</p>' +
       '<p>donde t es el tiempo en órbita y x es la distancia respecto a la línea del ecuador, y los valores negativos de x representan distancias hacia el sur y los valores positivos de x representan distancias hacia el norte…</p>',
       '¿Cuál es la distancia máxima hacia el norte a la que estará el satélite de la línea del ecuador?',
-      ['−20', '−10', '10', '20'], 3,
+      /* El signo se dice con palabras: norm() borra el − al calcular el
+         hash, y −20 y 20 quedarían como la misma opción. Además es la
+         lectura que pide el contexto: el signo es el rumbo. */
+      ['20 hacia el sur', '10 hacia el sur', '10 hacia el norte', '20 hacia el norte'], 3,
       'Hacia el norte significa x lo más grande posible. Como t² nunca es negativo, el paréntesis −t² + 10 alcanza su mayor valor cuando t = 0, y ahí vale 10. Entonces x = 2 × 10 = 20.',
       'En una parábola con el término cuadrático negativo, el máximo está donde ese término se anula.'),
 
@@ -248,11 +242,11 @@ const BANKS = {
     M('Funciones y variación', 'alta', 'SITUACIÓN', 'ctx-sit',
       '<p>Dos funciones continuas se intersectan en los puntos con coordenadas (−2, 0), (0, 6) y (2, 12).</p>',
       '¿Cuál de las siguientes gráficas representa dos funciones que cumplen esto?',
-      [fig('al2-q37-opA.webp', 'Par de curvas que se cortan en tres puntos.'),
-       fig('al2-q37-opB.webp', 'Par de curvas que se cortan en tres puntos.'),
-       fig('al2-q37-opC.webp', 'Par de curvas que se cortan en tres puntos.'),
-       fig('al2-q37-opD.webp', 'Par de curvas que se cortan en tres puntos.')], 0,
-      'Hay que buscar la gráfica donde las dos curvas se crucen exactamente en x = −2 a la altura 0, en x = 0 a la altura 6 y en x = 2 a la altura 12. Basta comprobar los tres cortes: si alguno no coincide, esa opción queda descartada.',
+      [fig('al2-q37-opA.webp', 'Dos curvas: una parábola ancha con vértice en (−2, 0) que cruza el eje vertical cerca de 2, y otra casi recta que sube desde (−2, 0) pasando por (0, 6). Se juntan en (−2, 0) y en (2, 12), pero en el eje vertical van separadas.'),
+       fig('al2-q37-opB.webp', 'Dos curvas que arrancan juntas en (−2, 0), se vuelven a encontrar sobre el eje vertical a la altura 6 y otra vez en (2, 12).'),
+       fig('al2-q37-opC.webp', 'Una sola parábola con vértice en (−2, 0) que llega a (2, 12); hay puntos marcados en el eje vertical a la altura 6 y en (2, 12), pero no hay una segunda curva.'),
+       fig('al2-q37-opD.webp', 'Una sola curva en forma de ese que pasa por (−2, 0), por el eje vertical a la altura 6 y por (2, 12); no hay una segunda curva.')], 1,
+      'Se necesitan dos curvas que compartan los tres puntos. En una de las gráficas hay dos curvas, pero sobre el eje vertical una va por 2 y la otra por 6: ahí no se cortan, solo coinciden en los extremos. En otras dos está dibujada una única función, así que no hay intersección posible. Queda la que trae dos curvas juntas en (−2, 0), en la altura 6 del eje vertical y en (2, 12).',
       'Verifica los puntos de corte uno por uno sobre los ejes; no te fíes de la forma general de las curvas.',
       'media'),
 
@@ -377,7 +371,33 @@ const BANKS = {
   ],
 };
 
-/* La ruta se arma cuando estén los recortes. Se deja vacía a propósito para
-   que scripts/verificar-contenido.mjs falle si alguien intenta cargar esto
-   antes de tiempo. */
-const CUESTIONARIOS = { mat: [] };
+/* La ruta: diez cuestionarios cortos por tema, continuando la numeración de
+   Aladín S1, que llegó hasta mat-13. */
+const CUESTIONARIOS = {
+  mat: [
+    { tema: 'Interpretación de datos', items: [
+      { id: 'mat-14', titulo: 'Aladín · Qué dice una tabla',      qs: [0, 1],          tipo: 'Situación' },
+      { id: 'mat-15', titulo: 'Aladín · Comparar gráficas',       qs: [2, 4],          tipo: 'Situación' },
+    ]},
+    { tema: 'Tablas y probabilidad', items: [
+      { id: 'mat-16', titulo: 'Aladín · Contar y decidir',        qs: [3, 16],         tipo: 'Situación' },
+    ]},
+    { tema: 'Proporcionalidad y porcentajes', items: [
+      { id: 'mat-17', titulo: 'Aladín · Porcentajes en contexto', qs: [5, 6, 7],       tipo: 'Situación' },
+      { id: 'mat-18', titulo: 'Aladín · Descuentos e intereses',  qs: [8, 17, 21, 22], tipo: 'Situación' },
+    ]},
+    { tema: 'Áreas y perímetros', items: [
+      { id: 'mat-19', titulo: 'Aladín · Figuras planas',          qs: [9, 10, 11],     tipo: 'Situación' },
+      { id: 'mat-20', titulo: 'Aladín · Ángulos y recorridos',    qs: [13, 19, 20],    tipo: 'Situación' },
+    ]},
+    { tema: 'Trigonometría', items: [
+      { id: 'mat-21', titulo: 'Aladín · Razones trigonométricas', qs: [12],            tipo: 'Situación' },
+    ]},
+    { tema: 'Funciones y variación', items: [
+      { id: 'mat-22', titulo: 'Aladín · Funciones y gráficas',    qs: [14, 15, 18, 23], tipo: 'Situación' },
+    ]},
+    { tema: 'Estadística descriptiva', items: [
+      { id: 'mat-23', titulo: 'Aladín · Mediana y moda',          qs: [24],            tipo: 'Situación' },
+    ]},
+  ],
+};
