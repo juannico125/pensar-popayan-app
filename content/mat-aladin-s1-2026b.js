@@ -317,7 +317,7 @@ const CUESTIONARIOS = {
     { tema: 'Interpretación de datos', items: [
       { id: 'mat-6',  titulo: 'Aladín · Leer una gráfica',       qs: [0, 1, 3],      tipo: 'Situación' },
       { id: 'mat-7',  titulo: 'Aladín · De la gráfica a la tabla', qs: [7, 8, 16],   tipo: 'Situación' },
-      { id: 'mat-8',  titulo: 'Aladín · Gráficas exigentes',      qs: [5, 14, 17],    tipo: 'Situación' },
+      { id: 'mat-8',  titulo: 'Aladín · Gráficas exigentes',      qs: [5, 15, 17],    tipo: 'Situación' },
     ]},
     { tema: 'Estadística descriptiva', items: [
       { id: 'mat-9',  titulo: 'Aladín · Promedios y ponderación', qs: [11, 18],       tipo: 'Situación' },
@@ -330,7 +330,7 @@ const CUESTIONARIOS = {
       { id: 'mat-12', titulo: 'Aladín · Razones y distancias',    qs: [10, 19],       tipo: 'Situación' },
     ]},
     { tema: 'Ecuaciones en contexto', items: [
-      { id: 'mat-13', titulo: 'Aladín · Qué datos hacen falta',   qs: [15],           tipo: 'Situación' },
+      { id: 'mat-13', titulo: 'Aladín · Qué datos hacen falta',   qs: [14],           tipo: 'Situación' },
     ]},
   ],
 };

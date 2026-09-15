@@ -238,7 +238,7 @@ insert into public.cuestionarios (id, materia, slug, seccion, titulo, tipo, orde
 select 'ce19795e-cdc4-4bea-88c3-0c42a85d9390', 'mat', 'mat-8', 'Interpretación de datos', 'Aladín · Gráficas exigentes', 'Situación', 8,
   (select id from public.lotes where codigo = '2026-B'), true;
 insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('ce19795e-cdc4-4bea-88c3-0c42a85d9390', 'def89331-14ef-44e7-ac1c-2a3f1e5c9077', 1);
-insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('ce19795e-cdc4-4bea-88c3-0c42a85d9390', 'c70e5c3f-51d9-49cd-9735-4f9b6352e3e0', 2);
+insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('ce19795e-cdc4-4bea-88c3-0c42a85d9390', '8a9d22c2-4bd4-4f0b-beab-5efd551901f2', 2);
 insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('ce19795e-cdc4-4bea-88c3-0c42a85d9390', 'a1146319-1f66-4864-ad95-e88367c9318a', 3);
 
 insert into public.cuestionarios (id, materia, slug, seccion, titulo, tipo, orden, lote_id, publicado)
@@ -270,5 +270,5 @@ insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) 
 insert into public.cuestionarios (id, materia, slug, seccion, titulo, tipo, orden, lote_id, publicado)
 select '103b4fe3-72a6-40ff-8186-53bd53065fd7', 'mat', 'mat-13', 'Ecuaciones en contexto', 'Aladín · Qué datos hacen falta', 'Situación', 13,
   (select id from public.lotes where codigo = '2026-B'), true;
-insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('103b4fe3-72a6-40ff-8186-53bd53065fd7', '8a9d22c2-4bd4-4f0b-beab-5efd551901f2', 1);
+insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('103b4fe3-72a6-40ff-8186-53bd53065fd7', 'c70e5c3f-51d9-49cd-9735-4f9b6352e3e0', 1);
 
