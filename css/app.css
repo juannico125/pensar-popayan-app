@@ -339,6 +339,10 @@ input { font: inherit; }
 .input-wrap:focus-within { border-color: var(--color-accent); }
 .input-wrap.is-error { border-color: var(--color-err); }
 .input-wrap input { min-width: 0; background: none; border: 0; outline: none; color: var(--color-ink); font-size: var(--text-md); }
+.input-wrap input::-ms-reveal,
+.input-wrap input::-ms-clear { display: none; }
+.input-wrap input::-webkit-credentials-auto-fill-button,
+.input-wrap input::-webkit-strong-password-auto-fill-button { display: none !important; }
 #pass-wrap { grid-template-columns: auto minmax(0, 1fr) auto; }
 .pass-toggle {
   display: grid; place-items: center;
