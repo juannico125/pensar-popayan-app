@@ -1,3 +1,17 @@
+/* Prueba de la frontera de autorización, sin navegador ni red.
+ *
+ *   node scripts/verificar-auth.mjs
+ *
+ * `js/auth.js` decide quién entra y quién no, y se ejecuta en el cliente: es
+ * el único archivo donde una regresión silenciosa deja a un estudiante dentro
+ * del panel de la coordinación. Aquí se carga con un Supabase de mentira y se
+ * comprueban los casos que importan: sin sesión, token inválido, cuenta
+ * archivada, rol desconocido, sesión cerrada en otra pestaña, cambio de
+ * cuenta y la revalidación periódica.
+ *
+ * Esto NO sustituye probar el ingreso en un navegador con cuentas reales;
+ * comprueba la lógica, no el despliegue.
+ */
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
@@ -22,18 +36,18 @@ const context = vm.createContext({
 });
 vm.runInContext(source + '\nglobalThis.Auth = Auth;', context);
 const { Auth } = context;
-assert.equal((await Auth.profile()).rol, 'estudiante');
+assert.equal((await Auth.perfil()).rol, 'estudiante');
 user = null;
-await assert.rejects(Auth.profile(), /Sesión/);
+await assert.rejects(Auth.perfil(), /Sesión/);
 user = { id: 'student' }; authError = new Error('Invalid token');
-await assert.rejects(Auth.profile(), /Invalid token/);
+await assert.rejects(Auth.perfil(), /Invalid token/);
 authError = null; profile.activo = false;
-await assert.rejects(Auth.profile(), /archivada/);
+await assert.rejects(Auth.perfil(), /archivada/);
 profile.activo = true; profile.rol = 'unknown';
-await assert.rejects(Auth.profile(), /no tiene acceso/);
+await assert.rejects(Auth.perfil(), /no tiene acceso/);
 profile.rol = 'admin';
-assert.equal((await Auth.profile()).rol, 'admin');
-const stop = Auth.watch({ ...profile }, () => invalidations++);
+assert.equal((await Auth.perfil()).rol, 'admin');
+const stop = Auth.vigilar({ ...profile }, () => invalidations++);
 callback('SIGNED_OUT', null);
 assert.equal(invalidations, 1);
 callback('SIGNED_IN', { user: { id: 'someone-else' } });
@@ -47,4 +61,4 @@ interval();
 await new Promise(resolve => setImmediate(resolve));
 assert.equal(invalidations, 4);
 stop(); assert.equal(unsubscribed, true);
-console.log('Auth: valid/invalid sessions, roles, inactive accounts, cross-tab logout, account changes and revalidation passed.');
+console.log('Auth: sesión válida e inválida, roles, cuenta archivada, cierre en otra pestaña, cambio de cuenta y revalidación. Sin problemas.');

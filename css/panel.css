@@ -265,3 +265,8 @@ input, select { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 120ms !important; animation-duration: 0.01ms !important; }
 }
+
+/* El panel arranca oculto y `panel.js` lo destapa solo después de comprobar
+   contra `perfiles` que quien mira es de la coordinación. Sin esto, el
+   maquetado se alcanza a pintar un instante antes de la comprobación. */
+.layout[hidden] { display: none !important; }

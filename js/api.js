@@ -46,7 +46,7 @@ const API = {
   // El rol se LEE de la base; nunca se deduce del correo.
   // Se filtra por el id del usuario: el rol administrativo ve muchas filas.
   async perfil() {
-    return Auth.profile();
+    return Auth.perfil();
   },
 
   /* ── Catálogo: materias, ruta de cuestionarios y banco visible ────────── */

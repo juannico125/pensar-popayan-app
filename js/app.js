@@ -176,7 +176,7 @@ async function arranque() {
 async function entrarConSesion() {
   const perfil = await API.perfil();
   if (perfil.rol === 'admin') return perfil;
-  const stopWatching = Auth.watch(perfil, () => {
+  const stopWatching = Auth.vigilar(perfil, () => {
     S = freshState();
     document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
     location.replace('index.html');
@@ -209,17 +209,27 @@ $('#btn-pass-toggle').addEventListener('click', () => {
   btn.setAttribute('aria-label', mostrando ? 'Mostrar contraseña' : 'Ocultar contraseña');
 });
 
+// El mensaje bajo el campo es uno solo y dice la causa real. Antes era un
+// texto fijo («Mínimo 6 caracteres») que se encendía también cuando la
+// contraseña estaba mal escrita: el estudiante veía ese texto junto a un
+// aviso que decía otra cosa, y los dos no podían ser ciertos a la vez.
+function errorDeClave(msg) {
+  $('#pass-error').textContent = msg;
+  $('#pass-wrap').closest('.field').classList.add('is-error');
+  $('#pass-wrap').classList.add('is-error');
+}
+function limpiaErrorDeClave() {
+  $('#pass-wrap').closest('.field').classList.remove('is-error');
+  $('#pass-wrap').classList.remove('is-error');
+}
+$('#login-pass').addEventListener('input', limpiaErrorDeClave);
+$('#login-email').addEventListener('input', limpiaErrorDeClave);
+
 $('#btn-login').addEventListener('click', async () => {
   const email = $('#login-email').value.trim();
   const pass = $('#login-pass').value;
-  const field = $('#pass-wrap').closest('.field');
-  if (pass.length < 6) {
-    field.classList.add('is-error');
-    $('#pass-wrap').classList.add('is-error');
-    return;
-  }
-  field.classList.remove('is-error');
-  $('#pass-wrap').classList.remove('is-error');
+  if (pass.length < 6) { errorDeClave('Mínimo 6 caracteres'); return; }
+  limpiaErrorDeClave();
 
   const btn = $('#btn-login');
   if (btn.disabled) return;
@@ -239,9 +249,11 @@ $('#btn-login').addEventListener('click', async () => {
     navigate('home');
   } catch (e) {
     await API.salir().catch(() => {});
-    field.classList.add('is-error');
-    $('#pass-wrap').classList.add('is-error');
-    toast(mensajeError(e));
+    const msg = mensajeError(e);
+    errorDeClave(msg);
+    // Solo se duplica en aviso lo que no es culpa de lo escrito en el campo:
+    // un fallo de red o una cuenta archivada no se resuelven reescribiendo.
+    if (!/incorrectos/.test(msg)) toast(msg);
   } finally {
     btn.disabled = false;
     delete btn.dataset.state;

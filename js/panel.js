@@ -79,14 +79,14 @@ function aLogin(titulo, msg) {
 
 // El rol se lee de la base. Un estudiante que abra esta URL vuelve a la app.
 async function entrar() {
-  const perfil = await Auth.profile();
+  const perfil = await Auth.perfil();
 
   if (perfil.rol !== 'admin' || !perfil.activo) {
     return aLogin('Este panel es de la coordinación',
       'Tu cuenta es de estudiante: te llevamos a tu app.');
   }
 
-  Auth.watch(perfil, () => {
+  Auth.vigilar(perfil, () => {
     $('.layout').hidden = true;
     location.replace('index.html');
   });
