@@ -20,9 +20,11 @@
  * aparece la primera pregunta de Trigonometría del banco (la 34), que es la
  * que motivó añadir ese tema.
  *
+ * La 23 quedó confirmada al aislar su gráfica con scripts/detectar-figuras.mjs:
+ * las barras marcan 10, 12 y 8 donde la tabla dice 8, 12 y 10, que es
+ * exactamente intercambiar los grupos I y III.
+ *
  * `confianza: 'media'` marca las que dependen de leer bien el escaneo:
- *   · 23 — hay que confirmar contra el impreso qué barras están mal. Se leen
- *     10, 12 y 8 donde la tabla dice 8, 12 y 10: eso es intercambiar I y III.
  *   · 31 — la relación entre los radios se deduce de que el centro pasa de
  *     (0, 2r) a (4πr, 2r), no está escrita.
  *   · 45 — el enunciado dice «multiplica por 9,2» donde se esperaría 8; puede
@@ -75,8 +77,7 @@ const BANKS = {
        'Se representó mal el valor de la frecuencia absoluta del grupo II.',
        'Se nombraron incorrectamente los ejes.'], 0,
       'La tabla asigna 8 al grupo I y 10 al grupo III, pero en la gráfica el grupo I llega a 10 y el III a 8: están cambiados de sitio. El grupo II sí queda en 12, y los ejes están bien nombrados.',
-      'Compara barra por barra contra la tabla. Cuando dos valores aparecen cruzados, el error es de intercambio, no de escala.',
-      'media'),
+      'Compara barra por barra contra la tabla. Cuando dos valores aparecen cruzados, el error es de intercambio, no de escala.'),
 
     /* ═════════ 24 ═════════ */
     M('Interpretación de datos', 'baja', 'GRÁFICA', 'ctx-fig',
