@@ -1,5 +1,5 @@
 /* donald mates2.pdf, páginas 7–10, preguntas 41–60. 42, 49 y 58: borradores. */
-const ROOT='https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/';
+const ROOT='img/figuras/mat/';
 const F=(n,a)=>`<figure class="ctx-fig"><img src="${ROOT}do2-${n}.webp" alt="${a}" loading="lazy"></figure>`;
 const P=s=>`<p>${s}</p>`;
 const BANKS={mat:[]};

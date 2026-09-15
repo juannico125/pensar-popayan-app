@@ -2,29 +2,29 @@
 -- Fuente: ../content/mat-deadpool-s2-2026b.js · clave_origen = modelo
 
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('80aa7902-c13a-43c2-a520-4f3b1711019a', 'situacion', 'DEADPOOL S2 · Pregunta 41', 'ctx-sit', '<p>El rango estadístico de un conjunto de medidas es el valor máximo menos el mínimo. En unas mediciones de altura respecto a un punto de referencia, el máximo es 3,2 m y el rango es 7,6 m.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('d2c067f7-6efb-4f9d-aec7-f038b1f74b78', 'situacion', 'DEADPOOL S2 · Pregunta 42', 'ctx-sit', '<p>Un terreno cuadrado de lado 10 dam tiene un depósito cuadrado de lado 4 dam. El resto del terreno se destina a sembrar papa.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q42-terreno.webp" alt="Terreno cuadrado de 10 dam de lado con depósito interior cuadrado de 4 dam de lado." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('eebbeea1-1dd3-422b-9b34-eea92e26bd64', 'situacion', 'DEADPOOL S2 · Pregunta 43', 'ctx-sit', '<p>En el triángulo rectángulo mostrado, R es el ángulo recto, h es la hipotenusa y n es el cateto adyacente al ángulo M.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q43-triangulo.webp" alt="Triángulo con ángulo recto R, ángulos agudos M y N, catetos n y m e hipotenusa h." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('d0db46dc-f341-465d-9994-0ab5cbe6b562', 'situacion', 'DEADPOOL S2 · Pregunta 44', 'ctx-sit', '<figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q44-temperaturas.webp" alt="Temperatura promedio de 2012 a 2018: ambas ciudades aumentan a ritmo constante; ciudad 1 tiene mayor pendiente." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('da877dd0-b2b3-4fa0-8d49-42c2c98a2914', 'situacion', 'DEADPOOL S2 · Pregunta 45', 'ctx-sit', '<p>Se propone calcular la desviación estándar de las variables de esta tabla: se calcula la varianza y luego su raíz cuadrada.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q45-tabla.webp" alt="Cuatro personas con presión diastólica 70, 80, 90, 95; sistólica 110, 125, 136, 144; nivel normal, elevada, hipertensión I, hipertensión II." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('5d2e24c8-4762-43e8-9f62-b401ad00dd72', 'situacion', 'DEADPOOL S2 · Pregunta 46', 'ctx-sit', '<p>Se presentan dos registros del consumo de energía de una vivienda durante un trimestre.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q46-registro1.webp" alt="Registro 1: 1.099 kWh y valor total $635.222." loading="lazy"></figure><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q46-registro2.webp" alt="Registro 2: precio por kWh $578 y gráfica del consumo de cada uno de los tres meses." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('d631c3b2-1abc-43ac-9988-45f96b03c04f', 'situacion', 'DEADPOOL S2 · Pregunta 42', 'ctx-sit', '<p>Un terreno cuadrado de lado 10 dam tiene un depósito cuadrado de lado 4 dam. El resto del terreno se destina a sembrar papa.</p><figure class="ctx-fig"><img src="img/figuras/mat/de2-q42-terreno.webp" alt="Terreno cuadrado de 10 dam de lado con depósito interior cuadrado de 4 dam de lado." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('e0cb181e-883a-4283-88bf-b6f3a8e4d5f3', 'situacion', 'DEADPOOL S2 · Pregunta 43', 'ctx-sit', '<p>En el triángulo rectángulo mostrado, R es el ángulo recto, h es la hipotenusa y n es el cateto adyacente al ángulo M.</p><figure class="ctx-fig"><img src="img/figuras/mat/de2-q43-triangulo.webp" alt="Triángulo con ángulo recto R, ángulos agudos M y N, catetos n y m e hipotenusa h." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('0309f48a-d27f-4208-aaca-92fe7e3582d7', 'situacion', 'DEADPOOL S2 · Pregunta 44', 'ctx-sit', '<figure class="ctx-fig"><img src="img/figuras/mat/de2-q44-temperaturas.webp" alt="Temperatura promedio de 2012 a 2018: ambas ciudades aumentan a ritmo constante; ciudad 1 tiene mayor pendiente." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('c85d8820-5e25-4697-8c25-94329b7affd1', 'situacion', 'DEADPOOL S2 · Pregunta 45', 'ctx-sit', '<p>Se propone calcular la desviación estándar de las variables de esta tabla: se calcula la varianza y luego su raíz cuadrada.</p><figure class="ctx-fig"><img src="img/figuras/mat/de2-q45-tabla.webp" alt="Cuatro personas con presión diastólica 70, 80, 90, 95; sistólica 110, 125, 136, 144; nivel normal, elevada, hipertensión I, hipertensión II." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('2d14ff63-0e39-4505-bc37-1f0bef81f3f9', 'situacion', 'DEADPOOL S2 · Pregunta 46', 'ctx-sit', '<p>Se presentan dos registros del consumo de energía de una vivienda durante un trimestre.</p><figure class="ctx-fig"><img src="img/figuras/mat/de2-q46-registro1.webp" alt="Registro 1: 1.099 kWh y valor total $635.222." loading="lazy"></figure><figure class="ctx-fig"><img src="img/figuras/mat/de2-q46-registro2.webp" alt="Registro 2: precio por kWh $578 y gráfica del consumo de cada uno de los tres meses." loading="lazy"></figure>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('c6803640-70bb-4928-959b-73cba6df223e', 'situacion', 'DEADPOOL S2 · Pregunta 47', 'ctx-sit', '<p>Para calcular un índice se toma una medida de calcio, se multiplica por 10 y se suma 6. La medida inicial es 0,21 mg/dl.</p>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('80732e18-6349-423d-a924-1c3a8c7ce575', 'situacion', 'DEADPOOL S2 · Pregunta 48', 'ctx-sit', '<p>Una máquina pone 4.000 tapas por hora y otra pone 7.000. Ambas trabajan simultáneamente durante un número entero de horas.</p>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('8aa2c370-e568-4b34-9d4a-528d12223fee', 'situacion', 'DEADPOOL S2 · Pregunta 49', 'ctx-sit', '<p>Un almacén vende $45.000.000 al año: un tercio corresponde a camisas, un quinto a pantalones y el resto a vestidos.</p>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('5a015c65-e4f9-407c-a080-0cd5ddef0c16', 'situacion', 'DEADPOOL S2 · Pregunta 50', 'ctx-sit', '<p>Un tanque cilíndrico tiene altura de 2 m y diámetro de 1 m.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('8e250472-5c60-431e-8e63-a6fed706828f', 'situacion', 'DEADPOOL S2 · Pregunta 51', 'ctx-sit', '<figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q51-almuerzos.webp" alt="Uno, dos y tres almuerzos cuestan $8.000, $16.000 y $24.000 en el restaurante; a domicilio $10.000, $18.000 y $26.000." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('57ea5f1b-4319-44f5-8fca-b3a2400d1556', 'situacion', 'DEADPOOL S2 · Pregunta 51', 'ctx-sit', '<figure class="ctx-fig"><img src="img/figuras/mat/de2-q51-almuerzos.webp" alt="Uno, dos y tres almuerzos cuestan $8.000, $16.000 y $24.000 en el restaurante; a domicilio $10.000, $18.000 y $26.000." loading="lazy"></figure>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('f87757db-5d2d-48c1-a398-dd40664cc8e6', 'situacion', 'DEADPOOL S2 · Pregunta 52', 'ctx-sit', '<p>Las edades de seis personas son 26, 16, 22, 18, 28 y 28 años. Un programa ordena los datos e inserta entre comillas el valor de la mediana.</p>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('1a1d1d46-9af1-46ca-96f5-80b8be5c45a3', 'situacion', 'DEADPOOL S2 · Pregunta 53', 'ctx-sit', '<p>Un terreno tiene un área de 1.500 yardas cuadradas. Una yarda equivale a 3 pies.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('5e9ece5f-ce5d-4b55-81cf-61c5b0758a2e', 'situacion', 'DEADPOOL S2 · Pregunta 54', 'ctx-sit', '<p>La tabla registra las medallas ganadas y la gráfica intenta representar los mismos datos.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q54-tabla.webp" alt="Mujeres: oro 20, plata 12, bronce 6. Hombres: oro 8, plata 10, bronce 16." loading="lazy"></figure><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q54-grafica.webp" alt="La gráfica muestra mujeres con oro 6, plata 12 y bronce 20; hombres con oro 8, plata 10 y bronce 16." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('7db0791f-a369-4b51-b034-5a7220ba925e', 'situacion', 'DEADPOOL S2 · Pregunta 55', 'ctx-sit', '<figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q55-resortes.webp" alt="Pesos de 1, 2, 3 y 4 kg producen estiramientos de 6, 12, 18 y 24 cm." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('7be1bbe5-f953-491a-ae41-076b7d459f02', 'situacion', 'DEADPOOL S2 · Pregunta 54', 'ctx-sit', '<p>La tabla registra las medallas ganadas y la gráfica intenta representar los mismos datos.</p><figure class="ctx-fig"><img src="img/figuras/mat/de2-q54-tabla.webp" alt="Mujeres: oro 20, plata 12, bronce 6. Hombres: oro 8, plata 10, bronce 16." loading="lazy"></figure><figure class="ctx-fig"><img src="img/figuras/mat/de2-q54-grafica.webp" alt="La gráfica muestra mujeres con oro 6, plata 12 y bronce 20; hombres con oro 8, plata 10 y bronce 16." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('3b0f2619-11b0-4b06-b515-2be7e5306f77', 'situacion', 'DEADPOOL S2 · Pregunta 55', 'ctx-sit', '<figure class="ctx-fig"><img src="img/figuras/mat/de2-q55-resortes.webp" alt="Pesos de 1, 2, 3 y 4 kg producen estiramientos de 6, 12, 18 y 24 cm." loading="lazy"></figure>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('5a59aecc-40df-4c63-9d65-0211bbe8579f', 'situacion', 'DEADPOOL S2 · Pregunta 56', 'ctx-sit', '<p>Dos tecnologías tienen costos C₁(x) = x² + x + 3 y C₂(x) = 3x² − 3x − 3. Para calcular C₂ − C₁, alguien escribe:<br>Paso 1: 3x² − 3x − 3 − (x² + x + 3).<br>Paso 2: 3x² − x² − 3x + x − 3 + 3.<br>Paso 3: 2x² − 2x.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('dd7488a3-6387-4b8c-8818-c2fe7e6238f3', 'situacion', 'DEADPOOL S2 · Pregunta 57', 'ctx-sit', '<figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q57-tabla.webp" alt="Número de televisores 0, 1, 2, 3, 4 o más. Sector 1: 5, 4, 9, 15, 5; sector 2: 3, 8, 2, 12, 3; sector 3: 10, 30, 15, 4, 6." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('124adc09-374b-4395-a52e-91643e4d904d', 'situacion', 'DEADPOOL S2 · Pregunta 58', 'ctx-sit', '<p>Observa la figura formada por triángulos. Se proponen estas afirmaciones de congruencia:<br>1. ABD y ACE: AD = AE, AB = AC y BD = CE.<br>2. ADE y BCF: ED = BC, AD = FC y AE = BF.<br>3. BDE y CDE: BE = CD, BD = CE y ED = EF.<br>4. BEF y CDF: EF = DF, BE = CD y BF = CF.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q58-triangulos.webp" alt="Triángulo ABC con A arriba, B y C en la base, E en AB y D en AC. BD y CE se cruzan en F." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('c1101895-be69-449c-bcd0-26540209eab9', 'situacion', 'DEADPOOL S2 · Pregunta 59', 'ctx-sit', '<p>Una medalla tiene un orificio con la forma poligonal sombreada en el diseño.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q59-medalla.webp" alt="Medalla circular con un orificio en forma de cuadrilátero cóncavo." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('21496cdd-a34a-4ed7-8e44-3ae247b0ad61', 'situacion', 'DEADPOOL S2 · Pregunta 60', 'ctx-sit', '<p>Martha delimita con cinta los dos triángulos dibujados sobre una cuadrícula de lado a, para evitar pintar fuera de ellos.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q60-diseno.webp" alt="Dos triángulos rectángulos sobre cuadrícula: el grande tiene catetos 5a y 12a; el pequeño, 3a y 4a. Comparten un vértice." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('88d11418-9f22-4f3b-8429-d545782a5cff', 'situacion', 'DEADPOOL S2 · Pregunta 57', 'ctx-sit', '<figure class="ctx-fig"><img src="img/figuras/mat/de2-q57-tabla.webp" alt="Número de televisores 0, 1, 2, 3, 4 o más. Sector 1: 5, 4, 9, 15, 5; sector 2: 3, 8, 2, 12, 3; sector 3: 10, 30, 15, 4, 6." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('9e93eae7-2869-4b1c-88d4-a0c2c92e8b7f', 'situacion', 'DEADPOOL S2 · Pregunta 58', 'ctx-sit', '<p>Observa la figura formada por triángulos. Se proponen estas afirmaciones de congruencia:<br>1. ABD y ACE: AD = AE, AB = AC y BD = CE.<br>2. ADE y BCF: ED = BC, AD = FC y AE = BF.<br>3. BDE y CDE: BE = CD, BD = CE y ED = EF.<br>4. BEF y CDF: EF = DF, BE = CD y BF = CF.</p><figure class="ctx-fig"><img src="img/figuras/mat/de2-q58-triangulos.webp" alt="Triángulo ABC con A arriba, B y C en la base, E en AB y D en AC. BD y CE se cruzan en F." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('07b4c089-a024-4bdb-a028-0dda3a69e3a7', 'situacion', 'DEADPOOL S2 · Pregunta 59', 'ctx-sit', '<p>Una medalla tiene un orificio con la forma poligonal sombreada en el diseño.</p><figure class="ctx-fig"><img src="img/figuras/mat/de2-q59-medalla.webp" alt="Medalla circular con un orificio en forma de cuadrilátero cóncavo." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('0b4a2fc8-5343-4243-8875-cb3246878cd0', 'situacion', 'DEADPOOL S2 · Pregunta 60', 'ctx-sit', '<p>Martha delimita con cinta los dos triángulos dibujados sobre una cuadrícula de lado a, para evitar pintar fuera de ellos.</p><figure class="ctx-fig"><img src="img/figuras/mat/de2-q60-diseno.webp" alt="Dos triángulos rectángulos sobre cuadrícula: el grande tiene catetos 5a y 12a; el pequeño, 3a y 4a. Comparten un vértice." loading="lazy"></figure>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('69b7703d-0376-44d7-bc0e-980a4c2d4e42', 'situacion', 'DEADPOOL S2 · Pregunta 61', 'ctx-sit', '<p>Sebastián desea ahorrar $175.000. El primer día ahorra $25.000; el segundo, $4.050 más que el primero; el tercero, el doble del primero; el cuarto, $1.000 más que el tercero.</p>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('8901e616-94b3-4b43-9af6-59ce61afa9ff', 'situacion', 'DEADPOOL S2 · Pregunta 62', 'ctx-sit', '<p>Cada camiseta cuesta $2.500. Al comprar más de dos docenas se conserva ese precio y el proveedor regala dos camisetas por cada docena comprada.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('fd5934f2-082f-47fb-af8a-b4f860af8c49', 'situacion', 'DEADPOOL S2 · Pregunta 63', 'ctx-sit', '<p>Una universidad encuestó a 2.000 estudiantes sobre la frecuencia de ejercicio.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q63-tabla.webp" alt="Todos los días 180; una vez por semana 360; cada 15 días 360; una vez al mes 320; ninguna actividad 780." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('dfe8f9a6-9700-4fa4-b5e1-11a27a7abff2', 'situacion', 'DEADPOOL S2 · Pregunta 64', 'ctx-sit', '<p>La gráfica relaciona la velocidad y el tiempo de Camila y Martha.<br>1. Camila presenta una aceleración constante de 2 km/h².<br>2. Martha empieza con una aceleración constante y luego la aumenta hasta alcanzar 9 km/h².<br>3. Ambas presentan una aceleración constante de 1 km/h².</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/de2-q64-velocidad.webp" alt="Velocidad frente al tiempo: Camila sigue una recta de (0 h, 0 km/h) a (3 h, 6 km/h); Martha pasa por (2 h, 4 km/h), (2,5 h, 6 km/h) y (3 h, 9 km/h)." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('5da9c981-2148-4854-9f8c-67e3affb7999', 'situacion', 'DEADPOOL S2 · Pregunta 63', 'ctx-sit', '<p>Una universidad encuestó a 2.000 estudiantes sobre la frecuencia de ejercicio.</p><figure class="ctx-fig"><img src="img/figuras/mat/de2-q63-tabla.webp" alt="Todos los días 180; una vez por semana 360; cada 15 días 360; una vez al mes 320; ninguna actividad 780." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('f6957144-316b-41d4-bf84-25719c2d1a9b', 'situacion', 'DEADPOOL S2 · Pregunta 64', 'ctx-sit', '<p>La gráfica relaciona la velocidad y el tiempo de Camila y Martha.<br>1. Camila presenta una aceleración constante de 2 km/h².<br>2. Martha empieza con una aceleración constante y luego la aumenta hasta alcanzar 9 km/h².<br>3. Ambas presentan una aceleración constante de 1 km/h².</p><figure class="ctx-fig"><img src="img/figuras/mat/de2-q64-velocidad.webp" alt="Velocidad frente al tiempo: Camila sigue una recta de (0 h, 0 km/h) a (3 h, 6 km/h); Martha pasa por (2 h, 4 km/h), (2,5 h, 6 km/h) y (3 h, 9 km/h)." loading="lazy"></figure>');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'fb14b598-59bc-4bdc-927e-04cf7b450258', 'mat',
@@ -40,7 +40,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '97cf722f-cd71-4b92-9c3e-8577688896ce', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'areas-y-perimetros'),
   (select id from public.lotes where codigo = '2026-B'),
-  'd2c067f7-6efb-4f9d-aec7-f038b1f74b78', 'Áreas y perímetros',
+  'd631c3b2-1abc-43ac-9988-45f96b03c04f', 'Áreas y perímetros',
   '¿Qué área se destina a sembrar papa?',
   array['40 dam².', '84 dam².', '100 dam².', '116 dam².'],
   'Calcula las dos áreas antes de restarlas.', 'publicada', 'modelo', '9a2bb979ce4ac8a3796ccf03ed133c72', 'baja';
@@ -50,7 +50,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '56143475-2e4f-4fda-beaa-4c3db332e766', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'trigonometria'),
   (select id from public.lotes where codigo = '2026-B'),
-  'eebbeea1-1dd3-422b-9b34-eea92e26bd64', 'Trigonometría',
+  'e0cb181e-883a-4283-88bf-b6f3a8e4d5f3', 'Trigonometría',
   '¿Cuáles datos permiten determinar la longitud n?',
   array['Los ángulos M y N.', 'Los ángulos R y N.', 'El ángulo M y la longitud h.', 'El ángulo R y la longitud m.'],
   'Para hallar una longitud necesitas al menos una longitud conocida.', 'publicada', 'modelo', 'e0908f5b4cc1cfd1006178d3b8f0e919', 'media';
@@ -60,7 +60,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'ae613920-af40-442e-988d-7b581361db2e', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'lectura-de-graficas'),
   (select id from public.lotes where codigo = '2026-B'),
-  'd0db46dc-f341-465d-9994-0ab5cbe6b562', 'Interpretación de datos',
+  '0309f48a-d27f-4208-aaca-92fe7e3582d7', 'Interpretación de datos',
   '¿Qué describe el comportamiento de las temperaturas de las dos ciudades?',
   array['Ambas se mantienen constantes.', 'La ciudad 2 aumenta linealmente y la ciudad 1 permanece constante.', 'Ambas aumentan linealmente.', 'La ciudad 1 aumenta linealmente y la ciudad 2 permanece constante.'],
   'Una pendiente pequeña sigue representando un cambio; compara el primer y el último dato.', 'publicada', 'modelo', '188802341099821c54954d15f04fd5e6', 'media';
@@ -70,7 +70,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '99a1908e-60ed-49b7-b121-2e3a4fd77689', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'estadistica-descriptiva'),
   (select id from public.lotes where codigo = '2026-B'),
-  'da877dd0-b2b3-4fa0-8d49-42c2c98a2914', 'Estadística descriptiva',
+  'c85d8820-5e25-4697-8c25-94329b7affd1', 'Estadística descriptiva',
   '¿A cuáles variables se puede aplicar el procedimiento?',
   array['Persona y nivel.', 'Persona, presión diastólica y presión sistólica.', 'Presión diastólica y presión sistólica.', 'Persona, presión diastólica, presión sistólica y nivel.'],
   'No confundas un número usado para identificar con una medida cuantitativa.', 'publicada', 'modelo', 'af84a971f84783c602c0e5d78cc84430', 'media';
@@ -80,7 +80,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'c1c01558-cea6-45c8-9cbc-585e92855f92', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'lectura-de-graficas'),
   (select id from public.lotes where codigo = '2026-B'),
-  '5d2e24c8-4762-43e8-9f62-b401ad00dd72', 'Interpretación de datos',
+  '2d14ff63-0e39-4505-bc37-1f0bef81f3f9', 'Interpretación de datos',
   '¿Cuál afirmación es correcta?',
   array['El registro 2 no permite determinar el valor total del consumo.', 'Ambos registros permiten determinar el precio por kWh y el valor total del consumo.', 'Ambos registros permiten conocer el consumo de cada mes.', 'El registro 1 no permite calcular el consumo promedio mensual.'],
   'Distingue los datos que están escritos de los que puedes calcular.', 'publicada', 'modelo', 'd572c422b729305227f663925bb24964', 'media';
@@ -130,7 +130,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '1cd627b7-6012-4381-8675-e25916c40d7d', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'funciones'),
   (select id from public.lotes where codigo = '2026-B'),
-  '8e250472-5c60-431e-8e63-a6fed706828f', 'Funciones y variación',
+  '57ea5f1b-4319-44f5-8fca-b3a2400d1556', 'Funciones y variación',
   '¿Cuáles cantidades permanecen fijas y cuáles varían?',
   array['El costo del domicilio y el número de almuerzos son fijos; el pago total y el precio del almuerzo varían.', 'El pago total y el precio del almuerzo son fijos; el domicilio y el número de almuerzos varían.', 'El costo del domicilio y el precio de cada almuerzo son fijos; el pago total y el número de almuerzos varían.', 'El pago total y el número de almuerzos son fijos; el domicilio y el precio del almuerzo varían.'],
   'Compara el incremento por un almuerzo y la diferencia entre las dos modalidades.', 'publicada', 'modelo', '803fc81c402810b6f2a255b6f6ec623b', 'media';
@@ -160,7 +160,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '3f474570-6586-4dc5-8f69-31d37fb74719', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'lectura-de-graficas'),
   (select id from public.lotes where codigo = '2026-B'),
-  '5e9ece5f-ce5d-4b55-81cf-61c5b0758a2e', 'Interpretación de datos',
+  '7be1bbe5-f953-491a-ae41-076b7d459f02', 'Interpretación de datos',
   '¿Qué ocurre al comparar tabla y gráfica?',
   array['Las frecuencias de los hombres están equivocadas.', 'Las frecuencias de las mujeres están equivocadas.', 'Todas las frecuencias están representadas correctamente.', 'El orden de los tipos de medalla justifica las diferencias.'],
   'Verifica cada categoría con su leyenda; no basta con que el total coincida.', 'publicada', 'modelo', 'b13a4b4c0d334a43a09361be2d8c8684', 'media';
@@ -170,7 +170,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '3d029979-ebe1-4836-a687-797856b869be', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'funciones'),
   (select id from public.lotes where codigo = '2026-B'),
-  '7db0791f-a369-4b51-b034-5a7220ba925e', 'Funciones y variación',
+  '3b0f2619-11b0-4b06-b515-2be7e5306f77', 'Funciones y variación',
   '¿Cuál afirmación describe el peso y el estiramiento?',
   array['A mayor peso, mayor estiramiento; el cociente estiramiento/peso es constante.', 'A mayor peso, mayor estiramiento; su producto es constante.', 'A menor peso, mayor estiramiento; su producto es constante.', 'A menor peso, mayor estiramiento; el cociente estiramiento/peso es constante.'],
   'Para comprobar proporcionalidad directa, compara cocientes.', 'publicada', 'modelo', 'd469f98355cbbdf5f5bf99d6c62b29bc', 'media';
@@ -190,7 +190,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '56aad181-9fab-4e51-ba45-c9699f21b702', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'lectura-de-graficas'),
   (select id from public.lotes where codigo = '2026-B'),
-  'dd7488a3-6387-4b8c-8818-c2fe7e6238f3', 'Interpretación de datos',
+  '88d11418-9f22-4f3b-8429-d545782a5cff', 'Interpretación de datos',
   '¿Cuál afirmación es correcta?',
   array['El sector 1 es el que más familias tiene con 2 o 3 televisores.', 'El sector 3 es el que menos familias tiene con 1 o 2 televisores.', 'Hay más familias con más de 3 televisores que con menos de 1.', 'Hay más familias con 3 o más televisores que con 1 o menos.'],
   'Suma únicamente las filas incluidas en cada condición.', 'publicada', 'modelo', 'e88330a17f6afcc212060ca9fbcf2ee7', 'media';
@@ -200,7 +200,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '4bfb548a-ce50-4871-acd5-faa00f2c7e91', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'areas-y-perimetros'),
   (select id from public.lotes where codigo = '2026-B'),
-  '124adc09-374b-4395-a52e-91643e4d904d', 'Áreas y perímetros',
+  '9e93eae7-2869-4b1c-88d4-a0c2c92e8b7f', 'Áreas y perímetros',
   'Según la simetría representada en la figura, ¿cuáles afirmaciones son correctas?',
   array['1 y 2.', '1 y 3.', '1 y 4.', '2 y 3.'],
   'Para usar el criterio lado-lado-lado, identifica los tres pares correspondientes.', 'publicada', 'modelo', '77009e1c0dc90881bb073a7c62429114', 'media';
@@ -210,7 +210,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '6e3bdeb5-59ae-41a6-bd50-57a6cfa3d151', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'areas-y-perimetros'),
   (select id from public.lotes where codigo = '2026-B'),
-  'c1101895-be69-449c-bcd0-26540209eab9', 'Áreas y perímetros',
+  '07b4c089-a024-4bdb-a028-0dda3a69e3a7', 'Áreas y perímetros',
   '¿Cuál es la suma de los ángulos interiores del orificio?',
   array['360°.', '180°.', '280°.', '140°.'],
   'Cuenta los vértices del orificio, no los del borde exterior de la medalla.', 'publicada', 'modelo', '338273e06f4a98711140a7fb05309506', 'media';
@@ -220,7 +220,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '1cc26b37-c5c2-4f57-ba1b-f281fc3b9282', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'areas-y-perimetros'),
   (select id from public.lotes where codigo = '2026-B'),
-  '21496cdd-a34a-4ed7-8e44-3ae247b0ad61', 'Áreas y perímetros',
+  '0b4a2fc8-5343-4243-8875-cb3246878cd0', 'Áreas y perímetros',
   '¿Qué cantidad total de cinta necesita?',
   array['42a.', '30a.', '53a.', '40a.'],
   'Cuenta los cuadros de cada cateto y calcula las diagonales con Pitágoras.', 'publicada', 'modelo', 'c23edb697adc0f3221ddd8b44d75eb1d', 'media';
@@ -250,7 +250,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '91d7039f-aa87-4397-80c5-f655ea0689a1', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'proporcionalidad'),
   (select id from public.lotes where codigo = '2026-B'),
-  'fd5934f2-082f-47fb-af8a-b4f860af8c49', 'Proporcionalidad y porcentajes',
+  '5da9c981-2148-4854-9f8c-67e3affb7999', 'Proporcionalidad y porcentajes',
   '¿Qué porcentaje hace ejercicio al menos una vez cada 20 días?',
   array['55 %.', '27 %.', '16 %.', '45 %.'],
   'Incluye las frecuencias cuyo intervalo no supera los 20 días.', 'publicada', 'modelo', '78bab0e2945eba4af8819e7ce06f7dff', 'media';
@@ -260,7 +260,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'a6d12af6-5961-444e-9d0b-78b43ecb776d', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'funciones'),
   (select id from public.lotes where codigo = '2026-B'),
-  'dfe8f9a6-9700-4fa4-b5e1-11a27a7abff2', 'Funciones y variación',
+  'f6957144-316b-41d4-bf84-25719c2d1a9b', 'Funciones y variación',
   '¿Cuáles afirmaciones son correctas?',
   array['1 y 2.', '2 solamente.', '1 solamente.', '2 y 3.'],
   'Lee las unidades del eje: la altura representa velocidad y la pendiente representa aceleración.', 'publicada', 'modelo', 'dcef389739f1e37c24471844dfbfb555', 'media';

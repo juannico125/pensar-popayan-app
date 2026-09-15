@@ -1,5 +1,5 @@
 /* tintin mates2.pdf, páginas 5–9, preguntas 41–60. 44 y 58 requieren revisión. */
-const ROOT='https://raw.githubusercontent.com/juannico125/pensar-popayan-app/6f68b62cc5d7edba4127b74843e75e976ed293f0/img/figuras/mat/';
+const ROOT='img/figuras/mat/';
 const F=(n,a)=>`<figure class="ctx-fig"><img src="${ROOT}ti2-${n}.webp" alt="${a}" loading="lazy"></figure>`;
 const P=s=>`<p>${s}</p>`;
 const BANKS={mat:[]};

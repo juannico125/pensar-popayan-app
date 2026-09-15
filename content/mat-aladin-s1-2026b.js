@@ -350,14 +350,14 @@ CUESTIONARIOS.mat[0].items[1].qs.push(20);
 for (let i = 0; i < BANKS.mat[20].opts.length; i++) {
   BANKS.mat[20].opts[i] = BANKS.mat[20].opts[i].replace(
     'src="img/figuras/mat/',
-    'src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/92e4e92/img/figuras/mat/');
+    'src="img/figuras/mat/');
 }
 
 // URLs verificadas de las figuras: conservamos los UUID ya usados por el historial.
 for (const pregunta of BANKS.mat) {
   if (pregunta.context?.includes('src="img/figuras/mat/')) {
     pregunta.identityContext = pregunta.context;
-    pregunta.context = pregunta.context.replaceAll('src="img/figuras/mat/', 'src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/92e4e92/img/figuras/mat/');
+    pregunta.context = pregunta.context.replaceAll('src="img/figuras/mat/', 'src="img/figuras/mat/');
   }
-  pregunta.opts = pregunta.opts.map(opcion => opcion.replaceAll('src="img/figuras/mat/', 'src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/92e4e92/img/figuras/mat/'));
+  pregunta.opts = pregunta.opts.map(opcion => opcion.replaceAll('src="img/figuras/mat/', 'src="img/figuras/mat/'));
 }

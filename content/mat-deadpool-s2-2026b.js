@@ -1,7 +1,7 @@
 /* Fuente: deadpool mates 2.pdf, preguntas 41–64. Claves resueltas por modelo.
  * Revisar con docente 58 (simetría implícita) y 64 (unidades del original).
  */
-const ROOT='https://raw.githubusercontent.com/juannico125/pensar-popayan-app/38f9c7c2c48315d70d6ec2eb89205998ab3e8350/img/figuras/mat/';
+const ROOT='img/figuras/mat/';
 const F=(n,a)=>`<figure class="ctx-fig"><img src="${ROOT}de2-${n}.webp" alt="${a}" loading="lazy"></figure>`;
 const P=s=>`<p>${s}</p>`;
 const BANKS={mat:[]};

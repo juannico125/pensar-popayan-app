@@ -2,25 +2,25 @@
 -- Fuente: ../content/mat-donald-s2-2026b.js · clave_origen = modelo
 
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('8f4bff49-cd0a-49a9-97fe-5de909480fe8', 'situacion', 'DONALD S2 · Pregunta 41', 'ctx-sit', '<p>Las rectas j, k, l, m y n están en el mismo plano. j y k son perpendiculares; k y l son paralelas; l y m son paralelas; m y n son perpendiculares.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('148b5268-0dec-4191-b328-a62879ab4ae1', 'situacion', 'DONALD S2 · Pregunta 42', 'ctx-sit', '<p>Una empresa vende velas cilíndricas y presenta tres moldes para sus empaques.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q42-vela.webp" alt="Vela: radio 4 cm, perímetro de la base 25,2 cm y altura 18 cm." loading="lazy"></figure><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q42-moldes.webp" alt="Molde 1: círculo de diámetro 8 cm junto a rectángulo con lado 27 cm; molde 2: prisma de base cuadrada de 8 cm y altura 18 cm; molde 3: rectángulo de 25,2 por 18 cm con círculos laterales rotulados 4 cm." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('7e7388de-c618-4ece-8b34-0c0f03033cdd', 'situacion', 'DONALD S2 · Pregunta 43', 'ctx-sit', '<p>Los cuadrados de la sucesión tienen lados de 3, 5, 7 y 9 cm en las posiciones 1, 2, 3 y 4.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q43-cuadrados.webp" alt="Cuatro cuadrados de lados 3, 5, 7 y 9 cm." loading="lazy"></figure><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q43-tabla.webp" alt="Posiciones 1, 2, 3, 4 con áreas 9, 25, 49 y 81 cm²." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('68669472-5337-41fe-9930-08ffab3e11a8', 'situacion', 'DONALD S2 · Pregunta 44', 'ctx-sit', '<p>Un vaso cilíndrico tiene radio de 3 cm y altura de 8 cm. Un estudiante calcula π×3²×8 ≈ 226,19.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q44-vaso.webp" alt="Vaso cilíndrico de radio 3 cm y altura 8 cm." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('449c8d49-a1f4-44b3-b3a0-f0f8012abc7b', 'situacion', 'DONALD S2 · Pregunta 45', 'ctx-sit', '<p>Los estudiantes pueden practicar atletismo, fútbol y baloncesto. Para la probabilidad de practicar únicamente fútbol, un profesor propone (4 + 6 + 2 + 20)/(4 + 6 + 2 + 20 + 10 + 3 + 25).</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q45-venn.webp" alt="Solo atletismo 10; solo baloncesto 25; solo fútbol 20; atletismo y baloncesto 3; atletismo y fútbol 4; baloncesto y fútbol 2; los tres deportes 6." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('c104c00f-4eb2-403e-af12-0f3667bc7fc2', 'situacion', 'DONALD S2 · Pregunta 46', 'ctx-sit', '<p>De un cartón cuadrado de lado z se recortan cuadrados de lado x en cada esquina para construir una caja sin tapa. Su volumen es x(z − 2x)².</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q46-caja.webp" alt="Desarrollo de una caja sin tapa con altura x y base de lados z − 2x." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('3bc4dc54-2a74-4ab0-97e5-52e2823bec00', 'situacion', 'DONALD S2 · Pregunta 42', 'ctx-sit', '<p>Una empresa vende velas cilíndricas y presenta tres moldes para sus empaques.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q42-vela.webp" alt="Vela: radio 4 cm, perímetro de la base 25,2 cm y altura 18 cm." loading="lazy"></figure><figure class="ctx-fig"><img src="img/figuras/mat/do2-q42-moldes.webp" alt="Molde 1: círculo de diámetro 8 cm junto a rectángulo con lado 27 cm; molde 2: prisma de base cuadrada de 8 cm y altura 18 cm; molde 3: rectángulo de 25,2 por 18 cm con círculos laterales rotulados 4 cm." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('80004112-a859-4b93-8d46-c54bf40177e4', 'situacion', 'DONALD S2 · Pregunta 43', 'ctx-sit', '<p>Los cuadrados de la sucesión tienen lados de 3, 5, 7 y 9 cm en las posiciones 1, 2, 3 y 4.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q43-cuadrados.webp" alt="Cuatro cuadrados de lados 3, 5, 7 y 9 cm." loading="lazy"></figure><figure class="ctx-fig"><img src="img/figuras/mat/do2-q43-tabla.webp" alt="Posiciones 1, 2, 3, 4 con áreas 9, 25, 49 y 81 cm²." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('076f8291-f52e-48e6-b889-147f866add64', 'situacion', 'DONALD S2 · Pregunta 44', 'ctx-sit', '<p>Un vaso cilíndrico tiene radio de 3 cm y altura de 8 cm. Un estudiante calcula π×3²×8 ≈ 226,19.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q44-vaso.webp" alt="Vaso cilíndrico de radio 3 cm y altura 8 cm." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('4096e0fa-155c-48b2-8ea5-25c63967bbc0', 'situacion', 'DONALD S2 · Pregunta 45', 'ctx-sit', '<p>Los estudiantes pueden practicar atletismo, fútbol y baloncesto. Para la probabilidad de practicar únicamente fútbol, un profesor propone (4 + 6 + 2 + 20)/(4 + 6 + 2 + 20 + 10 + 3 + 25).</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q45-venn.webp" alt="Solo atletismo 10; solo baloncesto 25; solo fútbol 20; atletismo y baloncesto 3; atletismo y fútbol 4; baloncesto y fútbol 2; los tres deportes 6." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('7b8e8a13-1387-46d2-befc-8c397cfaa5f4', 'situacion', 'DONALD S2 · Pregunta 46', 'ctx-sit', '<p>De un cartón cuadrado de lado z se recortan cuadrados de lado x en cada esquina para construir una caja sin tapa. Su volumen es x(z − 2x)².</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q46-caja.webp" alt="Desarrollo de una caja sin tapa con altura x y base de lados z − 2x." loading="lazy"></figure>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('0dca8292-7658-445d-9830-149f02b0ece1', 'situacion', 'DONALD S2 · Pregunta 47', 'ctx-sit', '<p>Cada producto genera una ganancia de $10.000. El vendedor recibe $25.000 diarios más el 25 % de la ganancia por cada producto vendido. Se propone y = x((25/100)×10.000 + 25.000), con x productos vendidos.</p>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('6d1d064e-1a6a-4cc9-898a-6bcc80838bdf', 'situacion', 'DONALD S2 · Pregunta 48', 'ctx-sit', '<p>Para resolver |2x − 5| = 3, un estudiante hace: 2x − 5 = −3; 2x = 2; x = 1.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('7a948a9a-7775-45ed-b941-9a56ffbab568', 'situacion', 'DONALD S2 · Pregunta 49', 'ctx-sit', '<p>El original describe un triángulo rectángulo PQR y afirma que EF es paralelo a PR. En el dibujo, EF aparece horizontal entre PQ y PR. Se indican PQ = 800 m, QR = 500 m y EF = 300 m.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q49-triangulo.webp" alt="Triángulo PQR con un segmento horizontal EF interior y la región inferior sombreada." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('d571f8b2-5408-45b3-b592-59ace5e88e53', 'situacion', 'DONALD S2 · Pregunta 50', 'ctx-sit', '<p>David traza WX, XY y YZ, cada uno de longitud 1. Usa Pitágoras en WXY y obtiene WY = √2. Luego usa Pitágoras en WZY y concluye WZ = √3.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q50-segmentos.webp" alt="WX es horizontal, XY vertical y YZ horizontal; WY es una diagonal." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('40888afa-643a-446c-a759-8220861d5474', 'situacion', 'DONALD S2 · Pregunta 51', 'ctx-sit', '<p>En el marco triangular de una bicicleta aparecen lados de 31 cm, 35 cm y x, además de un ángulo de 60°. Camilo afirma que el lado mayor es x = √(31² + 35²).</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q51-bicicleta.webp" alt="Bicicleta con triángulo en el marco: lado superior de 35 cm, lado izquierdo de 31 cm y ángulo inferior de 60°." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('4abc8d71-5f6b-47a1-b0bf-01c4b1bfee3b', 'situacion', 'DONALD S2 · Pregunta 52', 'ctx-sit', '<p>Se quiere hallar el área del triángulo sombreado inscrito en una semicircunferencia.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q52-semicirculo.webp" alt="Triángulo de lados 3, 4 y 5 metros; el lado de 5 metros es el diámetro." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('aa4cd8cf-6171-4757-9dc8-896ae1a985cd', 'situacion', 'DONALD S2 · Pregunta 53', 'ctx-sit', '<p>El coeficiente de correlación se calcula como covarianza(X,Y)/(desviación estándar de X × desviación estándar de Y).</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q53-tabla.webp" alt="Desviación estándar de X: 1,7; varianza de Y: 11,7; covarianza de X e Y: 5,8. Las otras dos casillas están sin dato." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('ebe6898a-8090-46aa-add1-15a43e98f00f', 'situacion', 'DONALD S2 · Pregunta 54', 'ctx-sit', '<p>El desplazamiento se define como la distancia entre la posición inicial I y la final F. Santiago elige la ruta 1 porque cree que termina con mayor desplazamiento.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q54-rutas.webp" alt="Ruta 1 va de I en 0 a F en 3; ruta 2 recorre un circuito; ruta 3 va de I en 4 a F en −4." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('9c8b9ad1-112d-4710-8585-05e97f11ee74', 'situacion', 'DONALD S2 · Pregunta 49', 'ctx-sit', '<p>El original describe un triángulo rectángulo PQR y afirma que EF es paralelo a PR. En el dibujo, EF aparece horizontal entre PQ y PR. Se indican PQ = 800 m, QR = 500 m y EF = 300 m.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q49-triangulo.webp" alt="Triángulo PQR con un segmento horizontal EF interior y la región inferior sombreada." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('28242225-c2c7-4773-827f-9ee8795a755e', 'situacion', 'DONALD S2 · Pregunta 50', 'ctx-sit', '<p>David traza WX, XY y YZ, cada uno de longitud 1. Usa Pitágoras en WXY y obtiene WY = √2. Luego usa Pitágoras en WZY y concluye WZ = √3.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q50-segmentos.webp" alt="WX es horizontal, XY vertical y YZ horizontal; WY es una diagonal." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('ca76d75d-50ab-45af-924c-8033c3006413', 'situacion', 'DONALD S2 · Pregunta 51', 'ctx-sit', '<p>En el marco triangular de una bicicleta aparecen lados de 31 cm, 35 cm y x, además de un ángulo de 60°. Camilo afirma que el lado mayor es x = √(31² + 35²).</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q51-bicicleta.webp" alt="Bicicleta con triángulo en el marco: lado superior de 35 cm, lado izquierdo de 31 cm y ángulo inferior de 60°." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('6da08ea8-2b28-4f1e-bc88-71c1d5b31d58', 'situacion', 'DONALD S2 · Pregunta 52', 'ctx-sit', '<p>Se quiere hallar el área del triángulo sombreado inscrito en una semicircunferencia.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q52-semicirculo.webp" alt="Triángulo de lados 3, 4 y 5 metros; el lado de 5 metros es el diámetro." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('717cb611-385e-4231-9b74-fc3cec7c2603', 'situacion', 'DONALD S2 · Pregunta 53', 'ctx-sit', '<p>El coeficiente de correlación se calcula como covarianza(X,Y)/(desviación estándar de X × desviación estándar de Y).</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q53-tabla.webp" alt="Desviación estándar de X: 1,7; varianza de Y: 11,7; covarianza de X e Y: 5,8. Las otras dos casillas están sin dato." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('fdd306c0-7467-4dee-aee8-17db9626da77', 'situacion', 'DONALD S2 · Pregunta 54', 'ctx-sit', '<p>El desplazamiento se define como la distancia entre la posición inicial I y la final F. Santiago elige la ruta 1 porque cree que termina con mayor desplazamiento.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q54-rutas.webp" alt="Ruta 1 va de I en 0 a F en 3; ruta 2 recorre un circuito; ruta 3 va de I en 4 a F en −4." loading="lazy"></figure>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('66c82bf9-6ecb-4dbe-87cd-c043a6a8c65f', 'situacion', 'DONALD S2 · Pregunta 55', 'ctx-sit', '<p>Una función tiene la forma f(x) = mx + b, donde m y b son constantes.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('5eab2f0b-15b6-46e8-aaea-c0a7dd0f57d4', 'situacion', 'DONALD S2 · Pregunta 56', 'ctx-sit', '<p>La academia aplica un 20 % de descuento al tomar dos cursos y un 30 % al tomar tres o más. El descuento se aplica por estudiante.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q56-precios.webp" alt="Mensualidades: guitarra $130.000; batería $150.000; piano $120.000; canto $170.000." loading="lazy"></figure><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q56-inscritos.webp" alt="Inscritos por curso: guitarra 10, batería 6, piano 16, canto 9." loading="lazy"></figure><p>Dos niños de una familia toman dos cursos cada uno. La familia paga $480.000 en total y uno de los niños toma guitarra y batería.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('17140d2c-1a7b-4dd4-bd4c-70b4c30fa0a6', 'situacion', 'DONALD S2 · Pregunta 57', 'ctx-sit', '<p>La academia aplica un 20 % de descuento al tomar dos cursos y un 30 % al tomar tres o más. El descuento se aplica por estudiante.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q56-precios.webp" alt="Mensualidades: guitarra $130.000; batería $150.000; piano $120.000; canto $170.000." loading="lazy"></figure><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q56-inscritos.webp" alt="Inscritos por curso: guitarra 10, batería 6, piano 16, canto 9." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('02e588b2-a59a-437e-8df2-c8d3e3d487eb', 'situacion', 'DONALD S2 · Pregunta 58', 'ctx-sit', '<p>La academia aplica un 20 % de descuento al tomar dos cursos y un 30 % al tomar tres o más. El descuento se aplica por estudiante.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q56-precios.webp" alt="Mensualidades: guitarra $130.000; batería $150.000; piano $120.000; canto $170.000." loading="lazy"></figure><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q56-inscritos.webp" alt="Inscritos por curso: guitarra 10, batería 6, piano 16, canto 9." loading="lazy"></figure><p>La academia tiene 18 estudiantes y ninguno toma uno ni cuatro cursos. Para hallar cuántos toman dos, se propone sumar las inscripciones, calcular 3×18 y restar la primera suma.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('ef7eff91-10c8-4f9b-9be9-715730966463', 'situacion', 'DONALD S2 · Pregunta 59', 'ctx-sit', '<p>La figura ubica un trapecio en el plano cartesiano.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q59-trapecio.webp" alt="Trapecio con W(−2,2), X(−2,0), Y(2,0) y Z situado a la derecha del eje vertical sobre y = 2." loading="lazy"></figure>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('493720a1-0955-4d0d-8449-25a9de5d7943', 'situacion', 'DONALD S2 · Pregunta 60', 'ctx-sit', '<p>El paralelogramo se traslada b unidades horizontalmente.</p><figure class="ctx-fig"><img src="https://raw.githubusercontent.com/juannico125/pensar-popayan-app/33cddc79285a510eec3ac93fcef24ad34584d251/img/figuras/mat/do2-q60-paralelogramo.webp" alt="Paralelogramo XYWZ en el plano cartesiano." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('cd69f012-e19f-4544-8815-efe24e9e6ac6', 'situacion', 'DONALD S2 · Pregunta 56', 'ctx-sit', '<p>La academia aplica un 20 % de descuento al tomar dos cursos y un 30 % al tomar tres o más. El descuento se aplica por estudiante.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q56-precios.webp" alt="Mensualidades: guitarra $130.000; batería $150.000; piano $120.000; canto $170.000." loading="lazy"></figure><figure class="ctx-fig"><img src="img/figuras/mat/do2-q56-inscritos.webp" alt="Inscritos por curso: guitarra 10, batería 6, piano 16, canto 9." loading="lazy"></figure><p>Dos niños de una familia toman dos cursos cada uno. La familia paga $480.000 en total y uno de los niños toma guitarra y batería.</p>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('51d954d5-f786-4d4a-a2da-97709bd5559c', 'situacion', 'DONALD S2 · Pregunta 57', 'ctx-sit', '<p>La academia aplica un 20 % de descuento al tomar dos cursos y un 30 % al tomar tres o más. El descuento se aplica por estudiante.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q56-precios.webp" alt="Mensualidades: guitarra $130.000; batería $150.000; piano $120.000; canto $170.000." loading="lazy"></figure><figure class="ctx-fig"><img src="img/figuras/mat/do2-q56-inscritos.webp" alt="Inscritos por curso: guitarra 10, batería 6, piano 16, canto 9." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('4cd59bd1-b9ac-4d78-a168-a100484ae6ca', 'situacion', 'DONALD S2 · Pregunta 58', 'ctx-sit', '<p>La academia aplica un 20 % de descuento al tomar dos cursos y un 30 % al tomar tres o más. El descuento se aplica por estudiante.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q56-precios.webp" alt="Mensualidades: guitarra $130.000; batería $150.000; piano $120.000; canto $170.000." loading="lazy"></figure><figure class="ctx-fig"><img src="img/figuras/mat/do2-q56-inscritos.webp" alt="Inscritos por curso: guitarra 10, batería 6, piano 16, canto 9." loading="lazy"></figure><p>La academia tiene 18 estudiantes y ninguno toma uno ni cuatro cursos. Para hallar cuántos toman dos, se propone sumar las inscripciones, calcular 3×18 y restar la primera suma.</p>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('7b514da9-110d-4e2b-9fe0-7595134c48fb', 'situacion', 'DONALD S2 · Pregunta 59', 'ctx-sit', '<p>La figura ubica un trapecio en el plano cartesiano.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q59-trapecio.webp" alt="Trapecio con W(−2,2), X(−2,0), Y(2,0) y Z situado a la derecha del eje vertical sobre y = 2." loading="lazy"></figure>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('67cb367f-fbf4-464a-b432-2bc9d6dac38e', 'situacion', 'DONALD S2 · Pregunta 60', 'ctx-sit', '<p>El paralelogramo se traslada b unidades horizontalmente.</p><figure class="ctx-fig"><img src="img/figuras/mat/do2-q60-paralelogramo.webp" alt="Paralelogramo XYWZ en el plano cartesiano." loading="lazy"></figure>');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
 select 'c1d74095-8b96-4cf7-a780-083f1defc11e', 'mat',
@@ -36,7 +36,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'd8653b91-72ad-4416-8e6a-e11278607857', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'geometria-espacial'),
   (select id from public.lotes where codigo = '2026-B'),
-  '148b5268-0dec-4191-b328-a62879ab4ae1', 'Geometría espacial',
+  '3bc4dc54-2a74-4ab0-97e5-52e2823bec00', 'Geometría espacial',
   '¿Cuáles moldes permiten empacar la vela?',
   array['Solamente 3.', 'Solamente 1 y 2.', 'Solamente 1 y 3.', 'Solamente 2.'],
   'Revisión docente: verificar radio frente a diámetro y el lado del rectángulo que se enrolla.', 'borrador', 'modelo', '15df71c7601a07e1a7467f51ddfbb196', 'alta';
@@ -45,7 +45,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'df5dba2c-1939-4702-9b88-b85839fd1780', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'funciones'),
   (select id from public.lotes where codigo = '2026-B'),
-  '7e7388de-c618-4ece-8b34-0c0f03033cdd', 'Funciones y variación',
+  '80004112-a859-4b93-8d46-c54bf40177e4', 'Funciones y variación',
   '¿Qué expresión representa el área del cuadrado en la posición n?',
   array['(2n + 1)².', '(2ⁿ + 1)².', '(3 + 2ⁿ)².', '(3 + 2n)².'],
   'Prueba la fórmula con las posiciones 1 y 2 antes de generalizar.', 'publicada', 'modelo', 'b412961e8d0f1a2904e1e2ebc2f4b3d9', 'media';
@@ -55,7 +55,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'a280534e-1ea3-4984-8ff2-5dc485d385b9', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'geometria-espacial'),
   (select id from public.lotes where codigo = '2026-B'),
-  '68669472-5337-41fe-9930-08ffab3e11a8', 'Geometría espacial',
+  '076f8291-f52e-48e6-b889-147f866add64', 'Geometría espacial',
   '¿Qué representa el resultado de esa operación?',
   array['El volumen del vaso.', 'El área de la tapa.', 'El perímetro de la tapa.', 'El área lateral del vaso.'],
   'Identifica si la fórmula combina longitud, área o volumen.', 'publicada', 'modelo', '57cd66e4ba2b63e6e4de6a58bb578187', 'media';
@@ -65,7 +65,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'd6c8b317-2dd7-446b-a56e-c0cc59fcb236', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'tablas-y-probabilidad'),
   (select id from public.lotes where codigo = '2026-B'),
-  '449c8d49-a1f4-44b3-b3a0-f0f8012abc7b', 'Tablas y probabilidad',
+  '4096e0fa-155c-48b2-8ea5-25c63967bbc0', 'Tablas y probabilidad',
   '¿En qué consiste el error?',
   array['Los números deben colocarse en orden según su magnitud.', 'En el numerador solo debe ir 12.', 'En el numerador solo debe ir 20.', 'Hay que intercambiar los números del numerador y del denominador.'],
   'La palabra «únicamente» excluye las intersecciones con otros conjuntos.', 'publicada', 'modelo', 'eba372ce2843f4600778bfcba3d1ae36', 'alta';
@@ -75,7 +75,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '2be5b7d8-0911-4f5b-80ce-efaa62629b74', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'geometria-espacial'),
   (select id from public.lotes where codigo = '2026-B'),
-  'c104c00f-4eb2-403e-af12-0f3667bc7fc2', 'Geometría espacial',
+  '7b8e8a13-1387-46d2-befc-8c397cfaa5f4', 'Geometría espacial',
   'Si el cartón tiene lado de 50 cm y se recortan cuadrados de 15 cm, ¿cuál es el volumen?',
   array['18.375 cm³.', '6.000 cm³.', '1.250 cm³.', '600 cm³.'],
   'Cada dimensión de la base pierde dos recortes, uno por cada extremo.', 'publicada', 'modelo', '55668ebf3cebd24ada3e1e22e6613952', 'alta';
@@ -105,7 +105,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'e8451bfa-ea7f-4d5f-9921-6bf78fef4da3', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'areas-y-perimetros'),
   (select id from public.lotes where codigo = '2026-B'),
-  '7a948a9a-7775-45ed-b941-9a56ffbab568', 'Áreas y perímetros',
+  '9c8b9ad1-112d-4710-8585-05e97f11ee74', 'Áreas y perímetros',
   'Según la fuente, ¿cuál es el área del «triángulo sombreado»?',
   array['240.000 m².', '120.000 m².', '180.000 m².', '140.000 m².'],
   'Revisión docente: confirmar qué región se pide y a qué lado es paralelo EF.', 'borrador', 'modelo', '8afe9bcd75531c8421fdffc0c3578748', 'alta';
@@ -114,7 +114,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '02cb24b5-67b2-4c4a-8699-244b2c5fd4a0', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'areas-y-perimetros'),
   (select id from public.lotes where codigo = '2026-B'),
-  'd571f8b2-5408-45b3-b592-59ace5e88e53', 'Áreas y perímetros',
+  '28242225-c2c7-4773-827f-9ee8795a755e', 'Áreas y perímetros',
   '¿Cuál es el error del procedimiento?',
   array['La medida de WY debería ser 2, no √2.', 'Considerar que el triángulo WYZ es rectángulo.', 'Usar Pitágoras para hallar WY.', 'Usar segmentos de longitud 1 en vez de √3/3.'],
   'Verifica que el ángulo recto pertenezca al triángulo al que aplicas Pitágoras.', 'publicada', 'modelo', '953d861d74f926fbe0c49633d63b49b7', 'alta';
@@ -124,7 +124,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'bda28e71-79c3-4f2c-b480-926cdffad72a', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'trigonometria'),
   (select id from public.lotes where codigo = '2026-B'),
-  '40888afa-643a-446c-a759-8220861d5474', 'Trigonometría',
+  'ca76d75d-50ab-45af-924c-8033c3006413', 'Trigonometría',
   '¿Es cierta la afirmación de Camilo?',
   array['Sí, porque se obtiene con el teorema del coseno.', 'No, porque debe usarse el cociente entre cateto opuesto e hipotenusa.', 'Sí, porque la desigualdad triangular dice que un lado es la suma de los otros dos.', 'No, porque esa relación requeriría un ángulo recto entre los lados conocidos.'],
   'No apliques Pitágoras solo porque hay tres lados: debe existir un ángulo de 90°.', 'publicada', 'modelo', '107179034f7ee1d002269051821e10c8', 'alta';
@@ -134,7 +134,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'b2d40e8d-8866-409b-bb8e-123420a12352', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'areas-y-perimetros'),
   (select id from public.lotes where codigo = '2026-B'),
-  '4abc8d71-5f6b-47a1-b0bf-01c4b1bfee3b', 'Áreas y perímetros',
+  '6da08ea8-2b28-4f1e-bc88-71c1d5b31d58', 'Áreas y perímetros',
   '¿Cuál es su área?',
   array['15 m².', '12 m².', '6 m².', '5 m².'],
   'El diámetro es la hipotenusa, no una altura del triángulo.', 'publicada', 'modelo', '2840bf0e8fb41e05efb76fa55588cc84', 'media';
@@ -144,7 +144,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select 'b1f90dfc-2b00-4f3d-b0dc-498e6790e4a2', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'estadistica-descriptiva'),
   (select id from public.lotes where codigo = '2026-B'),
-  'aa4cd8cf-6171-4757-9dc8-896ae1a985cd', 'Estadística descriptiva',
+  '717cb611-385e-4231-9b74-fc3cec7c2603', 'Estadística descriptiva',
   '¿Es suficiente la información para calcular el coeficiente?',
   array['Sí, porque ambas desviaciones estándar son iguales.', 'No, porque no se conoce la varianza de X.', 'Sí, porque la desviación estándar de Y se calcula a partir de su varianza.', 'No, porque no se conoce la desviación estándar de Y.'],
   'Un dato ausente puede obtenerse mediante una relación conocida.', 'publicada', 'modelo', '7d3c9e6898bc7ccc52b9a08ef2426c1e', 'alta';
@@ -154,7 +154,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '041d09ae-7d7c-4c8f-8698-3b02151aa3de', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'areas-y-perimetros'),
   (select id from public.lotes where codigo = '2026-B'),
-  'ebe6898a-8090-46aa-add1-15a43e98f00f', 'Áreas y perímetros',
+  'fdd306c0-7467-4dee-aee8-17db9626da77', 'Áreas y perímetros',
   '¿Cómo se evalúa su afirmación?',
   array['Correcta, porque la ruta 1 es recta y recorre más distancia.', 'Incorrecta, porque el desplazamiento de la ruta 3 es mayor que el de la ruta 1.', 'Correcta, porque la ruta 1 no retrocede respecto al inicio.', 'Incorrecta, porque en la ruta 2 hay más desplazamientos.'],
   'Distingue la longitud recorrida de la distancia entre inicio y fin.', 'publicada', 'modelo', 'c73799c2698f60e581e2cebfe45992d2', 'media';
@@ -174,7 +174,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '65e4eea4-11ff-4a32-986d-158ea428ea9a', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'ecuaciones-en-contexto'),
   (select id from public.lotes where codigo = '2026-B'),
-  '5eab2f0b-15b6-46e8-aaea-c0a7dd0f57d4', 'Ecuaciones en contexto',
+  'cd69f012-e19f-4544-8815-efe24e9e6ac6', 'Ecuaciones en contexto',
   '¿Qué operación permite buscar en la tabla los cursos del otro niño?',
   array['480.000×0,8 − (130.000 + 150.000).', '480.000×0,8 − (130.000 + 150.000)×0,8.', '480.000/0,8 − (130.000 + 150.000).', '480.000/0,8 − (130.000 + 150.000)×0,8.'],
   'Si conoces el precio después de descontar el 20 %, divide entre 0,8 para recuperar el original.', 'publicada', 'modelo', '303b147ae4b74f8159d321419b7ad9fe', 'alta';
@@ -184,7 +184,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '96a53456-d24c-4570-8bb7-c34d15b21ac9', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'proporcionalidad'),
   (select id from public.lotes where codigo = '2026-B'),
-  '17140d2c-1a7b-4dd4-bd4c-70b4c30fa0a6', 'Proporcionalidad y porcentajes',
+  '51d954d5-f786-4d4a-a2da-97709bd5559c', 'Proporcionalidad y porcentajes',
   'Un alumno elige guitarra y piano como la combinación de dos cursos más barata después del descuento. ¿Es correcta su decisión?',
   array['Sí, porque la diferencia entre sus precios es la más pequeña.', 'No, porque batería y canto reciben un descuento mayor en pesos y quedan más baratos.', 'No, porque piano y canto combinan un precio bajo con un descuento más alto.', 'Sí, porque son los dos cursos con menor precio antes del descuento y se les aplica el mismo porcentaje.'],
   'Con igual porcentaje de descuento, la menor suma inicial sigue siendo la menor.', 'publicada', 'modelo', '758ac660d356a485f63759cbd9d62179', 'alta';
@@ -194,7 +194,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '5ebdb71a-cffb-44e0-84a6-43a40770c65f', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'ecuaciones-en-contexto'),
   (select id from public.lotes where codigo = '2026-B'),
-  '02e588b2-a59a-437e-8df2-c8d3e3d487eb', 'Ecuaciones en contexto',
+  '4cd59bd1-b9ac-4d78-a168-a100484ae6ca', 'Ecuaciones en contexto',
   '¿Cuántos estudiantes toman dos cursos?',
   array['14.', '12.', '9.', '15.'],
   'Revisión docente: confirmar la cifra de inscritos en piano y las opciones.', 'borrador', 'modelo', '0783eb3a15957df025daa4973d7bfaad', 'alta';
@@ -203,7 +203,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '745ae467-a6e7-4276-966a-39fe78d3a397', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'areas-y-perimetros'),
   (select id from public.lotes where codigo = '2026-B'),
-  'ef7eff91-10c8-4f9b-9be9-715730966463', 'Áreas y perímetros',
+  '7b514da9-110d-4e2b-9fe0-7595134c48fb', 'Áreas y perímetros',
   'Al trazar una diagonal, ¿qué par de figuras puede obtenerse?',
   array['Dos triángulos congruentes.', 'Un triángulo rectángulo y uno equilátero.', 'Un triángulo rectángulo y uno escaleno.', 'Dos triángulos semejantes.'],
   'Busca primero el ángulo de 90° que ya está formado por lados del trapecio.', 'publicada', 'modelo', '21c3ad6a31659a59fa2eb49b8c497ff9', 'media';
@@ -213,7 +213,7 @@ insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, 
 select '794e63be-3c67-46bb-ac06-02502622b608', 'mat',
   (select id from public.temas where materia = 'mat' and codigo = 'areas-y-perimetros'),
   (select id from public.lotes where codigo = '2026-B'),
-  '493720a1-0955-4d0d-8449-25a9de5d7943', 'Áreas y perímetros',
+  '67cb367f-fbf4-464a-b432-2bc9d6dac38e', 'Áreas y perímetros',
   'Al comparar la figura inicial y la trasladada, ¿qué se conserva?',
   array['El área y el perímetro.', 'Solo el área; cambia el perímetro.', 'Solo el perímetro; cambia el área.', 'No se conserva ni el área ni el perímetro.'],
   'Mover una figura sin deformarla conserva sus medidas.', 'publicada', 'modelo', 'e625cc2ec6b98fa4c81ddcfc7fd8280f', 'media';

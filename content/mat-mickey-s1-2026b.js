@@ -1,5 +1,5 @@
 /* mikey mates.pdf, páginas 2–7, preguntas 1–30. Claves resueltas por el modelo. */
-const ROOT='https://raw.githubusercontent.com/juannico125/pensar-popayan-app/66326d9756dcdd663200c2254027a093c1aed0a3/img/figuras/mat/';
+const ROOT='img/figuras/mat/';
 const F=(n,a)=>`<figure class="ctx-fig"><img src="${ROOT}mi-${n}.webp" alt="${a}" loading="lazy"></figure>`;
 const P=s=>`<p>${s}</p>`;
 const BANKS={mat:[]};

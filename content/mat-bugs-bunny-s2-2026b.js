@@ -1,5 +1,5 @@
 /* bugs bunny mates 2.pdf, páginas 6–9, preguntas 41–60. Claves del modelo. */
-const ROOT='https://raw.githubusercontent.com/juannico125/pensar-popayan-app/ac737fabf827423cb53afec96955516a31ae14ac/img/figuras/mat/';
+const ROOT='img/figuras/mat/';
 const F=(n,a)=>`<figure class="ctx-fig"><img src="${ROOT}bu2-${n}.webp" alt="${a}" loading="lazy"></figure>`;
 const P=s=>`<p>${s}</p>`;
 const BANKS={mat:[]};

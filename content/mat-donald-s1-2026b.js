@@ -1,7 +1,7 @@
 /* Fuente: donald mates.pdf, páginas 2–8, preguntas 1–30.
  * 12, 18 y 27 se conservan como borradores sin clave por problemas en la fuente.
  */
-const ROOT='https://raw.githubusercontent.com/juannico125/pensar-popayan-app/426bf8f59f0fa2597ba442f8e967c7b3274938c9/img/figuras/mat/';
+const ROOT='img/figuras/mat/';
 const F=(n,a)=>`<figure class="ctx-fig"><img src="${ROOT}do1-${n}.webp" alt="${a}" loading="lazy"></figure>`;
 const P=s=>`<p>${s}</p>`;
 const BANKS={mat:[]};
