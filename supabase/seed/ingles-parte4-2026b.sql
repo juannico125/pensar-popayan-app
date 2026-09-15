@@ -9,7 +9,7 @@ insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('c6d
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('8723fd91-7d80-41ef-86c5-a7132ce8bdc8', 'pasaje', 'COMPLETAR · Elephants in the circus', 'ctx-pasaje', '<p><strong>Elephants in the circus</strong></p><p>One of America&rsquo;s top shows will have no elephants (0) <strong>on</strong> stage in a few years. All their elephants will go to a natural park and be (26) ______ there than in the circus. One hundred years ago, people (27) ______ it was OK for animals to be in these shows; (28) ______, today things have changed. People have (29) ______ to worry about it because the animals aren&rsquo;t free.</p><p>A lot of environmental groups believe that these kinds (30) ______ shows are not right. One group says circus elephants have a bad life. They (31) ______ have paints in their bodies and get sick. This group (32) ______ wants elephants to rest. There are even some places in the USA where shows (33) ______ use elephants because people agree that it is important to protect them.</p>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('65e1b7f6-818d-4674-a3e4-b160675030c0', 'pasaje', 'COMPLETAR · The Mozart Effect', 'ctx-pasaje', '<p><strong>The Mozart Effect</strong></p><p>You have probably (0) <strong>heard</strong> of the Mozart effect. By 1982, Don Campbell (23) ______ studying the idea that if children or even babies listen to music composed by Mozart, they (24) ______ become more intelligent. He says that (25) ______ kinds of music can affect our learning and our health.</p><p>We use music to (26) ______ us relax. However, Campbell says that music can (27) ______ reduce the stress of (28) ______ sick. Campbell believes that Mozart&rsquo;s music is popular because it&rsquo;s (29) ______ and makes your brain more alert.</p><p>Music not only makes you more intelligent, but it can improve your memory, too. In one study, students who listened to Mozart before doing a test got much (30) ______ marks than those students who didn&rsquo;t.</p>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('4b4802ff-b963-4355-8c48-4f87708d742d', 'pasaje', 'COMPLETAR · Chili peppers', 'ctx-pasaje', '<p><strong>Chili peppers</strong></p><p>Chili peppers are the fruit of pepper plants. You might be surprised if you found out people have been eating them for a (0) <strong>lot</strong> of years. In (26) ______, they have been part of the human (27) ______ for more than 6,000 years.</p><p>It was Christopher Columbus who accidentally (28) ______ chili peppers in America and took them to Europe. Later, Europeans began finding different (29) ______ for this spice. Columbus could never (30) ______ imagined the result. The chili pepper would turn (31) ______ &ldquo;the queen of spices&rdquo; around the world.</p><p>Fortunately, it has been proven today that chili peppers have many (32) ______; they help reduce the level of cholesterol, (33) ______ virus infections like the flu and fight bone disease. Because of this, it&rsquo;s a good idea to eat this healthy fruit.</p><p>(34) ______ all the advantages of eating chilies, don&rsquo;t start eating a lot of them at (35) ______; chilies can also cause an upset stomach and sore throat.</p>');
-insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('6e9d8b5f-ef4d-464a-9af2-e295fb1a94af', 'pasaje', 'COMPLETAR · Useful Things', 'ctx-pasaje', '<p><strong>Useful Things</strong></p><p>Few things are (0) <strong>better</strong> than having anything you love in your garage. I am a single father and I (16) ______ look after two teenagers; both of them are special and friendly. My car has become a very useful thing when it comes to (17) ______ them to the museum or to the department store. (18) ______ their friends in these places is important for them.</p><p>However, the (19) ______ important thing on my list is my cell phone. I (20) ______ shopping and bought a modern one two months ago. It is (21) ______ and useful since I use it as an alarm clock to wake up (22) ______ 5 o&rsquo;clock. I (23) ______ check information on the web and send text messages to my colleagues.</p>');
+insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('6e9d8b5f-ef4d-464a-9af2-e295fb1a94af', 'pasaje', 'COMPLETAR · Useful Things', 'ctx-pasaje', '<p><strong>Useful Things</strong></p><p>Few things are (0) <strong>better</strong> than having anything you love in your garage. I am a single father and I (16) ______ look after two teenagers; both of them are special and friendly. My car has become a very useful thing when it comes to (17) ______ them to the museum or to the department store. (18) ______ their friends in these places is important for them.</p><p>However, the (19) ______ important thing on my list is my cell phone. I (20) ______ shopping and bought a modern one two months ago. It is (21) ______ and useful since I use it as an alarm clock to wake up (22) ______ 5 o&rsquo;clock. I can (23) ______ check information on the web and send text messages to my colleagues.</p>');
 insert into public.contextos (id, tipo, etiqueta, clase, contenido) values ('a63af53e-30da-430b-a1a8-13656811c392', 'pasaje', 'COMPLETAR · Walk Your Dog', 'ctx-pasaje', '<p><strong>Walk Your Dog</strong></p><p>Controlled exercise (0) <strong>benefits</strong> dogs in a couple of ways. They burn energy and it becomes a habit for them. The most basic exercise is a controlled walk. When you (31) ______ your dog for a walk, have it go beside you and don&rsquo;t (32) ______ it to smell everything in sight.</p><p>In addition to the training and the social hierarchy established, walking the dog (33) ______ helps restless dogs get tired. This may be caused by (34) ______ physical exercise, but some of it comes from your dog&rsquo;s mental energy once it (35) ______ you&rsquo;re the one in control. That may sound strange, but avoiding distraction by concentrating on your (36) ______ is difficult for dogs. Dogs have the (37) ______ behavior thanks to their effort. If a dog is left (38) ______ its own, the possibility to get in trouble (39) ______ a lot. Be nice and give your dog a (40) ______ exercise routine.</p>');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
@@ -739,7 +739,7 @@ select 'aa3ab025-1a92-4c02-a01c-43c398477a18', 'ing',
   '6e9d8b5f-ef4d-464a-9af2-e295fb1a94af', 'Parte 4 · Completar texto',
   '¿Qué palabra va en el espacio (16)?',
   array['shall', 'must', 'could'],
-  'Must marca lo que no se puede evitar; could, lo que se puede elegir. Fíjate en cuál pide la situación.', 'publicada', 'modelo', '6c045ed25f85ba849f57fbbde0a87a54', null;
+  'Must marca lo que no se puede evitar; could, lo que se puede elegir. Fíjate en cuál pide la situación.', 'publicada', 'modelo', 'bed41b8b5d97c619e0e57a2a253278de', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('aa3ab025-1a92-4c02-a01c-43c398477a18', 1, 'Ser padre soltero de dos adolescentes trae consigo una obligación: le toca cuidarlos. «Must» expresa ese deber. «Could» hablaría de una posibilidad y «shall» de una propuesta, y ninguna encaja con una responsabilidad familiar.');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
@@ -749,7 +749,7 @@ select 'c85c70d2-a833-40e2-8478-8d78c52d9f39', 'ing',
   '6e9d8b5f-ef4d-464a-9af2-e295fb1a94af', 'Parte 4 · Completar texto',
   '¿Qué palabra va en el espacio (17)?',
   array['take', 'taking', 'taken'],
-  'Cuidado con este «to»: en «when it comes to» es preposición, no marca de infinitivo.', 'publicada', 'modelo', 'ce6fdeb390778f108308aabff2600e73', null;
+  'Cuidado con este «to»: en «when it comes to» es preposición, no marca de infinitivo.', 'publicada', 'modelo', '6caf37ae9f9a61cd4a8cd2bb72e52e76', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('c85c70d2-a833-40e2-8478-8d78c52d9f39', 1, 'La expresión «when it comes to» termina en una preposición, así que el verbo que sigue va en gerundio. Es la misma regla de siempre: tras preposición, -ing.');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
@@ -759,7 +759,7 @@ select '32ef5187-1af0-4fae-a1df-ce8408bc7a69', 'ing',
   '6e9d8b5f-ef4d-464a-9af2-e295fb1a94af', 'Parte 4 · Completar texto',
   '¿Qué palabra va en el espacio (18)?',
   array['met', 'meet', 'meeting'],
-  'Si el hueco está al principio y le sigue un verbo conjugado, lo que falta es un sujeto: gerundio.', 'publicada', 'modelo', 'b8909dccc5bce24600c1a95b43bfbfa9', null;
+  'Si el hueco está al principio y le sigue un verbo conjugado, lo que falta es un sujeto: gerundio.', 'publicada', 'modelo', '4b289bd433cb92f2f9e88fdff466c832', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('32ef5187-1af0-4fae-a1df-ce8408bc7a69', 2, 'El hueco abre la frase y funciona como sujeto de «is important», así que necesita la forma en -ing, que actúa como sustantivo. Un pasado o un infinitivo suelto no pueden ser sujeto aquí.');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
@@ -769,7 +769,7 @@ select '0fce90db-f47e-4d43-ba1d-44ac9b03fed6', 'ing',
   '6e9d8b5f-ef4d-464a-9af2-e295fb1a94af', 'Parte 4 · Completar texto',
   '¿Qué palabra va en el espacio (19)?',
   array['more', 'most', 'much'],
-  'The + most + adjetivo = superlativo. La presencia de «the» es la señal.', 'publicada', 'modelo', '361ff149e2c29a9e43b0b217dcc85b88', null;
+  'The + most + adjetivo = superlativo. La presencia de «the» es la señal.', 'publicada', 'modelo', '751744e168611eb241fbf8ab9eddacb5', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('0fce90db-f47e-4d43-ba1d-44ac9b03fed6', 1, 'El artículo «the» delante y la ausencia de «than» señalan un superlativo: la cosa más importante de la lista. «More» compararía dos y «much» acompaña a incontables.');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
@@ -779,7 +779,7 @@ select '1324cbf2-99cc-4f1d-8cdd-c5cd2f6453e0', 'ing',
   '6e9d8b5f-ef4d-464a-9af2-e295fb1a94af', 'Parte 4 · Completar texto',
   '¿Qué palabra va en el espacio (20)?',
   array['go', 'went', 'gone'],
-  'La palabra «ago» siempre arrastra pasado simple. Es una señal infalible.', 'publicada', 'modelo', '97066d680f8ed9af341010507c803456', null;
+  'La palabra «ago» siempre arrastra pasado simple. Es una señal infalible.', 'publicada', 'modelo', '94b74316ec8d90a7ada01731cfda5ef6', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('1324cbf2-99cc-4f1d-8cdd-c5cd2f6453e0', 1, '«Two months ago» sitúa la acción en el pasado y el verbo va solo, sin auxiliar, así que corresponde el pasado simple. «Gone» pediría have delante.');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
@@ -789,7 +789,7 @@ select 'bd3d4973-807e-4b32-8abb-04e1c3eba801', 'ing',
   '6e9d8b5f-ef4d-464a-9af2-e295fb1a94af', 'Parte 4 · Completar texto',
   '¿Qué palabra va en el espacio (21)?',
   array['interested', 'interest', 'interesting'],
-  'Regla de oro: -ing describe la cosa que causa la emoción; -ed, a la persona que la siente.', 'publicada', 'modelo', '379f3e9b9b96679efab71bf020cf5ad8', null;
+  'Regla de oro: -ing describe la cosa que causa la emoción; -ed, a la persona que la siente.', 'publicada', 'modelo', 'ac5bc7c86dd5a6a77bc0d352b1bc8f80', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('bd3d4973-807e-4b32-8abb-04e1c3eba801', 2, 'Lo que se describe es el celular, no una persona, y los objetos que despiertan interés son «interesting». La forma en -ed describiría a quien siente el interés.');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
@@ -799,7 +799,7 @@ select '7c1a6f8c-d6ac-4930-a752-0ebb1c207ed6', 'ing',
   '6e9d8b5f-ef4d-464a-9af2-e295fb1a94af', 'Parte 4 · Completar texto',
   '¿Qué palabra va en el espacio (22)?',
   array['at', 'into', 'on'],
-  'Ordena las tres por tamaño: at para la hora, on para el día, in para el mes o el año.', 'publicada', 'modelo', '06e73fe691259959032322f4ef83b923', null;
+  'Ordena las tres por tamaño: at para la hora, on para el día, in para el mes o el año.', 'publicada', 'modelo', 'aea1fb01e2cee8ba14f82ed57624633f', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('7c1a6f8c-d6ac-4930-a752-0ebb1c207ed6', 0, 'Las horas exactas llevan «at»: at 5 o&rsquo;clock. «On» se usa con días y fechas, e «into» indica movimiento hacia dentro.');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
@@ -809,7 +809,7 @@ select 'c48f5723-d5b5-42cd-8ed9-4ce8bed8a8e8', 'ing',
   '6e9d8b5f-ef4d-464a-9af2-e295fb1a94af', 'Parte 4 · Completar texto',
   '¿Qué palabra va en el espacio (23)?',
   array['quite', 'also', 'once'],
-  'Cuando la frase agrega un uso más a los ya mencionados, el adverbio es also.', 'publicada', 'modelo', '7bd5f2c0ceba8c13e86fce9848014d94', null;
+  'Cuando la frase agrega un uso más a los ya mencionados, el adverbio es also.', 'publicada', 'modelo', 'fd4f89b17e5c29c3a0b265bbcda627ed', null;
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('c48f5723-d5b5-42cd-8ed9-4ce8bed8a8e8', 1, 'El párrafo va sumando funciones del celular: despertador y, además, consultar internet y enviar mensajes. Esa adición la marca «also». «Quite» gradúa un adjetivo y «once» habla de una sola vez.');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)

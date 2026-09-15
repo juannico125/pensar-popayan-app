@@ -10,7 +10,7 @@ Demo de la plataforma de preparación Saber 11 para **Pensar Preuniversitario** 
 **App del estudiante:** https://juannico125.github.io/pensar-popayan-app/
 **Panel del instituto:** https://juannico125.github.io/pensar-popayan-app/panel.html
 
-Credenciales demo: `demo@pensarpopayan.com` · `Pensar2026` (ya vienen pre-llenadas). Ambas páginas se enlazan entre sí desde el login y la barra lateral.
+El ingreso usa Supabase Auth con correo y contraseña. Las cuentas se crean desde coordinación; cada usuario necesita un registro en `public.perfiles` con su mismo UUID de Auth, rol `estudiante` o `admin` y `activo = true`. No hay registro público.
 
 ## Qué incluye la app del estudiante
 
@@ -24,13 +24,21 @@ Credenciales demo: `demo@pensarpopayan.com` · `Pensar2026` (ya vienen pre-llena
 
 ## Cómo funciona
 
-Archivos estáticos sin build ni backend: abre `index.html` o `panel.html` en el navegador, o sirve la carpeta:
+Frontend estático sin build, con Supabase como backend. Sirve la carpeta por HTTP:
 
 ```
 python -m http.server 8000
 ```
 
-Todo el estado vive en memoria: recargar la página devuelve el demo a su estado inicial (la app del estudiante arranca con una semana de actividad de muestra).
+La sesión persiste mediante Supabase Auth y el progreso se guarda en Postgres. `js/config.js` contiene la URL y la clave pública del proyecto; nunca debe contener una clave secreta o `service_role`.
+
+## Autenticación y rutas protegidas
+
+`js/auth.js` comparte el cliente y valida usuario, perfil activo y rol con el servidor. `index.html` dirige a estudiantes a su app y administradores a `panel.html`. El router bloquea pantallas privadas antes de completar la carga autenticada; el panel permanece oculto hasta autorizar. Los cierres de sesión y cambios de cuenta en otras pestañas bloquean la vista. El perfil se comprueba al volver a la pestaña, renovar el token y cada minuto mientras está visible; un fallo obliga a validar de nuevo.
+
+Los HTML son públicos por ser un sitio estático: la protección de datos la aplican RLS y las funciones del servidor. No debe incrustarse información privada en estos archivos.
+
+Verificación automatizada: `node scripts/verificar-auth.mjs`. Para comprobar el flujo completo, usar cuentas reales de estudiante y administrador: iniciar sesión, recargar, abrir el panel como estudiante, cerrar sesión en otra pestaña y archivar una cuenta mientras permanece abierta.
 
 ## Estructura
 

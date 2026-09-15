@@ -39,8 +39,8 @@ for (const [materia, banco] of Object.entries(BANKS)) {
 
   banco.forEach((it, i) => {
     if (!Array.isArray(it.opts) || it.opts.length < 2) mal(`${i}: opciones insuficientes`);
-    if (!(it.correct >= 0 && it.correct < it.opts.length)) mal(`${i}: correct=${it.correct} fuera de las ${it.opts.length} opciones`);
-    if (new Set(it.opts.map(norm)).size !== it.opts.length) mal(`${i}: opciones repetidas`);
+    if (it.estado !== 'borrador' && !(Number.isInteger(it.correct) && it.correct >= 0 && it.correct < it.opts.length)) mal(`${i}: correct=${it.correct} fuera de las ${it.opts.length} opciones`);
+    if (new Set(it.opts.map(op => String(op).normalize('NFC').replace(/\s+/g, ' ').trim().toLowerCase())).size !== it.opts.length) mal(`${i}: opciones repetidas`);
     if (!it.text || !it.exp) mal(`${i}: falta enunciado o explicación`);
     // «la opción A», «la respuesta B», «(C)» — pero no «Colombia» ni «Artículo 16».
     if (/\b(opci[oó]n|respuesta|literal)\s+[A-D]\b/i.test(it.exp)) mal(`${i}: la explicación nombra una letra`);
@@ -58,12 +58,13 @@ for (const [materia, banco] of Object.entries(BANKS)) {
       if (!it.qs.length) mal(`cuestionario ${it.id}: vacío`);
       for (const qi of it.qs) {
         if (!(qi >= 0 && qi < banco.length)) { mal(`cuestionario ${it.id}: índice ${qi} fuera de rango`); continue; }
+        if (banco[qi].estado === 'borrador') mal(`cuestionario ${it.id}: contiene el borrador ${qi}`);
         if (usos.has(qi)) mal(`pregunta ${qi}: en ${usos.get(qi)} y en ${it.id}`);
         usos.set(qi, it.id);
       }
     }
   }
-  const sueltas = banco.map((_, i) => i).filter(i => !usos.has(i));
+  const sueltas = banco.map((_, i) => i).filter(i => banco[i].estado !== 'borrador' && !usos.has(i));
   if (sueltas.length) mal(`sin cuestionario: ${sueltas.join(', ')}`);
 
   const cuest = (CUESTIONARIOS[materia] || []).reduce((n, s) => n + s.items.length, 0);

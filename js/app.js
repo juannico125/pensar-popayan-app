@@ -124,6 +124,7 @@ const RENDER = {
 };
 
 function navigate(name, params) {
+  if (!['splash', 'login'].includes(name) && !S.logged) name = 'login';
   closeSheet(true);
   document.querySelectorAll('.screen').forEach(s => { s.classList.remove('active', 'entering'); });
   const el = $('#screen-' + name);
@@ -174,11 +175,19 @@ async function arranque() {
 // Carga perfil, catálogo y progreso. El rol se lee de la base, no del correo.
 async function entrarConSesion() {
   const perfil = await API.perfil();
-  await API.cargarCatalogo();
-  await refrescarEstado();
-  S.logged = true;
-  S.user = { nombre: perfil.nombre, email: perfil.codigo || '', rol: perfil.rol };
-  return perfil;
+  if (perfil.rol === 'admin') return perfil;
+  const stopWatching = Auth.watch(perfil, () => {
+    S = freshState();
+    document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+    location.replace('index.html');
+  });
+  try {
+    await API.cargarCatalogo();
+    await refrescarEstado();
+    S.logged = true;
+    S.user = { nombre: perfil.nombre, email: perfil.codigo || '', rol: perfil.rol };
+    return perfil;
+  } catch (error) { stopWatching(); throw error; }
 }
 
 /* ───────────────── login ───────────────── */
@@ -213,6 +222,8 @@ $('#btn-login').addEventListener('click', async () => {
   $('#pass-wrap').classList.remove('is-error');
 
   const btn = $('#btn-login');
+  if (btn.disabled) return;
+  btn.disabled = true;
   btn.dataset.state = 'loading';
   btn.textContent = 'Ingresando…';
   try {
@@ -232,6 +243,7 @@ $('#btn-login').addEventListener('click', async () => {
     $('#pass-wrap').classList.add('is-error');
     toast(mensajeError(e));
   } finally {
+    btn.disabled = false;
     delete btn.dataset.state;
     btn.textContent = 'Ingresar';
   }
@@ -1016,9 +1028,10 @@ function renderProfile() {
 
   $('#profile-body').innerHTML = html;
   $('#btn-logout').addEventListener('click', async () => {
-    await API.salir();
-    S = freshState();
-    navigate('login');
+    try {
+      await API.salir();
+      location.replace('index.html');
+    } catch (e) { toast(mensajeError(e)); }
   });
 }
 
