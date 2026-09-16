@@ -26,7 +26,13 @@ const U = String.fromCharCode(1);   // separa campos
 const R = String.fromCharCode(2);   // separa filas
 const md5 = s => createHash('md5').update(s, 'utf8').digest('hex');
 
-const fuente = readFileSync(new URL(ARCHIVO, import.meta.url), 'utf8').replace(/^﻿/, '');
+// Los archivos de contenido pueden usar los ayudantes de `_graficas.js`
+// (barras, linea) para dibujar una gráfica en vez de recortarla del escaneo.
+// Se antepone aquí porque no hay empaquetador: el archivo de contenido se
+// evalúa entero en un vm, y las funciones tienen que existir antes.
+const graficas = readFileSync(new URL('../content/_graficas.js', import.meta.url), 'utf8');
+const fuente = graficas + '\n' +
+  readFileSync(new URL(ARCHIVO, import.meta.url), 'utf8').replace(/^\ufeff/, '');
 const vmctx = { console };
 vm.createContext(vmctx);
 const { BANKS } = vm.runInContext(fuente + '\n;({ BANKS, CUESTIONARIOS });', vmctx);
@@ -38,7 +44,16 @@ function uuidDe(...partes) {
   const v = (parseInt(h[16], 16) & 0x3 | 0x8).toString(16);
   return `${h.slice(0,8)}-${h.slice(8,12)}-4${h.slice(13,16)}-${v}${h.slice(17,20)}-${h.slice(20,32)}`;
 }
-const sinEtiquetas = h => String(h).replace(/<[^>]+>/g, ' ');
+// Una figura no debe influir NUNCA en la identidad de una pregunta. Un
+// `<img>` ya cumplía eso sin hacer nada: es una etiqueta suelta y desaparece
+// entera. Un `<svg>` dibujado no, porque lleva texto dentro —los números de
+// las barras, los rótulos de los ejes— y ese texto sí sobrevivía, de modo que
+// redibujar una gráfica movía el id de su pregunta y su `hash_norm`. Se
+// elimina el bloque completo, y por un espacio, que es exactamente lo que
+// dejaba el `<img>`: así redibujar una figura no cambia ningún id.
+const sinEtiquetas = h => String(h)
+  .replace(/<svg[\s\S]*?<\/svg>/gi, ' ')
+  .replace(/<[^>]+>/g, ' ');
 const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
   .replace(/[^a-z0-9]+/g, ' ').trim();
 

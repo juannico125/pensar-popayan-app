@@ -33,6 +33,14 @@ const M = (comp, dificultad, ctxLabel, ctxClass, context, text, opts, correct, e
   text, opts, correct, exp, tip, confianza: confianza || 'alta',
 });
 
+// Las cinco gráficas de la 26 —la original y las cuatro opciones— comparten
+// horas, ejes y escala. Que compartan el tope es parte del ejercicio: si cada
+// una se escalara sola, dos barras distintas se verían del mismo alto.
+const HORAS = ['7-8', '8-9', '9-10', '10-11', '11-12'];
+const pacientes = (v, alt) => barras(HORAS.map((h, i) => [h, v[i]]), {
+  ejeY: 'Número de pacientes', ejeX: 'Hora', alto: 250, tope: 12, paso: 2, alt,
+});
+
 const fig = (archivo, alt) =>
   `<figure class="ctx-fig"><img src="${IMG}${archivo}" loading="lazy" alt="${alt}"></figure>`;
 
@@ -61,7 +69,10 @@ const BANKS = {
       '<tr><td>Grupo II</td><td>Entre 3 y 5,9</td><td>12</td></tr>' +
       '<tr><td>Grupo III</td><td>Entre 6 y 9</td><td>10</td></tr></table>' +
       '<p>A partir de la información anterior, un funcionario construyó la siguiente gráfica.</p>' +
-      fig('al2-q23-frecuencias.webp', 'Gráfica de barras de frecuencia absoluta por grupo de peso. La barra del grupo I llega a 10 y la del grupo III a 8, al revés de lo que dice la tabla; la del grupo II sí llega a 12.'),
+      barras([['Grupo I', 10], ['Grupo II', 12], ['Grupo III', 8]], {
+        ejeY: 'Frecuencia absoluta', ejeX: 'Grupo', alto: 280,
+        alt: 'Gráfica de barras de frecuencia absoluta por grupo de peso. La barra del grupo I llega a 10 y la del grupo III a 8, al revés de lo que dice la tabla; la del grupo II sí llega a 12.',
+      }),
       '¿Qué error se cometió al construir la gráfica?',
       ['Se intercambiaron las frecuencias de los grupos I y III.',
        'Se dejaron las barras sin espacio entre ellas.',
@@ -73,7 +84,10 @@ const BANKS = {
     /* ═════════ 24 ═════════ */
     M('Interpretación de datos', 'baja', 'GRÁFICA', 'ctx-fig',
       '<p>La gráfica muestra la cantidad de puntos obtenidos en un juego, durante las primeras seis rondas.</p>' +
-      fig('al2-q24-rondas.webp', 'Gráfica de barras con los puntos por ronda: primera 4, segunda 8, tercera 6, cuarta 12, quinta 2 y sexta 6.'),
+      barras([['1ra.', 4], ['2da.', 8], ['3ra.', 6], ['4ta.', 12], ['5ta.', 2], ['6ta.', 6]], {
+        ejeY: 'Número de puntos', ejeX: 'Ronda', alto: 280,
+        alt: 'Gráfica de barras con los puntos por ronda: primera 4, segunda 8, tercera 6, cuarta 12, quinta 2 y sexta 6.',
+      }),
       'De acuerdo con la información de la gráfica, ¿cuál es el rango de puntos obtenidos en las seis rondas?',
       ['De 4 a 6 puntos.', 'De 4 a 12 puntos.', 'De 2 a 14 puntos.', 'De 2 a 12 puntos.'], 3,
       'El rango va del valor más bajo al más alto que aparecen. El mínimo es 2, en la quinta ronda, y el máximo 12, en la cuarta. El 14 solo es una marca del eje: ninguna barra lo alcanza.',
@@ -94,13 +108,16 @@ const BANKS = {
     /* ═════════ 26 ═════════ */
     M('Interpretación de datos', 'media', 'GRÁFICA', 'ctx-fig',
       '<p>La gráfica muestra la cantidad de pacientes que asistieron a un consultorio en una mañana.</p>' +
-      fig('al2-q26-pacientes.webp', 'Gráfica de barras de pacientes por hora: de 7 a 8, dos pacientes; de 8 a 9, cuatro; de 9 a 10, diez; de 10 a 11, ocho; y de 11 a 12, seis.') +
+      barras(HORAS.map((h, i) => [h, [2, 4, 10, 8, 6][i]]), {
+        ejeY: 'Número de pacientes', ejeX: 'Hora', alto: 280, tope: 12, paso: 2,
+        alt: 'Gráfica de barras de pacientes por hora: de 7 a 8, dos pacientes; de 8 a 9, cuatro; de 9 a 10, diez; de 10 a 11, ocho; y de 11 a 12, seis.',
+      }) +
       '<p>Para el día siguiente, se espera que el número de pacientes se duplique en la hora que hubo menos pacientes, sin alterar la cantidad observada para el resto de las horas.</p>',
       '¿Cuál de las siguientes gráficas representa la cantidad de pacientes en el consultorio, en el siguiente día?',
-      [fig('al2-q26-opA.webp', 'Gráfica de barras: 2, 4, 10, 8 y 6 pacientes, igual que la original.'),
-       fig('al2-q26-opB.webp', 'Gráfica de barras: 4, 6, 12, 10 y 8 pacientes; todas las horas aumentan.'),
-       fig('al2-q26-opC.webp', 'Gráfica de barras con la misma cantidad, cuatro pacientes, en las cinco horas.'),
-       fig('al2-q26-opD.webp', 'Gráfica de barras: 4, 4, 10, 8 y 6 pacientes; solo cambia la primera hora.')], 3,
+      [pacientes([2, 4, 10, 8, 6], 'Gráfica de barras: 2, 4, 10, 8 y 6 pacientes, igual que la original.'),
+       pacientes([4, 6, 12, 10, 8], 'Gráfica de barras: 4, 6, 12, 10 y 8 pacientes; todas las horas aumentan.'),
+       pacientes([4, 4, 4, 4, 4], 'Gráfica de barras con la misma cantidad, cuatro pacientes, en las cinco horas.'),
+       pacientes([4, 4, 10, 8, 6], 'Gráfica de barras: 4, 4, 10, 8 y 6 pacientes; solo cambia la primera hora.')], 3,
       'La hora con menos pacientes es la de 7 a 8, con dos: duplicarla da cuatro. Todas las demás se quedan como estaban, en 4, 10, 8 y 6. Solo una gráfica cambia únicamente esa primera barra; las otras dejan todo igual, suben todas las horas o aplanan la mañana entera.',
       'Cambia solo lo que el enunciado manda cambiar y verifica que el resto quede idéntico.'),
 
@@ -133,7 +150,10 @@ const BANKS = {
       '<tr><td>Varillas</td><td>10</td><td>5</td><td>50</td></tr>' +
       '<tr><td>Bulto de arena</td><td>5</td><td>5</td><td>25</td></tr>' +
       '<tr><td>Bulto de cemento</td><td>5</td><td>10</td><td>50</td></tr></table>' +
-      fig('al2-q28-acumulado.webp', 'Gráfica de barras del costo acumulado: ladrillos 50 pesos; ladrillos y varillas 100; ladrillos, varillas y bulto de arena 150; y costo total 200.') +
+      barras([['Ladrillos', 50], ['+ varillas', 100], ['+ arena', 150], ['Costo total', 200]], {
+        ejeY: 'Costo acumulado ($)', alto: 290, rotar: true,
+        alt: 'Gráfica de barras del costo acumulado: ladrillos 50 pesos; ladrillos y varillas 100; ladrillos, varillas y bulto de arena 150; y costo total 200.',
+      }) +
       '<p>Un analista de construcción afirma que la gráfica es inconsistente con los datos presentados en la tabla.</p>',
       '¿Cuál es la inconsistencia que presenta la gráfica?',
       ['El costo total debería ser $ 25, en vez de $ 200.',
@@ -346,7 +366,11 @@ const BANKS = {
     /* ═════════ 45 ═════════ */
     M('Funciones y variación', 'media', 'GRÁFICA', 'ctx-fig',
       '<p>Una ciudad tiene un proyecto para recuperar sus humedales. La inversión que debe realizarse para recuperar las hectáreas de humedales está modelada por una función lineal como se muestra en la gráfica.</p>' +
-      fig('al2-q45-humedales.webp', 'Recta creciente de inversión en millones de pesos frente a hectáreas recuperadas. Empieza cerca de 500 millones cuando no hay hectáreas y llega a unos 3.000 millones en seis hectáreas; el eje solo llega hasta seis hectáreas.') +
+      linea([[0, 500], [6, 3000]], {
+        ejeX: 'Hectáreas recuperadas', ejeY: 'Inversión (millones)', alto: 290,
+        xTope: 6, xPaso: 1, puntos: false,
+        alt: 'Recta creciente de inversión en millones de pesos frente a hectáreas recuperadas. Empieza cerca de 500 millones cuando no hay hectáreas y llega a unos 3.000 millones en seis hectáreas; el eje solo llega hasta seis hectáreas.',
+      }) +
       '<p>Para determinar la inversión necesaria para recuperar 8 hectáreas de humedales, se calcula primero la inversión para recuperar una hectárea y después ese valor se multiplica.</p>',
       'Este procedimiento es',
       ['correcto, porque la inversión es directamente proporcional a la cantidad de hectáreas por recuperar.',
