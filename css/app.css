@@ -628,6 +628,7 @@ input { font: inherit; }
 .ctx-table-amplia { min-width: 27rem; }
 .opt > span { min-width: 0; }
 @media (max-width: 414px) {
+  .ctx-table-nativa th, .ctx-table-nativa td { padding-inline: 6px; overflow-wrap: anywhere; }
   .opt:has(table, .ctx-fig) { grid-template-columns: minmax(0, 1fr); gap: var(--space-xs); }
   .opt:has(table, .ctx-fig) .badge { justify-self: start; }
   .opt .ctx-datos { margin-block: 0; }
