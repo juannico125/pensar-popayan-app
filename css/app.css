@@ -612,6 +612,27 @@ input { font: inherit; }
 .ctx-table th, .ctx-table td { border: 1px solid var(--color-line); padding: 6px 9px; text-align: center; }
 .ctx-table th { background: var(--color-paper-2); font-weight: 700; }
 
+/* Hallmark · componente: tablas de ejercicios · tema: Pensar existente
+ * pre-emit critique: P5 H4 E4 S5 R5 V4
+ * Las tablas anchas se desplazan dentro de su región, nunca la pantalla.
+ */
+.ctx-card:has(.ctx-datos) { max-height: none; }
+.ctx-datos { max-width: 100%; overflow-x: auto; margin-block: var(--space-sm); border-radius: var(--radius-sm); }
+.ctx-datos:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.ctx-table-nativa { font-size: var(--text-xs); line-height: 1.45; font-variant-numeric: tabular-nums; }
+.ctx-table-nativa caption { text-align: left; font-weight: 700; color: var(--color-ink); padding-block: 0 var(--space-xs); }
+.ctx-table-nativa th, .ctx-table-nativa td { padding: 9px 8px; }
+.ctx-table-nativa th[scope="row"] { text-align: left; background: transparent; font-weight: 500; }
+.ctx-table-nativa thead th { color: var(--color-ink); overflow-wrap: anywhere; }
+.ctx-table-nativa tbody tr:nth-child(even) { background: var(--color-paper); }
+.ctx-table-amplia { min-width: 27rem; }
+.opt > span { min-width: 0; }
+@media (max-width: 414px) {
+  .opt:has(table, .ctx-fig) { grid-template-columns: minmax(0, 1fr); gap: var(--space-xs); }
+  .opt:has(table, .ctx-fig) .badge { justify-self: start; }
+  .opt .ctx-datos { margin-block: 0; }
+}
+
 .q-text { font-size: var(--text-md); font-weight: 700; line-height: var(--leading-snug); margin-bottom: var(--space-md); }
 
 .opt {

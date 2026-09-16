@@ -36,3 +36,6 @@ for(const comp of [...new Set(BANKS.mat.map(q=>q.comp))]){
  for(let i=0;i<indices.length;i+=4) items.push({id:`mat-${serial++}`,titulo:`Deadpool S2 · ${comp}${indices.length>4?' · '+(1+i/4):''}`,qs:indices.slice(i,i+4),tipo:'Situación'});
  CUESTIONARIOS.mat.push({tema:comp,items});
 }
+
+// Presentación nítida con los datos y la identidad del cuadernillo.
+mejorarFigurasMatematicas(BANKS.mat);
