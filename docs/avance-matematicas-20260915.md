@@ -1,5 +1,7 @@
 # Carga de matemáticas desde los PDF de Descargas
 
+> Registro histórico parcial del 15 de septiembre. Sus pendientes, rutas de imágenes y conteos fueron sustituidos por el [informe final del 16 de septiembre](revision-visual-matematicas-20260916.md).
+
 ## Aplicado y verificado en Supabase
 
 - Aladín S1: completada pregunta 18, ahora 21 preguntas. Se añadieron las cuatro gráficas originales de respuesta.
