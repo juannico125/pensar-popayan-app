@@ -361,3 +361,13 @@ for (const pregunta of BANKS.mat) {
   }
   pregunta.opts = pregunta.opts.map(opcion => opcion.replaceAll('src="img/figuras/mat/', 'src="img/figuras/mat/'));
 }
+
+// Presentación nítida con los datos y la identidad del cuadernillo.
+mejorarFigurasMatematicas(BANKS.mat);
+
+// Cotejo con la página 3: 80 cuadriculados grandes el día 1 y 60 el día 2.
+// La identidad ya está fijada al contexto anterior; el historial se conserva.
+BANKS.mat[8].context = BANKS.mat[8].context.replace('<td>90</td><td>70</td>', '<td>80</td><td>70</td>');
+BANKS.mat[8].exp = BANKS.mat[8].exp.replace('90 + 50 = 140', '80 + 60 = 140');
+BANKS.mat[1].context = BANKS.mat[1].context.replace('español alrededor del 38 %, francés alrededor del 28 %', 'español alrededor del 40 %, francés alrededor del 30 %');
+BANKS.mat[17].context = BANKS.mat[17].context.replace('y una línea de porcentaje acumulado:', 'y un eje derecho rotulado porcentaje acumulado:');

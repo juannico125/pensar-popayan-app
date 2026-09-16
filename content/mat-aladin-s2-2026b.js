@@ -434,3 +434,6 @@ for (const pregunta of BANKS.mat) {
   }
   pregunta.opts = pregunta.opts.map(opcion => opcion.replaceAll('src="img/figuras/mat/', 'src="img/figuras/mat/'));
 }
+
+// Presentación nítida con los datos y la identidad del cuadernillo.
+mejorarFigurasMatematicas(BANKS.mat);

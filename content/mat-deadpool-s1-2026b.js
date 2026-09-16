@@ -63,3 +63,6 @@ for (const comp of [...new Set(BANKS.mat.map(q=>q.comp))]) {
 }
 // Se añade al final para conservar los índices de las 31 preguntas publicadas.
 BANKS.mat.push({numero:14,comp:'Trigonometría',dificultad:'alta',estado:'borrador',confianza:'media',ctxLabel:'DEADPOOL · Pregunta 14',ctxClass:'ctx-sit',context:P('Un grupo de ingenieros quiere calcular la altura h de un edificio. El original anuncia dos procedimientos, pero solo muestra «Procedimiento 1: tan 60 = h» y no contiene la figura ni el segundo procedimiento.')+'<figure class="ctx-fig"><img src="img/figuras/mat/de1-q14-fuente-incompleta.webp" alt="Captura del ejercicio original: falta la figura anunciada y solo aparece el primer procedimiento." loading="lazy"></figure>',text:'Respecto a los dos procedimientos, ¿qué afirmación es verdadera?',opts:['Ambos procedimientos son correctos.','Ambos procedimientos son incorrectos.','Solo el procedimiento 2 es correcto.','Solo el procedimiento 1 es correcto.'],correct:null,exp:'Borrador: no es posible comparar dos procedimientos si la fuente solo presenta uno y omite los datos de la figura. Solicitar la página completa al docente.',tip:'Revisión docente: recuperar la figura y el segundo procedimiento del original.'});
+
+// Presentación nítida con los datos y la identidad del cuadernillo.
+mejorarFigurasMatematicas(BANKS.mat);

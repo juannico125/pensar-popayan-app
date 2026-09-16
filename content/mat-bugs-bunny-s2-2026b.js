@@ -30,3 +30,6 @@ for(const comp of [...new Set(BANKS.mat.map(q=>q.comp))]){
  for(let i=0;i<ids.length;i+=4)items.push({id:`mat-${serial++}`,titulo:`Bugs Bunny S2 · ${comp}${ids.length>4?' · '+(1+i/4):''}`,qs:ids.slice(i,i+4),tipo:'Situación'});
  CUESTIONARIOS.mat.push({tema:comp,items});
 }
+
+// Presentación nítida con los datos y la identidad del cuadernillo.
+mejorarFigurasMatematicas(BANKS.mat);
