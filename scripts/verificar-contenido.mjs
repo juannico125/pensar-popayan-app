@@ -85,6 +85,12 @@ for (const [materia, banco] of Object.entries(BANKS)) {
       for (const qi of it.qs) {
         if (!(qi >= 0 && qi < banco.length)) { mal(`cuestionario ${it.id}: índice ${qi} fuera de rango`); continue; }
         if (banco[qi].estado === 'borrador') mal(`cuestionario ${it.id}: contiene el borrador ${qi}`);
+        // El cuestionario dice de qué tema es; la pregunta, de qué competencia.
+        // Si no coinciden, el estudiante abre «Ondas y sonido» y le sale una de
+        // termodinámica. Ya pasó en Aladín S1 y en el formulario 2 de física:
+        // un índice mal copiado no se nota leyendo, solo jugando.
+        if (banco[qi].comp !== sec.tema)
+          mal(`cuestionario ${it.id} (${sec.tema}): la pregunta ${qi} es de «${banco[qi].comp}»`);
         if (usos.has(qi)) mal(`pregunta ${qi}: en ${usos.get(qi)} y en ${it.id}`);
         usos.set(qi, it.id);
       }

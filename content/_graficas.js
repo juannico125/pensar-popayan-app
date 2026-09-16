@@ -330,3 +330,35 @@ function curvas(series, o = {}) {
   }
   return envoltura(W, H, o.alt, s);
 }
+
+/* Ejes esquemáticos: sin escala, sin rejilla, sin números. Muchas opciones de
+ * los cuadernillos son exactamente esto —«¿cuál de estas gráficas…?» con dos
+ * ejes rotulados con una letra y una curva encima—, y ahí redibujar no inventa
+ * nada porque no hay ningún valor que leer. Los puntos van en fracciones de 0
+ * a 1 sobre el área de dibujo, con el origen abajo a la izquierda.
+ *
+ *   esquema([[0,0],[1,1]], { x:'V', y:'P', alt:'…' })
+ */
+function esquema(puntos, o = {}) {
+  const W = 300, H = o.alto || 220;
+  const ml = 34, mr = 26, mt = 22, mb = 34;
+  const x0 = ml, x1 = W - mr, y0 = mt, y1 = H - mb;
+  const px = f => x0 + f * (x1 - x0);
+  const py = f => y1 - f * (y1 - y0);
+  const r = n => Math.round(n * 10) / 10;
+  const flecha = `<marker id="pf" markerWidth="7" markerHeight="7" refX="6" refY="3" `
+               + `orient="auto"><path d="M0 0 L7 3 L0 6 z" fill="var(--color-ink-soft)"/></marker>`;
+  let s = `<defs>${flecha}</defs>`
+        + `<path d="M${x0} ${y0 - 6}V${y1}H${x1 + 6}" fill="none" `
+        + `stroke="var(--color-ink-soft)" stroke-width="1.6" marker-end="url(#pf)"/>`
+        + `<path d="M${x0} ${y1}V${y0 - 6}" fill="none" stroke="var(--color-ink-soft)" `
+        + `stroke-width="1.6" marker-end="url(#pf)"/>`;
+  s += `<g font-size="14" font-style="italic" fill="var(--color-ink)">`
+     + (o.y ? `<text x="${x0 - 10}" y="${y0 - 4}" text-anchor="end">${esc(o.y)}</text>` : '')
+     + (o.x ? `<text x="${x1 + 10}" y="${y1 + 5}">${esc(o.x)}</text>` : '')
+     + `</g>`;
+  s += `<polyline fill="none" stroke="var(--color-accent)" stroke-width="2.4" `
+     + `stroke-linecap="round" stroke-linejoin="round" points="`
+     + puntos.map(p => `${r(px(p[0]))},${r(py(p[1]))}`).join(' ') + `"/>`;
+  return envoltura(W, H, o.alt, s);
+}
