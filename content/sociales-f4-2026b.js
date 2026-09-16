@@ -571,3 +571,16 @@ const CUESTIONARIOS = {
     ]},
   ],
 };
+
+// Correcciones cotejadas con el PDF el 2026-09-15. Se conserva la identidad
+// del contexto original para no romper respuestas, repasos ni cuestionarios.
+for (const pregunta of Object.values(BANKS).flat()) {
+  if (pregunta.context?.includes("costear el 50 % del valor")) {
+    pregunta.identityContext = pregunta.context;
+    pregunta.context = pregunta.context.replace("costear el 50 % del valor", "costear el 30 % del valor");
+  }
+  if (pregunta.context?.includes("más de 40.000 nigerianos")) {
+    pregunta.identityContext = pregunta.context;
+    pregunta.context = pregunta.context.replace("más de 40.000 nigerianos", "más de 4.000 nigerianos");
+  }
+}

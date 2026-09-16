@@ -8,8 +8,7 @@
  * que entregó el docente (Herman), cruzada con el vocabulario de `temas` de
  * matemáticas, que es más fino que sus cinco componentes.
  *
- * ⚠ FALTA LA PREGUNTA 18. Sus cuatro opciones son gráficas, no texto, así que
- * necesita cuatro recortes más del escaneo. Las otras 20 están completas.
+ * La pregunta 18 se completó con las cuatro gráficas del PDF. Total: 21 preguntas.
  *
  * A diferencia de sociales, aquí las claves no se juzgan: se resuelven. Cada
  * una está calculada, y la explicación muestra el procedimiento. Aun así se
@@ -334,3 +333,31 @@ const CUESTIONARIOS = {
     ]},
   ],
 };
+
+// Se añade al final para conservar los índices de los cuestionarios existentes.
+BANKS.mat.push(M('Interpretación de datos', 'media', 'TABLA', 'ctx-table',
+  '<p>Una compañía realizó una encuesta para conocer la cantidad de pacientes que se atendieron por varicela, sarampión y rubéola en el país durante tres años. Los resultados se muestran en la tabla.</p>' +
+  '<table class="ctx-table"><tr><th>Enfermedad</th><th>2010</th><th>2011</th><th>2012</th></tr><tr><td>Varicela</td><td>4.000</td><td>5.000</td><td>7.500</td></tr><tr><td>Sarampión</td><td>5.500</td><td>4.500</td><td>6.500</td></tr><tr><td>Rubéola</td><td>3.500</td><td>4.500</td><td>4.000</td></tr></table>',
+  'La gráfica que representa la cantidad total de personas atendidas por estas enfermedades durante los tres años observados es',
+  [fig('al1-q18-a.webp', 'Barras: varicela cerca de 12.000, sarampión cerca de 14.000 y rubéola cerca de 19.000.'),
+   fig('al1-q18-b.webp', 'Línea decreciente: varicela cerca de 8.000, sarampión cerca de 6.000 y rubéola cerca de 4.000.'),
+   fig('al1-q18-c.webp', 'Barras: varicela 16.500, sarampión 16.500 y rubéola 12.000.'),
+   fig('al1-q18-d.webp', 'Línea: varicela cerca de 4.000, sarampión cerca de 4.500 y rubéola cerca de 4.000.')], 2,
+  'Se suman los tres años por enfermedad: varicela, 4.000 + 5.000 + 7.500 = 16.500; sarampión, 5.500 + 4.500 + 6.500 = 16.500; rubéola, 3.500 + 4.500 + 4.000 = 12.000. La gráfica debe mostrar dos barras iguales de 16.500 y una menor de 12.000. Las otras gráficas no representan estos totales.',
+  'Para comparar totales de varios años, suma cada fila antes de elegir la gráfica.'));
+CUESTIONARIOS.mat[0].items[1].qs.push(20);
+
+for (let i = 0; i < BANKS.mat[20].opts.length; i++) {
+  BANKS.mat[20].opts[i] = BANKS.mat[20].opts[i].replace(
+    'src="img/figuras/mat/',
+    'src="img/figuras/mat/');
+}
+
+// URLs verificadas de las figuras: conservamos los UUID ya usados por el historial.
+for (const pregunta of BANKS.mat) {
+  if (pregunta.context?.includes('src="img/figuras/mat/')) {
+    pregunta.identityContext = pregunta.context;
+    pregunta.context = pregunta.context.replaceAll('src="img/figuras/mat/', 'src="img/figuras/mat/');
+  }
+  pregunta.opts = pregunta.opts.map(opcion => opcion.replaceAll('src="img/figuras/mat/', 'src="img/figuras/mat/'));
+}

@@ -13,9 +13,6 @@
  */
 'use strict';
 
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-  auth: { persistSession: true, autoRefreshToken: true },
-});
 
 // Se llenan al entrar. `let` a propósito: son la caché de la sesión, no constantes.
 let MATERIAS = [];
@@ -36,7 +33,8 @@ const API = {
   },
 
   async salir() {
-    await sb.auth.signOut();
+    const { error } = await sb.auth.signOut();
+    if (error) throw error;
     MATERIAS = []; BANKS = {}; CUESTIONARIOS = {}; QIDS = {}; QPOS = {};
   },
 
@@ -48,14 +46,7 @@ const API = {
   // El rol se LEE de la base; nunca se deduce del correo.
   // Se filtra por el id del usuario: el rol administrativo ve muchas filas.
   async perfil() {
-    const { data: { user } } = await sb.auth.getUser();
-    if (!user) throw new Error('Sesión no iniciada');
-    const { data, error } = await sb.from('perfiles')
-      .select('id, rol, nombre, codigo, jornada, cohorte, activo')
-      .eq('id', user.id).single();
-    if (error) throw error;
-    if (!data.activo) throw new Error('Tu cuenta está archivada. Habla con la coordinación.');
-    return data;
+    return Auth.perfil();
   },
 
   /* ── Catálogo: materias, ruta de cuestionarios y banco visible ────────── */

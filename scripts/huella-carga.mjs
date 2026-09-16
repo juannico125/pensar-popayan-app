@@ -51,15 +51,15 @@ for (const [materia, banco] of Object.entries(BANKS)) {
   for (const it of banco) {
     if (it.context && !vistos.has(it.context)) {
       vistos.add(it.context);
-      contextos.push([uuidDe('contexto', it.context), it.context]);
+      contextos.push([uuidDe('contexto', it.identityContext ?? it.context), it.context]);
     }
   }
   for (const it of banco) {
-    const id = uuidDe('pregunta', materia, sinEtiquetas(it.context || ''), it.text, it.comp);
+    const id = uuidDe('pregunta', materia, sinEtiquetas(it.identityContext ?? it.context ?? ''), it.text, it.comp);
     const hash = createHash('sha256')
       .update(norm(sinEtiquetas(it.context || '') + ' ' + it.text)).digest('hex').slice(0, 32);
     preguntas.push([id, [it.text, it.opts.join(U), it.tip || '', hash].join(U)]);
-    claves.push([id, [String(it.correct), it.exp].join(U)]);
+    if (Number.isInteger(it.correct)) claves.push([id, [String(it.correct), it.exp].join(U)]);
   }
 }
 
@@ -69,11 +69,11 @@ const huella = filas => md5(
     .map(([id, txt]) => id + U + txt)
     .join(R));
 
-const ids = filas => filas.map(f => "'" + f[0] + "'").join(',');
+const ids = filas => filas.length ? filas.map(f => "'" + f[0] + "'").join(',') : 'null';
 
 if (process.argv.includes('--sql')) {
   console.log(`select
-  (select md5(string_agg(id::text || chr(1) || contenido, chr(2) order by id::text collate "C"))
+  (select md5(coalesce(string_agg(id::text || chr(1) || contenido, chr(2) order by id::text collate "C"), ''))
      from contextos where id in (${ids(contextos)})) as contextos,
   (select md5(string_agg(id::text || chr(1) || enunciado || chr(1) ||
        array_to_string(opciones, chr(1)) || chr(1) || coalesce(tip,'') || chr(1) || hash_norm,

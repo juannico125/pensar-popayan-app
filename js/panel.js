@@ -13,9 +13,6 @@
  */
 'use strict';
 
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-  auth: { persistSession: true, autoRefreshToken: true },
-});
 
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
@@ -82,25 +79,26 @@ function aLogin(titulo, msg) {
 
 // El rol se lee de la base. Un estudiante que abra esta URL vuelve a la app.
 async function entrar() {
-  const { data: { user } } = await sb.auth.getUser();
-  if (!user) return aLogin('Necesitas iniciar sesión', 'Entra con tus credenciales de coordinación.');
-
-  const { data: perfil, error } = await sb.from('perfiles')
-    .select('nombre, rol, activo').eq('id', user.id).single();
-  if (error) throw error;
+  const perfil = await Auth.perfil();
 
   if (perfil.rol !== 'admin' || !perfil.activo) {
     return aLogin('Este panel es de la coordinación',
       'Tu cuenta es de estudiante: te llevamos a tu app.');
   }
 
+  Auth.vigilar(perfil, () => {
+    $('.layout').hidden = true;
+    location.replace('index.html');
+  });
   $('#gate').hidden = true;
+  $('.layout').hidden = false;
   $('#quien').textContent = perfil.nombre;
   await cargar();
 }
 
 $('#btn-salir').addEventListener('click', async () => {
-  await sb.auth.signOut();
+  const { error } = await sb.auth.signOut();
+  if (error) return toast(mensajeError(error));
   location.replace('index.html');
 });
 

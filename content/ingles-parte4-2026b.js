@@ -436,3 +436,12 @@ const CUESTIONARIOS = {
     },
   ],
 };
+
+// Correcciones cotejadas con el PDF el 2026-09-15. Se conserva la identidad
+// del contexto original para no romper respuestas, repasos ni cuestionarios.
+for (const pregunta of Object.values(BANKS).flat()) {
+  if (pregunta.context?.includes("I (23) ______ check information")) {
+    pregunta.identityContext = pregunta.context;
+    pregunta.context = pregunta.context.replace("I (23) ______ check information", "I can (23) ______ check information");
+  }
+}
