@@ -1,12 +1,12 @@
-/* Física · formulario 1 (F1, Pato Donald) · lote 2026-B
+/* Física · formulario 1 (F1, Aladín) · lote 2026-B
  *
  * Preguntas 97 a 116 del cuadernillo escaneado. La clasificación por tema
  * viene escrita a mano por el docente en el propio cuadernillo, igual que la
  * de Herman en matemáticas: torques, cinemática, termodinámica, ondas,
  * dinámica y «CL» (lectura de datos).
  *
- * Qué se dibujó y qué se recortó. Se dibujan las gráficas cuyos datos están
- * en el enunciado —la del paracaidista, la de las tres pelotas— y las tablas,
+ * Qué se dibujó y qué se recortó. Se conservaron inicialmente gráficas recreadas; el cotejo posterior sustituyó
+ * las del paracaidista y las tres pelotas por recortes fieles. Se recrean las tablas,
  * que en la plataforma son tablas de verdad y no fotocopias. Se recorta lo
  * que es un dibujo: la bicicleta, la grúa, la cubeta de ondas, los diagramas
  * de flujo de la 100 y las cuatro gráficas de la 109. Estas últimas se
@@ -297,19 +297,38 @@ Q(116, 'Ondas y sonido', 'alta', CUBETA,
 const CUESTIONARIOS = {
   fis: [
     { tema: 'Cinemática', items: [
-      { id: 'fis-1', titulo: 'Pato Donald · Leer una gráfica de movimiento', qs: [1, 8],      tipo: 'Situación' },
-      { id: 'fis-2', titulo: 'Pato Donald · Medir y concluir',               qs: [3, 9, 13],  tipo: 'Situación' },
+      { id: 'fis-1', titulo: 'Aladín · Leer una gráfica de movimiento', qs: [1, 8],      tipo: 'Situación' },
+      { id: 'fis-2', titulo: 'Aladín · Medir y concluir',               qs: [3, 9, 13],  tipo: 'Situación' },
     ]},
     { tema: 'Dinámica y fuerzas', items: [
-      { id: 'fis-3', titulo: 'Pato Donald · Giros y torque',                 qs: [0, 5],      tipo: 'Situación' },
-      { id: 'fis-4', titulo: 'Pato Donald · Fuerzas que se compensan',       qs: [14, 15],     tipo: 'Situación' },
-      { id: 'fis-5', titulo: 'Pato Donald · Flotar y levantar',              qs: [7, 11, 16], tipo: 'Situación' },
+      { id: 'fis-3', titulo: 'Aladín · Giros y torque',                 qs: [0, 5],      tipo: 'Situación' },
+      { id: 'fis-4', titulo: 'Aladín · Fuerzas que se compensan',       qs: [14, 15],     tipo: 'Situación' },
+      { id: 'fis-5', titulo: 'Aladín · Flotar y levantar',              qs: [7, 11, 16], tipo: 'Situación' },
     ]},
     { tema: 'Termodinámica', items: [
-      { id: 'fis-6', titulo: 'Pato Donald · Calor y temperatura',            qs: [2, 4, 6, 12], tipo: 'Situación' },
+      { id: 'fis-6', titulo: 'Aladín · Calor y temperatura',            qs: [2, 4, 6, 12], tipo: 'Situación' },
     ]},
     { tema: 'Ondas y sonido', items: [
-      { id: 'fis-7', titulo: 'Pato Donald · Ondas y péndulo',                qs: [10, 17, 18, 19], tipo: 'Situación' },
+      { id: 'fis-7', titulo: 'Aladín · Ondas y péndulo',                qs: [10, 17, 18, 19], tipo: 'Situación' },
     ]},
   ],
 };
+
+/* Cotejo visual con el PDF, 16-09-2026. La identidad previa conserva el historial. */
+for (const p of BANKS.fis) p.identityContext = p.context;
+const revisada = numero => BANKS.fis.find(p => p.numero === numero);
+revisada(98).context = P('Un paracaidista se lanza de un avión y registra su rapidez de caída en función del tiempo en la siguiente gráfica.') +
+  F('f1-q98-grafica', 'Gráfica original de rapidez frente al tiempo: la rapidez aumenta durante los primeros segundos y alcanza una meseta de 40 m/s.');
+revisada(105).context = P('Se lanzan tres pelotas, L, M y N, desde la azotea de un edificio de 30 m de altura. La siguiente gráfica muestra la altura de las pelotas como función del tiempo.') +
+  F('f1-q105-grafica', 'Gráfica original de altura frente al tiempo. L es la curva punteada, M la discontinua y N la continua; las tres llegan al eje de altura cero.');
+revisada(105).exp = 'Llegar al suelo corresponde a alcanzar altura cero. Lee dónde cada curva toca el eje del tiempo: L lo hace primero, M después y N al final. La altura inicial es la misma, pero las velocidades iniciales son distintas; por eso no llegan simultáneamente.';
+revisada(108).exp = 'Para que la caja arranque hacia arriba desde el reposo, la fuerza neta debe apuntar hacia arriba: T − mg debe ser positiva y, por tanto, T debe superar al peso. Si T = mg no hay aceleración: la caja puede permanecer quieta o moverse con velocidad constante. La fuerza del motor dibujada al otro lado de la polea apunta hacia abajo.';
+revisada(111).context = revisada(111).context.replace('Una sombrilla abierta flotando encima de un ventilador de mesa que sopla hacia arriba.', 'El dibujo muestra una sombrilla abierta y un ventilador que sopla hacia arriba, representados uno junto al otro. El enunciado describe la sombrilla situada sobre el ventilador.');
+
+// Las tablas conservan sus celdas y valores y permiten desplazamiento en móviles.
+for (const p of BANKS.fis) {
+ p.context = p.context.replace(/<table class="ctx-table">([\s\S]*?)<\/table>/g, (_, interior) => {
+  const ancha = [...interior.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].some(m => [...m[1].matchAll(/<(?:td|th)\b/g)].length > 4);
+  return '<div class="ctx-datos" role="region" aria-label="Tabla de datos" tabindex="0"><table class="ctx-table ctx-table-nativa' + (ancha ? ' ctx-table-amplia' : '') + '">' + interior + '</table></div>';
+ });
+}
