@@ -38,12 +38,6 @@ const { BANKS, CUESTIONARIOS } = vm.runInContext(fuente + '\n;({ BANKS, CUESTION
 // literal, la expresión dejó de casar y el generador empezó a derivar ids
 // nuevos para toda pregunta con gráfica dibujada. No se notaba en ninguna
 // salida: solo en que la base y git dejaban de cuadrar.
-if (sinEtiquetas('a<svg x="1">HOLA</svg>b') !== 'a b') {
-  console.error('sinEtiquetas no está descartando el bloque <svg>: una figura '
-    + 'dibujada movería el id de su pregunta. Revisa la expresión regular.');
-  process.exit(2);
-}
-
 const norm = s => String(s).toLowerCase().normalize('NFD')
   .replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
 // Una figura no debe influir NUNCA en la identidad de una pregunta. Un
@@ -56,6 +50,12 @@ const norm = s => String(s).toLowerCase().normalize('NFD')
 const sinEtiquetas = h => String(h)
   .replace(/<svg[\s\S]*?<\/svg>/gi, ' ')
   .replace(/<[^>]+>/g, ' ');
+
+if (sinEtiquetas('a<svg x="1">HOLA</svg>b') !== 'a b') {
+  console.error('sinEtiquetas no está descartando el bloque <svg>: una figura '
+    + 'dibujada movería el id de su pregunta. Revisa la expresión regular.');
+  process.exit(2);
+}
 
 let fallos = 0;
 const mal = m => { console.log('  ✗ ' + m); fallos += 1; };
