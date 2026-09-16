@@ -671,6 +671,31 @@ input { font: inherit; }
 .opt.is-wrong .badge { background: var(--color-err); border-color: var(--color-err); color: var(--color-accent-ink); }
 .opt.is-dim { opacity: 0.45; }
 
+/* Saltar sin responder · solo existe en la rama de revisión. Va en borde
+   discontinuo y en tono apagado a propósito: es una herramienta de revisión,
+   no una opción del estudiante, y no debe leerse como parte del producto. */
+.btn-saltar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  width: 100%;
+  margin-top: var(--space-sm);
+  padding: 11px 15px;
+  background: none;
+  border: 1.5px dashed var(--color-line-tint);
+  border-radius: 13px;
+  color: var(--color-ink-faint);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  transition: color var(--dur-short) var(--ease-out),
+              border-color var(--dur-short) var(--ease-out);
+}
+.btn-saltar:hover, .btn-saltar.is-hover {
+  color: var(--color-accent-text);
+  border-color: var(--color-accent);
+}
+
 /* ── hoja de retroalimentación ── */
 .sheet-backdrop {
   position: absolute; inset: 0; z-index: 40;

@@ -470,6 +470,7 @@ async function startQuiz(m, items, retry, cuestItem) {
     quiz = {
       m, items: items.slice(), idx: 0, ok: 0, wrong: [],
       t0: Date.now(), tPregunta: Date.now(), retry: !!retry, descartadas: new Set(),
+      saltadas: new Set(),
       sesion, cuest: retry ? null : (cuestItem ? cuestItem.id : null),
     };
     navigate('quiz');
@@ -508,6 +509,16 @@ async function renderQuiz() {
       </button>`;
   });
 
+  // Solo en la rama de revisión: pasar a la siguiente sin contestar. Quien
+  // revisa contenido necesita recorrer las preguntas, no aprobarlas.
+  if (VISTA_PREVIA_SIN_BLOQUEO) {
+    html += `
+      <button class="btn-saltar reveal" style="--i:${quiz.orden.length + 3}" id="btn-saltar">
+        Saltar sin responder
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 14 0"/><path d="m13 6 6 6-6 6"/></svg>
+      </button>`;
+  }
+
   const body = $('#quiz-body');
   body.classList.remove('quiz-locked');
   body.innerHTML = html;
@@ -518,6 +529,16 @@ async function renderQuiz() {
 
   body.querySelectorAll('.opt').forEach(btn =>
     btn.addEventListener('click', () => answer(parseInt(btn.dataset.i, 10))));
+  const saltar = body.querySelector('#btn-saltar');
+  if (saltar) saltar.addEventListener('click', saltarPregunta);
+}
+
+// Avanza sin registrar nada: la pregunta no cuenta como acertada ni como
+// fallada, solo queda anotada para que los resultados no la den por buena.
+function saltarPregunta() {
+  if (!VISTA_PREVIA_SIN_BLOQUEO) return;
+  quiz.saltadas.add(quiz.items[quiz.idx]);
+  nextQuestion();
 }
 
 // Califica el servidor. El navegador no sabe cuál es la correcta hasta que
@@ -611,12 +632,15 @@ function openReintento(q, descartadas) {
     <div class="sheet-body">
       ${q.tip ? `<div class="tip-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>${esc(q.tip)}</div>` : ''}
     </div>
-    <button class="btn btn-err" id="btn-continue">Volver a intentarlo</button>`;
+    <button class="btn btn-err" id="btn-continue">Volver a intentarlo</button>
+    ${VISTA_PREVIA_SIN_BLOQUEO ? '<button class="btn btn-ghost" id="btn-saltar-sheet">Saltar esta pregunta</button>' : ''}`;
 
   $('#sheet-backdrop').classList.add('open');
   requestAnimationFrame(() => sheet.classList.add('open'));
   $('#btn-continue').focus({ preventScroll: true });
   $('#btn-continue').addEventListener('click', reabrirPregunta);
+  const saltar = $('#btn-saltar-sheet');
+  if (saltar) saltar.addEventListener('click', saltarPregunta);
 }
 
 // Cierra la hoja y devuelve la pregunta al estudiante, sin avanzar.
@@ -709,9 +733,13 @@ function renderResults() {
   const cuest = quiz.cuest ? buscarCuestionario(quiz.m, quiz.cuest) : null;
   // Con reintentos todas terminan acertadas: lo que informa es cuántas
   // salieron bien A LA PRIMERA, que es lo que mide el examen.
-  const sub = cuest
+  // En la rama de revisión se puede saltar una pregunta: ni se acertó ni se
+  // reintentó, así que no puede engordar el contador de reintentos.
+  const saltadas = quiz.saltadas ? quiz.saltadas.size : 0;
+  const sub = (cuest
     ? `Acertaste ${quiz.ok} de ${n} a la primera en «${cuest.titulo}».`
-    : `Acertaste ${quiz.ok} de ${n} a la primera.`;
+    : `Acertaste ${quiz.ok} de ${n} a la primera.`)
+    + (saltadas ? ` Saltaste ${saltadas} sin responder.` : '');
 
   const R = 82, C = Math.round(2 * Math.PI * R);
   $('#results-body').innerHTML = `
@@ -732,7 +760,7 @@ function renderResults() {
       </div>
       <div class="stat-card c-err reveal" style="--i:4">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
-        <b>${n - quiz.ok}</b><span>Con reintento</span>
+        <b>${n - quiz.ok - saltadas}</b><span>Con reintento</span>
       </div>
       <div class="stat-card c-gold reveal" style="--i:5">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg>
