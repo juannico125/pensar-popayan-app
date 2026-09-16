@@ -39,7 +39,13 @@ Además, F2-103 contiene valores de calor específico inusuales para madera y ac
 - Vista local con HTML/CSS de la plataforma: 39 estados a 320 px, cuatro opciones en cada pregunta, ninguna imagen rota ni desbordamiento horizontal. Verificación adicional del barajado de imágenes.
 - La vista local no registra intentos ni sustituye una prueba autenticada de calificación.
 
-### Fingerprints esperados después de aplicar
+### Aplicación y publicación verificadas
+
+Parche aplicado a Supabase `unttlrqhfpttueezvrtp`. Consulta posterior: 39 publicadas, cero sin clave y cero sin ruta; fis-8 y fis-15 contienen cuatro preguntas cada uno. Los 15 títulos coinciden con sus portadas.
+
+Se verificaron por SHA-256 los 49 WebP de Física en producción y en revisión: 98 comparaciones, cero diferencias. Las ramas main y revision-cuestionarios contienen las correcciones. La plataforma publicada mostró el acceso por cuenta; no había una sesión autenticada disponible, por lo que no se probó el envío de respuestas ni la calificación como estudiante.
+
+### Fingerprints locales y remotos coincidentes después de aplicar
 
 | Lote | Contextos | Preguntas | Claves |
 |---|---|---|---|
