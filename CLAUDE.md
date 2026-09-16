@@ -175,14 +175,20 @@ Two things matemáticas needs that sociales did not:
   questions, 3 figures). Budget the figure work per question, not per
   cuadernillo.
 
-### Figures: almost everything is prose, three things are images
+### Figures: three in Sociales/Inglés, one per question in Matemáticas
 
-The cuadernillos are scans with no text layer, so graphic stimuli were
-transcribed as prose. A sweep of all 152 pages of the eleven cuadernillos found
-only **three figures that carry meaning**; everything else is either decorative
-(the portraits heading the English reading passages, the Mickey Mouse cover) or
+In the eleven Sociales/Inglés cuadernillos, a sweep of all 152 pages found only
+**three figures that carry meaning**; everything else is decorative (the
+portraits heading the English reading passages, the Mickey Mouse cover) or
 already solved as HTML (the two tables, and the part-1 avisos, which are text in
 a box styled by `.ctx-aviso`).
+
+Matemáticas is the opposite: **235 figures across the nine cuadernillos**, about
+one per question, plus the ones that are option graphs (`¿cuál de estas
+gráficas…?`) living inside `preguntas.opciones`. They are located with
+`scripts/detectar-figuras.mjs` and then cropped by hand — the detector proposes
+boxes, it does not write the final crop, because a crop that bleeds into the
+neighbouring column is visible on the student's screen.
 
 The three live in `img/figuras/` as WebP and are referenced from the contexto
 HTML with a relative `src`, so the Cloudflare Worker serves them from the same
@@ -202,6 +208,16 @@ Rules for adding one:
   must be able to answer. That is not leaking the key: the stimulus is public,
   the key is not. Note that `sinEtiquetas()` strips whole tags, so `alt` text
   never reaches the derived id or `hash_norm`.
+- **The `src` is always relative** (`img/figuras/…`), served by the Worker from
+  the same origin. Never an absolute URL to GitHub, a CDN, or Storage. In
+  September 2026 the math figures were briefly pinned to
+  `raw.githubusercontent.com` commits: that moved the bytes out of the Bogotá
+  PoP and, worse, made the product depend on this repository staying **public**
+  — and `supabase/seed/` holds every `preguntas_clave` insert, which is the
+  answer key. Undone in `20260915100000_figuras_vuelven_al_mismo_origen.sql`.
+- When four options are graphs, **each `alt` must describe its own graph**. Four
+  identical `alt` strings pass every automated check and still leave the
+  question unanswerable with a screen reader.
 
 **Changing a contexto changes the id of its pregunta**, because both derive
 from the content. Rebuild the rows (delete + insert) instead of updating in
@@ -231,21 +247,30 @@ Before applying a new batch, also check its content-derived `hash_norm` values
 against the ones already in `preguntas`: that is how the repeat of F6's
 question 71 (already loaded from F1/F2) was caught before it hit the database.
 
-**Known drift (September 2026).** Every row's *content* in the live project is
-byte-identical to git — the md5 over all 340 `contextos.contenido` matches the
-seeds exactly. But **two rows carry ids that git no longer produces**, because
-their text was edited after loading and the DB row kept its original id:
+**Drift: how to check it, and where it stands.** An id is derived from the
+content, so a row whose text was edited in place after loading keeps an id that
+git no longer produces. Harmless to students, fatal to reproducibility. One
+query finds every such row:
 
-- the DANE price table in `sociales-2026b.js` (DB `8491e444…`, seeds
-  `9c90a941…`), and the pregunta hanging off it;
-- one pregunta in the `6106be2d…7c1a6f8c` id range.
+```sql
+select id, etiqueta from contextos where id <> uuid_de_contexto(contenido);
+```
 
-Consequence: a rebuild from the seeds would produce those two rows under
-different ids. Harmless to students, fatal to reproducibility. Fixing it means
-rewriting the ids, and the table one already has a `respuestas` row pointing at
-it, so it needs an id migration rather than a delete-and-reinsert. The F3
-Allende contexto had the same problem and was fixed on 2026-09-14 by rebuilding
-it as part of the figure work.
+`uuid_de_contexto()` (added 2026-09-15) reproduces the JS derivation inside
+Postgres — sha256 over the parts joined by a NUL byte, in `bytea`, because
+Postgres `text` cannot hold a zero byte.
+
+As of 2026-09-15 it returns **three rows**, all deliberate: the three text
+corrections found by collating Inglés p4 and Sociales F4 against the scans
+(`Useful Things`, the EPS 30 %, the 4.000 Nigerians). Those carry an
+`identityContext` in the content file, which pins the id on purpose so the fix
+does not rewrite ids that students' `respuestas` already point at. The older
+drift the September audit found — the DANE price table and its pregunta — is
+resolved.
+
+Note that editing a **contexto** does not move the **pregunta**'s id: that one
+derives from the contexto *without tags*, so changing an `<img src>` or an `alt`
+leaves it alone. Only the contexto row has to be rebuilt.
 
 ## Design system (student app + panel)
 
