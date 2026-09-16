@@ -1,8 +1,6 @@
-/* Física · formulario 2 (F2, Bugs Bunny) · lote 2026-B
+/* Física · formulario 2 (F2, Deadpool) · lote 2026-B
  *
- * Preguntas 99 a 116. Ojo: **las 97 y 98 no están en el escaneo**. La página
- * impresa 1 de este cuadernillo arranca directamente en la 99, así que o el
- * formulario empieza ahí o falta una hoja. Queda anotado para pedirla.
+ * Preguntas 97 a 116. Las 97 y 98 están en la portada (página 6 del PDF).
  *
  * La 112 tampoco está aquí: es de química (enlace y conductividad), como
  * anotó el docente al margen, y se cargó en `qui-f2-2026b.js`.
@@ -268,3 +266,51 @@ const CUESTIONARIOS = {
     ]},
   ],
 };
+
+/* Cotejo visual con el PDF, 16-09-2026. La identidad previa conserva el historial. */
+for (const p of BANKS.fis) p.identityContext = p.context;
+const revisada = numero => BANKS.fis.find(p => p.numero === numero);
+revisada(105).opts[1] = 'Que se mantenga igual, ya que en la ecuación se muestra la gravedad, y el peso depende de la aceleración de la gravedad y la masa.';
+revisada(105).confianza = 'media';
+revisada(105).exp += ' La conclusión de que el ángulo no cambia es compatible con la ecuación, donde la masa no aparece. Sin embargo, la justificación impresa de esa opción es imprecisa. Además, el dibujo mide θ desde la vertical, aunque el texto menciona el brazo horizontal. Se conserva el original para revisión docente.';
+revisada(108).context += P('Luego de una prueba en un río, el correntómetro marca los siguientes resultados:') + tablaNativa(['Profundidad (m)', 'Velocidad (m/s)'], [['1,15','0,16'],['3,63','0,54'],['5,20','0,90'],['5,66','1,09']], 'Resultados del correntómetro');
+revisada(109).context = revisada(109).context.replace(/alt="[^"]*"/, 'alt="Cuatro circuitos con resistencias idénticas R: 1, tres en serie; 2, una en serie con dos en paralelo; 3, tres en paralelo; 4, una rama con R en paralelo con otra rama de dos resistencias en serie."');
+revisada(115).context = revisada(115).context.replaceAll('apuntando hacia afuera', 'apuntando hacia la pantalla');
+
+// Las preguntas 97 y 98 sí aparecen en la portada de F2 (página 6 del PDF).
+Q(97, 'Dinámica y fuerzas', 'media',
+ P('Un estudiante observa que cuando se coloca un botellón de agua de 20 kg sobre una base sostenida por dos vasos de icopor vacíos, los vasos son aplastados. Sin embargo, si se aumenta el número de vasos para soportar el botellón, los vasos sí lo sostienen, como se muestra en la figura. El estudiante realiza un experimento y obtiene los siguientes resultados.') +
+ F('f2-q97-botellones', 'Montajes del botellón sobre vasos de icopor. Con pocos vasos estos se aplastan; al aumentar su número, sostienen el botellón.') +
+ tablaNativa(['Peso del botellón (N)','Número de vasos','Presión (Pa)'], [['196','1','2,00'],['196','2','1,00'],['196','3','0,67'],['196','4','0,50']], 'Resultados del experimento'),
+ 'De acuerdo a los resultados obtenidos por el estudiante, ¿por qué un número suficiente de vasos puede llegar a sostener el botellón sin ser aplastados?',
+ ['Porque la fuerza de los vasos disminuye, conforme el peso del botellón de agua cambia.',
+ 'Porque al aumentar el número de botellones se mantiene constante el peso de los vasos.',
+ 'Porque al aumentar el número de vasos, disminuye la presión ejercida por el botellón sobre cada vaso.',
+ 'Porque al disminuir la presión del recipiente de agua disminuye el peso del botellón.'], 2,
+ 'El peso del botellón permanece en 196 N. Al repartirlo entre más vasos aumenta el área de apoyo total y disminuye la fuerza que soporta cada vaso. La tabla muestra que la presión disminuye al aumentar el número de vasos. No se reduce el peso del botellón: cambia cómo se distribuye sobre el soporte.',
+ 'Busca qué cantidad permanece constante y cuál disminuye al aumentar los apoyos.');
+Q(98, 'Energía y trabajo', 'media',
+ P('Camilo observa un martillo que se encuentra adherido a un eje de giro, el cual golpea un clavo sobre una superficie de madera, tal y como muestra la figura.') +
+ F('f2-q98-martillo', 'Martillo sujeto a un eje: la altura después del primer golpe es mayor que la altura después del segundo golpe.') +
+ P('Luego de golpear el clavo, el martillo se sube a una altura menor que la del primer golpe, para luego volver a golpear el clavo. Esto lo hace en repetidas ocasiones, hasta que finalmente se detiene.'),
+ 'Teniendo en cuenta la información anterior, ¿cómo es la variación de la energía mecánica del martillo y del clavo cuando el martillo ha regresado a una altura menor?',
+ ['La energía mecánica del martillo ha disminuido y la del clavo ha permanecido constante.',
+ 'La energía mecánica del martillo ha presionado mientras que la del clavo ha disminuido.',
+ 'La energía mecánica del clavo y del martillo han aumentado tras cada golpe.',
+ 'La energía mecánica que posee el martillo y el clavo permanece constante.'], 0,
+ 'Al comparar las alturas máximas, el martillo está momentáneamente en reposo y su energía potencial es menor tras cada golpe. Parte de su energía se transfiere a la madera, al clavo y al entorno por deformación, calentamiento y sonido. La respuesta propuesta supone que se compara el clavo en reposo y se desprecia su pequeño cambio de altura. La opción que dice «ha presionado» contiene una errata del PDF; se conserva sin inventar el término faltante. Requiere revisión docente.',
+ 'Compara las alturas máximas alcanzadas y distingue la energía mecánica de otras formas de energía.',
+ { confianza: 'media' });
+for (const seccion of CUESTIONARIOS.fis) for (const item of seccion.items) {
+ item.titulo = item.titulo.replace('Bugs Bunny', 'Deadpool');
+ if (item.id === 'fis-8') { item.titulo = 'Deadpool · Fuerzas y presión'; item.qs.push(17); }
+ if (item.id === 'fis-15') item.qs.push(18);
+}
+
+// Las tablas conservan sus celdas y valores y permiten desplazamiento en móviles.
+for (const p of BANKS.fis) {
+ p.context = p.context.replace(/<table class="ctx-table">([\s\S]*?)<\/table>/g, (_, interior) => {
+  const ancha = [...interior.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].some(m => [...m[1].matchAll(/<(?:td|th)\b/g)].length > 4);
+  return '<div class="ctx-datos" role="region" aria-label="Tabla de datos" tabindex="0"><table class="ctx-table ctx-table-nativa' + (ancha ? ' ctx-table-amplia' : '') + '">' + interior + '</table></div>';
+ });
+}
