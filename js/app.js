@@ -443,10 +443,34 @@ let quiz = null; // { m, items, idx, ok, wrong, t0, retry, sesion, cuest }
 
 // Abre la sesión en la base. Si el cuestionario está bloqueado o el perfil
 // inactivo, Postgres lo rechaza aquí y el quiz no arranca.
+// Pide una cola de repaso y arranca con ella. Vive aquí y no dentro del
+// render porque se lanza desde dos sitios: la pantalla de repaso y el final
+// de una práctica.
+async function lanzarRepaso(btn) {
+  if (btn) btn.disabled = true;
+  try {
+    // La cola mezcla lo vencido con preguntas NUEVAS de los temas flojos:
+    // devolver seis veces la misma pregunta enseña esa pregunta, no el tema.
+    const cola = await API.colaRepaso(SESSION_SIZE);
+    if (!cola.length) { toast('No hay nada vencido por hoy'); return; }
+    const m = cola[0].m;
+    await startQuiz(m, cola.filter(c => c.m === m).map(c => c.qi), true, null);
+  } catch (e) {
+    toast(mensajeError(e));
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
 async function startQuiz(m, items, retry, cuestItem) {
   try {
-    const sesion = await API.iniciarSesion(retry ? 'repaso' : 'cuestionario',
-                                           retry ? null : cuestItem && cuestItem.uuid);
+    // `sesiones.tipo` solo admite 'cuestionario' o 'repaso', y una sesión de
+    // cuestionario SIN cuestionario la rechaza Postgres. Así que el tipo lo
+    // decide que haya un cuestionario, no el parámetro `retry`: llamar a
+    // startQuiz(m) suelto pedía 'cuestionario' con el id en null y el
+    // estudiante recibía «falta el cuestionario» en la cara.
+    const uuid = (!retry && cuestItem) ? cuestItem.uuid : null;
+    const sesion = await API.iniciarSesion(uuid ? 'cuestionario' : 'repaso', uuid);
     quiz = {
       m, items: items.slice(), idx: 0, ok: 0, wrong: [],
       t0: Date.now(), tPregunta: Date.now(), retry: !!retry, descartadas: new Set(),
@@ -721,13 +745,19 @@ function renderResults() {
     </div>
     <div class="xp-note reveal" style="--i:6">+${quiz.ok * 10} XP</div>`;
 
+  // Tres botones como mucho, y «Volver al inicio» siempre presente: antes
+  // compartía sitio con «Ver errores», así que quien terminaba con fallos se
+  // quedaba sin salida visible hacia el menú.
+  const hayErrores = quiz.wrong.length > 0;
   $('#results-cta').innerHTML = `
-    <button class="btn btn-primary" id="btn-again">${cuest ? 'Continuar la ruta' : 'Repetir práctica'}</button>
-    <button class="btn btn-ghost" id="btn-see">${quiz.wrong.length ? 'Ver errores' : 'Volver al inicio'}</button>`;
-  $('#btn-again').addEventListener('click', () =>
-    cuest ? navigate('materia', quiz.m) : startQuiz(quiz.m));
-  $('#btn-see').addEventListener('click', () =>
-    navigate(quiz.wrong.length ? 'mistakes' : 'home'));
+    <button class="btn btn-primary" id="btn-again">${cuest ? 'Continuar la ruta' : 'Repasar otra vez'}</button>
+    ${hayErrores ? '<button class="btn btn-ghost" id="btn-see">Ver errores</button>' : ''}
+    <button class="btn btn-ghost" id="btn-home">Volver al inicio</button>`;
+  const btnAgain = $('#btn-again');
+  btnAgain.addEventListener('click', () =>
+    cuest ? navigate('materia', quiz.m) : lanzarRepaso(btnAgain));
+  if (hayErrores) $('#btn-see').addEventListener('click', () => navigate('mistakes'));
+  $('#btn-home').addEventListener('click', () => navigate('home'));
 
   // anillo + conteo (funcionales; reduced-motion los acorta vía CSS)
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -855,21 +885,7 @@ function renderReview() {
 
   $('#review-body').innerHTML = html;
   const btn = $('#btn-review-now');
-  if (btn) btn.addEventListener('click', async () => {
-    btn.disabled = true;
-    try {
-      // La cola mezcla lo vencido con preguntas NUEVAS de los temas flojos:
-      // devolver seis veces la misma pregunta enseña esa pregunta, no el tema.
-      const cola = await API.colaRepaso(SESSION_SIZE);
-      if (!cola.length) { toast('No hay nada vencido por hoy'); return; }
-      const m = cola[0].m;
-      await startQuiz(m, cola.filter(c => c.m === m).map(c => c.qi), true, null);
-    } catch (e) {
-      toast(mensajeError(e));
-    } finally {
-      btn.disabled = false;
-    }
-  });
+  if (btn) btn.addEventListener('click', () => lanzarRepaso(btn));
 }
 
 /* ───────────────── progreso ───────────────── */
