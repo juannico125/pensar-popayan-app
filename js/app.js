@@ -282,6 +282,21 @@ function renderHome() {
   const okSem = sem.filter(a => a.ok).length;
   const precSem = sem.length ? Math.round(okSem / sem.length * 100) + ' %' : '—';
   const meta = 40;
+
+  // «101 / 40 preguntas» parecía un error de la app: un quebrado cuyo numerador
+  // pasa al denominador, y con la barra llena igual que quien hizo 40 justas.
+  // Pasada la meta se dice que está cumplida y ya; el número exacto sigue
+  // abajo, en «Respondidas», así que no se pierde nada.
+  const rotuloMeta = sem.length >= meta
+    ? `Meta de ${meta} cumplida`
+    : `${sem.length} / ${meta} preguntas`;
+
+  // El tiempo de esta tarjeta tiene que ser el de ESTA semana. `S.timeStudied`
+  // sale de `v_resumen_estudiante`, que suma `respuestas.ms` sin filtrar por
+  // fecha: es el acumulado de siempre, y quedaba debajo del título «Tu semana»
+  // junto a dos cifras que sí eran semanales. Se recalcula desde las
+  // respuestas de la semana, que ya traen su propio `ms`.
+  const segSemana = Math.round(sem.reduce((t, a) => t + (a.ms || 0), 0) / 1000);
   const r = racha();
 
   const iniciales = (S.user.nombre || '?').split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
@@ -296,12 +311,15 @@ function renderHome() {
         <div class="avatar-band" aria-hidden="true">${esc(iniciales)}</div>
       </div>
       <div class="week-card">
-        <div class="week-head"><b>Tu semana</b><span>${sem.length} / ${meta} preguntas</span></div>
-        <div class="bar"><i style="--p:${Math.min(sem.length / meta, 1)}"></i></div>
+        <div class="week-head"><b>Tu semana</b><span>${rotuloMeta}</span></div>
+        <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${meta}"
+             aria-valuenow="${Math.min(sem.length, meta)}"
+             aria-label="Preguntas de esta semana: ${sem.length} de una meta de ${meta}">
+          <i style="--p:${Math.min(sem.length / meta, 1)}"></i></div>
         <div class="week-stats">
           <div class="week-stat"><b>${sem.length}</b><span>Respondidas</span></div>
           <div class="week-stat"><b>${precSem}</b><span>Precisión</span></div>
-          <div class="week-stat"><b>${fmtTiempo(S.timeStudied)}</b><span>Estudiado</span></div>
+          <div class="week-stat"><b>${fmtTiempo(segSemana)}</b><span>Estudiado</span></div>
         </div>
       </div>
     </div>
