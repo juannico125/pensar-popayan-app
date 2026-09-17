@@ -609,9 +609,25 @@ input { font: inherit; }
   color: var(--color-ink);
 }
 
-.ctx-table { width: 100%; border-collapse: collapse; font-size: var(--text-xs); }
+.ctx-table { width: 100%; border-collapse: collapse; font-size: var(--text-xs); table-layout: auto; }
 .ctx-table th, .ctx-table td { border: 1px solid var(--color-line); padding: 6px 9px; text-align: center; }
 .ctx-table th { background: var(--color-paper-2); font-weight: 700; }
+
+/* Una tabla tampoco se lee a trozos. El tope de 250px de la tarjeta estaba
+   pensado para un estímulo de texto largo, y con una tabla dentro producía lo
+   peor de los dos mundos: scroll vertical de la tarjeta y scroll horizontal
+   de la tabla, anidados, con la cabecera y la última columna recortadas.
+   Si el contexto trae tabla, la tarjeta crece igual que con una figura. */
+.ctx-card:has(.ctx-table) { max-height: none; }
+/* Las celdas envuelven por palabras. `anywhere` NO sirve aquí aunque quepa
+   todo: cuenta los cortes al calcular el ancho mínimo, así que el navegador
+   estrecha las columnas hasta partir «Compuesto» en «Co-mp-uest-o».
+   `break-word` deja las columnas a su ancho natural de palabra y solo parte
+   lo que de verdad no cabe. */
+.ctx-table th, .ctx-table td { overflow-wrap: break-word; hyphens: auto; }
+@media (max-width: 414px) {
+  .ctx-table th, .ctx-table td { padding: 5px 6px; }
+}
 
 /* Hallmark · componente: tablas de ejercicios · tema: Pensar existente
  * pre-emit critique: P5 H4 E4 S5 R5 V4

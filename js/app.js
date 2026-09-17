@@ -465,7 +465,16 @@ async function startQuiz(m, items, retry, cuestItem) {
     // decide que haya un cuestionario, no el parámetro `retry`: llamar a
     // startQuiz(m) suelto pedía 'cuestionario' con el id en null y el
     // estudiante recibía «falta el cuestionario» en la cara.
-    const uuid = (!retry && cuestItem) ? cuestItem.uuid : null;
+    //
+    // En la rama de revisión, además, NUNCA se abre una sesión de tipo
+    // 'cuestionario'. El bypass del clic solo saltaba el candado del cliente,
+    // que mira el cuestionario inmediatamente anterior; el servidor exige que
+    // TODOS los anteriores de la materia tengan sesión terminada, así que
+    // devolvía «cuestionario bloqueado: completa el anterior» en un ítem que
+    // la ruta pintaba como disponible. Pidiendo siempre 'repaso' el servidor
+    // no exige la secuencia y la vista previa queda de verdad sin candados.
+    // `quiz.cuest` se conserva, así que la ruta sigue marcando el avance.
+    const uuid = (!retry && !VISTA_PREVIA_SIN_BLOQUEO && cuestItem) ? cuestItem.uuid : null;
     const sesion = await API.iniciarSesion(uuid ? 'cuestionario' : 'repaso', uuid);
     quiz = {
       m, items: items.slice(), idx: 0, ok: 0, wrong: [],
@@ -769,19 +778,26 @@ function renderResults() {
     </div>
     <div class="xp-note reveal" style="--i:6">+${quiz.ok * 10} XP</div>`;
 
-  // Tres botones como mucho, y «Volver al inicio» siempre presente: antes
-  // compartía sitio con «Ver errores», así que quien terminaba con fallos se
-  // quedaba sin salida visible hacia el menú.
+  // Tres botones como mucho, y la salida siempre presente: antes compartía
+  // sitio con «Ver errores», así que quien terminaba con fallos se quedaba
+  // sin salida visible.
+  //
+  // Esa salida devuelve a la ruta de la materia, no al inicio. Quien acaba un
+  // cuestionario de Física casi siempre quiere el siguiente de Física, y
+  // mandarlo al menú principal le cobraba dos toques de más. `quiz.m` está
+  // puesto también en repaso —la cola toma la materia de su primera
+  // pregunta—, así que el botón sabe siempre a dónde volver.
   const hayErrores = quiz.wrong.length > 0;
+  const volverA = nombreMateria(quiz.m);
   $('#results-cta').innerHTML = `
     <button class="btn btn-primary" id="btn-again">${cuest ? 'Continuar la ruta' : 'Repasar otra vez'}</button>
     ${hayErrores ? '<button class="btn btn-ghost" id="btn-see">Ver errores</button>' : ''}
-    <button class="btn btn-ghost" id="btn-home">Volver al inicio</button>`;
+    <button class="btn btn-ghost" id="btn-home">Volver a ${volverA}</button>`;
   const btnAgain = $('#btn-again');
   btnAgain.addEventListener('click', () =>
     cuest ? navigate('materia', quiz.m) : lanzarRepaso(btnAgain));
   if (hayErrores) $('#btn-see').addEventListener('click', () => navigate('mistakes'));
-  $('#btn-home').addEventListener('click', () => navigate('home'));
+  $('#btn-home').addEventListener('click', () => navigate('materia', quiz.m));
 
   // anillo + conteo (funcionales; reduced-motion los acorta vía CSS)
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
