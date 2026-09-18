@@ -278,6 +278,21 @@ function renderHome() {
   const okSem = sem.filter(a => a.ok).length;
   const precSem = sem.length ? Math.round(okSem / sem.length * 100) + ' %' : '—';
   const meta = 40;
+
+  // «101 / 40 preguntas» parecía un error de la app: un quebrado cuyo numerador
+  // pasa al denominador, y con la barra llena igual que quien hizo 40 justas.
+  // Pasada la meta se dice que está cumplida y ya; el número exacto sigue
+  // abajo, en «Respondidas», así que no se pierde nada.
+  const rotuloMeta = sem.length >= meta
+    ? `Meta de ${meta} cumplida`
+    : `${sem.length} / ${meta} preguntas`;
+
+  // El tiempo de esta tarjeta tiene que ser el de ESTA semana. `S.timeStudied`
+  // sale de `v_resumen_estudiante`, que suma `respuestas.ms` sin filtrar por
+  // fecha: es el acumulado de siempre, y quedaba debajo del título «Tu semana»
+  // junto a dos cifras que sí eran semanales. Se recalcula desde las
+  // respuestas de la semana, que ya traen su propio `ms`.
+  const segSemana = Math.round(sem.reduce((t, a) => t + (a.ms || 0), 0) / 1000);
   const r = racha();
 
   const iniciales = (S.user.nombre || '?').split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
@@ -292,12 +307,15 @@ function renderHome() {
         <div class="avatar-band" aria-hidden="true">${esc(iniciales)}</div>
       </div>
       <div class="week-card">
-        <div class="week-head"><b>Tu semana</b><span>${sem.length} / ${meta} preguntas</span></div>
-        <div class="bar"><i style="--p:${Math.min(sem.length / meta, 1)}"></i></div>
+        <div class="week-head"><b>Tu semana</b><span>${rotuloMeta}</span></div>
+        <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${meta}"
+             aria-valuenow="${Math.min(sem.length, meta)}"
+             aria-label="Preguntas de esta semana: ${sem.length} de una meta de ${meta}">
+          <i style="--p:${Math.min(sem.length / meta, 1)}"></i></div>
         <div class="week-stats">
           <div class="week-stat"><b>${sem.length}</b><span>Respondidas</span></div>
           <div class="week-stat"><b>${precSem}</b><span>Precisión</span></div>
-          <div class="week-stat"><b>${fmtTiempo(S.timeStudied)}</b><span>Estudiado</span></div>
+          <div class="week-stat"><b>${fmtTiempo(segSemana)}</b><span>Estudiado</span></div>
         </div>
       </div>
     </div>
@@ -465,7 +483,16 @@ async function startQuiz(m, items, retry, cuestItem) {
     // decide que haya un cuestionario, no el parámetro `retry`: llamar a
     // startQuiz(m) suelto pedía 'cuestionario' con el id en null y el
     // estudiante recibía «falta el cuestionario» en la cara.
-    const uuid = (!retry && cuestItem) ? cuestItem.uuid : null;
+    //
+    // En la rama de revisión, además, NUNCA se abre una sesión de tipo
+    // 'cuestionario'. El bypass del clic solo saltaba el candado del cliente,
+    // que mira el cuestionario inmediatamente anterior; el servidor exige que
+    // TODOS los anteriores de la materia tengan sesión terminada, así que
+    // devolvía «cuestionario bloqueado: completa el anterior» en un ítem que
+    // la ruta pintaba como disponible. Pidiendo siempre 'repaso' el servidor
+    // no exige la secuencia y la vista previa queda de verdad sin candados.
+    // `quiz.cuest` se conserva, así que la ruta sigue marcando el avance.
+    const uuid = (!retry && !VISTA_PREVIA_SIN_BLOQUEO && cuestItem) ? cuestItem.uuid : null;
     const sesion = await API.iniciarSesion(uuid ? 'cuestionario' : 'repaso', uuid);
     quiz = {
       m, items: items.slice(), idx: 0, ok: 0, wrong: [],
@@ -769,19 +796,26 @@ function renderResults() {
     </div>
     <div class="xp-note reveal" style="--i:6">+${quiz.ok * 10} XP</div>`;
 
-  // Tres botones como mucho, y «Volver al inicio» siempre presente: antes
-  // compartía sitio con «Ver errores», así que quien terminaba con fallos se
-  // quedaba sin salida visible hacia el menú.
+  // Tres botones como mucho, y la salida siempre presente: antes compartía
+  // sitio con «Ver errores», así que quien terminaba con fallos se quedaba
+  // sin salida visible.
+  //
+  // Esa salida devuelve a la ruta de la materia, no al inicio. Quien acaba un
+  // cuestionario de Física casi siempre quiere el siguiente de Física, y
+  // mandarlo al menú principal le cobraba dos toques de más. `quiz.m` está
+  // puesto también en repaso —la cola toma la materia de su primera
+  // pregunta—, así que el botón sabe siempre a dónde volver.
   const hayErrores = quiz.wrong.length > 0;
+  const volverA = nombreMateria(quiz.m);
   $('#results-cta').innerHTML = `
     <button class="btn btn-primary" id="btn-again">${cuest ? 'Continuar la ruta' : 'Repasar otra vez'}</button>
     ${hayErrores ? '<button class="btn btn-ghost" id="btn-see">Ver errores</button>' : ''}
-    <button class="btn btn-ghost" id="btn-home">Volver al inicio</button>`;
+    <button class="btn btn-ghost" id="btn-home">Volver a ${volverA}</button>`;
   const btnAgain = $('#btn-again');
   btnAgain.addEventListener('click', () =>
     cuest ? navigate('materia', quiz.m) : lanzarRepaso(btnAgain));
   if (hayErrores) $('#btn-see').addEventListener('click', () => navigate('mistakes'));
-  $('#btn-home').addEventListener('click', () => navigate('home'));
+  $('#btn-home').addEventListener('click', () => navigate('materia', quiz.m));
 
   // anillo + conteo (funcionales; reduced-motion los acorta vía CSS)
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

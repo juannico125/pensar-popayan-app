@@ -1,4 +1,4 @@
-/* Química · formulario 2 (F2, Bugs Bunny) · lote 2026-B
+/* Química · formulario 2 (F2, Deadpool) · lote 2026-B
  *
  * Una sola pregunta, y por eso este archivo existe: la 112 viene impresa en el
  * cuadernillo de física, pero el docente anotó «Química» al margen y tiene
@@ -45,7 +45,7 @@ BANKS.qui.push({
 const CUESTIONARIOS = {
   qui: [
     { tema: 'Enlace químico', items: [
-      { id: 'qui-1', titulo: 'Bugs Bunny · Enlace y conductividad', qs: [0], tipo: 'Situación' },
+      { id: 'qui-1', titulo: 'Deadpool · Enlace y conductividad', qs: [0], tipo: 'Situación' },
     ]},
   ],
 };

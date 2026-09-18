@@ -1,3 +1,6 @@
+-- RETIRADO el 2026-09-17 por `20260917233000_retirar_el_banco_de_demo.sql`.
+-- NO aplicar sobre la base: reinsertaría las veinte preguntas de la demo,
+-- con sus textos inventados. Se conserva solo como registro de lo que hubo.
 -- Generado por scripts/generar-carga-banco.mjs · NO editar a mano.
 -- Fuente: ../content/banco-2026b.js · clave_origen = cuadernillo
 

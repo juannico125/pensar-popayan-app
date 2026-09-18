@@ -260,13 +260,23 @@ select id, etiqueta from contextos where id <> uuid_de_contexto(contenido);
 Postgres — sha256 over the parts joined by a NUL byte, in `bytea`, because
 Postgres `text` cannot hold a zero byte.
 
-As of 2026-09-15 it returns **three rows**, all deliberate: the three text
-corrections found by collating Inglés p4 and Sociales F4 against the scans
-(`Useful Things`, the EPS 30 %, the 4.000 Nigerians). Those carry an
-`identityContext` in the content file, which pins the id on purpose so the fix
-does not rewrite ids that students' `respuestas` already point at. The older
-drift the September audit found — the DANE price table and its pregunta — is
-resolved.
+**That query alone is not a drift report.** It flags every row whose id was
+pinned on purpose with `identityContext`, because `uuid_de_contexto()` only
+sees the stored text and knows nothing about the pin. As of 2026-09-16 it
+returns **73 rows**, and all 73 are deliberate: 3 text corrections (Inglés p4
+and Sociales F4 against the scans — `Useful Things`, the EPS 30 %, the 4.000
+Nigerians), 59 in Matemáticas and 11 in Física, where the figures were redrawn
+as SVG and the tables rebuilt after `identityContext` had already captured the
+previous text. In Matemáticas the pin is applied in bulk at the foot of each
+content file, before `mejorarFigurasMatematicas()` rewrites the presentation.
+
+So the number growing is not by itself a problem, and 3 is no longer the
+expected answer. **The real check is `huella-carga.mjs`**: it hashes the
+`(id, contenido)` pair exactly as git produces it, pin included, so six
+matching md5 mean the row is reproducible whether or not it is pinned. Use the
+`uuid_de_contexto()` query to *locate* pinned rows, then confirm each one is
+accounted for by an `identityContext` in its content file — an unexplained row
+is the one worth chasing.
 
 Note that editing a **contexto** does not move the **pregunta**'s id: that one
 derives from the contexto *without tags*, so changing an `<img src>` or an `alt`

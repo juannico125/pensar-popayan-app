@@ -127,6 +127,7 @@ const API = {
       m: r.materia,
       qi: QPOS[r.pregunta_id]?.qi ?? null,   // null si la pregunta ya salió del lote
       ok: r.correcta,
+      ms: r.ms || 0,                         // por respuesta: permite acotar por fecha
       ts: new Date(r.respondida_en).getTime(),
       sesion: r.sesion_id,
     }));
