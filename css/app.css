@@ -577,6 +577,17 @@ input { font: inherit; }
   border-radius: var(--radius-sm);
   background: #fff;
 }
+/* Figuras que no toleran encogerse: una tira cómica de cuatro viñetas a 320px
+   deja de leerse, y en Lectura Crítica el diálogo de las viñetas es justo lo
+   que la pregunta pide interpretar. Conservan un ancho mínimo legible y se
+   desplazan de lado dentro de su propio marco, nunca moviendo la pantalla. */
+.ctx-fig.es-ancha { overflow-x: auto; overscroll-behavior-x: contain; }
+.ctx-fig.es-ancha img { max-width: none; min-width: 32rem; margin-inline: 0; }
+.ctx-fig.es-ancha:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+@media (min-width: 560px) {
+  /* En pantalla ancha ya cabe entera: se vuelve a comportar como cualquier figura. */
+  .ctx-fig.es-ancha img { min-width: 0; max-width: 100%; margin-inline: auto; }
+}
 .ctx-fig figcaption {
   font-size: var(--text-xs);
   color: var(--color-ink-faint);

@@ -5,18 +5,22 @@
  * yo para el prototipo, con textos inventados, y un estudiante las jugaba
  * creyendo que eran ICFES.
  *
- * Aquí no se recorta nada. Lectura Crítica no tiene figuras de datos: tiene
- * textos, y los textos se transcriben. Las tres piezas gráficas —las dos
- * tiras de Calvin y Hobbes, la caricatura del «Dios conejo» y la infografía
- * de Siddharta— se pasan a texto con el diálogo y la descripción de lo que se
- * ve. Hay dos razones y las dos pesan:
+ * Los textos van transcritos y las cuatro piezas gráficas van recortadas: las
+ * dos tiras de Calvin y Hobbes, la caricatura del «Dios conejo» y la
+ * infografía de Siddharta. El `alt` de cada una lleva el diálogo completo
+ * viñeta por viñeta y la descripción de lo que se ve, de modo que la pregunta
+ * se puede contestar sin ver la imagen —que es la regla de la casa para
+ * figuras— y a la vez el estudiante ve lo mismo que hay impreso.
  *
- *   1. Un recorte de una tira cómica es ilegible con lector de pantalla, y
- *      estas preguntas piden justamente interpretar el diálogo y el gesto.
- *      Transcritas, la pregunta se puede contestar sin ver.
- *   2. Son obra de autores vivos e identificables —Watterson, sobre todo— y
- *      esto va dentro de un producto que se vende. Reproducir el dibujo es
- *      distinto de citar el texto.
+ * Van marcadas con `es-ancha`: una tira de cuatro viñetas encogida a 320px
+ * deja de leerse, y el diálogo es justo lo que la pregunta pide interpretar.
+ * Conservan un ancho mínimo y se desplazan de lado dentro de su marco.
+ *
+ * Queda anotado que el cuadernillo reproduce obra de autores vivos e
+ * identificables —Watterson sobre todo— y que esto va dentro de un producto
+ * que se vende. Es el mismo asunto de los derechos sobre los bancos de
+ * preguntas que hay que aclarar con CEA y con el ICFES, no algo propio de
+ * este archivo.
  *
  * Cada estímulo conserva la atribución que trae el cuadernillo.
  *
@@ -40,8 +44,13 @@
 
 const P = txt => `<p>${txt}</p>`;
 const FUENTE = txt => `<p class="ctx-fuente"><small>${txt}</small></p>`;
-const VINETA = (quien, dice) =>
-  `<p><b>${quien}:</b> «${dice}»</p>`;
+
+/* `es-ancha` deja que la figura conserve un ancho mínimo legible y se
+   desplace de lado dentro de su marco. Una tira de cuatro viñetas encogida a
+   320px deja de leerse: el diálogo es justo lo que la pregunta pide
+   interpretar, así que vale más el desplazamiento que el encogimiento. */
+const F = (archivo, alt) =>
+  `<figure class="ctx-fig es-ancha"><img src="img/figuras/lc/${archivo}.webp" loading="lazy" alt="${alt}"></figure>`;
 
 const BANKS = { lc: [] };
 const Q = (numero, comp, dificultad, context, text, opts, correct, exp, tip, extra = {}) =>
@@ -81,17 +90,12 @@ Q(63, 'Punto de vista del autor', 'media', COCACOLA,
   'Cuenta cuántas voces escriben aquí, no cuántas personas se mencionan.');
 
 /* ═════════ 64-65 · tira del tigre ═════════ */
-const TIRA_TIGRE =
-  P('La siguiente historieta está compuesta por cuatro viñetas en las que conversan un niño y un tigre.') +
-  P('<b>Primera viñeta.</b> El niño y el tigre caminan juntos.') +
-  VINETA('Niño', '¿Crees que los tigres van al mismo cielo que las personas?') +
-  P('<b>Segunda viñeta.</b> El tigre responde mientras el niño lo escucha.') +
-  VINETA('Tigre', 'Se supone que en el cielo todos somos felices, ¿no? ¡Pero la gente no será feliz si corre el riesgo de ser devorada por un tigre!') +
-  P('<b>Tercera viñeta.</b> El niño reflexiona.') +
-  VINETA('Niño', 'Por otra parte, el cielo no sería divertido sin tigres. Yo no sería feliz sin tigres. Los echaría de menos.') +
-  P('<b>Cuarta viñeta.</b> El tigre se lleva una mano al mentón, con gesto de haber caído en la cuenta de algo.') +
-  VINETA('Niño', 'Quizás, en el cielo, los tigres no se coman a la gente.') +
-  VINETA('Tigre', 'Entonces, nosotros no seríamos felices.');
+const TIRA_TIGRE = F('s12-q64-tira-tigres',
+  'Historieta de cuatro viñetas en las que conversan un niño y un tigre. '
+  + 'Primera viñeta: caminan juntos y el niño pregunta «¿Crees que los tigres van al mismo cielo que las personas?». '
+  + 'Segunda viñeta: el tigre responde «Se supone que en el cielo todos somos felices, ¿no? ¡Pero la gente no será feliz si corre el riesgo de ser devorada por un tigre!». '
+  + 'Tercera viñeta: el niño reflexiona y dice «Por otra parte, el cielo no sería divertido sin tigres. Yo no sería feliz sin tigres. Los echaría de menos.». '
+  + 'Cuarta viñeta: el niño propone «Quizás, en el cielo, los tigres no se coman a la gente», y el tigre, con gesto de haber caído en la cuenta de algo, responde «Entonces, nosotros no seríamos felices».');
 
 Q(64, 'Función de expresiones', 'media', TIRA_TIGRE,
   'En la cuarta viñeta, la expresión del tigre «Entonces nosotros no seríamos felices» y su gesto dan a entender que',
@@ -259,10 +263,9 @@ Q(78, 'Información literal', 'baja', VUDU,
 const SIDDHARTA =
   P('<b>Ver entre líneas: por Mónica Serrano</b><br><b>Buscar o encontrar: Siddharta (1922), de Hermann Hesse</b>') +
   P('Hermann Hesse (premio Nobel de Literatura en 1946) escribió este libro en el que relata la vida de Siddharta (que toma su nombre del Buda Siddharta Gautama), un indú que emprende un viaje en busca de la sabiduría junto a su amigo Govinda. En un determinado momento del viaje se separan por diferencia de opiniones, sobre el camino a tomar. Tras muchos años, ambos, ya ancianos, se reencuentran. En el diálogo reproducido, Siddharta le reprocha a su compañero el que, pese a tenerle frente a sus ojos, este no lo reconozca.') +
-  P('La infografía contrapone dos escenas. En la de arriba, rotulada <b>Buscar</b>, un personaje sentado señala con el brazo extendido hacia un rombo lejano, dibujado macizo y opaco; una flecha punteada va del personaje al rombo.') +
-  P('«Cuando alguien busca —continuó Siddharta—, fácilmente puede ocurrir que su ojo sólo se fije en lo que busca; pero como no lo halla, tampoco deja entrar en su ser otra cosa, ya que únicamente piensa en lo que busca, tiene un fin y está obsesionado con esa meta. (…)»') +
-  P('En la de abajo, rotulada <b>Encontrar</b>, el mismo personaje está sentado con los brazos recogidos y no señala nada; frente a él hay un rombo del mismo tamaño, pero dibujado como los dos triángulos que lo componen, y una flecha continua va del rombo hacia el personaje.') +
-  P('«(…) Buscar significa tener un objetivo. Encontrar, sin embargo, significa estar libre, abierto, no necesitar ningún fin. Tú, venerable, quizás eres realmente uno que busca, pues persiguiendo tu objetivo, no ves muchas cosas que están a la vista.»');
+  F('s12-q79-siddharta',
+    'Infografía con dos escenas contrapuestas. Arriba, rotulada Buscar: un personaje sentado con las piernas cruzadas señala con el brazo extendido hacia un rombo lejano, dibujado macizo y opaco, y una flecha punteada va del personaje al rombo. El texto dice «Cuando alguien busca —continuó Siddharta—, fácilmente puede ocurrir que su ojo sólo se fije en lo que busca; pero como no lo halla, tampoco deja entrar en su ser otra cosa, ya que únicamente piensa en lo que busca, tiene un fin y está obsesionado con esa meta». '
+    + 'Abajo, rotulada Encontrar: el mismo personaje está sentado con los brazos recogidos y no señala nada; frente a él hay un rombo del mismo tamaño, pero dibujado como los dos triángulos que lo componen, y una flecha continua va del rombo hacia el personaje. El texto dice «Buscar significa tener un objetivo. Encontrar, sin embargo, significa estar libre, abierto, no necesitar ningún fin. Tú, venerable, quizás eres realmente uno que busca, pues persiguiendo tu objetivo, no ves muchas cosas que están a la vista».');
 
 Q(79, 'Textos discontinuos', 'alta', SIDDHARTA,
   'El diamante que se encuentra frente al personaje de la parte inferior está dividido en los dos triángulos que lo constituyen. Así, se muestra gráficamente que este personaje',
@@ -427,10 +430,11 @@ Q(92, 'Semántica y léxico', 'media', NUEVAYORK,
   'Fíjate en las dos palabras con que el texto lo introduce: «síndrome» y «aquejados».');
 
 /* ═════════ 93-94 · caricatura ═════════ */
-const CARICATURA =
-  P('La imagen es una caricatura en blanco y negro. Dos ejércitos medievales avanzan uno contra otro. Al fondo, la tropa de la izquierda lleva estandartes con la figura de un palo; la de la derecha, estandartes con la figura de un conejo. En primer plano, un jinete de la primera tropa levanta la espada y arenga a sus soldados, que marchan con las lanzas en alto.') +
-  P('Al pie de la caricatura se lee la frase que pronuncia el jinete:') +
-  P('<i>«No habrá Paz hasta que estos infieles renuncien a su Dios conejo y acepten a nuestro Dios palo»</i>');
+const CARICATURA = F('s12-q93-caricatura',
+  'Caricatura en blanco y negro. Un ejército medieval avanza en formación cerrada, con las lanzas en alto. '
+  + 'Sus estandartes llevan la figura de un palo; al fondo, frente a ellos, se alzan estandartes con la figura de un conejo. '
+  + 'En primer plano, un jinete levanta la espada y arenga a sus soldados. '
+  + 'Al pie se lee la frase que pronuncia: «No habrá Paz hasta que estos infieles renuncien a su Dios conejo y acepten a nuestro Dios palo».');
 
 Q(93, 'Textos discontinuos', 'media', CARICATURA,
   'por medio de la anterior imagen, el autor busca',
@@ -447,19 +451,12 @@ Q(94, 'Función de expresiones', 'media', CARICATURA,
   'Mira quién dice la frase y en qué momento la dice. El contexto define si amenaza o propone.');
 
 /* ═════════ 95-96 · tira de los tiranosaurios ═════════ */
-const TIRA_DINO =
-  P('La siguiente historieta está compuesta por cuatro viñetas. En ellas conversan un niño, que está sentado a la mesa haciendo un trabajo del colegio, y su tigre de peluche.') +
-  P('<b>Primera viñeta.</b>') +
-  VINETA('Niño', 'Mi poderoso cerebro ha pensado un tema para mi trabajo.') +
-  VINETA('Tigre', '¡Genial!') +
-  P('<b>Segunda viñeta.</b> El niño sostiene un dinosaurio de juguete.') +
-  VINETA('Niño', 'Escribiré sobre el debate acerca de si los tiranosaurios eran temibles depredadores o desagradables carroñeros.') +
-  P('<b>Tercera viñeta.</b>') +
-  VINETA('Tigre', '¿Qué posición defenderás?') +
-  VINETA('Niño', 'Definitivamente creo que eran temibles depredadores.') +
-  P('<b>Cuarta viñeta.</b>') +
-  VINETA('Tigre', '¿Por qué lo dices?') +
-  VINETA('Niño', '¡Son mucho más geniales de esa manera!');
+const TIRA_DINO = F('s12-q95-tira-dinos',
+  'Historieta de cuatro viñetas. Conversan un niño, sentado a la mesa haciendo un trabajo del colegio, y su tigre. '
+  + 'Primera viñeta: el niño dice «Mi poderoso cerebro ha pensado un tema para mi trabajo» y el tigre responde «¡Genial!». '
+  + 'Segunda viñeta: el niño, que sostiene un dinosaurio de juguete, anuncia «Escribiré sobre el debate acerca de si los tiranosaurios eran temibles depredadores o desagradables carroñeros». '
+  + 'Tercera viñeta: el tigre pregunta «¿Qué posición defenderás?» y el niño contesta «Definitivamente creo que eran temibles depredadores». '
+  + 'Cuarta viñeta: el tigre pregunta «¿Por qué lo dices?» y el niño responde «¡Son mucho más geniales de esa manera!».');
 
 Q(95, 'Evaluación crítica', 'alta', TIRA_DINO,
   'El argumento del niño es',
