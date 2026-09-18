@@ -36,4 +36,16 @@ LC S13: las 36 preguntas se recorrieron a 320 px con cuatro opciones, ninguna im
 
 ## Pendiente
 
-LC S21 y S22; cruce de todas las secciones y cuadernillos restantes con la base; cargas de Biología y resto de Ciencias Naturales y Matemáticas; auditoría global final. Este inventario no declara el ZIP completo ni sustituye la revisión docente de las claves del modelo.
+Cruce de todas las secciones y cuadernillos restantes con la base; cargas de Biología y resto de Ciencias Naturales y Matemáticas; auditoría global final. Este inventario no declara el ZIP completo ni sustituye la revisión docente de las claves del modelo.
+
+## Lectura Crítica S21 y S22
+
+- S21 Tintín: 36 preguntas contrastadas con `content (12).pdf`, páginas 14–21; 34 publicadas y dos borradores (82, oposición no unívoca; 89, símil sin opción correspondiente). Nueve rutas `lc-27` a `lc-35`. Huellas remotas: contextos `2ae26d4ff7ce0e0390e511d3490674d9`, preguntas `5ee3ab6227a12913d43ef2b447fd10c5`, claves `02e883b350d5ffefc94ea8630ffc5c24`. Figura verificada por SHA en ambos hosts. Recorrido de las 36 preguntas a 320 px sin imágenes rotas ni desbordamiento de página.
+- S22 Bugs Bunny: 36 preguntas contrastadas con `content (5).pdf`, páginas 12–18; 35 publicadas y un borrador (75: falta la pregunta tras la cita). Ocho rutas `lc-36` a `lc-43`. Siete recortes del original, verificados visualmente y por SHA en ambos hosts (14 comprobaciones). Recorrido de las 36 preguntas a 320 px: cuatro opciones por pregunta, cero imágenes rotas y cero desbordamientos de página. Huellas remotas: contextos `24a2378e3c97b0821a233a09b9e9cfa4`, preguntas `64d206ed891e1e8ad33758d052bc8a7f`, claves `32b58ed9b80ab5cc7c6d6aa0be1cd6ad`.
+- S22 conserva la errata del quinto párrafo de Talbot («No tener razón significa que nunca meras reacciones…»), presente en el escaneo. Las claves 61, 79, 80 y 86 requieren atención docente por su formulación o inferencia. Todas las claves nuevas están identificadas como propuestas del modelo.
+
+Total de los cuatro bloques: **144 preguntas, 138 publicadas y seis borradores**. Las verificaciones de presentación anteriores son vistas locales con los estilos reales, no una sesión autenticada de un estudiante.
+
+## Capacidad del catálogo
+
+Se corrigió `js/api.js` para leer preguntas por páginas ordenadas por UUID, evitando el truncamiento de una consulta única al superar el límite de PostgREST. `node scripts/verificar-paginacion.mjs` comprueba 1.253 filas, un límite de servidor inferior al solicitado, un banco vacío, páginas exactas y un fallo intermedio. No se alteraron RLS ni las claves que recibe el cliente.
