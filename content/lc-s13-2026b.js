@@ -3,7 +3,7 @@
  * Q71 queda en borrador: B y C expresan la misma condición necesaria.
  */
 const P = t => `<p>${t}</p>`;
-const F = (n, alt) => `<figure class="ctx-fig es-ancha"><img src="img/figuras/lc/s13-${n}.webp" loading="lazy" alt="${alt}"></figure>`;
+const F = (n, alt) => `<figure class="ctx-fig es-ancha" tabindex="0" aria-label="Imagen con desplazamiento horizontal"><img src="img/figuras/lc/s13-${n}.webp" style="min-width:${/comic|loros/.test(n)?900:/secuencia|lentes/.test(n)?420:640}px" loading="lazy" alt="${alt}"><figcaption>Desliza la imagen hacia los lados para verla completa.</figcaption></figure>`;
 const S = t => `<p class="ctx-fuente"><small>${t}</small></p>`;
 const BANKS = {lc: []};
 const Q = (numero, comp, context, text, opts, correct, exp, tip, extra={}) => BANKS.lc.push({numero,comp,context,text,opts,correct,exp,tip,dificultad:'media',ctxLabel:'LECTURA CRÍTICA',ctxClass:'ctx-pasaje',...extra});
@@ -149,6 +149,6 @@ for (const p of BANKS.lc) {
   if (p.estado === 'borrador') continue;
   let sec=CUESTIONARIOS.lc.find(s=>s.tema===p.comp);
   if(!sec) {sec={tema:p.comp,items:[]};CUESTIONARIOS.lc.push(sec);}
-  if(!sec.items.length) sec.items.push({id:`lc-s13-${CUESTIONARIOS.lc.length}`,titulo:`Mickey Mouse · ${p.comp}`,tipo:'Pasaje',qs:[]});
+  if(!sec.items.length) sec.items.push({id:`lc-${16+CUESTIONARIOS.lc.length}`,titulo:`Mickey Mouse · ${p.comp}`,tipo:'Pasaje',qs:[]});
   sec.items[0].qs.push(BANKS.lc.indexOf(p));
 }
