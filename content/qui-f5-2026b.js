@@ -358,6 +358,6 @@ revisada(95).exp = 'La destilación aprovecha las diferencias de volatilidad y r
 
 // Presentación accesible sin alterar celdas ni valores del documento.
 for (const p of BANKS.qui) p.context = p.context.replace(/<table class="ctx-table">([\s\S]*?)<\/table>/g, (_,body) => {
- const wide = [...body.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].some(m => [...m[1].matchAll(/<(?:td|th)\b/g)].length > 4);
+ const wide = [...body.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].some(m => [...m[1].matchAll(/<(?:td|th)\b/g)].length > 3);
  return '<div class="ctx-datos" role="region" aria-label="Tabla de datos" tabindex="0"><table class="ctx-table ctx-table-nativa' + (wide ? ' ctx-table-amplia' : '') + '">' + body + '</table></div>';
 });
