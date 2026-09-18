@@ -22,6 +22,26 @@ let LOTE = { codigo: '—', vigencia: '' };
 let QIDS = {};   // QIDS[materia][indice] = uuid de la pregunta
 let QPOS = {};   // QPOS[uuid] = { m, qi }
 
+// PostgREST limita las filas por respuesta. Continúa incluso si el servidor
+// devuelve menos que el tamaño solicitado; solo una página vacía termina.
+async function leerPreguntasCompletas() {
+  const data = [];
+  let ultimoId = null;
+  for (;;) {
+    let consulta = sb.from('preguntas')
+      .select('id, materia, comp, enunciado, opciones, tip, dificultad, contexto:contextos(etiqueta, clase, contenido)')
+      .order('id').limit(500);
+    if (ultimoId !== null) consulta = consulta.gt('id', ultimoId);
+    const pagina = await consulta;
+    if (pagina.error) throw pagina.error;
+    if (!pagina.data?.length) return { data, error: null };
+    const siguienteId = pagina.data[pagina.data.length - 1].id;
+    if (siguienteId === ultimoId) throw new Error('No se pudo completar la carga del banco.');
+    data.push(...pagina.data);
+    ultimoId = siguienteId;
+  }
+}
+
 const API = {
 
   /* ── Sesión ──────────────────────────────────────────────────────────── */
@@ -56,9 +76,7 @@ const API = {
       sb.from('materias').select('key, sigla, nombre, area, docente, npreg, orden')
         .eq('activa', true).order('orden'),
       sb.from('lotes').select('codigo, etiqueta').eq('activo', true).single(),
-      sb.from('preguntas')
-        .select('id, materia, comp, enunciado, opciones, tip, dificultad, contexto:contextos(etiqueta, clase, contenido)')
-        .order('id'),
+      leerPreguntasCompletas(),
       sb.from('cuestionarios')
         .select('id, materia, slug, seccion, titulo, tipo, orden, cuestionario_preguntas(pregunta_id, orden)')
         .order('materia').order('orden'),
