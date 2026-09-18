@@ -49,3 +49,15 @@ const CUESTIONARIOS = {
     ]},
   ],
 };
+
+/* Cotejo con la página 9 de fisica de aladin.pdf. */
+for (const p of BANKS.qui) p.identityContext = p.context;
+BANKS.qui[0].exp = 'La tabla permite relacionar el tipo de enlace consignado con la conductividad observada, porque ambas variables se registraron. No permite explicar por sí sola el mecanismo ni evaluar el efecto del agua como variable independiente. Advertencia sobre la fuente: clasifica el azúcar como covalente apolar, lo cual es incorrecto para la sacarosa, que tiene grupos polares. Que su disolución no encienda el bombillo se debe a que no aporta una cantidad apreciable de iones móviles; no demuestra que sea apolar. El amoníaco en agua sí produce algunos iones. La clave se refiere a qué relación se puede investigar, no a validar todas las etiquetas de la tabla.';
+BANKS.qui[0].confianza = 'media';
+CUESTIONARIOS.qui[0].items[0].titulo = 'Deadpool · Enlace y conductividad';
+
+// Presentación accesible sin alterar celdas ni valores del documento.
+for (const p of BANKS.qui) p.context = p.context.replace(/<table class="ctx-table">([\s\S]*?)<\/table>/g, (_,body) => {
+ const wide = [...body.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].some(m => [...m[1].matchAll(/<(?:td|th)\b/g)].length > 4);
+ return '<div class="ctx-datos" role="region" aria-label="Tabla de datos" tabindex="0"><table class="ctx-table ctx-table-nativa' + (wide ? ' ctx-table-amplia' : '') + '">' + body + '</table></div>';
+});
