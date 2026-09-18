@@ -273,7 +273,7 @@ select 'e9f676a2-1b32-40ed-a3f3-72b7f4a309b5', 'lc',
   'c67d0b47-999d-4ac5-b861-1e2b7e46114b', 'Punto de vista del autor',
   '¿Cuál de las siguientes opciones describe mejor la opinión del autor del primer texto?',
   array['La única motivación que puede tener alguien para realizar un trabajo es creer que lo que hace es útil, aunque sea humillante.', 'Es triste creer que poseer un puesto de trabajo es un privilegio, pero esa creencia es precisamente lo que motiva a las personas a trabajar.', 'Es humillante y angustioso creer que el trabajo es útil, pero actualmente es la única forma de conseguir un puesto de trabajo.', 'Es agradable tener un puesto de trabajo, pues es un privilegio que solo pueden tener las personas que son útiles, no las personas con suerte.'],
-  'Weil compara el antes y el ahora del trabajo. Busca la opción que lamenta el ahora.', 'publicada', 'modelo', '1c86ca49327c41e2579764bac5f66277', 'alta';
+  'Weil compara el antes y el ahora del trabajo. Busca la opción que lamenta el ahora.', 'borrador', 'modelo', '1c86ca49327c41e2579764bac5f66277', 'alta';
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('e9f676a2-1b32-40ed-a3f3-72b7f4a309b5', 1, 'Weil contrapone dos maneras de vivir el trabajo: la orgullosa conciencia de ser útil, que dice que ya no existe, y el sentimiento humillante de tener un puesto por un golpe de suerte, que es el de ahora. Su queja es esa degradación. La segunda opción es la única que recoge el lamento por ver el empleo como privilegio, aunque le añade un motivo que Weil no menciona. La última invierte el texto, porque Weil dice explícitamente que el privilegio lo da la suerte y no la utilidad.');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
@@ -363,7 +363,7 @@ select 'abcdeaf7-e267-4a91-8d01-dcd6d360e1ca', 'lc',
   'd30d3058-e472-434f-b06a-df85e366d428', 'Evaluación crítica',
   'El argumento del niño es',
   array['Invalido, porque los tiranosaurios serían más geniales si fueran carroñeros.', 'valido, porque simplifica que los tiranosaurios son geniales depredadores.', 'invalido, porque los tiranosaurios son depredadores.', 'valido, porque o bien los tiranosaurios son terribles depredadores o bien son desagradables carroñeros.'],
-  'Pregúntate qué evidencia da el niño sobre los tiranosaurios. Si no da ninguna, el argumento no se sostiene.', 'publicada', 'modelo', '21b69591a9b980e6bd935a8a0f9bce65', 'alta';
+  'Pregúntate qué evidencia da el niño sobre los tiranosaurios. Si no da ninguna, el argumento no se sostiene.', 'borrador', 'modelo', '21b69591a9b980e6bd935a8a0f9bce65', 'alta';
 insert into public.preguntas_clave (pregunta_id, correcta, explicacion) values ('abcdeaf7-e267-4a91-8d01-dcd6d360e1ca', 0, 'El niño no da ninguna prueba sobre los tiranosaurios: elige la tesis porque le resulta más genial, y el gusto no demuestra nada sobre lo que ocurrió hace millones de años. El argumento es inválido. De las dos opciones que lo declaran inválido, la que atiende a esa razón es la que discute el criterio de lo genial; la otra lo declara inválido por un motivo que en realidad le daría la razón al niño. Conviene saber que el original no ofrece ninguna opción que nombre con precisión la falla, así que esta pregunta necesita revisión del docente.');
 
 insert into public.preguntas (id, materia, tema_id, lote_id, contexto_id, comp, enunciado, opciones, tip, estado, clave_origen, hash_norm, dificultad)
@@ -419,7 +419,6 @@ select 'a7f012e3-04e1-46c6-b383-b86401b69662', 'lc', 'lc-10', 'Evaluación crít
 insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('a7f012e3-04e1-46c6-b383-b86401b69662', '1fbe14d8-d96a-4d38-9bd8-47a89c0f081d', 1);
 insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('a7f012e3-04e1-46c6-b383-b86401b69662', 'cb77c96e-3cca-45ee-92ef-73eb808a14fb', 2);
 insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('a7f012e3-04e1-46c6-b383-b86401b69662', '44aad09a-2655-4021-96ce-e612cb239553', 3);
-insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('a7f012e3-04e1-46c6-b383-b86401b69662', 'abcdeaf7-e267-4a91-8d01-dcd6d360e1ca', 4);
 
 insert into public.cuestionarios (id, materia, slug, seccion, titulo, tipo, orden, lote_id, publicado)
 select 'baddcc5f-37d8-4ced-b2c5-fb30bfbbf0fb', 'lc', 'lc-11', 'Tesis y argumentos', 'Pato Donald · Qué se defiende y con qué', 'Pasaje', 11,
@@ -440,7 +439,6 @@ select 'b915a608-4795-4aee-b41d-b9dc6ecc6b24', 'lc', 'lc-13', 'Punto de vista de
   (select id from public.lotes where codigo = '2026-B'), true;
 insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('b915a608-4795-4aee-b41d-b9dc6ecc6b24', '094c1266-7f1b-4537-b0b8-e8012e708ae9', 1);
 insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('b915a608-4795-4aee-b41d-b9dc6ecc6b24', '384321cb-b869-4b32-adf1-bd6675afbca9', 2);
-insert into public.cuestionario_preguntas (cuestionario_id, pregunta_id, orden) values ('b915a608-4795-4aee-b41d-b9dc6ecc6b24', 'e9f676a2-1b32-40ed-a3f3-72b7f4a309b5', 3);
 
 insert into public.cuestionarios (id, materia, slug, seccion, titulo, tipo, orden, lote_id, publicado)
 select '94ac1377-d57e-48ed-b8cf-3356bf32265c', 'lc', 'lc-14', 'Textos discontinuos', 'Pato Donald · Imágenes que argumentan', 'Pasaje', 14,

@@ -31,9 +31,10 @@
  *   · La 79 depende de una infografía cuyo diamante partido admite dos
  *     lecturas razonables.
  *   · La 86 no tiene ninguna opción que diga limpiamente lo que dice Weil;
- *     elegí la menos mala.
+ *     queda en borrador: elegir la menos mala no permite calificar al alumno.
  *   · La 95 está mal construida en el original: ninguna opción ataca la razón
  *     real de Calvin, que es que los depredadores le parecen más geniales.
+ *     También queda en borrador hasta corregir las opciones con el docente.
  *
  * Y una errata del cuadernillo que se transcribe tal cual: la 69 cita el
  * texto como «la innata buena fe» donde el texto dice «mala fe». No cambia la
@@ -475,8 +476,12 @@ Q(96, 'Tesis y argumentos', 'media', TIRA_DINO,
   'La tesis es la posición que va a sostener en el trabajo, y él la enuncia en la tercera viñeta: cree que los tiranosaurios eran temibles depredadores. Eso responde al debate que planteó antes, entre depredadores y carroñeros. Que le parezcan geniales no es la tesis sino la razón por la que la escogió, y es justamente lo que se le critica. Las otras dos opciones hablan de los depredadores en general, cuando el trabajo es sobre los tiranosaurios.',
   'Separa lo que va a defender de por qué lo escogió. La tesis responde al debate que él mismo planteó.');
 
-/* La ruta arranca en lc-5: lc-1 a lc-4 son las cuatro del prototipo, con
-   textos inventados, y deberían retirarse cuando el docente lo confirme. */
+// Auditoría visual del PDF: las claves históricas se conservan sin publicarse.
+for (const pregunta of BANKS.lc) {
+  if ([86, 95].includes(pregunta.numero)) pregunta.estado = 'borrador';
+}
+
+/* La ruta arranca en lc-5; las cuatro rutas del prototipo ya fueron retiradas. */
 const CUESTIONARIOS = {
   lc: [
     { tema: 'Propósito del texto', items: [
@@ -491,7 +496,7 @@ const CUESTIONARIOS = {
       { id: 'lc-9',  titulo: 'Pato Donald · Sacar conclusiones',         qs: [16, 28, 29],      tipo: 'Pasaje' },
     ]},
     { tema: 'Evaluación crítica', items: [
-      { id: 'lc-10', titulo: 'Pato Donald · Poner en duda un argumento', qs: [6, 14, 21, 34],   tipo: 'Pasaje' },
+      { id: 'lc-10', titulo: 'Pato Donald · Poner en duda un argumento', qs: [6, 14, 21],       tipo: 'Pasaje' },
     ]},
     { tema: 'Tesis y argumentos', items: [
       { id: 'lc-11', titulo: 'Pato Donald · Qué se defiende y con qué',  qs: [5, 13, 35],       tipo: 'Pasaje' },
@@ -500,7 +505,7 @@ const CUESTIONARIOS = {
       { id: 'lc-12', titulo: 'Pato Donald · Palabras en contexto',       qs: [1, 8, 31],        tipo: 'Pasaje' },
     ]},
     { tema: 'Punto de vista del autor', items: [
-      { id: 'lc-13', titulo: 'Pato Donald · Quién habla y desde dónde',  qs: [2, 20, 25],       tipo: 'Pasaje' },
+      { id: 'lc-13', titulo: 'Pato Donald · Quién habla y desde dónde',  qs: [2, 20],           tipo: 'Pasaje' },
     ]},
     { tema: 'Textos discontinuos', items: [
       { id: 'lc-14', titulo: 'Pato Donald · Imágenes que argumentan',    qs: [18, 32],          tipo: 'Pasaje' },

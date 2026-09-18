@@ -36,4 +36,8 @@ Claves propuestas por el modelo: esta revisión no sustituye la aprobación doce
 
 Validadores locales sin problemas. Los 21 UUID y los índices históricos se conservan. Parche de 22 actualizaciones con comprobación del valor anterior, transaccional y sin borrados. La presentación local recorre las 21 preguntas a 320 px: cuatro opciones por pregunta, sin imágenes rotas ni desbordamiento de página. No se envían respuestas de estudiantes en esta prueba.
 
-El lote final debe quedar con 20 preguntas publicadas y una en borrador, en diez rutas publicadas. La ruta qui-5 conserva su registro inactivo y su relación histórica. No se crean preguntas ni duplicados.
+Parche aplicado y consultado en Supabase el 18 de septiembre: 20 preguntas publicadas y una en borrador, en diez rutas publicadas. La ruta qui-5 conserva su registro inactivo y su relación histórica. No se crearon preguntas ni duplicados.
+
+Las tres huellas de cada lote coinciden con la base. F2: `5d02fa2d956aaaf1fc1e89d8d1aafde0`, `8196a1542531c55310ac3f5ede9f5910`, `fcece8485840ca39b42011d41d0ac5e4`. F5: `4f704f508ab6fd26195f79981b945d99`, `def76b5b317408e1994d395178f6a7aa`, `82d4afdadf9d4fd9cbeb71283460698a`. Orden: contextos, preguntas, claves.
+
+Los 17 WebP publicados se compararon por SHA con los locales en producción y revisión: 34 comprobaciones correctas.
