@@ -1,6 +1,17 @@
 /* Banco de contenido de la demo (lote 2026-B).
  * YA NO lo carga la app: vive en Supabase. Este archivo queda como FUENTE del
  * cargador `scripts/generar-carga-banco.mjs`, que genera el SQL de carga.
+ *
+ * RETIRADO el 2026-09-17 (`20260917233000_retirar_el_banco_de_demo.sql`).
+ * Sus veinte preguntas tenían textos inventados por mí para cerrar la
+ * propuesta, y un estudiante las jugaba creyendo que eran ICFES. Las diez de
+ * Lectura Crítica se borraron —nadie las había respondido— y las diez de
+ * Matemáticas quedaron en estado `retirada`, porque sí tenían respuestas y
+ * `respuestas` es un registro que no se toca.
+ *
+ * El archivo se conserva porque de aquí salen todavía `MATERIAS` y la
+ * estructura que el cargador espera. NO volver a aplicar `banco-demo.sql`
+ * sobre la base: reinsertaría las veinte preguntas.
  */
 const MATERIAS = [
   { key: 'lc',  sigla: 'LC', nombre: 'Lectura Crítica',        prof: 'Diana Ordóñez',    npreg: 36, jugable: true },
