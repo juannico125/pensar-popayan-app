@@ -331,3 +331,33 @@ const CUESTIONARIOS = {
     ]},
   ],
 };
+
+/* Auditoría del PDF, 16-09-2026: conservar identidad e historial. */
+for (const p of BANKS.qui) p.identityContext = p.context;
+const revisada = numero => BANKS.qui.find(p => p.numero === numero);
+revisada(77).exp = 'Y y Z tienen presiones de vapor de 13020 y 5950 Pa: ambas superan 4000 Pa. En cambio, la conductividad de Y es mucho menor que 0,00001 S/m y los puntos de fusión de ambas están por debajo de sus puntos de ebullición. La tabla no permite concluir que tengan la misma composición química; sustancias isómeras pueden compartir fórmula molecular y presentar propiedades diferentes.';
+revisada(78).estado = 'borrador';
+revisada(78).exp = 'El etilenglicol tiene dos grupos OH y puede formar una red de puentes de hidrógeno más extensa que el propanol. Su punto de ebullición normal es mayor. Sin embargo, ninguna opción del documento es completamente correcta: la que menciona sus dos oxígenos dice que disminuye el número de puentes de hidrógeno, y la otra le atribuye más carbonos, cuando tiene menos. La generalización del enunciado sobre el debilitamiento de puentes al añadir carbonos tampoco basta para predecir puntos de ebullición. Pregunta retirada de la práctica hasta revisión docente; no se corrige silenciosamente la opción original.';
+for (const s of CUESTIONARIOS.qui) s.items = s.items.filter(it => it.id !== 'qui-5');
+revisada(82).exp += ' La notación del PDF es imprecisa: la molaridad se define como cantidad de sustancia en moles dividida por volumen de disolución en litros, no como masa en moles. El porcentaje masa/volumen expresa gramos de soluto por cada 100 mL de disolución.';
+revisada(82).confianza = 'media';
+revisada(83).exp = 'Con cantidad de gas y volumen constantes, la ley ideal exige que P/T sea constante: al subir la temperatura absoluta aumenta la presión. Esa es la conclusión cualitativa solicitada. Pero los números de la tabla original son inconsistentes con esa ley: partiendo de 1 atm a 298 K, corresponderían aproximadamente 1,08 atm a 323 K y 1,25 atm a 373 K, no 2 y 4 atm. Se conserva la tabla de la fuente y se señala su error; la fórmula no justifica esos valores exactos.';
+revisada(83).confianza = 'media';
+revisada(87).exp = 'La carga +1 significa que el átomo perdió un electrón: queda con 18. Sale el electrón del nivel más externo, 4s, y la configuración termina en 3p⁶. La alternativa terminada en 3p⁵ tiene 17 electrones; la terminada en 4s² tiene 20; y la terminada en 3d¹ conserva 19. Ninguna corresponde al ion con 18 electrones. P es aquí la etiqueta ficticia del enunciado, no el símbolo del fósforo: Z = 19 corresponde al potasio.';
+revisada(89).context = revisada(89).context.replace('la 1 apunta hacia la derecha dentro de la región del gas', 'la 1 baja hacia la derecha desde la región sólida, atraviesa la líquida y termina en la gaseosa');
+revisada(89).exp = 'La condensación transforma gas en líquido y la solidificación transforma líquido en sólido. La flecha 2 recorre esas regiones en ese orden: sube hacia la izquierda, aumentando la presión y disminuyendo la temperatura. La flecha 1 hace el recorrido inverso, de sólido a líquido y a gas. La flecha 3 pasa de gas a sólido sin atravesar la región líquida, y la 4 baja desde sólido a gas. Por eso solo la flecha 2 representa los dos cambios pedidos.';
+revisada(92).confianza = 'media';
+revisada(92).exp = 'En el modelo escolar de estas reacciones, X forma un óxido que con agua produce el hidróxido básico X(OH)₂: esto corresponde a un metal. La tercera reacción se interpreta como neutralización de ese hidróxido con un ácido Z, formando sal D y agua. Esa interpretación da metal y sal. El esquema no identifica Z ni presenta una ecuación balanceada completa, así que esa conclusión presupone la neutralización descrita, no es una regla general para cualquier reacción que produzca agua.';
+revisada(95).context = revisada(95).context.replace(/<p>En el laboratorio hay disponibles cuatro montajes.<\/p>[\s\S]*$/, '');
+revisada(95).opts = [
+ '<b>Filtración</b>' + F('q5-q95-filtracion','Embudo con filtro que retiene un sólido y deja pasar líquido al recipiente inferior.'),
+ '<b>Evaporación</b>' + F('q5-q95-evaporacion','Recipiente calentado: el líquido se evapora y queda el sólido.'),
+ '<b>Destilación</b>' + F('q5-q95-destilacion','Balón calentado con termómetro, refrigerante inclinado y recipiente que recoge el líquido condensado.'),
+ '<b>Decantación</b>' + F('q5-q95-decantacion','Tubo inclinado que vierte el líquido en un vaso mientras retiene un sólido depositado.')];
+revisada(95).exp = 'La destilación aprovecha las diferencias de volatilidad y recoge el vapor condensado. Es la única opción que permite recuperar por separado fracciones de los líquidos miscibles. La filtración retiene sólidos; la decantación requiere fases separadas; y la evaporación del dibujo no recupera el vapor. Una mezcla no hierve necesariamente como tres sustancias puras una tras otra: para una separación eficaz de líquidos con puntos de ebullición cercanos suele requerirse destilación fraccionada.';
+
+// Presentación accesible sin alterar celdas ni valores del documento.
+for (const p of BANKS.qui) p.context = p.context.replace(/<table class="ctx-table">([\s\S]*?)<\/table>/g, (_,body) => {
+ const wide = [...body.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].some(m => [...m[1].matchAll(/<(?:td|th)\b/g)].length > 4);
+ return '<div class="ctx-datos" role="region" aria-label="Tabla de datos" tabindex="0"><table class="ctx-table ctx-table-nativa' + (wide ? ' ctx-table-amplia' : '') + '">' + body + '</table></div>';
+});
