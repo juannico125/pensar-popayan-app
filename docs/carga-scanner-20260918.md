@@ -82,7 +82,7 @@ Se verificaron 17 WebP por SHA en ambos hosts (34 comprobaciones), además de re
 | bio-f2-2026b | dd88fd9a851a84da310a3576f462f6b5 | 3cbea5af5995cf804505671ff81e99e4 | d299b59e21bcc709e4405eb8c9088199 |
 | qui-b2-2026b | 28522c1b3c9a58e5a96903447d98eaf3 | f238510b3b19f179ce1c6b7aeaae8c92 | f08dedc697ba2bd6628d132575341769 |
 
-Las huellas coinciden con Supabase. El segundo bloque de ese PDF está marcado a mano **7B**, no 3B; sus páginas 7–11 están pendientes de carga.
+Las huellas coinciden con Supabase. El segundo bloque de ese PDF está marcado a mano **7B**, no 3B; sus páginas 7–11 se cargaron en el lote descrito a continuación.
 
 ## Cuadernillo 7B — content (14).pdf, páginas 7–11
 
@@ -90,4 +90,17 @@ Las huellas coinciden con Supabase. El segundo bloque de ese PDF está marcado a
 - 17 figuras recortadas y revisadas; se ampliaron márgenes para conservar ejes, leyendas y dibujos. Las opciones gráficas no conservan letras fijas.
 - Revisión local de las 20 preguntas a 320 px: cuatro opciones por pregunta, ninguna imagen rota y ningún desbordamiento de página. Tablas y figuras amplias permiten desplazamiento horizontal.
 - Claves de modelo; 99 y 115 requieren especial revisión docente. La errata del texto de PM2.5 queda señalada en el contexto.
-- SQL generado con rutas bio-10 a bio-13 y qui-16 a qui-17. Huellas previas verificadas sin coincidencias en la base; publicación y carga pendientes de comprobación remota.
+- SQL generado con rutas bio-10 a bio-13 y qui-16 a qui-17. Huellas previas verificadas sin coincidencias en la base; carga completada y huellas remotas coincidentes. Las 17 figuras coinciden por SHA-256 en producción y revisión (34 comprobaciones).
+
+Huellas 7B: Biología `ea8e7d85edfdf8040eb422f6df55599c` / `0319523a857d29529462e10d71052bfd` / `1b76f0df486926e5a626bd542da31d27`; Química `162d190f1533c1efb3103779174e05b1` / `251b3975a489b76dcbea6fea4ca32aa3` / `cb2450c1285678db8feeeda26280349a`.
+
+## Biología 5B revisado — content (7).pdf, páginas 2–6
+
+20 preguntas fuente: 18 nuevas (17 publicables, 116 en borrador) y dos duplicadas ya cubiertas por 2B: 102 = 2B/103, 110 = 2B/97. Comparación visual y de contenido; no se duplican las filas existentes.
+
+- 18 figuras conservan ejes, leyendas y opciones sin letras fijas. Revisión local a 320 px de las 20 preguntas antes de excluir duplicados: sin imágenes rotas ni desbordamientos, cuatro opciones por pregunta.
+- 116 admite los diagramas de padre afectado/madre sana y de madre portadora/padre sano: ambos pueden producir esa familia. Queda fuera de la ruta hasta revisión docente.
+- 98 tiene inferencia limitada a la hipótesis medida; 114 requiere revisión del modelo de algas. Claves de modelo.
+- 102 trae una opción sin letra en el original; coincide con la pregunta 2B/103 ya publicada.
+- El validador distingue mayúsculas en cruces de genotipos para no confundir GGRR con GgRr.
+- Rutas bio-14 a bio-17. Publicación y comprobación de carga pendientes.

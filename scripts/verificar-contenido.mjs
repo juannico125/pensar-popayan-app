@@ -66,7 +66,12 @@ for (const [materia, banco] of Object.entries(BANKS)) {
   banco.forEach((it, i) => {
     if (!Array.isArray(it.opts) || it.opts.length < 2) mal(`${i}: opciones insuficientes`);
     if (it.estado !== 'borrador' && !(Number.isInteger(it.correct) && it.correct >= 0 && it.correct < it.opts.length)) mal(`${i}: correct=${it.correct} fuera de las ${it.opts.length} opciones`);
-    if (new Set(it.opts.map(op => String(op).normalize('NFC').replace(/\s+/g, ' ').trim().toLowerCase())).size !== it.opts.length) mal(`${i}: opciones repetidas`);
+    // Los genotipos distinguen mayúsculas: GGRR y GgRr no son duplicados.
+    const normalizarOpcion = op => {
+      const texto = String(op).normalize('NFC').replace(/\s+/g, ' ').trim();
+      return /^(?:[A-Za-z]{2,8}\s*[×x]\s*[A-Za-z]{2,8})[.]?$/.test(texto) ? texto : texto.toLowerCase();
+    };
+    if (new Set(it.opts.map(normalizarOpcion)).size !== it.opts.length) mal(`${i}: opciones repetidas`);
     if (!it.text || !it.exp) mal(`${i}: falta enunciado o explicación`);
     // «la opción A», «la respuesta B», «(C)» — pero no «Colombia» ni «Artículo 16».
     if (/\b(opci[oó]n|respuesta|literal)\s+[A-D]\b/i.test(it.exp)) mal(`${i}: la explicación nombra una letra`);
