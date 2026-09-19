@@ -70,3 +70,24 @@ Contrastes externos usados para evitar reproducir errores científicos:
 - [CDC: VPH](https://www.cdc.gov/std/treatment-guidelines/hpv.htm): el preservativo reduce el riesgo sin eliminarlo; precisión incorporada en la explicación de la 99.
 
 El PDF `content (14).pdf` contiene al menos dos cuadernillos, no uno: el primer bloque empieza en 95 y termina en 116 (páginas 1–6), el segundo vuelve a 97–116 (páginas 7–11). Está en revisión; aún no se declara cargado.
+
+## Ciencias Naturales 2B: cargado y comprobado
+
+El primer bloque de `content (14).pdf` quedó cargado: 19 preguntas de Biología y tres de Química (95, 96 y 102). Se publicaron 21 y quedó en borrador la 114 por la discrepancia entre la hipótesis rechazada, la superposición de horarios en la gráfica y las conclusiones ofrecidas.
+
+Se verificaron 17 WebP por SHA en ambos hosts (34 comprobaciones), además de revisar sus márgenes visualmente. Las letras originales de las opciones se excluyeron de los recortes para permitir el barajado. Las 22 vistas locales se recorrieron a 320 px con cuatro opciones y sin imágenes rotas ni desbordamientos exteriores. Las tablas fueron recreadas en HTML.
+
+| Archivo | Huella contextos | Huella preguntas | Huella claves |
+|---|---|---|---|
+| bio-f2-2026b | dd88fd9a851a84da310a3576f462f6b5 | 3cbea5af5995cf804505671ff81e99e4 | d299b59e21bcc709e4405eb8c9088199 |
+| qui-b2-2026b | 28522c1b3c9a58e5a96903447d98eaf3 | f238510b3b19f179ce1c6b7aeaae8c92 | f08dedc697ba2bd6628d132575341769 |
+
+Las huellas coinciden con Supabase. El segundo bloque de ese PDF está marcado a mano **7B**, no 3B; sus páginas 7–11 están pendientes de carga.
+
+## Cuadernillo 7B — content (14).pdf, páginas 7–11
+
+- 20 preguntas: 17 de Biología y 3 de Química; 19 publicables y la 113 en borrador por opciones incompatibles con la gráfica.
+- 17 figuras recortadas y revisadas; se ampliaron márgenes para conservar ejes, leyendas y dibujos. Las opciones gráficas no conservan letras fijas.
+- Revisión local de las 20 preguntas a 320 px: cuatro opciones por pregunta, ninguna imagen rota y ningún desbordamiento de página. Tablas y figuras amplias permiten desplazamiento horizontal.
+- Claves de modelo; 99 y 115 requieren especial revisión docente. La errata del texto de PM2.5 queda señalada en el contexto.
+- SQL generado con rutas bio-10 a bio-13 y qui-16 a qui-17. Huellas previas verificadas sin coincidencias en la base; publicación y carga pendientes de comprobación remota.
