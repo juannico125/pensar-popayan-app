@@ -49,3 +49,24 @@ Total de los cuatro bloques: **144 preguntas, 138 publicadas y seis borradores**
 ## Capacidad del catálogo
 
 Se corrigió `js/api.js` para leer preguntas por páginas ordenadas por UUID, evitando el truncamiento de una consulta única al superar el límite de PostgREST. `node scripts/verificar-paginacion.mjs` comprueba 1.253 filas, un límite de servidor inferior al solicitado, un banco vacío, páginas exactas y un fallo intermedio. No se alteraron RLS ni las claves que recibe el cliente.
+
+## Ciencias Naturales 1B: cargado y comprobado
+
+Se leyeron las cinco páginas de `content (13).pdf`, preguntas 97–116. Las 20 se distribuyeron en 17 de Biología, una de Química (102) y dos de Física (112 y 114). No hubo hashes coincidentes con la base. Se publicaron 18 y se conservaron dos borradores: 97 (especiación sin información suficiente para una clave inequívoca) y 113 (premisa incorrecta sobre diagnóstico del cáncer).
+
+Se recrearon cuatro tablas y las cuatro gráficas de opciones de la 114; once WebP conservan los dibujos. Se comprobaron las 20 vistas locales a 320 px: cuatro opciones por pregunta, ninguna imagen rota ni desbordamiento exterior. Las tablas tienen desplazamiento interno para evitar columnas excesivamente estrechas. Se verificaron los once WebP por SHA en ambos hosts (22 comprobaciones).
+
+| Archivo | Huella contextos | Huella preguntas | Huella claves |
+|---|---|---|---|
+| bio-f1-2026b | e1394f5c360b246605cb9badaf26f5ed | d79cf063055013077213988512522bd8 | f9c56672b9091175c46aaf319728985f |
+| qui-b1-2026b | 2461313bcb940422b56f8f3dbc9bbf3a | 20a1a6d2ce76f941f5517762a4bea26a | 31224608ef1ff33e3b7dd3046b8515dd |
+| fis-b1-2026b | 706752ef55b1ee56ed625e7d71278480 | 142d161afa87b442057943c369715bce | b4538a168420e5a25e5e82881811e035 |
+
+Las tres huellas de cada archivo coinciden con Supabase después de la carga. Todas las claves tienen origen `modelo`.
+
+Contrastes externos usados para evitar reproducir errores científicos:
+
+- [Instituto Nacional del Cáncer: diagnóstico](https://www.cancer.gov/about-cancer/diagnosis-staging/diagnosis): los rayos X y la tomografía sí se usan en estudios diagnósticos; sustenta el borrador 113.
+- [CDC: VPH](https://www.cdc.gov/std/treatment-guidelines/hpv.htm): el preservativo reduce el riesgo sin eliminarlo; precisión incorporada en la explicación de la 99.
+
+El PDF `content (14).pdf` contiene al menos dos cuadernillos, no uno: el primer bloque empieza en 95 y termina en 116 (páginas 1–6), el segundo vuelve a 97–116 (páginas 7–11). Está en revisión; aún no se declara cargado.
